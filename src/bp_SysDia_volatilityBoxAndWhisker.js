@@ -5,8 +5,8 @@
 
 let volatilityChart = null;
 
-function updateSysDiaVolatilityChart(filteredData) {
-    const ctx = document.getElementById('sysDiaVolatilityChart');
+function createBoxWhiskerChart(filteredData) {
+    const ctx = document.getElementById('boxWhiskerChart');
     if (!ctx) return;
 
     if (volatilityChart) { volatilityChart.destroy(); }
@@ -145,3 +145,7 @@ function groupDataByVolume(data, filter) {
     }
     return { labels, sysData, diaData, dateRanges };
 }
+
+var updateBoxWhiskerChart = function(filteredData) {
+    createBoxWhiskerChart(filteredData);
+};
