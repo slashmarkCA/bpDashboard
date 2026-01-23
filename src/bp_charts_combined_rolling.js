@@ -1,8 +1,12 @@
 /* ============================================================================
-   bp_charts_combined_rolling.js - CALENDAR-ALIGNED RAW DATA (FINAL)
-   ============================================================================ */
+    bp_charts_combined_rolling.js - DAY-MEAN AGGREGATION MODE (FINAL)
+    STRATEGY: 
+    1. Collapse multi-reading days into a single Daily Mean.
+    2. Slide a window across the last 7 AVAILABLE days of data.
+    3. Exclude gaps (Denominator = count of days with data).
+    ============================================================================ */
 
-console.log('bp_charts_combined_rolling.js (Calendar-Aligned Mode) loaded');
+console.log('bp_charts_combined_rolling.js (Day-Mean Mode) loaded');
 
 let combinedRollingChart = null;
 let currentBandMode = 'none';
@@ -14,23 +18,41 @@ function createCombinedRollingChart(filteredData) {
 
     if (!filteredData || filteredData.length === 0) return;
 
-    // 1. ACCESS GLOBAL DATA for historical lookback
+    // 1. ACCESS GLOBAL DATA
+    // We need allData to ensure the "Lookback" isn't cut off by the UI filter
     const allData = [...window.NORMALIZED_BP_DATA].sort((a, b) => a.DateObj - b.DateObj);
     const sortedFiltered = [...filteredData].sort((a, b) => a.DateObj - b.DateObj);
 
-    // 2. Calculate rolling stats using CALENDAR DAYS
+    // 2. PRE-PROCESS: Collapse all global readings into Daily Means
+    // This prevents "Averages of Averages" bias on multi-reading days.
+    const dailyMap = allData.reduce((acc, r) => {
+        const key = getLocalDateKey(r.DateObj);
+        if (!acc[key]) acc[key] = { sys: [], dia: [], date: r.DateObj };
+        acc[key].sys.push(r.Sys);
+        acc[key].dia.push(r.Dia);
+        return acc;
+    }, {});
+
+    // Convert map to sorted array of points (One point per day)
+    const dailySeries = Object.keys(dailyMap).sort().map(key => ({
+        key: key,
+        date: dailyMap[key].date,
+        avgSys: dailyMap[key].sys.reduce((a, b) => a + b, 0) / dailyMap[key].sys.length,
+        avgDia: dailyMap[key].dia.reduce((a, b) => a + b, 0) / dailyMap[key].dia.length,
+        rawCount: dailyMap[key].sys.length
+    }));
+
+    // 3. CALCULATE STATS: Loop through the visible readings
     const stats = sortedFiltered.map((r) => {
-        // Create a window from Midnight 6 days ago to Midnight of the reading date
-        const d = r.DateObj;
-        const windowStart = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 6, 0, 0, 0);
-        const windowEnd = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59);
+        const rKey = getLocalDateKey(r.DateObj);
+        const dayIndex = dailySeries.findIndex(d => d.key === rKey);
+        
+        // VOLUME WINDOW: Take the last 7 unique data-days leading up to this reading
+        // This is the "Exclusionary" null handling (Denominator = days with data)
+        const windowDays = dailySeries.slice(Math.max(0, dayIndex - 6), dayIndex + 1);
 
-        const windowReadings = allData.filter(d =>
-            d.DateObj >= windowStart && d.DateObj <= windowEnd
-        );
-
-        const sysVals = windowReadings.map(d => d.Sys);
-        const diaVals = windowReadings.map(d => d.Dia);
+        const sysMeans = windowDays.map(d => d.avgSys);
+        const diaMeans = windowDays.map(d => d.avgDia);
 
         const getMean = (vals) => vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
         const getSD = (vals, mean) => {
@@ -38,10 +60,10 @@ function createCombinedRollingChart(filteredData) {
             return Math.sqrt(vals.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b, 0) / vals.length);
         };
 
-        const sMean = getMean(sysVals);
-        const dMean = getMean(diaVals);
-        const sSD = getSD(sysVals, sMean);
-        const dSD = getSD(diaVals, dMean);
+        const sMean = getMean(sysMeans);
+        const dMean = getMean(diaMeans);
+        const sSD = getSD(sysMeans, sMean);
+        const dSD = getSD(diaMeans, dMean);
 
         return {
             label: formatAxisDate(r.DateObj),
@@ -52,8 +74,9 @@ function createCombinedRollingChart(filteredData) {
             sysLower: sMean - sSD,
             diaUpper: dMean + dSD,
             diaLower: dMean - dSD,
-            windowCount: windowReadings.length,
-            windowRange: `${formatAxisDate(windowStart)} to ${formatAxisDate(windowEnd)}`
+            dayCount: windowDays.length,
+            // Total readings inside those 7 days
+            readingCount: windowDays.reduce((sum, d) => sum + d.rawCount, 0)
         };
     });
 
@@ -63,7 +86,7 @@ function createCombinedRollingChart(filteredData) {
             labels: stats.map(s => s.label),
             datasets: [
                 {
-                    label: '7-Day Sys Avg',
+                    label: '7-Day Sys Avg (Day-Mean)',
                     data: stats.map(s => s.sysAvg),
                     borderColor: '#d32f2f',
                     borderWidth: 2,
@@ -90,7 +113,7 @@ function createCombinedRollingChart(filteredData) {
                     hidden: currentBandMode !== 'systolic'
                 },
                 {
-                    label: '7-Day Dia Avg',
+                    label: '7-Day Dia Avg (Day-Mean)',
                     data: stats.map(s => s.diaAvg),
                     borderColor: '#1976d2',
                     borderWidth: 2,
@@ -130,7 +153,7 @@ function createCombinedRollingChart(filteredData) {
                         title: (items) => formatTooltipDate(stats[items[0].dataIndex].fullDate),
                         afterBody: (items) => {
                             const point = stats[items[0].dataIndex];
-                            return `\nWindow: ${point.windowCount} readings\nRange: ${point.windowRange}`;
+                            return `\nWindow: ${point.dayCount} Days with data\nTotal Readings: ${point.readingCount}`;
                         }
                     }
                 }
@@ -151,12 +174,8 @@ function createCombinedRollingChart(filteredData) {
     });
 }
 
-/**
- * RESTORED EXPORT FUNCTIONS
- */
 function toggleCombinedStdDevBand(mode) {
     currentBandMode = mode;
-    // Refresh with current filter
     if (typeof getFilteredBPData === 'function' && typeof getCurrentFilter === 'function') {
         createCombinedRollingChart(getFilteredBPData(getCurrentFilter()));
     }

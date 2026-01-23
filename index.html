@@ -182,31 +182,38 @@
         <p>Blood Pressure Dashboard &copy; 2026</p>
     </footer>
 
+
+    <!-- Laws of Aggregation for data-aggregation="..."  -->
+    <!-- reading-simple: Every measurement counts as 1 -->
+    <!-- day-mean-simple: Every day counts as 1 (after collapsing its readings) -->
+    <!-- raw: No aggregation, just show the dots -->
+
     <!-- Core data & utilities -->
-     <script src="utils/bp_data.js" defer></script>
-	<script src="utils/bp_data_normalized.js" defer></script>
+    <script src="utils/bp_data.js" defer></script>
+    <script src="utils/bp_data_normalized.js" defer></script>
     <script src="utils/bp_utils.js" defer></script>
-    <script src="utils/bp_filters.js" defer></script>
+    <script src="utils/bp_filters.js" data-logic="volume-window" defer></script>
     <!-- Chart dispatcher -->
     <script src="utils/bp_charts.js" defer></script>
 
     <!-- Chart modules -->
-	<script src="src/bp_charts_line.js" defer></script>
-    <script src="src/bp_charts_scatter.js" defer></script>
-    <script src="src/bp_pulse_line.js" defer></script>
-    <script src="src/bp_pulse_histogram.js" defer></script>
-    <script src="src/bp_pulsePressure_histogram.js" defer></script>
-    <script src="src/bp_SysDia_volatilityBoxAndWhisker.js" defer></script>
-    <script src="src/bp_pulsePressure_line.js" defer></script>
-    <script src="src/bp_categoryOverTime.js" defer></script>
-    <script src="src/bp_charts_combined_rolling.js" defer></script>
-    <script src="src/bp_7dayAvg_combined_map_line.js" defer></script>
+	<script src="src/bp_charts_line.js" data-aggregation="raw" defer></script>
+    <script src="src/bp_charts_scatter.js" data-aggregation="raw" defer></script>
+    <script src="src/bp_pulse_line.js" data-aggregation="raw" defer></script>
+    <script src="src/bp_pulse_histogram.js" data-aggregation="raw" defer></script>
+    <script src="src/bp_pulsePressure_histogram.js" data-aggregation="raw" defer></script>
+    <script src="src/bp_SysDia_volatilityBoxAndWhisker.js" data-aggregation="raw" defer></script>
+    <script src="src/bp_pulsePressure_line.js" data-aggregation="raw" defer></script>
+    <script src="src/bp_categoryOverTime.js" data-aggregation="day-mean-simple" defer></script>
+    <script src="src/bp_charts_combined_rolling.js" data-aggregation="day-mean-simple" defer></script>
+    <script src="src/bp_7dayAvg_combined_map_line.js" data-aggregation="day-mean-simple" defer></script>
 
     <!-- Summary cards -->
-    <script src="src/ReadingsInDaysCard.js" defer></script>
-    <script src="src/readingCategoriesSummaryCard.js" defer></script>
-    <script src="src/filteredNormalDonutCard.js" defer></script>
-    <script src="src/bp_periodAggregateSummary_card.js"defer></script>
-    <script src="src/bp_rawDataTabularView.js"defer></script>
+    <script src="src/ReadingsInDaysCard.js" data-aggregation="reading-simple" defer></script>
+    <script src="src/readingCategoriesSummaryCard.js" data-aggregation="reading-simple" defer></script>
+    <script src="src/filteredNormalDonutCard.js" data-aggregation="reading-simple" defer></script>
+    <script src="src/bp_periodAggregateSummary_card.js" data-aggregation="reading-simple" defer></script>
+    <script src="src/bp_rawDataTabularView.js" data-aggregation="raw" defer></script>
+
 </body>
 </html>

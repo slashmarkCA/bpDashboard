@@ -31,12 +31,12 @@ function getCurrentFilter() {
 }
 
 /* ------------------------------------------------------------
-   Core filter - Now Calendar Aligned.
+   Core filter - Volume-Based (Last N Days with Data)
+   It reverts to grouping by day and slicing the most recent "Data Days."
 ------------------------------------------------------------ */
 function getFilteredBPData(range) {
     if (!SOURCE_DATA.length) return [];
 
-    // "All" stays the same
     if (range === 'all') {
         return [...SOURCE_DATA].sort((a, b) => a.DateObj - b.DateObj);
     }
@@ -49,17 +49,30 @@ function getFilteredBPData(range) {
 
     if (!daysRequired) return [];
 
-    // Use our new utility to get the strict calendar window
-    const window = getCalendarRange(new Date(), daysRequired);
+    // 1. Group all available data by local date key
+    const byDay = new Map();
+    SOURCE_DATA.forEach(r => {
+        const key = getLocalDateKey(r.DateObj); // Uses util to strip time
+        if (!byDay.has(key)) byDay.set(key, []);
+        byDay.get(key).push(r);
+    });
 
-    // Filter data strictly within that window
-    const result = SOURCE_DATA.filter(r => 
-        r.DateObj >= window.start && r.DateObj <= window.end
-    );
+    // 2. Sort unique dates newest to oldest
+    const sortedDays = Array.from(byDay.keys()).sort((a, b) => b.localeCompare(a));
 
-    // Keep it sorted for the charts
-    result.sort((a, b) => a.DateObj - b.DateObj);
-    return result;
+    // 3. Take the N most recent days that actually have readings
+    const selectedDays = sortedDays.slice(0, daysRequired);
+
+    if (!selectedDays.length) return [];
+
+    // 4. Flatten the readings from those selected days back into a single array
+    const result = [];
+    selectedDays.forEach(dayKey => {
+        result.push(...byDay.get(dayKey));
+    });
+
+    // 5. Return sorted oldest to newest for Chart.js
+    return result.sort((a, b) => a.DateObj - b.DateObj);
 }
 
 /* ------------------------------------------------------------
