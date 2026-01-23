@@ -31,11 +31,12 @@ function getCurrentFilter() {
 }
 
 /* ------------------------------------------------------------
-   Core filter
+   Core filter - Now Calendar Aligned.
 ------------------------------------------------------------ */
 function getFilteredBPData(range) {
     if (!SOURCE_DATA.length) return [];
 
+    // "All" stays the same
     if (range === 'all') {
         return [...SOURCE_DATA].sort((a, b) => a.DateObj - b.DateObj);
     }
@@ -48,26 +49,15 @@ function getFilteredBPData(range) {
 
     if (!daysRequired) return [];
 
-    const byDay = new Map();
+    // Use our new utility to get the strict calendar window
+    const window = getCalendarRange(new Date(), daysRequired);
 
-    SOURCE_DATA.forEach(r => {
-        const key = getLocalDateKey(r.DateObj);
-        if (!key) return;
-
-        if (!byDay.has(key)) byDay.set(key, []);
-        byDay.get(key).push(r);
-    });
-
-    const sortedDays = Array.from(byDay.keys()).sort(
-        (a, b) => b.localeCompare(a)
+    // Filter data strictly within that window
+    const result = SOURCE_DATA.filter(r => 
+        r.DateObj >= window.start && r.DateObj <= window.end
     );
 
-    const selectedDays = sortedDays.slice(0, daysRequired);
-    if (!selectedDays.length) return [];
-
-    const result = [];
-    selectedDays.forEach(d => result.push(...byDay.get(d)));
-
+    // Keep it sorted for the charts
     result.sort((a, b) => a.DateObj - b.DateObj);
     return result;
 }
