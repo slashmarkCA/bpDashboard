@@ -5,8 +5,8 @@
 
 let volatilityChart = null;
 
-function updateSysDiaVolatilityChart(filteredData) {
-    const ctx = document.getElementById('sysDiaVolatilityChart');
+function createBoxWhiskerChart(filteredData) {
+    const ctx = document.getElementById('boxWhiskerChart');
     if (!ctx) return;
 
     if (volatilityChart) { volatilityChart.destroy(); }
@@ -114,34 +114,70 @@ function groupDataByVolume(data, filter) {
     const dateRanges = [];
     const sorted = [...data].sort((a, b) => a.DateObj - b.DateObj);
 
-    if (filter === 'all') {
-        const months = new Map();
-        sorted.forEach(r => {
-            const mKey = r.DateObj.toLocaleDateString(undefined, { month: 'short', year: '2-digit' });
-            if (!months.has(mKey)) months.set(mKey, { sys: [], dia: [] });
-            months.get(mKey).sys.push(r.Sys);
-            months.get(mKey).dia.push(r.Dia);
-        });
-        months.forEach((val, key) => {
-            labels.push(key);
-            dateRanges.push(`Full Month: ${key}`);
-            sysData.push(val.sys);
-            diaData.push(val.dia);
-        });
-    } else {
-        const numChunks = filter === 'last7days' ? 1 : (filter === 'last14days' ? 2 : 4);
-        const chunkSize = Math.ceil(sorted.length / numChunks);
+    if (sorted.length === 0) return { labels, sysData, diaData, dateRanges };
 
-        for (let i = 0; i < numChunks; i++) {
-            const chunk = sorted.slice(i * chunkSize, (i + 1) * chunkSize);
-            if (chunk.length === 0) continue;
-            const start = chunk[0].DateObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-            const end = chunk[chunk.length - 1].DateObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-            labels.push(`Bucket ${i + 1}`);
-            dateRanges.push(`${start} - ${end}`);
-            sysData.push(chunk.map(r => r.Sys));
-            diaData.push(chunk.map(r => r.Dia));
+    // 1. Determine Window Strategy: Monthly for 'all', Weekly for everything else
+    const isAll = filter === 'all';
+    
+    // 2. Initialize the first bucket
+    let bucketStart = new Date(sorted[0].DateObj);
+    bucketStart.setHours(0, 0, 0, 0);
+
+    const getNextThreshold = (start) => {
+        let d = new Date(start);
+        if (isAll) {
+            d.setMonth(d.getMonth() + 1, 1); // Start of next month
+        } else {
+            d.setDate(d.getDate() + 7); // Exactly 7 days later
         }
-    }
+        return d;
+    };
+
+    let nextThreshold = getNextThreshold(bucketStart);
+    let currentBucket = { sys: [], dia: [], start: new Date(bucketStart) };
+
+    sorted.forEach((r, index) => {
+        // If the reading is past the current window, close bucket and start new one
+        if (r.DateObj >= nextThreshold) {
+            // Label the closed bucket
+            const endDisp = new Date(nextThreshold);
+            endDisp.setMilliseconds(-1); // One ms before the next threshold
+            
+            labels.push(isAll ? 
+                currentBucket.start.toLocaleDateString(undefined, { month: 'short', year: '2-digit' }) : 
+                `Week ${labels.length + 1}`);
+            
+            dateRanges.push(`${formatAxisDate(currentBucket.start)} - ${formatAxisDate(endDisp)}`);
+            sysData.push(currentBucket.sys);
+            diaData.push(currentBucket.dia);
+
+            // Reset for next window
+            bucketStart = new Date(r.DateObj);
+            bucketStart.setHours(0, 0, 0, 0);
+            nextThreshold = getNextThreshold(bucketStart);
+            currentBucket = { sys: [r.Sys], dia: [r.Dia], start: bucketStart };
+        } else {
+            currentBucket.sys.push(r.Sys);
+            currentBucket.dia.push(r.Dia);
+        }
+
+        // Handle the very last bucket
+        if (index === sorted.length - 1 && currentBucket.sys.length > 0) {
+            labels.push(isAll ? 
+                currentBucket.start.toLocaleDateString(undefined, { month: 'short', year: '2-digit' }) : 
+                `Week ${labels.length + 1}`);
+            
+            // For the last range, use the last reading's date or the theoretical end
+            const actualEnd = r.DateObj;
+            dateRanges.push(`${formatAxisDate(currentBucket.start)} - ${formatAxisDate(actualEnd)}`);
+            sysData.push(currentBucket.sys);
+            diaData.push(currentBucket.dia);
+        }
+    });
+
     return { labels, sysData, diaData, dateRanges };
 }
+
+var updateBoxWhiskerChart = function(filteredData) {
+    createBoxWhiskerChart(filteredData);
+};

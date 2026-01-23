@@ -31,7 +31,8 @@ function getCurrentFilter() {
 }
 
 /* ------------------------------------------------------------
-   Core filter
+   Core filter - Volume-Based (Last N Days with Data)
+   It reverts to grouping by day and slicing the most recent "Data Days."
 ------------------------------------------------------------ */
 function getFilteredBPData(range) {
     if (!SOURCE_DATA.length) return [];
@@ -48,28 +49,30 @@ function getFilteredBPData(range) {
 
     if (!daysRequired) return [];
 
+    // 1. Group all available data by local date key
     const byDay = new Map();
-
     SOURCE_DATA.forEach(r => {
-        const key = getLocalDateKey(r.DateObj);
-        if (!key) return;
-
+        const key = getLocalDateKey(r.DateObj); // Uses util to strip time
         if (!byDay.has(key)) byDay.set(key, []);
         byDay.get(key).push(r);
     });
 
-    const sortedDays = Array.from(byDay.keys()).sort(
-        (a, b) => b.localeCompare(a)
-    );
+    // 2. Sort unique dates newest to oldest
+    const sortedDays = Array.from(byDay.keys()).sort((a, b) => b.localeCompare(a));
 
+    // 3. Take the N most recent days that actually have readings
     const selectedDays = sortedDays.slice(0, daysRequired);
+
     if (!selectedDays.length) return [];
 
+    // 4. Flatten the readings from those selected days back into a single array
     const result = [];
-    selectedDays.forEach(d => result.push(...byDay.get(d)));
+    selectedDays.forEach(dayKey => {
+        result.push(...byDay.get(dayKey));
+    });
 
-    result.sort((a, b) => a.DateObj - b.DateObj);
-    return result;
+    // 5. Return sorted oldest to newest for Chart.js
+    return result.sort((a, b) => a.DateObj - b.DateObj);
 }
 
 /* ------------------------------------------------------------

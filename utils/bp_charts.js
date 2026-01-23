@@ -12,5 +12,5 @@
         updateNormalDonutCard(filteredData);
         updateReadingsInDaysCard(filteredData);
         updatePeriodAggregateSummaryCard(filteredData);
-        updateSysDiaVolatilityChart(filteredData)
+        updateBoxWhiskerChart(filteredData)
     }

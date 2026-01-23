@@ -137,4 +137,16 @@ function linearRegression(points) {
     }));
 }
 
+
+// Normalize a date range to full calendar days (Midnight to 11:59:59 PM)
+// This ensures all charts and summary cards use the exact same record set.  I had problems with Avg() because of milliseconds.
+
+function getCalendarRange(endDate, daysBack) {
+    // End of today (23:59:59)
+    const end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), 23, 59, 59);
+    // Midnight N days ago
+    const start = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate() - (daysBack - 1), 0, 0, 0);
+    return { start, end };
+}
+
 console.log('[UTILS] bp_utils.js ready');
