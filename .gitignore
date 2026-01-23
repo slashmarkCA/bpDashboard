@@ -67,6 +67,7 @@ web_modules/
 
 # dotenv environment variable files
 .env
+.config.js
 .env.*
 !.env.example
 
@@ -137,3 +138,7 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# My bpProject ignores.  I added .env above for when I move to API keys.
+BPChartJsArchives/
+

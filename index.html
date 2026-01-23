@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Pressure - History and Analysis</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@4.4.1/build/index.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+    <!-- REQUIRED for time scale change on labels-->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+</head>
+
+<body>
+    <header class="header">
+        <!-- look into bringing in some different fonts at fonts.google.com. -->
+        <!-- What is BEM notation?  It's the __ he used -->
+        <div class="header__content">
+                <h1>Blood Pressure <span>history and analysis</span></h1>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><button class="date-pill active" data-filter="last7days">7 Days</button></li>
+                    <li class="nav__item"><button class="date-pill" data-filter="last14days">14 Days</button></li>
+                    <li class="nav__item"><button class="date-pill" data-filter="last30days">30 Days</button></li>
+                    <li class="nav__item"><button class="date-pill" data-filter="all">All</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <section id="4colTopSummary">
+             <div class="four-col">
+                    <div class="card">
+                        <h3>ℹ️ Now Viewing <span style="color: #d32f2f">Hardcode.</span></h3>
+                        <div class="card-placeholder">
+                            <div id="readingsInDaysCard"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Reading Categories Summary</h3>
+                        <div class="card-placeholder">
+                            <div id="readingCategoriesSummaryCard"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Averages and Aggregates</h3>
+                        <div class="card-placeholder">
+                            <div id="periodAggregateSummaryCard"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Normal Vs Risky</h3>
+                        <div class="card-placeholder">
+                            <canvas id="normalDonutChart"></canvas>
+                        </div>
+                    </div>
+             </div>
+        </section>
+
+        <section id="ReadingCategories">
+            <div class="two-col">
+                <div class="card">
+                    <h3>Reading Categories - Individual Readings Over Time</h3>
+                    <div style="position: relative; width: 100%; height: 350px;">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+               <div class="card" style="overflow: visible;">
+                   <h3>Reading Categories - Distribution Pattern</h3>
+                   <div style="position: relative;">
+                       <canvas id="bpScatterChart" style="aspect-ratio: 4 / 4.5;"></canvas>
+                   </div>
+               </div>
+            </div>
+        </section>
+
+        <section id="Pluse">
+            <div class="two-col">
+                <div class="card">
+                    <h3>Pulse (Beats per Minute)</h3>
+                    <div style="position: relative; aspect-ratio: 16 / 6;">
+                        <canvas id="pulseLineChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Pulse Distribution (Histogram)</h3>
+                    <div style="position: relative; aspect-ratio: 4/3;">
+                        <canvas id="pulseHistogram"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="PulsePressure">
+            <div class="two-col">
+                <div class="card">
+                    <h3>Pulse Pressure</h3>
+                    <div style="position: relative; width: 100%; aspect-ratio: 16 / 6;">
+                        <canvas id="pulsePressureLineChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Pulse Pressure Distribution (Histogram)</h3>
+                    <div style="position: relative; width: 100%; aspect-ratio: 4/3;">
+                        <canvas id="pulsePressureHistogram"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="SysAndDia">
+            <div class="two-col">
+                <div class="card">
+                    <h3>Systolic and Diastolic Raw Readings</h3>
+                    <div style="aspect-ratio: 16 / 6; position: relative;">
+                        <canvas id="sysAndDiaChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Sys & Dia Volatility (Box & Whisker)</h3>
+                    <div style="width:100%; aspect-ratio:4/3;">
+                        <canvas id="sysDiaVolatilityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map7DayLineChart">
+            <div class="card">
+                <h3>7 Day Rolling Average - Mean Arterial Pressure</h3>
+                <div style="position: relative; width: 100%; aspect-ratio: 16 / 4;">
+                    <canvas id="map7DayChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-combined-rolling">
+            <div class="card">
+                <div class="rolling-controls-container">
+                    <h3 style="margin: 0;">Combined 7-Day Rolling Average (Systolic + Diastolic)</h3>
+                    <div class="rolling-controls">
+                        <div class="control-label">Standard Deviation Band:</div>
+                        <div class="radio-group">
+                            <label class="control-option">
+                                <input type="radio" name="combinedBandMode" value="systolic" onchange="toggleCombinedStdDevBand('systolic')" />
+                                <span class="sys-text">Sys</span>
+                            </label>
+                            <label class="control-option">
+                                <input type="radio" name="combinedBandMode" value="diastolic" onchange="toggleCombinedStdDevBand('diastolic')" />
+                                <span class="dia-text">Dia</span>
+                            </label>
+                            <label class="control-option">
+                                <input type="radio" name="combinedBandMode" value="none" checked onchange="toggleCombinedStdDevBand('none')" />
+                                <span>No Band</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 400px; position: relative;">
+                    <canvas id="combinedRollingChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="rawData">
+            <div class="card">
+                <h3>Raw Data</h3>
+                    <div id="bpRawDataTable"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Blood Pressure Dashboard &copy; 2026</p>
+    </footer>
+
+    <!-- Core data & utilities -->
+     <script src="utils/bp_data.js" defer></script>
+	<script src="utils/bp_data_normalized.js" defer></script>
+    <script src="utils/bp_utils.js" defer></script>
+    <script src="utils/bp_filters.js" defer></script>
+    <!-- Chart dispatcher -->
+    <script src="utils/bp_charts.js" defer></script>
+
+    <!-- Chart modules -->
+	<script src="src/bp_charts_line.js" defer></script>
+    <script src="src/bp_charts_scatter.js" defer></script>
+    <script src="src/bp_pulse_line.js" defer></script>
+    <script src="src/bp_pulse_histogram.js" defer></script>
+    <script src="src/bp_pulsePressure_histogram.js" defer></script>
+    <script src="src/bp_SysDia_volatilityBoxAndWhisker.js" defer></script>
+    <script src="src/bp_pulsePressure_line.js" defer></script>
+    <script src="src/bp_categoryOverTime.js" defer></script>
+    <script src="src/bp_charts_combined_rolling.js" defer></script>
+    <script src="src/bp_7dayAvg_combined_map_line.js" defer></script>
+
+    <!-- Summary cards -->
+    <script src="src/ReadingsInDaysCard.js" defer></script>
+    <script src="src/readingCategoriesSummaryCard.js" defer></script>
+    <script src="src/filteredNormalDonutCard.js" defer></script>
+    <script src="src/bp_periodAggregateSummary_card.js"defer></script>
+    <script src="src/bp_rawDataTabularView.js"defer></script>
+</body>
+</html>
