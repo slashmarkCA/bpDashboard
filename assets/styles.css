@@ -21,7 +21,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION (Issue 1d, 1e, 1g)
+   2. HEADER, FOOTER & NAVIGATION
    ========================================================================== */
 .header {
     background-color: #1a1a2e;
@@ -77,6 +77,14 @@ header h1 span {
 .date-pill.active {
     background-color: #9698be;
     font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #888;
+    background-color: #eeeeee;
+    font-size: 13px;
 }
 
 /* ==========================================================================
@@ -424,15 +432,75 @@ section {
         white-space: nowrap;
     }
 
+    .info-drawer {
+        width: 100%; /* Mobile Takeover */
+    }
+
     .hide-mobile {
         display: none !important;
     }
 }
 
-footer {
-    text-align: center;
-    padding: 40px 0;
-    color: #888;
-    background-color: #eeeeee;
-    font-size: 13px;
+/* ==========================================================================
+   DOCUMENTATION SLIDING DRAWER
+   ========================================================================== */
+
+.info-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px; /* Desktop width */
+    background: #fff;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-drawer.open {
+        transform: translateX(0);
+    }
+
+    .drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 1000;
+}
+
+.drawer-overlay.open {
+    display: block;
+}
+
+/* Drawer Content Styling */
+.drawer-content h3 {
+    font-size: 1.1rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    color: #333;
+}
+
+.drawer-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.doc-list {
+    list-style: none;
+    padding: 0;
+}
+
+.doc-list li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
 }
