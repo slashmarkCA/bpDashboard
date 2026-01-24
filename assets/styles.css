@@ -433,7 +433,9 @@ section {
     }
 
     .info-drawer {
-        width: 100%; /* Mobile Takeover */
+        width: 100vw; /* Use Viewport Width to be explicit */
+        max-width: 100%;
+        
     }
 
     .hide-mobile {
@@ -445,38 +447,87 @@ section {
    DOCUMENTATION SLIDING DRAWER
    ========================================================================== */
 
+.info-icon{
+    cursor: pointer;
+}
+
 .info-drawer {
     position: fixed;
     top: 0;
     right: 0;
     height: 100%;
-    width: 400px; /* Desktop width */
-    background: #fff;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    width: 400px;
+    background: #ffffff;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.15);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    z-index: 1001;
+    z-index: 2000;
     display: flex;
     flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .info-drawer.open {
-        transform: translateX(0);
-    }
+    transform: translateX(0);
+}
 
-    .drawer-overlay {
+.drawer-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
     display: none;
-    z-index: 1000;
+    z-index: 1999;
 }
 
 .drawer-overlay.open {
     display: block;
+}
+
+/* Drawer Header Layout */
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eeeeee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.drawer-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+/* The "x" Button Styling */
+.close-btn {
+    background: #f5f5f5;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #888;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Makes it a circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.close-btn:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.close-btn:active {
+    background: #d0d0d0;
 }
 
 /* Drawer Content Styling */
@@ -494,13 +545,14 @@ section {
     color: #555;
 }
 
+/* Minimalist List for Drawer */
 .doc-list {
     list-style: none;
     padding: 0;
+    margin: 15px 0;
 }
 
 .doc-list li {
-    margin-bottom: 15px;
-    position: relative;
-    padding-left: 25px;
+    margin-bottom: 10px;
+    line-height: 1.4;
 }

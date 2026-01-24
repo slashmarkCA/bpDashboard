@@ -214,16 +214,21 @@
     <div id="drawerOverlay" class="drawer-overlay"></div>
 
 
-    <!-- Laws of Aggregation for data-aggregation="..."  -->
+    <!-- Laws of Aggregation for data-aggregation="..." and data-logic  -->
     <!-- reading-simple: Every measurement counts as 1 -->
     <!-- day-mean-simple: Every day counts as 1 (after collapsing its readings) -->
     <!-- raw: No aggregation, just show the dots -->
+
+    <!-- Content inside the sliding drawer "about this chart" -->
+    <script src="src/docLibrary.js" defer></script>
 
     <!-- Core data & utilities -->
     <script src="utils/bp_data.js" defer></script>
     <script src="utils/bp_data_normalized.js" defer></script>
     <script src="utils/bp_utils.js" defer></script>
     <script src="utils/bp_filters.js" data-logic="volume-window" defer></script>
+    <script src="utils/bp_docs.js" defer></script> <!-- sliding drawer constructor -->
+
     <!-- Chart dispatcher -->
     <script src="utils/bp_charts.js" defer></script>
 
