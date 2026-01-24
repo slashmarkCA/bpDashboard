@@ -21,7 +21,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION (Issue 1d, 1e, 1g)
+   2. HEADER, FOOTER & NAVIGATION
    ========================================================================== */
 .header {
     background-color: #1a1a2e;
@@ -77,6 +77,14 @@ header h1 span {
 .date-pill.active {
     background-color: #9698be;
     font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #888;
+    background-color: #eeeeee;
+    font-size: 13px;
 }
 
 /* ==========================================================================
@@ -424,15 +432,127 @@ section {
         white-space: nowrap;
     }
 
+    .info-drawer {
+        width: 100vw; /* Use Viewport Width to be explicit */
+        max-width: 100%;
+        
+    }
+
     .hide-mobile {
         display: none !important;
     }
 }
 
-footer {
-    text-align: center;
-    padding: 40px 0;
+/* ==========================================================================
+   DOCUMENTATION SLIDING DRAWER
+   ========================================================================== */
+
+.info-icon{
+    cursor: pointer;
+}
+
+.info-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 400px;
+    background: #ffffff;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.info-drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 1999;
+}
+
+.drawer-overlay.open {
+    display: block;
+}
+
+/* Drawer Header Layout */
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eeeeee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.drawer-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+/* The "x" Button Styling */
+.close-btn {
+    background: #f5f5f5;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
     color: #888;
-    background-color: #eeeeee;
-    font-size: 13px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Makes it a circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.close-btn:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.close-btn:active {
+    background: #d0d0d0;
+}
+
+/* Drawer Content Styling */
+.drawer-content h3 {
+    font-size: 1.1rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    color: #333;
+}
+
+.drawer-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Minimalist List for Drawer */
+.doc-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.doc-list li {
+    margin-bottom: 10px;
+    line-height: 1.4;
 }
