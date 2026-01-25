@@ -11,7 +11,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
     <!-- REQUIRED for time scale change on labels-->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
-    <link rel="stylesheet" href="https://use.typekit.net/den6ybk.css"> <!-- for my imported archivo font-->
+    
+    <!-- for my imported archivo font - preconnect because I'm seeing HTTP2 transport failures a lot -->
+    <link rel="preconnect" href="https://use.typekit.net">
+    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+    <link rel="stylesheet" href="https://use.typekit.net/den6ybk.css"> 
 </head>
 
 <body>
@@ -35,8 +39,15 @@
     <main class="container">
         <section id="5colTopSummary">
             <div class="five-col">
-                <div class="measureCard" id="summary-counts-card">
-                    hands off....... 
+                <div class="measureCardBadges" id="summary-counts-card">
+                    <div class="badge-item badge-readings">
+                        <span class="badge-number" id="total-readings">--</span>
+                        <span class="badge-label">READINGS</span>
+                    </div>
+                    <div class="badge-item badge-days">
+                        <span class="badge-number" id="total-days">--</span>
+                        <span class="badge-label">DAYS</span>
+                    </div>
                 </div>
                 <div class="measureCard">
                     <div class="measureName">SYS<small>TOLIC</small></div>

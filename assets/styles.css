@@ -217,7 +217,53 @@ section {
     }
 
 /* ==========================================================================
-   4. COMPONENT SPECIFIC STYLES (Issue 1a, 1c)
+   CLEAN START AT READINGS IN DAYS BADGES
+   ========================================================================== */
+
+/* Container for the 1st column of the 5-col grid */
+.measureCardBadges {
+    display: flex;
+    gap: 10px;           /* Space between badges */
+    height: 100%;        /* Fill the .five-col row height */
+    width: 100%;
+    align-items: stretch;
+    /* outline: 2px solid magenta; <- in case I need it again. */
+}
+
+.badge-item {
+    flex: 1;             /* Force 50/50 split of the parent width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 5px;
+    color: white;
+    min-width: 0;        /* Critical for flex-shrink */
+}
+
+/* Gradient backgrounds */
+.badge-readings { background: linear-gradient(135deg, #c1cbb5, #808f6e); }
+.badge-days { background: linear-gradient(135deg, #c1cbb5, #3a3845); }
+
+.badge-number {
+    font-family: "archivo", sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive scaling font */
+    font-weight: 700;
+    line-height: 1;
+}
+
+.badge-label {
+    font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+
+/* ==========================================================================
+   4. COMPONENT SPECIFIC STYLES
    ========================================================================== */
 
 /* Now Viewing Card Fix (Issue 1c) */

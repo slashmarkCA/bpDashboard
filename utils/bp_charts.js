@@ -10,7 +10,7 @@
         updateMAP7DayChart(filteredData);
         updateReadingCategoriesSummaryCard(filteredData);
         updateNormalDonutCard(filteredData);
-        updateReadingsInDaysCard(filteredData);
+        updateReadingsInDays(filteredData)
         updatePeriodAggregateSummaryCard(filteredData);
         update5ColAggregateSummary(filteredData);
         updateBoxWhiskerChart(filteredData)
