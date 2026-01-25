@@ -76,7 +76,6 @@ header h1 span {
 
 .date-pill.active {
     background-color: #9698be;
-    font-weight: bold;
 }
 
 footer {
@@ -664,4 +663,19 @@ section {
 .doc-list li {
     margin-bottom: 10px;
     line-height: 1.4;
+}
+
+/* ==========================================================================
+   GENERAL STUFF
+   ========================================================================== */
+
+.noscript-warning {
+  background: #ffdddd;
+  color: #900;
+  padding: 15px;
+  border: 1px solid #cc0000;
+  margin: 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
 }
