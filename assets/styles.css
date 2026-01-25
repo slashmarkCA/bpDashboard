@@ -113,20 +113,6 @@ section {
     color: #444;
 }
 
-.measureCard {
-    background: #efefef;
-    border-radius: 4px;
-    padding: 20px;
-    /* box-shadow: 0 2px 5px rgba(0,0,0,0.08);*/
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-        "name  hilow"
-        "avg   avg";
-    row-gap: 6px;
-}
-
 /* Fix for Canvas/chart.js overflows in grid layouts - they tend to blow up grids. */
 .two-col > *, .three-col > *, .four-col > *, .five-col > * {
     min-width: 0; 
@@ -266,48 +252,30 @@ section {
    ========================================================================== */
 
 /* Now Viewing Card Fix (Issue 1c) */
-.design6-container {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto;
+
+.measureCard {
+    background: #efefef;
+    border-radius: 4px;
+    padding: 20px;
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.08);*/
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "name  hilow"
+        "avg   avg";
+    row-gap: 6px;
+    position: relative; /* This keeps the warning icon "stuck" to this card */
 }
 
-.design6 {
-    display: flex;
-    gap: 10px;
-    width: 100%;
-    /* FIX: Force a constant height so 1-digit vs 3-digit look identical */
-    height: 110px !important;
-}
-
-.design6 .badge {
-    flex: 1; /* Force 50/50 split */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    padding: 10px;
-    color: white;
-    text-align: center;
-    min-width: 0; /* Prevents flex-item from bulging */
-}
-
-.design6 .badge-gray { background: linear-gradient(135deg, #a39fb5, #6b6880); }
-.design6 .badge-dark { background: linear-gradient(135deg, #6a6775, #3a3845); }
-
-.design6 .badge .number {
-    font-size: 2.5rem !important; /* Consistent size */
-    font-weight: 700;
-    line-height: 1;
-    text-shadow: -1px 1px 0 rgba(0,0,0,0.5);
-}
-
-.design6 .badge .label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.9;
+/* The warning badge */
+.warning-badge {
+    position: absolute;
+    top: -10px;    /* Offsets it slightly above the top edge */
+    right: -10px;  /* Offsets it slightly past the right edge */
+    font-size: 1.2rem;
+    display: none; /* Hidden by default */
+    z-index: 10;   /* Ensures it stays on top of other elements */
 }
 
 /* Ensure the aggregate card doesn't wrap its numbers */

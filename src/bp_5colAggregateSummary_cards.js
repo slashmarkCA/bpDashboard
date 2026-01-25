@@ -28,33 +28,42 @@ function update5ColAggregateSummary(filteredData) {
         const avg = (config.vals.reduce((a, b) => a + b, 0) / config.vals.length).toFixed(1);
         const avgNum = parseFloat(avg);
 
-        // 2. Update High
+        // 1. Determine if ANY value in this category is a warning
+        const highWarning = high >= config.limit;
+        const lowWarning = low <= config.lowLimit;
+        const avgWarning = avgNum >= config.limit || avgNum <= config.lowLimit;
+        
+        // The "Master" warning for the card badge
+        const anyWarning = highWarning || lowWarning || avgWarning;
+
+        // 2. Update High Display
         const highEl = document.getElementById(`${key}-high`);
         if (highEl) {
             highEl.innerText = high;
-            highEl.style.color = (high >= config.limit) ? '#c70000' : 'inherit';
+            highEl.style.color = highWarning ? '#c70000' : 'inherit';
         }
 
-        // 3. Update Low (Now with warning check for values like 57)
+        // 3. Update Low Display
         const lowEl = document.getElementById(`${key}-low`);
         if (lowEl) {
             lowEl.innerText = low;
-            lowEl.style.color = (low <= config.lowLimit) ? '#c70000' : 'inherit';
+            lowEl.style.color = lowWarning ? '#c70000' : 'inherit';
         }
 
-        // 4. Update Average (FIX: Adding the missing style logic for Line 44)
+        // 4. Update Average & Card Badge
         const avgEl = document.getElementById(`${key}-avg`);
+        const warningBadge = document.getElementById(`${key}-warning`);
+
         if (avgEl) {
             avgEl.innerText = avg;
-            
-            // Check if Avg is either too high OR too low
-            const isWarning = avgNum >= config.limit || avgNum <= config.lowLimit;
-            
-            avgEl.style.color = isWarning ? '#c70000' : 'inherit';
-            
-            // Fix: Using explicit sizes ensures it doesn't shrink back to browser default
-            avgEl.style.fontSize = isWarning ? '42px' : '35px';
-            avgEl.style.fontWeight = isWarning ? '800' : 'normal';
+            avgEl.style.color = avgWarning ? '#c70000' : 'inherit';
+            avgEl.style.fontSize = avgWarning ? '42px' : '35px';
+            avgEl.style.fontWeight = avgWarning ? '800' : 'normal';
+        }
+
+        // Show the badge if ANY of the three triggered a warning
+        if (warningBadge) {
+            warningBadge.style.display = anyWarning ? 'block' : 'none';
         }
     });
 }
