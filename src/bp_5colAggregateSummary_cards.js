@@ -21,35 +21,45 @@ function update5ColAggregateSummary(filteredData) {
         pp: { vals: filteredData.map(d => Number(d.Sys - d.Dia)).filter(v => !isNaN(v)), limit: 60 }
     };
 
-    Object.keys(statsConfig).forEach(key => {
+Object.keys(statsConfig).forEach(key => {
         const config = statsConfig[key];
-        
-        // Ensure we have numbers to calculate
         if (config.vals.length === 0) return;
 
         const high = Math.max(...config.vals);
         const low = Math.min(...config.vals);
         const avg = (config.vals.reduce((a, b) => a + b, 0) / config.vals.length).toFixed(1);
+        const avgNum = parseFloat(avg);
 
-        // Update High (target the SPAN id)
+        // 1. Update High
         const highEl = document.getElementById(`${key}-high`);
         if (highEl) {
             highEl.innerText = high;
+            // Trigger red if too high
             highEl.style.color = (high >= config.limit) ? '#c70000' : 'inherit';
         }
 
-        // Update Low (target the SPAN id)
+        // 2. Update Low
         const lowEl = document.getElementById(`${key}-low`);
-        if (lowEl) lowEl.innerText = low;
+        if (lowEl) {
+            lowEl.innerText = low;
+            // Optional: Trigger red if too low (e.g., hypotension)
+            lowEl.style.color = (config.lowLimit && low <= config.lowLimit) ? '#c70000' : 'inherit';
+        }
 
-        // Update Average (target the SPAN id)
+        // 3. Update Average (The part missing from your Line 44)
         const avgEl = document.getElementById(`${key}-avg`);
         if (avgEl) {
             avgEl.innerText = avg;
-            avgEl.style.color = (parseFloat(avg) >= config.limit) ? '#c70000' : 'inherit';
+            
+            // Check both High and Low thresholds
+            const isWarning = avgNum >= config.limit || (config.lowLimit && avgNum <= config.lowLimit);
+            
+            avgEl.style.color = isWarning ? '#c70000' : 'inherit';
+            avgEl.style.fontSize = isWarning ? '42px' : '35px'; // Explicit sizes to prevent 'inherit' shrink
+            avgEl.style.fontWeight = isWarning ? '800' : 'normal';
         }
     });
 }
 
 // Global expose for dispatcher
-window.update5ColAggregateSummary = update5ColAggregateSummary;
+window.update5ColAggregateSummary = update5ColAggregateSummary; 
