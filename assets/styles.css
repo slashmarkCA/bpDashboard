@@ -114,8 +114,22 @@ section {
     color: #444;
 }
 
-/* Fix for Canvas/Chart overflows in Grids */
-.two-col > *, .three-col > *, .four-col > * {
+.measureCard {
+    background: #efefef;
+    border-radius: 4px;
+    padding: 20px;
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.08);*/
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "name  hilow"
+        "avg   avg";
+    row-gap: 6px;
+}
+
+/* Fix for Canvas/chart.js overflows in grid layouts - they tend to blow up grids. */
+.two-col > *, .three-col > *, .four-col > *, .five-col > * {
     min-width: 0; 
     overflow: hidden;
 }
@@ -144,6 +158,13 @@ section {
     align-items: start; /* Prevents one tall card from stretching others */
 }
 
+.five-col {
+    display: grid;
+    grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    align-items: start; /* Prevents one tall card from stretching others */
+}
+
 .card-placeholder {
     background: #f9f9f9;
     border: 1px dashed #ddd;
@@ -153,6 +174,47 @@ section {
     width: 100%;
     min-height: 150px;
 }
+
+    .measureName {
+    font-family: "archivo", "Trebuchet MS", Trebuchet, Tahoma, Arial, sans-serif;
+    font-size: 36px;
+    line-height: 0.80;
+    margin-bottom: 6px;
+    grid-area: name;
+    }
+
+    .measureName small {
+        display: block;
+        font-size: 14px;
+    }
+
+/* Fix: Removed display:flex to allow <br> to work. 
+   Added vertical alignment for the High/Low labels. */
+.measureHiLo { 
+    font-family: "Trebuchet MS", Trebuchet, Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    grid-area: hilow; 
+    text-align: right; 
+    line-height: 1.2; /* Tighter line spacing for the Hi/Lo block */
+    align-self: start;
+}
+
+/* Ensure the average number is large and aligned to the bottom right */
+.measureAvg { 
+    font-family: "archivo", "Trebuchet MS", Trebuchet, Tahoma, Arial, sans-serif;
+    font-size: 35px;
+    line-height: 1;
+    grid-area: avg; 
+    text-align: right;
+    align-self: end;
+}
+
+    .measureAvg small { 
+        font-family: "archivo", "Trebuchet MS", Trebuchet, Tahoma, Arial, sans-serif;
+        font-size: 14px;
+        grid-area: avg; 
+        text-align: right; 
+    }
 
 /* ==========================================================================
    4. COMPONENT SPECIFIC STYLES (Issue 1a, 1c)
@@ -343,6 +405,7 @@ section {
 
 /* TABLET VIEW (Under 1024px) */
 @media (max-width: 1024px) {
+    .five-col { grid-template-columns: 1fr 1fr; }
     .four-col { grid-template-columns: 1fr 1fr; }
     .three-col { grid-template-columns: 1fr 1fr; }
 }
@@ -373,7 +436,7 @@ section {
     }
 
     /* Force all grid layouts to single column for a mobile phone */
-    .two-col, .two-col.unequal, .three-col, .four-col {
+    .two-col, .two-col.unequal, .three-col, .four-col, .five-col {
         grid-template-columns: 1fr !important;
     }
 

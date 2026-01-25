@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
     <!-- REQUIRED for time scale change on labels-->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/den6ybk.css"> <!-- for my imported archivo font-->
 </head>
 
 <body>
@@ -32,7 +33,49 @@
 
 
     <main class="container">
+        <section id="5colTopSummary">
+            <div class="five-col">
+                <div class="measureCard" id="summary-counts-card">
+                    hands off....... 
+                </div>
+                <div class="measureCard">
+                    <div class="measureName">SYS<small>TOLIC</small></div>
+                    <div class="measureHiLo">
+                        High: <span id="sys-high">--</span><br>
+                        Low: <span id="sys-low">--</span>
+                    </div>
+                    <div class="measureAvg">
+                        <small>Average</small> <span id="sys-avg">--</span>
+                    </div>
+                </div>
+                <div class="measureCard">
+                    <div class="measureName">DIA<small>STOLIC</small></div>
+                    <div class="measureHiLo">
+                        High: <span id="dia-high">--</span><br>
+                        Low: <span id="dia-low">--</span>
+                    </div>
+                    <div class="measureAvg"><small>Average</small> <span id="dia-avg">--</span></div>
+                </div>
 
+                <div class="measureCard">
+                    <div class="measureName">BPM<small>PULSE</small></div>
+                    <div class="measureHiLo">
+                        High: <span id="pulse-high">--</span><br>
+                        Low: <span id="pulse-low">--</span>
+                    </div>
+                    <div class="measureAvg"><small>Average</small> <span id="pulse-avg">--</span></div>
+                </div>
+
+                <div class="measureCard">
+                    <div class="measureName">PULSE<small>PRESSURE</small></div>
+                    <div class="measureHiLo">
+                        High: <span id="pp-high">--</span><br>
+                        Low: <span id="pp-low">--</span>
+                    </div>
+                    <div class="measureAvg"><small>Average</small> <span id="pp-avg">--</span></div>
+                </div>
+            </div>
+        </section>
         <section id="4colTopSummary">
              <div class="four-col">
                     <div class="card">
@@ -247,6 +290,7 @@
     <!-- Summary cards -->
     <script src="src/ReadingsInDaysCard.js" data-aggregation="reading-simple" defer></script>
     <script src="src/readingCategoriesSummaryCard.js" data-aggregation="reading-simple" defer></script>
+    <script src="src/bp_5colAggregateSummary_cards.js" data-aggregation="reading-simple" defer></script>
     <script src="src/filteredNormalDonutCard.js" data-aggregation="reading-simple" defer></script>
     <script src="src/bp_periodAggregateSummary_card.js" data-aggregation="reading-simple" defer></script>
     <script src="src/bp_rawDataTabularView.js" data-aggregation="raw" defer></script>

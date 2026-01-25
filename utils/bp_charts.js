@@ -12,5 +12,6 @@
         updateNormalDonutCard(filteredData);
         updateReadingsInDaysCard(filteredData);
         updatePeriodAggregateSummaryCard(filteredData);
+        update5ColAggregateSummary(filteredData);
         updateBoxWhiskerChart(filteredData)
     }
