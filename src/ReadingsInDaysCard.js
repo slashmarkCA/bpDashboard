@@ -3,67 +3,41 @@
    ---------------------------------------------------------------------------
    Displays:
    - Number of filtered readings
-   - Number of DISTINCT calendar days with readings (not span!)
+   - Number of DISTINCT calendar days WITH readings (not span!)
    ============================================================================ */
 
 console.log('ReadingsInDaysCard.js loaded');
 
-function updateReadingsInDaysCard(filteredData) {
-    const container = document.getElementById('readingsInDaysCard');
-    if (!container) return;
+/**
+ * ReadingsInDaysCard.js (Lean Version)
+ * Updates the 'Readings' and 'Days' badges in the 5-column summary.
+ */
+function updateReadingsInDays(filteredData) {
+    const readingsEl = document.getElementById('total-readings');
+    const daysEl = document.getElementById('total-days');
 
-    const readingCount = filteredData.length;
+    // Safety: Ensure elements exist before trying to update
+    if (!readingsEl || !daysEl) return;
 
-    if (readingCount === 0) {
-        container.innerHTML = `
-            ⚠️<br>
-            <span style="font-family:'Trebuchet MS', Tahoma, arial; font-size:11px;">
-                Sorry, a reading hasn't been taken in some time.<br>
-                Pick another date range.
-            </span>
-        `;
+    // Reset if no data
+    if (!filteredData || filteredData.length === 0) {
+        readingsEl.innerText = '0';
+        daysEl.innerText = '0';
         return;
     }
 
-    // ✅ COUNT DISTINCT DAYS (not span!)
-    const distinctDays = new Set(filteredData.map(r => getLocalDateKey(r.DateObj))).size;
+    // 1. Update Total Readings (Count of the array)
+    readingsEl.innerText = filteredData.length;
 
-    container.innerHTML = `
-        <div class="design6-container">
-            <div class="design6">
-                <div class="badge badge-gray">
-                    <div class="number" id="readings">${readingCount}</div>
-                    <div class="label">readings</div>
-                </div>
-                <div class="badge badge-dark">
-                    <div class="number" id="days">${distinctDays}</div>
-                    <div class="label">days</div>
-                </div>
-            </div>
-        </div>
-    `;
+    // 2. Update Total Days (Distinct set of date strings)
+    const distinctDays = new Set(filteredData.map(d => {
+        // Ensure we handle the Date correctly regardless of data source
+        const dateObj = d.DateObj || new Date(d.Date);
+        return dateObj.toISOString().split('T')[0];
+    })).size;
 
-    resizeBadgeNumbers(readingCount, distinctDays);
+    daysEl.innerText = distinctDays;
 }
 
-/* ---------------------------------------------------------------------------
-   Font scaling helper
---------------------------------------------------------------------------- */
-function resizeBadgeNumbers(readings, days) {
-    const availableWidth = 70;
-
-    const readingsEl = document.getElementById('readings');
-    const daysEl = document.getElementById('days');
-
-    if (readingsEl) {
-        const digits = readings.toString().length;
-        readingsEl.style.fontSize =
-            Math.max(Math.min(availableWidth / (digits * 0.6), 85), 24) + 'px';
-    }
-
-    if (daysEl) {
-        const digits = days.toString().length;
-        daysEl.style.fontSize =
-            Math.max(Math.min(availableWidth / (digits * 0.6), 85), 24) + 'px';
-    }
-}
+// Global expose for the chart dispatcher
+window.updateReadingsInDays = updateReadingsInDays;
