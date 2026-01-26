@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. GLOBAL RESETS & BASE STYLES
+   GLOBAL RESETS & BASE STYLES
    ========================================================================== */
 * {
     margin: 0;
@@ -7,24 +7,29 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 ul {
     list-style: none;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: archivo, 'Segoe UI', 'Trebuchet MS', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f5f7;
     color: #333;
     /* Desktop padding to accommodate sticky header */
     padding-top: 80px; 
-    line-height: 1.5;
+    line-height: 1.5; /* I should kill this because I have to do hacks later on. */
 }
 
 /* ==========================================================================
-   2. HEADER, FOOTER & NAVIGATION
+   HEADER, FOOTER & NAVIGATION
    ========================================================================== */
 .header {
-    background-color: #1a1a2e;
+    background-color: #4b4646;
     position: fixed; /* Fixed at the top */
     top: 0;
     left: 0;
@@ -34,48 +39,62 @@ body {
 }
 
 .header__content {
-    display: flex;
+    display: flex;  /* remember, flex and grid are about their parent element - this inside <header> */ 
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* with flex, could use 'center; or 'end' but this forces the children (that are themselves in a nested flex box) to opposite ends of the container */
     min-height: 70px;
     max-width: 1325px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0 auto; /* this centers the whole thing...don't use "align center" */
+    padding: 0 20px; /* 0 is top and bottom, 20 is left and right.  This stops it from hitting the browser edge when you hit max width */
 }
 
 header h1 {
     font-size: 20px;
-    font-family: 'Trebuchet MS', sans-serif;
-    color: #c0c1d8;
-    white-space: nowrap;
+    font-weight: 85;
+    color: #b8b2b2;
 }
 
 header h1 span {
-    color: #b58f6e;
+    color: #EFD6AC;
 }
 
 .nav__list {
-    display: flex;
-    gap: 8px;
+    display: flex; /* they were in a column with the parent having flex, but having this here nests it, so now they sit on their own line too */
+    gap: 30px; /* with flex, this or column-gap spaces the <li>s apart */
 }
 
 .date-pill {
-    background-color: #60659d;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 13px;
-    transition: all 0.3s ease;
+    font-size: 20px;
+    font-weight: 5000;
+    color: rgba(239,214,172,0.75);
+    transition: all 0.4s; /* study this property - it's used for animations */
+    position: relative;
 }
 
-.date-pill:hover {
-    background-color: #4a4e7d;
+.date-pill:hover, 
+.date-pill.active { 
+    color: rgba(255,255,255,1); 
+} 
+
+.date-pill:hover { 
+    color: rgba(255,255,255,1); 
 }
 
-.date-pill.active {
-    background-color: #9698be;
+.date-pill::after { /* this is called a pseudo element. */
+    content: ''; /* Coooool - put text in there instead of an empty string and watch what happens */
+    height: 2px; 
+    width: 100%;
+    background-color:rgba(239,214,172,0.75);
+    position: absolute;
+    left: 0; 
+    bottom: -10px;
+    transition: all 0.2s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.date-pill:hover::after {
+    opacity: 1;
 }
 
 footer {
@@ -87,7 +106,7 @@ footer {
 }
 
 /* ==========================================================================
-   3. LAYOUT & GRIDS (Issue 1b, 1f, 1h)
+   LAYOUT & GRIDS
    ========================================================================== */
 .container {
     max-width: 1325px;
@@ -161,7 +180,6 @@ section {
 }
 
     .measureName {
-    font-family: "archivo", "Trebuchet MS", Trebuchet, Tahoma, Arial, sans-serif;
     font-size: 36px;
     line-height: 0.80;
     margin-bottom: 6px;
@@ -176,7 +194,6 @@ section {
 /* Fix: Removed display:flex to allow <br> to work. 
    Added vertical alignment for the High/Low labels. */
 .measureHiLo { 
-    font-family: "Trebuchet MS", Trebuchet, Tahoma, Arial, sans-serif;
     font-size: 12px;
     grid-area: hilow; 
     text-align: right; 
@@ -186,7 +203,6 @@ section {
 
 /* Ensure the average number is large and aligned to the bottom right */
 .measureAvg { 
-    font-family: "archivo", "Trebuchet MS", Trebuchet, Tahoma, Arial, sans-serif;
     font-size: 35px;
     line-height: 1;
     grid-area: avg; 
@@ -195,7 +211,6 @@ section {
 }
 
     .measureAvg small { 
-        font-family: "archivo", "Trebuchet MS", Trebuchet, Tahoma, Arial, sans-serif;
         font-size: 14px;
         grid-area: avg; 
         text-align: right; 
@@ -223,16 +238,18 @@ section {
     align-items: center;
     border-radius: 8px;
     padding: 5px;
-    color: white;
+    color: #707070;
     min-width: 0;        /* Critical for flex-shrink */
 }
 
 /* Gradient backgrounds */
-.badge-readings { background: linear-gradient(135deg, #c1cbb5, #808f6e); }
-.badge-days { background: linear-gradient(135deg, #c1cbb5, #3a3845); }
+.badge-readings { background: linear-gradient(135deg, #ececec, #cbcbcd); }
+.badge-days { background: linear-gradient(135deg, #dadada, #b3b3b3); }
+
+/* .badge-readings { background: linear-gradient(135deg, #c1cbb5, #808f6e); } */
+/* .badge-days { background: linear-gradient(135deg, #c1cbb5, #3a3845); } */
 
 .badge-number {
-    font-family: "archivo", sans-serif;
     font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive scaling font */
     font-weight: 700;
     line-height: 1;
@@ -248,10 +265,10 @@ section {
 
 
 /* ==========================================================================
-   4. COMPONENT SPECIFIC STYLES
+   COMPONENT SPECIFIC STYLES
    ========================================================================== */
 
-/* Now Viewing Card Fix (Issue 1c) */
+/* Now Viewing Card Fix */
 
 .measureCard {
     background: #efefef;
@@ -317,7 +334,7 @@ section {
     margin-right: 5px;
 }
 
-/* ✅ DESKTOP: Radio buttons in a horizontal row */
+/* DESKTOP: Radio buttons in a horizontal row */
 .radio-group {
     display: flex;
     flex-direction: row;
@@ -404,16 +421,9 @@ section {
     min-width: 200px; /* Gives it room to be the primary 'text' column */
 }
 
-/* Hide specific columns on mobile to keep things readable */
-@media (max-width: 600px) {
-    .hide-mobile {
-        display: none !important;
-    }
-}
-
 
 /* ==========================================================================
-   6. CONSOLIDATED RESPONSIVE QUERIES
+   MEDIA QUERIES 
    ========================================================================== */
 
 /* TABLET VIEW (Under 1024px) */
@@ -426,13 +436,12 @@ section {
 /* MOBILE VIEW (Under 768px - Targets your TCL phone width) */
 @media (max-width: 768px) {
     body {
-        padding-top: 140px; /* Extra space for the stacked header */
+        padding-top: 85px; /* Extra space for the stacked header */
     }
 
     .header__content {
-        flex-direction: column;
+        flex-direction: column; /* this is what keeps the buttons together when they wrap under the logo instead of row. Ahhhh flex.*/
         padding: 15px 0;
-        gap: 10px;
     }
 
     /* Affect the height of the pulse line graph on mobile only without affecting it's .two-col histogram neighbor */
@@ -458,8 +467,7 @@ section {
         font-size: 11px !important;
     }
 
-    /* ✅ MOBILE: 7 day rolling SD radio buttons - Stack everything vertically */
-
+    /* MOBILE: 7 day rolling SD radio buttons - Stack everything vertically */
     /* 1. Force the heading and the control box to stack vertically */
     .rolling-controls-container {
         display: flex;
@@ -511,9 +519,9 @@ section {
     .info-drawer {
         width: 100vw; /* Use Viewport Width to be explicit */
         max-width: 100%;
-        
     }
 
+    /* Hide specific columns in the raw data table on mobile to keep things readable */
     .hide-mobile {
         display: none !important;
     }

@@ -12,10 +12,10 @@
     <!-- REQUIRED for time scale change on labels-->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
     
-    <!-- for my imported archivo font - preconnect because I'm seeing HTTP2 transport failures a lot -->
-    <link rel="preconnect" href="https://use.typekit.net">
-    <link rel="preconnect" href="https://p.typekit.net" crossorigin>
-    <link rel="stylesheet" href="https://use.typekit.net/den6ybk.css"> 
+    <!-- for my imported archivo font - preconnect because I'm seeing HTTP2 transport failures -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -24,12 +24,12 @@
         <!-- What is BEM notation?  It's the __ he used -->
         <div class="header__content">
                 <h1>Blood Pressure <span>history and analysis</span></h1>
-            <nav class="nav">
+            <nav>
                 <ul class="nav__list">
-                    <li class="nav__item"><button class="date-pill active" data-filter="last7days">7 Days</button></li>
-                    <li class="nav__item"><button class="date-pill" data-filter="last14days">14 Days</button></li>
-                    <li class="nav__item"><button class="date-pill" data-filter="last30days">30 Days</button></li>
-                    <li class="nav__item"><button class="date-pill" data-filter="all">All</button></li>
+                    <li><a href="#" class="date-pill active" data-filter="last7days">7 Days</a></li>
+                    <li><a href="#" class="date-pill" data-filter="last14days">14 Days</a></li>
+                    <li><a href="#" class="date-pill" data-filter="last30days">30 Days</a></li>
+                    <li><a href="#" class="date-pill" data-filter="all">All</a></li>
                 </ul>
             </nav>
         </div>
