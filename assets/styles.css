@@ -642,7 +642,7 @@ section {
 }
 
 /* ==========================================================================
-   GENERAL STUFF
+   EXCEPTION HANDLING VISUAL DIVs
    ========================================================================== */
 
 .noscript-warning {
@@ -654,4 +654,32 @@ section {
   border-radius: 6px;
   font-weight: bold;
   text-align: center;
+}
+
+.global-error-banner {
+    background: #fff3cd;
+    color: #664d03;
+    padding: 12px 20px;
+    border-bottom: 2px solid #ffecb5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    position: relative; /* Stays above content but scrolls with page */
+    z-index: 5001;
+}
+
+.chart-error {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    color: #a00;
+    background: #fff0f0;
+    border: 1px dashed #cc0000;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: "Trebuchet MS", sans-serif;
 }

@@ -4,7 +4,7 @@
 // - Detects raw BP data automatically
 // - Adds DateObj for filtering/sorting
 // - Exposes NORMALIZED_BP_DATA globally
-// - ✅ Added validation and error logging
+// - Added validation and error logging
 // ============================================================
 
 console.log('[NORMALIZER] loading bp_data_normalized.js');
@@ -42,7 +42,7 @@ if (!Array.isArray(RAW_BP_DATA)) {
 
         const [datePart, timePart, ampm] = parts;
 
-        // Validate date part format
+        // Validate date part format (YYYY-MM-DD)
         const dateComponents = datePart.split('-');
         if (dateComponents.length !== 3) {
             console.warn('[NORMALIZER] Invalid date format:', datePart);
@@ -51,7 +51,7 @@ if (!Array.isArray(RAW_BP_DATA)) {
 
         const [year, month, day] = dateComponents.map(Number);
 
-        // Validate time part format
+        // Validate time part format (HH:MM:SS)
         const timeComponents = timePart.split(':');
         if (timeComponents.length < 2) {
             console.warn('[NORMALIZER] Invalid time format:', timePart);
@@ -92,8 +92,20 @@ if (!Array.isArray(RAW_BP_DATA)) {
 
     window.NORMALIZED_BP_DATA = RAW_BP_DATA
         .map((r, index) => {
+            // HARDENING: Check for missing required fields before processing
+            if (!r || !r.Date || r.Sys === undefined || r.Dia === undefined) {
+                parseErrors.push({ 
+                    index, 
+                    readingID: r?.ReadingID || 'Unknown', 
+                    dateString: 'MISSING DATA' 
+                });
+                return null;
+            }
+
             const d = parseBPDate(r.Date);
-            if (!(d instanceof Date) || isNaN(d)) {
+            
+            // Validate the result of the parser
+            if (!(d instanceof Date) || isNaN(d.getTime())) {
                 parseErrors.push({
                     index,
                     readingID: r.ReadingID,
@@ -102,12 +114,16 @@ if (!Array.isArray(RAW_BP_DATA)) {
                 return null;
             }
 
+            // Return cleaned row with numbers forced to actual Number types for math safety
             return {
                 ...r,
-                DateObj: d
+                DateObj: d,
+                Sys: Number(r.Sys),
+                Dia: Number(r.Dia),
+                Pulse: Number(r.BPM || r.Pulse || 0)
             };
         })
-        .filter(Boolean);
+        .filter(Boolean); // Cleanly removes the "null" rows from the final array
 
     // ------------------------------------------------------------
     // 4. Final validation / logging
