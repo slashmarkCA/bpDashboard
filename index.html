@@ -281,10 +281,11 @@
     <!-- raw: No aggregation, just show the dots -->
 
     <!-- Content inside the sliding drawer "about this chart" -->
+    <script src="utils/errorHandling.js" defer></script>
     <script src="src/docLibrary.js" defer></script>
 
     <!-- Core data & utilities -->
-    <script src="utils/bp_data.js" defer></script>
+    <script src="utils/bp_data.js" onerror="showGlobalErrorBanner('Critical Data File (bp_data.js) failed to load.')" defer></script>
     <script src="utils/bp_data_normalized.js" defer></script>
     <script src="utils/bp_utils.js" defer></script>
     <script src="utils/bp_filters.js" data-logic="volume-window" defer></script>
