@@ -16,14 +16,22 @@ ul {
     list-style: none;
 }
 
+h3 {
+    font-size: 16px;
+    color: #444;
+    line-height: 1;
+
+}
+
 body {
     font-family: archivo, 'Segoe UI', 'Trebuchet MS', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f7;
+    background-color: #f7f5f5;
     color: #333;
     /* Desktop padding to accommodate sticky header */
     padding-top: 80px; 
-    line-height: 1.5; /* I should kill this because I have to do hacks later on. */
 }
+
+/* canvas { outline: 2px dashed purple; } keep handy for debugging chart.js layout */
 
 /* ==========================================================================
    HEADER, FOOTER & NAVIGATION
@@ -123,14 +131,22 @@ section {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    height: 100%;
+    height: 100%;  
 }
 
 .card h3 {
-    font-size: 16px;
-    margin-bottom: 15px;
-    color: #444;
+    padding-bottom: 12px;
 }
+
+.nobgCard {
+    display: flex; flex-direction: column;
+    height: 100%;
+}
+
+#readingCategoriesSummaryCard { height: 100%;} /* This stretches the rows to consume the hight of the container */
+
+
+.donut-wrapper { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 0 20px;} /* TODO: can I kill this line? */
 
 /* Fix for Canvas/chart.js overflows in grid layouts - they tend to blow up grids. */
 .two-col > *, .three-col > *, .four-col > *, .five-col > * {
@@ -150,10 +166,12 @@ section {
 
 .three-col {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: .95fr .4fr .25fr;
     gap: 20px;
+    align-items: start;
 }
 
+/* four-col was used but isn't now, so I left it in just in case */
 .four-col {
     display: grid;
     grid-template-columns: .75fr 1fr 1fr .55fr;
@@ -268,7 +286,7 @@ section {
    COMPONENT SPECIFIC STYLES
    ========================================================================== */
 
-/* Now Viewing Card Fix */
+   /* Now Viewing Card Fix */
 
 .measureCard {
     background: #efefef;
@@ -303,9 +321,10 @@ section {
 
 /* Control the Donut size so it doesn't ruin the row height */
 #normalDonutChart {
-    width: 100% !important;
-    max-height: 130px; /* Limits how tall the donut can get */
-    object-fit: contain;
+    width: 100%;
+    height: auto;
+    display: block;
+    flex-grow: 1;
 }
 
 /* Combined Rolling Controls - DESKTOP (Issue 1a) */
@@ -351,6 +370,39 @@ section {
 
 .sys-text { color: #d32f2f; font-weight: 600; }
 .dia-text { color: #1976d2; font-weight: 600; }
+
+
+/* heatmap wrapper that respects the flex layout limits */
+.heatmap-wrapper {
+    max-width: 745px; 
+    width: 100%;
+    overflow-x: auto; 
+    background-color: #212830; /* May need to tweak this */
+    border-radius: 8px;
+    padding: 15px;}
+
+/* The heatmap actual drawing area - it's a minimum width so 
+   the squares don't get squashed into tiny slivers */
+.heatmap-scroll-area {
+    min-width: 700px; 
+    height: 180px;
+    position: relative;
+}
+
+#chartjs-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+    pointer-events: none;
+    z-index: 1000;
+    border: 1px solid #444;
+    font-family: sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: opacity 0.2s ease;
+}
+
 
 /* ==========================================================================
    5. DATA TABLE STYLES
@@ -519,6 +571,11 @@ section {
     .info-drawer {
         width: 100vw; /* Use Viewport Width to be explicit */
         max-width: 100%;
+    }
+
+    #normalDonutChart {
+        max-height: 130px; /* Limits how tall the donut can get */
+        object-fit: contain;
     }
 
     /* Hide specific columns in the raw data table on mobile to keep things readable */

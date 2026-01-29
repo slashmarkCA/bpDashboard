@@ -8,6 +8,8 @@
    - ✅ FIXED: Rolling window now looks at full dataset history
    ============================================================================ */
 
+import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate, getLocalDateKey, calculateMAP } from '../utils/bp_utils.js';
+
 console.log('bp_7dayAvg_combined_map_line.js loaded');
 
 let map7DayChart = null;
@@ -206,3 +208,5 @@ function createMAP7DayChart(bpData) {
 function updateMAP7DayChart(filteredData) {
     createMAP7DayChart(filteredData);
 }
+
+window.updateMAP7DayChart = updateMAP7DayChart;

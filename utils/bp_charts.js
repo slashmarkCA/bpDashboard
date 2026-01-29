@@ -1,4 +1,6 @@
 
+    import { updateHeatmap } from '../src/bp_heatmap.js';
+
     function updateAllCharts(filteredData) {
     
     // SCENARIO: Library failed to load
@@ -32,4 +34,7 @@
         updatePeriodAggregateSummaryCard(filteredData);
         update5ColAggregateSummary(filteredData);
         updateBoxWhiskerChart(filteredData)
+        updateHeatmap(filteredData); 
 }
+
+window.updateAllCharts = updateAllCharts;

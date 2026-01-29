@@ -9,6 +9,8 @@
 
 console.log('[NORMALIZER] loading bp_data_normalized.js');
 
+import { getBPCategory, getPulseCategory, getPulsePressureCategory } from './bp_utils.js';
+
 // ------------------------------------------------------------
 // 1. Detect raw BP data
 // ------------------------------------------------------------
@@ -114,13 +116,24 @@ if (!Array.isArray(RAW_BP_DATA)) {
                 return null;
             }
 
-            // Return cleaned row with numbers forced to actual Number types for math safety
+            // Extract numeric values for math/logic safety
+            const sysNum = Number(r.Sys);
+            const diaNum = Number(r.Dia);
+            const bpmNum = Number(r.BPM || r.Pulse || 0);
+            const ppNum = sysNum - diaNum;
+
+            // Return cleaned row with categories layered in from bp_utils.js
             return {
                 ...r,
                 DateObj: d,
-                Sys: Number(r.Sys),
-                Dia: Number(r.Dia),
-                Pulse: Number(r.BPM || r.Pulse || 0)
+                Sys: sysNum,
+                Dia: diaNum,
+                Pulse: bpmNum,
+                PP: ppNum,
+                // Add the "Single Source of Truth" category objects
+                bpCat: getBPCategory(sysNum, diaNum),
+                pulseCat: getPulseCategory(bpmNum),
+                ppCat: getPulsePressureCategory(ppNum)
             };
         })
         .filter(Boolean); // Cleanly removes the "null" rows from the final array

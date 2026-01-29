@@ -1,5 +1,10 @@
-// readingCategoriesSummaryCard.js
-function updateReadingCategoriesSummaryCard(filteredData) {
+import { BP_LEVELS } from '../utils/bp_utils.js';
+
+/**
+ * Summary card showing the distribution of BP categories.
+ * Now pulls labels and colors from the Central Source of Truth.
+ */
+export function updateReadingCategoriesSummaryCard(filteredData) {
     renderReadingCategoriesSummary(filteredData);
 }
 
@@ -9,21 +14,20 @@ function renderReadingCategoriesSummary(filteredData) {
 
     container.innerHTML = '';
 
-    const categories = [
-        { label: 'Normal', color: '#30693c' },
-        { label: 'Elevated', color: '#204929' },
-        { label: 'Hypertension Stage 1', color: '#eeb649' },
-        { label: 'Hypertension Stage 2', color: '#d95139' },
-        { label: 'Hypertensive Crisis', color: '#ad322d' }
-    ];
+    // Convert BP_LEVELS object into a sorted array for the display list
+    // We sort by score (highest risk at top) or reversed if you prefer.
+    const categories = Object.values(BP_LEVELS)
+        .filter(cat => cat.score > 0) // Exclude "Unknown"
+        .sort((a, b) => b.score - a.score);
 
     const total = filteredData.length || 1;
     const counts = {};
     categories.forEach(c => counts[c.label] = 0);
 
+    // Use the normalized bpCat object we attached in bp_data_normalized.js
     filteredData.forEach(r => {
-        if (counts[r.ReadingCategory] !== undefined) {
-            counts[r.ReadingCategory]++;
+        if (r.bpCat && counts[r.bpCat.label] !== undefined) {
+            counts[r.bpCat.label]++;
         }
     });
 
@@ -45,7 +49,7 @@ function renderReadingCategoriesSummary(filteredData) {
         const row = document.createElement('div');
         row.style.cssText = `
             display:grid;
-            grid-template-columns: minmax(80px, 1.2fr) 35px 45px 2.5fr;
+            grid-template-columns: minmax(115px, 1.2fr) 20px 30px 2.5fr;
             align-items:center;
             gap:8px;
             border-bottom:${i < categories.length - 1 ? '1px solid #c4c4c4' : 'none'};
@@ -56,7 +60,7 @@ function renderReadingCategoriesSummary(filteredData) {
             <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${cat.label}</div>
             <div style="text-align:right;">${count}</div>
             <div style="text-align:right;">${pct}%</div>
-            <div style="height:12px; background:#eee; border-radius:2px; overflow:hidden; margin-left:4px;">
+            <div style="height:10px; background:#eeeeee; border-radius:2px; overflow:hidden;">
                 <div style="width:${pct}%; height:100%; background:${cat.color};"></div>
             </div>
         `;
@@ -65,3 +69,6 @@ function renderReadingCategoriesSummary(filteredData) {
 
     container.appendChild(table);
 }
+
+// Keep the global hook for the dispatcher
+window.updateReadingCategoriesSummaryCard = updateReadingCategoriesSummaryCard;

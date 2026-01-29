@@ -9,7 +9,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@4.4.1/build/index.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
-    <!-- REQUIRED for time scale change on labels-->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix"></script>
+    <!-- REQUIRED for time scale change on labels TODO: May not need this...aborted an x-axis label density redesign -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
     
     <!-- for my imported archivo font - preconnect because I'm seeing HTTP2 transport failures -->
@@ -94,45 +95,35 @@
                 </div>
             </div>
         </section>
-        <section id="4colTopSummary">
-             <div class="four-col">
-                    <div class="card">
-                        <h3>
-                            <span class="info-icon" onclick="openDocDrawer('readingsInDays')">ℹ️</span>
-                            Now Viewing <span style="color: #d32f2f">Re-do this</span>
-                        </h3>
-                        <div class="card-placeholder">
-                            <div id="readingsInDaysCard"></div>
+
+		<section id="3colTopSummary">
+            <div class="three-col">
+                <div class="nobgCard">
+                    <div class="heatmap-wrapper">
+                        <div class="heatmap-scroll-area">
+                            <canvas id="bpHeatmap"></canvas>
                         </div>
+                    </div>            
+                </div>
+
+                <div class="nobgCard">
+                    <h3>
+                        <span class="info-icon" onclick="openDocDrawer('readingCategorySummary')">ℹ️</span>
+                        Reading Categories Summary
+                    </h3>
+                    <div id="readingCategoriesSummaryCard"></div>
+                </div>
+        
+                <div class="nobgCard">
+                    <h3>
+                        <span class="info-icon" onclick="openDocDrawer('normalNotNormalDonut')">ℹ️</span>
+                        Normal Vs Risky
+                    </h3>
+                    <div class="donut-wrapper">
+                        <canvas id="normalDonutChart"></canvas>
                     </div>
-                    <div class="card">
-                        <h3>
-                            <span class="info-icon" onclick="openDocDrawer('readingCategorySummary')">ℹ️</span>
-                            Reading Categories Summary
-                        </h3>
-                        <div class="card-placeholder">
-                            <div id="readingCategoriesSummaryCard"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>
-                            <span class="info-icon" onclick="openDocDrawer('averagesAndAggregates')">ℹ️</span>
-                            Averages and Aggregates
-                        </h3>
-                        <div class="card-placeholder">
-                            <div id="periodAggregateSummaryCard"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>
-                            <span class="info-icon" onclick="openDocDrawer('normalNotNormalDonut')">ℹ️</span>
-                            Normal Vs Risky
-                        </h3>
-                        <div class="card-placeholder">
-                            <canvas id="normalDonutChart"></canvas>
-                        </div>
-                    </div>
-             </div>
+                </div>
+            </div>
         </section>
 
         <section id="ReadingCategories">
@@ -261,7 +252,7 @@
     </main>
 
     <footer>
-        <p>Blood Pressure Dashboard &copy; 2026</p>
+        <p><a href="https://slashmarkca.github.io/bpDashboard/">github page</a> | <a href="https://github.com/slashmarkCA/bpDashboard">github repo</a> | <a href="https://public.tableau.com/app/profile/mark.saunders8760/viz/BPM_17598661577900/MainDashboard?publish=yes">tableau</a></p>
     </footer>
 
     <div id="infoDrawer" class="info-drawer">
@@ -286,29 +277,30 @@
 
     <!-- Core data & utilities -->
     <script src="utils/bp_data.js" onerror="showGlobalErrorBanner('Critical Data File (bp_data.js) failed to load.')" defer></script>
-    <script src="utils/bp_data_normalized.js" defer></script>
-    <script src="utils/bp_utils.js" defer></script>
-    <script src="utils/bp_filters.js" data-logic="volume-window" defer></script>
+    <script type="module" src="utils/bp_data_normalized.js" defer></script>
+    <script type="module" src="utils/bp_utils.js" defer></script>
+    <script type="module" src="utils/bp_filters.js" data-logic="volume-window" defer></script>
     <script src="utils/bp_docs.js" defer></script> <!-- sliding drawer constructor -->
 
     <!-- Chart dispatcher -->
-    <script src="utils/bp_charts.js" defer></script>
+    <script type="module" src="utils/bp_charts.js" defer></script>
 
     <!-- Chart modules -->
-	<script src="src/bp_charts_line.js" data-aggregation="raw" defer></script>
+	<script type="module" src="src/bp_charts_line.js" data-aggregation="raw" defer></script>
     <script src="src/bp_charts_scatter.js" data-aggregation="raw" defer></script>
-    <script src="src/bp_pulse_line.js" data-aggregation="raw" defer></script>
+    <script type="module" src="src/bp_pulse_line.js" data-aggregation="raw" defer></script>
     <script src="src/bp_pulse_histogram.js" data-aggregation="raw" defer></script>
     <script src="src/bp_pulsePressure_histogram.js" data-aggregation="raw" defer></script>
-    <script src="src/bp_SysDia_volatilityBoxAndWhisker.js" data-aggregation="raw" defer></script>
-    <script src="src/bp_pulsePressure_line.js" data-aggregation="raw" defer></script>
-    <script src="src/bp_categoryOverTime.js" data-aggregation="day-mean-simple" defer></script>
-    <script src="src/bp_charts_combined_rolling.js" data-aggregation="day-mean-simple" defer></script>
-    <script src="src/bp_7dayAvg_combined_map_line.js" data-aggregation="day-mean-simple" defer></script>
+    <script type="module" src="src/bp_SysDia_volatilityBoxAndWhisker.js" data-aggregation="raw" defer></script>
+    <script type="module" src="src/bp_pulsePressure_line.js" data-aggregation="raw" defer></script>
+    <script type="module" src="src/bp_categoryOverTime.js" data-aggregation="day-mean-simple" defer></script>
+    <script type="module" src="src/bp_charts_combined_rolling.js" data-aggregation="day-mean-simple" defer></script>
+    <script type="module" src="src/bp_7dayAvg_combined_map_line.js" data-aggregation="day-mean-simple" defer></script>
+    <script type="module" src="src/bp_heatmap.js" data-aggregation="raw" defer></script>
 
     <!-- Summary cards -->
     <script src="src/ReadingsInDaysCard.js" data-aggregation="reading-simple" defer></script>
-    <script src="src/readingCategoriesSummaryCard.js" data-aggregation="reading-simple" defer></script>
+    <script type="module" src="src/readingCategoriesSummaryCard.js" data-aggregation="reading-simple" defer></script>
     <script src="src/bp_5colAggregateSummary_cards.js" data-aggregation="reading-simple" defer></script>
     <script src="src/filteredNormalDonutCard.js" data-aggregation="reading-simple" defer></script>
     <script src="src/bp_periodAggregateSummary_card.js" data-aggregation="reading-simple" defer></script>

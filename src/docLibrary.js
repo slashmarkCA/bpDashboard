@@ -28,10 +28,6 @@ const docLibrary = {
             <p>This is a bar chart that groups individual readings into buckets... It answers risk questions like "How often was I in the bottom end of the 'Narrowed' category?"</p>
         `
     },
-    "readingsInDays": {
-        title: "Readings History",
-        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
-    },
     "readingCategorySummary": {
         title: "Category Summary",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`

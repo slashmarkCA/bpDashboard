@@ -8,6 +8,8 @@
    - ✅ Linear regression trendline
    ============================================================ */
 
+import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate } from '../utils/bp_utils.js';
+
 console.log('bp_pulsePressure_line.js loaded');
 
 let pulsePressureLineChart = null;
@@ -190,3 +192,5 @@ function createPulsePressureLineChart(bpData) {
 function updatePulsePressureLineChart(filteredData) {
     createPulsePressureLineChart(filteredData);
 }
+
+window.updatePulsePressureLineChart = updatePulsePressureLineChart;

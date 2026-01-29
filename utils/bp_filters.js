@@ -7,6 +7,7 @@
 // - Include ALL readings within each included day
 // - Return [] if no data in range
 // ============================================================
+import { getLocalDateKey } from '../utils/bp_utils.js';
 
 console.log('[FILTER] loading bp_filters.js');
 
@@ -26,7 +27,7 @@ if (!SOURCE_DATA.length) {
 /* ------------------------------------------------------------
    Public accessor
 ------------------------------------------------------------ */
-function getCurrentFilter() {
+export function getCurrentFilter() {
     return currentFilter;
 }
 

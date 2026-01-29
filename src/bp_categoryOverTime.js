@@ -7,6 +7,8 @@
    - Annotation background bands
    ============================================================================ */
 
+import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate } from '../utils/bp_utils.js';
+
 console.log('bp_categoryOverTime.js loaded');
 
 let categoryChart = null;
@@ -172,3 +174,5 @@ function createCategoryChart(bpData) {
 function updateCategoryChart(filteredData) {
     createCategoryChart(filteredData);
 }
+
+window.updateCategoryChart = updateCategoryChart;

@@ -5,6 +5,8 @@
    - Date formatting (axis & tooltips)
    - Chart lifecycle management
    - Common calculations
+
+   MODERNIZED to use ES Modules across the entire codebase.
    ============================================================================ */
 
 console.log('[UTILS] bp_utils.js loaded');
@@ -18,7 +20,7 @@ console.log('[UTILS] bp_utils.js loaded');
  * @param {Date} dateObj
  * @returns {string} e.g., "17-Jan"
  */
-function formatAxisDate(dateObj) {
+export function formatAxisDate(dateObj) {
     const day = String(dateObj.getDate()).padStart(2, '0');
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     return `${day}-${months[dateObj.getMonth()]}`;
@@ -29,7 +31,7 @@ function formatAxisDate(dateObj) {
  * @param {Date} dateObj
  * @returns {string} e.g., "January 17, 2026 9:33:17 pm"
  */
-function formatTooltipDate(dateObj) {
+export function formatTooltipDate(dateObj) {
     const months = [
         'January','February','March','April','May','June',
         'July','August','September','October','November','December'
@@ -49,7 +51,7 @@ function formatTooltipDate(dateObj) {
  * @param {Date} dateObj
  * @returns {string} e.g., "2026-01-17"
  */
-function getLocalDateKey(dateObj) {
+export function getLocalDateKey(dateObj) {
     if (!(dateObj instanceof Date)) return null;
     return (
         dateObj.getFullYear() + '-' +
@@ -67,7 +69,7 @@ function getLocalDateKey(dateObj) {
  * @param {Chart|null} chartInstance
  * @returns {null}
  */
-function destroyChart(chartInstance) {
+export function destroyChart(chartInstance) {
     if (chartInstance) {
         chartInstance.destroy();
     }
@@ -85,7 +87,7 @@ function destroyChart(chartInstance) {
  * @param {number} dia - Diastolic pressure
  * @returns {number}
  */
-function calculateMAP(sys, dia) {
+export function calculateMAP(sys, dia) {
     return (sys + (2 * dia)) / 3;
 }
 
@@ -103,6 +105,63 @@ function getCalendarDaySpan(firstDate, lastDate) {
     return Math.round((lastDay - firstDay) / (1000 * 60 * 60 * 24)) + 1;
 }
 
+
+
+/* ---------------------------------------------------------------------------
+   Single Source of Truth for 
+--------------------------------------------------------------------------- */
+
+// Data dictionaries to keep colors and labels consistent
+export const BP_LEVELS = {
+    CRISIS:   { score: 5, label: "Hypertensive Crisis", color: "#ad322d" },
+    STAGE2:   { score: 4, label: "Hypertension Stage 2", color: "#d95139" },
+    STAGE1:   { score: 3, label: "Hypertension Stage 1", color: "#eeb649" },
+    ELEVATED: { score: 2, label: "Elevated",             color: "#204929" },
+    NORMAL:   { score: 1, label: "Normal",               color: "#30693c" },
+    UNKNOWN:  { score: 0, label: "No Known Rule",        color: "#ebedf0" }
+};
+
+export const PULSE_LEVELS = {
+    TACHY:  { label: "Tachycardia",   color: "#c70000" },
+    NORMAL: { label: "Normal Pulse",  color: "#216e39" },
+    BRADY:  { label: "Bradycardia",   color: "#ffcc00" },
+    UNKNOWN:{ label: "No Known Rule", color: "#ebedf0" }
+};
+
+// --- CALCULATORS ---
+
+export function getBPCategory(sys, dia) {
+    if (!sys || !dia) return BP_LEVELS.UNKNOWN;
+    const s = Number(sys);
+    const d = Number(dia);
+
+    if (s > 180 || d > 120) return BP_LEVELS.CRISIS;
+    if (s >= 140 || d >= 90) return BP_LEVELS.STAGE2;
+    if ((s >= 130 && s <= 139) || (d >= 80 && d <= 89)) return BP_LEVELS.STAGE1;
+    if (s >= 120 && s <= 129 && d < 80) return BP_LEVELS.ELEVATED;
+    if (s < 120 && d < 80) return BP_LEVELS.NORMAL;
+    return BP_LEVELS.UNKNOWN;
+}
+
+export function getPulseCategory(bpm) {
+    const b = Number(bpm);
+    if (!b) return PULSE_LEVELS.UNKNOWN;
+    if (b > 100) return PULSE_LEVELS.TACHY;
+    if (b >= 60) return PULSE_LEVELS.NORMAL;
+    if (b < 60)  return PULSE_LEVELS.BRADY;
+    return PULSE_LEVELS.UNKNOWN;
+}
+
+export function getPulsePressureCategory(pp) {
+    const v = Number(pp);
+    if (isNaN(v)) return { label: "No Known Rule", color: "#ebedf0" };
+    if (v >= 66) return { label: "Very Widened", color: "#c70000" };
+    if (v >= 61) return { label: "Widened",      color: "#ffcc00" };
+    if (v >= 41) return { label: "Normal",       color: "#216e39" };
+    if (v >= 0)  return { label: "Narrowed",     color: "#9be9a8" };
+    return { label: "No Known Rule", color: "#ebedf0" };
+}
+
 /* ---------------------------------------------------------------------------
    Linear Regression (for trendlines)
 --------------------------------------------------------------------------- */
@@ -112,7 +171,7 @@ function getCalendarDaySpan(firstDate, lastDate) {
  * @param {Array} points - Array of {x, y} objects
  * @returns {Array} Trendline points
  */
-function linearRegression(points) {
+export function linearRegression(points) {
     const n = points.length;
     if (n < 2) return [];
 
@@ -148,5 +207,7 @@ function getCalendarRange(endDate, daysBack) {
     const start = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate() - (daysBack - 1), 0, 0, 0);
     return { start, end };
 }
+
+window.destroyChart = destroyChart;  // TODO: Can I delete this since I moved to EM Script import/exports?
 
 console.log('[UTILS] bp_utils.js ready');
