@@ -143,10 +143,10 @@ section {
     height: 100%;
 }
 
-#readingCategoriesSummaryCard { height: 100%;} /* This stretches the rows to consume the hight of the container */
-
-
-.donut-wrapper { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 0 20px;} /* TODO: can I kill this line? */
+#readingCategoriesSummaryCard { 
+    height: 100%; /* This stretches the rows to consume the hight of the container */
+    border-radius: 8px;
+} 
 
 /* Fix for Canvas/chart.js overflows in grid layouts - they tend to blow up grids. */
 .two-col > *, .three-col > *, .four-col > *, .five-col > * {
@@ -166,7 +166,7 @@ section {
 
 .three-col {
     display: grid;
-    grid-template-columns: .95fr .4fr .25fr;
+    grid-template-columns: .95fr .4fr .15fr;
     gap: 20px;
     align-items: start;
 }
@@ -301,6 +301,7 @@ section {
         "avg   avg";
     row-gap: 6px;
     position: relative; /* This keeps the warning icon "stuck" to this card */
+    overflow: visible;
 }
 
 /* The warning badge */
@@ -308,7 +309,7 @@ section {
     position: absolute;
     top: -10px;    /* Offsets it slightly above the top edge */
     right: -10px;  /* Offsets it slightly past the right edge */
-    font-size: 1.2rem;
+    font-size: .9rem;
     display: none; /* Hidden by default */
     z-index: 10;   /* Ensures it stays on top of other elements */
 }
@@ -319,12 +320,9 @@ section {
         white-space: nowrap;
     }
 
-/* Control the Donut size so it doesn't ruin the row height */
 #normalDonutChart {
-    width: 100%;
-    height: auto;
-    display: block;
-    flex-grow: 1;
+    max-height: 150px !important;
+    object-fit: contain;
 }
 
 /* Combined Rolling Controls - DESKTOP (Issue 1a) */
@@ -374,19 +372,21 @@ section {
 
 /* heatmap wrapper that respects the flex layout limits */
 .heatmap-wrapper {
-    max-width: 745px; 
     width: 100%;
+    height: 100%; /* This stretches the rows to consume the hight of the container */
     overflow-x: auto; 
-    background-color: #212830; /* May need to tweak this */
     border-radius: 8px;
-    padding: 15px;}
+    border: 1px solid #d2d2d2;
+}
 
 /* The heatmap actual drawing area - it's a minimum width so 
    the squares don't get squashed into tiny slivers */
 .heatmap-scroll-area {
     min-width: 700px; 
-    height: 180px;
+    max-height: 150px;  /* This does govern the whole card row height in desktop */
     position: relative;
+    overflow-y: hidden;
+    padding-top: 5px ;
 }
 
 #chartjs-tooltip {
@@ -441,13 +441,6 @@ section {
 /* ==========================================================================
    RAW DATA TABLE - Bug fixes:
    ========================================================================== */
-
-/* Force table to respect our width constraints */
-.bp-raw-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: auto;
-}
 
 /* 1. All standard cells: Shrink to fit, No wrapping */
 .bp-raw-table th,
@@ -517,6 +510,15 @@ section {
     /* Tighten up summary cards for small screens */
     #periodAggregateSummaryCard, #readingCategoriesSummaryCard {
         font-size: 11px !important;
+        border-radius: 8px;
+        border: 1px solid #d2d2d2;
+        padding: 3px;
+    }
+    
+    #normalDonutChart {
+        border-radius: 8px;
+        border: 1px solid #d2d2d2;
+        padding: 3px;
     }
 
     /* MOBILE: 7 day rolling SD radio buttons - Stack everything vertically */
@@ -571,11 +573,6 @@ section {
     .info-drawer {
         width: 100vw; /* Use Viewport Width to be explicit */
         max-width: 100%;
-    }
-
-    #normalDonutChart {
-        max-height: 130px; /* Limits how tall the donut can get */
-        object-fit: contain;
     }
 
     /* Hide specific columns in the raw data table on mobile to keep things readable */

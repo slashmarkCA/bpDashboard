@@ -1,7 +1,7 @@
 
     import { updateHeatmap } from '../src/bp_heatmap.js';
 
-    function updateAllCharts(filteredData) {
+    export function updateAllCharts(filteredData) {
     
     // SCENARIO: Library failed to load
     // We check this first so we don't even try to run chart logic

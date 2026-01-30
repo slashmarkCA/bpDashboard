@@ -99,6 +99,10 @@
 		<section id="3colTopSummary">
             <div class="three-col">
                 <div class="nobgCard">
+<!--                <h3>
+                        <span class="info-icon" onclick="openDocDrawer('readingCategorySummary')">ℹ️</span>
+                        Daily Readings
+                    </h3> -->
                     <div class="heatmap-wrapper">
                         <div class="heatmap-scroll-area">
                             <canvas id="bpHeatmap"></canvas>
@@ -107,18 +111,18 @@
                 </div>
 
                 <div class="nobgCard">
-                    <h3>
+<!--                <h3>
                         <span class="info-icon" onclick="openDocDrawer('readingCategorySummary')">ℹ️</span>
                         Reading Categories Summary
-                    </h3>
+                    </h3> -->
                     <div id="readingCategoriesSummaryCard"></div>
                 </div>
         
                 <div class="nobgCard">
-                    <h3>
+<!--                <h3>
                         <span class="info-icon" onclick="openDocDrawer('normalNotNormalDonut')">ℹ️</span>
                         Normal Vs Risky
-                    </h3>
+                    </h3>-->
                     <div class="donut-wrapper">
                         <canvas id="normalDonutChart"></canvas>
                     </div>
@@ -153,14 +157,20 @@
         <section id="Pluse">
             <div class="two-col">
                 <div class="card">
-                    <h3>Pulse (Beats per Minute)</h3>
+                    <h3>
+                        <span class="info-icon" onclick="openDocDrawer('BPMLineChart')">ℹ️</span>
+                        Pulse (Beats per Minute)
+                    </h3>
                     <div style="position: relative; aspect-ratio: 16 / 6;">
                         <canvas id="pulseLineChart"></canvas>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3>Pulse Distribution (Histogram)</h3>
+                    <h3>
+                        <span class="info-icon" onclick="openDocDrawer('bpmHistogram')">ℹ️</span>
+                        Pulse Distribution (Histogram)
+                    </h3>
                     <div style="position: relative; aspect-ratio: 4/3;">
                         <canvas id="pulseHistogram"></canvas>
                     </div>
@@ -171,7 +181,10 @@
         <section id="PulsePressure">
             <div class="two-col">
                 <div class="card">
-                    <h3>Pulse Pressure</h3>
+                    <h3>
+                        <span class="info-icon" onclick="openDocDrawer('ppLineChart')">ℹ️</span>
+                        Pulse Pressure
+                    </h3>
                     <div style="position: relative; width: 100%; aspect-ratio: 16 / 6;">
                         <canvas id="pulsePressureLineChart"></canvas>
                     </div>
@@ -191,14 +204,19 @@
         <section id="SysAndDia">
             <div class="two-col">
                 <div class="card">
-                    <h3>Systolic and Diastolic Raw Readings</h3>
+                    <h3>
+                        <span class="info-icon" onclick="openDocDrawer('sysAndDiaLineChart')">ℹ️</span>
+                        Systolic and Diastolic Raw Readings
+                    </h3>
                     <div style="aspect-ratio: 16 / 6; position: relative;">
                         <canvas id="sysAndDiaChart"></canvas>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3>Sys & Dia Volatility (Box & Whisker)</h3>
+                    <h3>
+                        <span class="info-icon" onclick="openDocDrawer('sysAndDiaBoxAndWhisker')">ℹ️</span>
+                        Sys & Dia Volatility (Box & Whisker)</h3>
                     <div style="width:100%; aspect-ratio:4/3;">
                         <canvas id="boxWhiskerChart"></canvas>
                     </div>
@@ -208,7 +226,9 @@
 
         <section id="map7DayLineChart">
             <div class="card">
-                <h3>7 Day Rolling Average - Mean Arterial Pressure</h3>
+                <h3>
+                    <span class="info-icon" onclick="openDocDrawer('7DayMAP')">ℹ️</span>
+                    7 Day Rolling Average - Mean Arterial Pressure</h3>
                 <div style="position: relative; width: 100%; aspect-ratio: 16 / 4;">
                     <canvas id="map7DayChart"></canvas>
                 </div>
@@ -218,7 +238,9 @@
         <section id="section-combined-rolling">
             <div class="card">
                 <div class="rolling-controls-container">
-                    <h3 style="margin: 0;">Combined 7-Day Rolling Average (Systolic + Diastolic)</h3>
+                    <h3 style="margin: 0;">
+                        <span class="info-icon" onclick="openDocDrawer('sysAndDiaRollingAvg')">ℹ️</span>
+                        Combined 7-Day Rolling Average (Systolic + Diastolic)</h3>
                     <div class="rolling-controls">
                         <div class="control-label">Standard Deviation Band:</div>
                         <div class="radio-group">
@@ -245,14 +267,16 @@
 
         <section id="rawData">
             <div class="card">
-                <h3>Raw Data</h3>
+                <h3>
+                    <span class="info-icon" onclick="openDocDrawer('rawDataGridview')">ℹ️</span>
+                    Raw Data</h3>
                     <div id="bpRawDataTable"></div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p><a href="https://slashmarkca.github.io/bpDashboard/">github page</a> | <a href="https://github.com/slashmarkCA/bpDashboard">github repo</a> | <a href="https://public.tableau.com/app/profile/mark.saunders8760/viz/BPM_17598661577900/MainDashboard?publish=yes">tableau</a></p>
+        <p><a href="https://slashmarkca.github.io/bpDashboard/">github page</a> | <a href="https://github.com/slashmarkCA/bpDashboard">github repo</a> | <a href="#">tableau</a> | <a href="https://forms.gle/N4FZoaGy3GxCN75P6">Contact Me</a></p>
     </footer>
 
     <div id="infoDrawer" class="info-drawer">
