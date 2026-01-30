@@ -7,6 +7,7 @@
    - Reference bands (Brady / Tachy)
    - Dynamic date ticks
    ===================================================================== */
+import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate } from '../utils/bp_utils.js';
 
 console.log('bp_pulse_line.js loaded');
 
@@ -161,3 +162,6 @@ function createPulseLineChart(bpData) {
 function updatePulseLineChart(filteredData) {
     createPulseLineChart(filteredData);
 }
+
+// Attach ONLY the main update function to window so the central dispatcher can find it
+window.updatePulseLineChart = updatePulseLineChart;

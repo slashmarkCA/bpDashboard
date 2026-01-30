@@ -5,8 +5,10 @@
    - Safe Chart.js lifecycle
    - Dynamic date ticks
    - Custom tooltip content
-   - ✅ Linear regression trendlines for both Sys and Dia
+   - Linear regression trendlines for both Sys and Dia
    ===================================================================== */
+
+import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate } from '../utils/bp_utils.js';
 
 console.log('bp_charts_line.js loaded');
 
@@ -25,7 +27,7 @@ function createSysAndDiaChart(bpData) {
     const sysData = bpData.map((r, i) => ({ x: i, y: r.Sys, reading: r }));
     const diaData = bpData.map((r, i) => ({ x: i, y: r.Dia, reading: r }));
 
-    // ✅ Calculate trendlines using utility function
+    // Calculate trendlines using utility function
     const sysTrend = linearRegression(sysData);
     const diaTrend = linearRegression(diaData);
 
@@ -149,6 +151,9 @@ function createSysAndDiaChart(bpData) {
     });
 }
 
-function updateSysAndDiaChart(filteredData) {
+export function updateSysAndDiaChart(filteredData) {
     createSysAndDiaChart(filteredData);
 }
+
+// Attach ONLY the main update function to window so the central dispatcher can find it
+window.updateSysAndDiaChart = updateSysAndDiaChart;

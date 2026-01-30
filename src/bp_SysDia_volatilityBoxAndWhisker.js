@@ -3,6 +3,9 @@
 // Sys/Dia Volatility - Final Minimalist & Precise Ticks
 // ============================================================
 
+import { getCurrentFilter } from '../utils/bp_filters.js';
+import { destroyChart, formatAxisDate  } from '../utils/bp_utils.js';
+
 let volatilityChart = null;
 
 function createBoxWhiskerChart(filteredData) {
@@ -181,3 +184,5 @@ function groupDataByVolume(data, filter) {
 var updateBoxWhiskerChart = function(filteredData) {
     createBoxWhiskerChart(filteredData);
 };
+
+window.updateBoxWhiskerChart = updateBoxWhiskerChart;

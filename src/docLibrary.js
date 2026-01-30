@@ -4,7 +4,7 @@
 
 const docLibrary = {
     "pulsePressureHistogram": {
-        title: "Pulse Pressure Analysis",
+        title: "Pulse Pressure Distribution",
         content: `
             <h3 style="text-decoration: underline;">What is Pulse Pressure?</h3>
             <p>Pulse pressure is simply the difference between your systolic and diastolic blood pressure readings (Sys minus Dia). It represents the force or pressure wave that the heart generates each time it beats (contracts).</p>
@@ -28,10 +28,6 @@ const docLibrary = {
             <p>This is a bar chart that groups individual readings into buckets... It answers risk questions like "How often was I in the bottom end of the 'Narrowed' category?"</p>
         `
     },
-    "readingsInDays": {
-        title: "Readings History",
-        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
-    },
     "readingCategorySummary": {
         title: "Category Summary",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
@@ -41,11 +37,43 @@ const docLibrary = {
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
     },
     "readingCategoriesLineChart": {
-        title: "Category Trends",
+        title: "Reading Categories",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
     },
     "readingCategoriesScatterDistribution": {
-        title: "Reading Distribution",
+        title: "Readings Distribution",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
-    }
+},
+    "BPMLineChart": {
+        title: "Pulse",
+        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+    },
+        "bpmHistogram": {
+        title: "Pulse Distribution",
+        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+    },
+        "ppLineChart": {
+        title: "Pulse Pressure",
+        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+    },
+        "sysAndDiaLineChart": {
+        title: "Systolic And Diastolic",
+        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+    },
+        "sysAndDiaBoxAndWhisker": {
+        title: "Systolic And Diastolic Volatility",
+        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+    },
+        "7DayMAP": {
+        title: "Mean Arterial Pressure",
+        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+    },
+        "sysAndDiaRollingAvg": {
+        title: "7 Day Rolling Average with Standard Deviation",
+        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+    },
+        "rawDataGridview": {
+        title: "Raw Data",
+        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+    },
 };

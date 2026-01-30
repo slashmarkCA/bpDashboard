@@ -6,6 +6,8 @@
     3. Exclude gaps (Denominator = count of days with data).
     ============================================================================ */
 
+import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate, getLocalDateKey, calculateMAP } from '../utils/bp_utils.js';
+
 console.log('bp_charts_combined_rolling.js (Day-Mean Mode) loaded');
 
 let combinedRollingChart = null;
@@ -184,3 +186,5 @@ function toggleCombinedStdDevBand(mode) {
 function updateCombinedRollingChart(filteredData) {
     createCombinedRollingChart(filteredData);
 }
+
+window.updateCombinedRollingChart = updateCombinedRollingChart;
