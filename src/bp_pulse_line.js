@@ -1,18 +1,24 @@
-/* =====================================================================
+/* ============================================================================
    bp_pulse_line.js
-   ---------------------------------------------------------------------
+   ---------------------------------------------------------------------------
    Pulse (BPM) Line Chart
-   - Safe Chart.js lifecycle
+   - Reference bands for Bradycardia/Tachycardia
    - Linear regression trendline
-   - Reference bands (Brady / Tachy)
    - Dynamic date ticks
-   ===================================================================== */
-import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate } from '../utils/bp_utils.js';
+   ============================================================================ */
 
-console.log('bp_pulse_line.js loaded');
+import { 
+    destroyChart,
+    linearRegression, 
+    formatTooltipDate, 
+    formatAxisDate 
+} from '../utils/bp_utils.js';
 
 let pulseLineChart = null;
 
+/**
+ * Plugin to draw Bradycardia/Tachycardia reference bands
+ */
 const pulseBandsPlugin = {
     id: 'pulseBands',
     beforeDatasetsDraw(chart) {
@@ -61,16 +67,27 @@ const pulseBandsPlugin = {
     }
 };
 
-function createPulseLineChart(bpData) {
+/**
+ * Creates/updates the pulse line chart
+ * @param {Array} bpData - Filtered BP data
+ */
+export function createPulseLineChart(bpData) {
     const canvas = document.getElementById('pulseLineChart');
     if (!canvas) {
-        console.warn('pulseLineChart canvas not found – chart skipped');
+        console.error('[PULSE LINE CHART] Canvas element #pulseLineChart not found');
+        return;
+    }
+
+    // Destroy existing instance
+    pulseLineChart = destroyChart(pulseLineChart);
+
+    // Handle empty data
+    if (!bpData?.length) {
+        console.warn('[PULSE LINE CHART] No data available');
         return;
     }
 
     const ctx = canvas.getContext('2d');
-    pulseLineChart = destroyChart(pulseLineChart);
-
     const pulseData = bpData.map((r, i) => ({ x: i, y: r.BPM, reading: r }));
     const trendData = linearRegression(pulseData);
 
@@ -110,6 +127,8 @@ function createPulseLineChart(bpData) {
                         title: () => '',
                         label(context) {
                             const r = context.raw.reading;
+                            if (!r) return null;
+                            
                             return [
                                 `Pulse: ${r.BPM} bpm`,
                                 '',
@@ -119,7 +138,8 @@ function createPulseLineChart(bpData) {
                             ];
                         }
                     },
-                    displayColors: false
+                    displayColors: false,
+                    filter: (tooltipItem) => tooltipItem.raw.reading !== undefined
                 }
             },
             scales: {
@@ -157,11 +177,6 @@ function createPulseLineChart(bpData) {
         },
         plugins: [pulseBandsPlugin]
     });
+    
+    console.log('[Trace] bp_pulse_line.js rendered successfully');
 }
-
-function updatePulseLineChart(filteredData) {
-    createPulseLineChart(filteredData);
-}
-
-// Attach ONLY the main update function to window so the central dispatcher can find it
-window.updatePulseLineChart = updatePulseLineChart;

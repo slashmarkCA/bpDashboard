@@ -1,19 +1,24 @@
-/* ============================================================
+/* ============================================================================
    bp_pulsePressure_line.js
-   ------------------------------------------------------------
+   ---------------------------------------------------------------------------
    Pulse Pressure Line Chart
-   - Data source: gPulsePressure
-   - Reference bands (Tableau-style)
-   - Gridlines ABOVE bands
-   - ✅ Linear regression trendline
-   ============================================================ */
+   - Reference bands (Narrowed/Normal/Widened/Very Widened)
+   - Linear regression trendline
+   - Data source: gPulsePressure (calculated Sys - Dia)
+   ============================================================================ */
 
-import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate } from '../utils/bp_utils.js';
-
-console.log('bp_pulsePressure_line.js loaded');
+import { 
+    destroyChart,
+    linearRegression, 
+    formatTooltipDate, 
+    formatAxisDate 
+} from '../utils/bp_utils.js';
 
 let pulsePressureLineChart = null;
 
+/**
+ * Plugin to draw pulse pressure reference bands
+ */
 const pulsePressureBandsPlugin = {
     id: 'pulsePressureBands',
     beforeDraw(chart) {
@@ -73,21 +78,32 @@ const pulsePressureBandsPlugin = {
     }
 };
 
-function createPulsePressureLineChart(bpData) {
+/**
+ * Creates/updates the pulse pressure line chart
+ * @param {Array} bpData - Filtered BP data
+ */
+export function createPulsePressureLineChart(bpData) {
     const canvas = document.getElementById('pulsePressureLineChart');
     if (!canvas) {
-        console.warn('pulsePressureLineChart canvas not found – chart skipped');
+        console.error('[PULSE PRESSURE LINE] Canvas element #pulsePressureLineChart not found');
+        return;
+    }
+
+    // Destroy existing instance
+    pulsePressureLineChart = destroyChart(pulsePressureLineChart);
+
+    // Handle empty data
+    if (!bpData?.length) {
+        console.warn('[PULSE PRESSURE LINE] No data available');
         return;
     }
 
     const ctx = canvas.getContext('2d');
-    pulsePressureLineChart = destroyChart(pulsePressureLineChart);
-
     const pulsePressureData = bpData
         .filter(r => r.gPulsePressure != null)
         .map((r, idx) => ({ x: idx, y: r.gPulsePressure, reading: r }));
 
-    // ✅ Calculate trendline using utility function
+    // Calculate trendline
     const ppTrend = linearRegression(pulsePressureData);
 
     pulsePressureLineChart = new Chart(ctx, {
@@ -106,7 +122,6 @@ function createPulsePressureLineChart(bpData) {
                     tension: 0.2,
                     order: 1
                 },
-                // Trendline
                 {
                     data: ppTrend,
                     borderColor: '#1a2a33',
@@ -125,7 +140,6 @@ function createPulsePressureLineChart(bpData) {
                 legend: {
                     display: false,
                     labels: {
-                        // Hide trendline from legend
                         filter: item => item.text
                     }
                 },
@@ -133,7 +147,6 @@ function createPulsePressureLineChart(bpData) {
                     callbacks: {
                         title: () => '',
                         label(context) {
-                            // Skip tooltips for trendline
                             if (!context.raw.reading) return null;
 
                             const r = context.raw.reading;
@@ -145,7 +158,6 @@ function createPulsePressureLineChart(bpData) {
                         }
                     },
                     displayColors: false,
-                    // Filter out trendline tooltips completely
                     filter: (tooltipItem) => tooltipItem.raw.reading !== undefined
                 }
             },
@@ -187,10 +199,6 @@ function createPulsePressureLineChart(bpData) {
         },
         plugins: [pulsePressureBandsPlugin]
     });
+    
+    console.log('[Trace] bp_pulsePressure_line.js rendered successfully');
 }
-
-function updatePulsePressureLineChart(filteredData) {
-    createPulsePressureLineChart(filteredData);
-}
-
-window.updatePulsePressureLineChart = updatePulsePressureLineChart;

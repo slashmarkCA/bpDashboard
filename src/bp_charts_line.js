@@ -1,29 +1,43 @@
-/* =====================================================================
+/* ============================================================================
    bp_charts_line.js
-   ---------------------------------------------------------------------
+   ---------------------------------------------------------------------------
    Systolic & Diastolic Line Chart
-   - Safe Chart.js lifecycle
+   - Standardized lifecycle management
+   - Linear regression trendlines
    - Dynamic date ticks
    - Custom tooltip content
-   - Linear regression trendlines for both Sys and Dia
-   ===================================================================== */
+   ============================================================================ */
 
-import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate } from '../utils/bp_utils.js';
-
-console.log('bp_charts_line.js loaded');
+import { 
+    destroyChart,
+    linearRegression, 
+    formatTooltipDate, 
+    formatAxisDate 
+} from '../utils/bp_utils.js';
 
 let sysAndDiaChart = null;
 
-function createSysAndDiaChart(bpData) {
+/**
+ * Creates/updates the Sys/Dia line chart
+ * @param {Array} bpData - Filtered BP data
+ */
+export function createSysAndDiaChart(bpData) {
     const canvas = document.getElementById('sysAndDiaChart');
     if (!canvas) {
-        console.warn('sysAndDiaChart canvas not found – chart skipped');
+        console.error('[SYS/DIA CHART] Canvas element #sysAndDiaChart not found');
+        return;
+    }
+
+    // Destroy existing instance
+    sysAndDiaChart = destroyChart(sysAndDiaChart);
+
+    // Handle empty data
+    if (!bpData?.length) {
+        console.warn('[SYS/DIA CHART] No data available');
         return;
     }
 
     const ctx = canvas.getContext('2d');
-    sysAndDiaChart = destroyChart(sysAndDiaChart);
-
     const sysData = bpData.map((r, i) => ({ x: i, y: r.Sys, reading: r }));
     const diaData = bpData.map((r, i) => ({ x: i, y: r.Dia, reading: r }));
 
@@ -149,11 +163,6 @@ function createSysAndDiaChart(bpData) {
             }
         }
     });
+    
+    console.log('[Trace] bp_charts_line.js rendered successfully');
 }
-
-export function updateSysAndDiaChart(filteredData) {
-    createSysAndDiaChart(filteredData);
-}
-
-// Attach ONLY the main update function to window so the central dispatcher can find it
-window.updateSysAndDiaChart = updateSysAndDiaChart;

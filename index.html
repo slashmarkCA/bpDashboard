@@ -276,7 +276,7 @@
     </main>
 
     <footer>
-        <p><a href="https://slashmarkca.github.io/bpDashboard/">github page</a> | <a href="https://github.com/slashmarkCA/bpDashboard">github repo</a> | <a href="#">tableau</a> | <a href="https://forms.gle/N4FZoaGy3GxCN75P6">Contact Me</a></p>
+        <p><a href="https://slashmarkca.github.io/bpDashboard/">Blood Pressure Dashboard</a> | <a href="https://github.com/slashmarkCA/bpDashboard">github repo</a> | <a href="#">tableau</a> | <a href="https://forms.gle/N4FZoaGy3GxCN75P6">Contact Me</a></p>
     </footer>
 
     <div id="infoDrawer" class="info-drawer">
@@ -296,11 +296,11 @@
     <!-- raw: No aggregation, just show the dots -->
 
     <!-- Content inside the sliding drawer "about this chart" -->
-    <script src="utils/errorHandling.js" defer></script>
+    <script type="module" src="utils/errorHandling.js" defer></script>
     <script src="src/docLibrary.js" defer></script>
 
     <!-- Core data & utilities -->
-    <script src="utils/bp_data.js" onerror="showGlobalErrorBanner('Critical Data File (bp_data.js) failed to load.')" defer></script>
+    <script type="module" src="utils/bp_data.js" onerror="showGlobalErrorBanner('Critical Data File (bp_data.js) failed to load.')" defer></script>
     <script type="module" src="utils/bp_data_normalized.js" defer></script>
     <script type="module" src="utils/bp_utils.js" defer></script>
     <script type="module" src="utils/bp_filters.js" data-logic="volume-window" defer></script>
@@ -311,10 +311,10 @@
 
     <!-- Chart modules -->
 	<script type="module" src="src/bp_charts_line.js" data-aggregation="raw" defer></script>
-    <script src="src/bp_charts_scatter.js" data-aggregation="raw" defer></script>
     <script type="module" src="src/bp_pulse_line.js" data-aggregation="raw" defer></script>
-    <script src="src/bp_pulse_histogram.js" data-aggregation="raw" defer></script>
-    <script src="src/bp_pulsePressure_histogram.js" data-aggregation="raw" defer></script>
+    <script type="module" src="src/bp_charts_scatter.js" data-aggregation="raw" defer></script>
+    <script type="module" src="src/bp_pulse_histogram.js" data-aggregation="raw" defer></script>
+    <script type="module" src="src/bp_pulsePressure_histogram.js" data-aggregation="raw" defer></script>
     <script type="module" src="src/bp_SysDia_volatilityBoxAndWhisker.js" data-aggregation="raw" defer></script>
     <script type="module" src="src/bp_pulsePressure_line.js" data-aggregation="raw" defer></script>
     <script type="module" src="src/bp_categoryOverTime.js" data-aggregation="day-mean-simple" defer></script>
@@ -323,12 +323,11 @@
     <script type="module" src="src/bp_heatmap.js" data-aggregation="raw" defer></script>
 
     <!-- Summary cards -->
-    <script src="src/ReadingsInDaysCard.js" data-aggregation="reading-simple" defer></script>
+    <script type="module" src="src/ReadingsInDaysCard.js" data-aggregation="reading-simple" defer></script>
     <script type="module" src="src/readingCategoriesSummaryCard.js" data-aggregation="reading-simple" defer></script>
-    <script src="src/bp_5colAggregateSummary_cards.js" data-aggregation="reading-simple" defer></script>
-    <script src="src/filteredNormalDonutCard.js" data-aggregation="reading-simple" defer></script>
-    <script src="src/bp_periodAggregateSummary_card.js" data-aggregation="reading-simple" defer></script>
-    <script src="src/bp_rawDataTabularView.js" data-aggregation="raw" defer></script>
+    <script type="module" src="src/bp_5colAggregateSummary_cards.js" data-aggregation="reading-simple" defer></script>
+    <script type="module" src="src/filteredNormalDonutCard.js" data-aggregation="reading-simple" defer></script>
+    <script type="module" src="src/bp_rawDataTabularView.js" data-aggregation="raw" defer></script>
 
 </body>
 </html>

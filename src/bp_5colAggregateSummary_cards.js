@@ -1,17 +1,31 @@
+/* ============================================================================
+   bp_5colAggregateSummary_cards.js
+   ---------------------------------------------------------------------------
+   Five-Column Summary Cards (SYS, DIA, BPM, PP)
+   - High/Low/Average calculations
+   - Warning badge display for out-of-range values
+   - No Chart.js dependency
+   ============================================================================ */
+
 /**
- * Updates the 4 metric cards (SYS, DIA, BPM, PP) 
- * Precise targeting preserves the <br> tags in index.html
+ * Updates the 4 metric summary cards
+ * @param {Array} filteredData - Filtered BP data
  */
-function update5ColAggregateSummary(filteredData) {
+export function create5ColAggregateSummary(filteredData) {
+    // Handle empty data - reset all cards to '--'
     if (!filteredData || filteredData.length === 0) {
         ['sys', 'dia', 'pulse', 'pp'].forEach(key => {
             const elements = [`${key}-high`, `${key}-low`, `${key}-avg`].map(id => document.getElementById(id));
             elements.forEach(el => { if(el) el.innerText = '--'; });
+            
+            // Hide warning badges
+            const badge = document.getElementById(`${key}-warning`);
+            if (badge) badge.style.display = 'none';
         });
         return;
     }
 
-    // 1. Updated Config: Added lowLimit to catch values like 57
+    // Configuration with medical thresholds
     const statsConfig = {
         sys:   { vals: filteredData.map(d => Number(d.Sys)).filter(v => !isNaN(v)), limit: 140, lowLimit: 90 },
         dia:   { vals: filteredData.map(d => Number(d.Dia)).filter(v => !isNaN(v)), limit: 90,  lowLimit: 60 },
@@ -28,45 +42,41 @@ function update5ColAggregateSummary(filteredData) {
         const avg = (config.vals.reduce((a, b) => a + b, 0) / config.vals.length).toFixed(1);
         const avgNum = parseFloat(avg);
 
-        // 1. Determine if ANY value in this category is a warning
+        // Determine warnings
         const highWarning = high >= config.limit;
         const lowWarning = low <= config.lowLimit;
         const avgWarning = avgNum >= config.limit || avgNum <= config.lowLimit;
-        
-        // The "Master" warning for the card badge
         const anyWarning = highWarning || lowWarning || avgWarning;
 
-        // 2. Update High Display
+        // Update High display
         const highEl = document.getElementById(`${key}-high`);
         if (highEl) {
             highEl.innerText = high;
             highEl.style.color = highWarning ? '#c70000' : 'inherit';
         }
 
-        // 3. Update Low Display
+        // Update Low display
         const lowEl = document.getElementById(`${key}-low`);
         if (lowEl) {
             lowEl.innerText = low;
             lowEl.style.color = lowWarning ? '#c70000' : 'inherit';
         }
 
-        // 4. Update Average & Card Badge
+        // Update Average display
         const avgEl = document.getElementById(`${key}-avg`);
-        const warningBadge = document.getElementById(`${key}-warning`);
-
         if (avgEl) {
             avgEl.innerText = avg;
             avgEl.style.color = avgWarning ? '#c70000' : 'inherit';
-            avgEl.style.fontSize = avgWarning ? '42px' : '35px';
-            avgEl.style.fontWeight = avgWarning ? '800' : 'normal';
+            avgEl.style.fontSize = '35px';
+            avgEl.style.fontWeight = 'normal';
         }
 
-        // Show the badge if ANY of the three triggered a warning
+        // Update warning badge
+        const warningBadge = document.getElementById(`${key}-warning`);
         if (warningBadge) {
             warningBadge.style.display = anyWarning ? 'block' : 'none';
         }
     });
+    
+    console.log('[Trace] bp_5colAggregateSummary_cards.js rendered successfully');
 }
-
-// Global expose for dispatcher
-window.update5ColAggregateSummary = update5ColAggregateSummary;

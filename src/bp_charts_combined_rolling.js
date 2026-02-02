@@ -1,32 +1,47 @@
 /* ============================================================================
-    bp_charts_combined_rolling.js - DAY-MEAN AGGREGATION MODE (FINAL)
-    STRATEGY: 
-    1. Collapse multi-reading days into a single Daily Mean.
-    2. Slide a window across the last 7 AVAILABLE days of data.
-    3. Exclude gaps (Denominator = count of days with data).
-    ============================================================================ */
+   bp_charts_combined_rolling.js
+   ---------------------------------------------------------------------------
+   Combined 7-Day Rolling Average (Sys + Dia)
+   - Day-mean aggregation strategy
+   - Standard deviation bands (toggleable)
+   - Volume-based window (excludes gaps)
+   ============================================================================ */
 
-import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate, getLocalDateKey, calculateMAP } from '../utils/bp_utils.js';
-
-console.log('bp_charts_combined_rolling.js (Day-Mean Mode) loaded');
+import { 
+    destroyChart,
+    formatTooltipDate, 
+    formatAxisDate, 
+    getLocalDateKey 
+} from '../utils/bp_utils.js';
 
 let combinedRollingChart = null;
 let currentBandMode = 'none';
 
-function createCombinedRollingChart(filteredData) {
+/**
+ * Creates/updates the combined rolling average chart
+ * @param {Array} filteredData - Filtered BP data
+ */
+export function createCombinedRollingChart(filteredData) {
     const ctx = document.getElementById('combinedRollingChart');
-    if (!ctx) return;
-    if (combinedRollingChart) combinedRollingChart.destroy();
+    if (!ctx) {
+        console.error('[COMBINED ROLLING] Canvas element #combinedRollingChart not found');
+        return;
+    }
 
-    if (!filteredData || filteredData.length === 0) return;
+    // Destroy existing instance
+    combinedRollingChart = destroyChart(combinedRollingChart);
 
-    // 1. ACCESS GLOBAL DATA
-    // We need allData to ensure the "Lookback" isn't cut off by the UI filter
+    // Handle empty data
+    if (!filteredData?.length) {
+        console.warn('[COMBINED ROLLING] No data available');
+        return;
+    }
+
+    // Access global data for lookback window
     const allData = [...window.NORMALIZED_BP_DATA].sort((a, b) => a.DateObj - b.DateObj);
     const sortedFiltered = [...filteredData].sort((a, b) => a.DateObj - b.DateObj);
 
-    // 2. PRE-PROCESS: Collapse all global readings into Daily Means
-    // This prevents "Averages of Averages" bias on multi-reading days.
+    // Collapse all readings into daily means
     const dailyMap = allData.reduce((acc, r) => {
         const key = getLocalDateKey(r.DateObj);
         if (!acc[key]) acc[key] = { sys: [], dia: [], date: r.DateObj };
@@ -35,7 +50,6 @@ function createCombinedRollingChart(filteredData) {
         return acc;
     }, {});
 
-    // Convert map to sorted array of points (One point per day)
     const dailySeries = Object.keys(dailyMap).sort().map(key => ({
         key: key,
         date: dailyMap[key].date,
@@ -44,13 +58,12 @@ function createCombinedRollingChart(filteredData) {
         rawCount: dailyMap[key].sys.length
     }));
 
-    // 3. CALCULATE STATS: Loop through the visible readings
+    // Calculate rolling stats for visible readings
     const stats = sortedFiltered.map((r) => {
         const rKey = getLocalDateKey(r.DateObj);
         const dayIndex = dailySeries.findIndex(d => d.key === rKey);
         
-        // VOLUME WINDOW: Take the last 7 unique data-days leading up to this reading
-        // This is the "Exclusionary" null handling (Denominator = days with data)
+        // Volume window: last 7 unique data-days
         const windowDays = dailySeries.slice(Math.max(0, dayIndex - 6), dayIndex + 1);
 
         const sysMeans = windowDays.map(d => d.avgSys);
@@ -77,7 +90,6 @@ function createCombinedRollingChart(filteredData) {
             diaUpper: dMean + dSD,
             diaLower: dMean - dSD,
             dayCount: windowDays.length,
-            // Total readings inside those 7 days
             readingCount: windowDays.reduce((sum, d) => sum + d.rawCount, 0)
         };
     });
@@ -88,7 +100,7 @@ function createCombinedRollingChart(filteredData) {
             labels: stats.map(s => s.label),
             datasets: [
                 {
-                    label: '7-Day Sys Avg (Day-Mean)',
+                    label: '7-Day Sys Avg',
                     data: stats.map(s => s.sysAvg),
                     borderColor: '#d32f2f',
                     borderWidth: 2,
@@ -115,7 +127,7 @@ function createCombinedRollingChart(filteredData) {
                     hidden: currentBandMode !== 'systolic'
                 },
                 {
-                    label: '7-Day Dia Avg (Day-Mean)',
+                    label: '7-Day Dia Avg',
                     data: stats.map(s => s.diaAvg),
                     borderColor: '#1976d2',
                     borderWidth: 2,
@@ -155,7 +167,7 @@ function createCombinedRollingChart(filteredData) {
                         title: (items) => formatTooltipDate(stats[items[0].dataIndex].fullDate),
                         afterBody: (items) => {
                             const point = stats[items[0].dataIndex];
-                            return `\nWindow: ${point.dayCount} Days with data\nTotal Readings: ${point.readingCount}`;
+                            return `\nWindow: ${point.dayCount} Days\nReadings: ${point.readingCount}`;
                         }
                     }
                 }
@@ -174,17 +186,17 @@ function createCombinedRollingChart(filteredData) {
             }
         }
     });
+    
+    console.log('[Trace] bp_charts_combined_rolling.js rendered successfully');
 }
 
-function toggleCombinedStdDevBand(mode) {
+/**
+ * Toggle standard deviation bands
+ * Called by UI radio buttons
+ */
+window.toggleCombinedStdDevBand = function(mode) {
     currentBandMode = mode;
     if (typeof getFilteredBPData === 'function' && typeof getCurrentFilter === 'function') {
-        createCombinedRollingChart(getFilteredBPData(getCurrentFilter()));
+        createCombinedRollingChart(window.getFilteredBPData(window.getCurrentFilter()));
     }
-}
-
-function updateCombinedRollingChart(filteredData) {
-    createCombinedRollingChart(filteredData);
-}
-
-window.updateCombinedRollingChart = updateCombinedRollingChart;
+};

@@ -1,43 +1,52 @@
-// bp_rawDataTabularView.js
-console.log('[RAW TABLE] Script loaded. Ready to render.');
+/* ============================================================================
+   bp_rawDataTabularView.js
+   ---------------------------------------------------------------------------
+   Raw Data Table View
+   - Displays all readings in tabular format
+   - Groups by date with rowspan
+   - Highlights risky readings
+   - Pure DOM manipulation (no Chart.js)
+   ============================================================================ */
 
-function renderRawBPTable() {
-    console.log('[RAW TABLE] renderRawBPTable() called.');
+import { getLocalDateKey } from '../utils/bp_utils.js';
 
+/**
+ * Renders the raw BP data table
+ * Note: Uses global NORMALIZED_BP_DATA (not filtered) to show all records
+ */
+export function renderRawBPTable() {
     const container = document.getElementById('bpRawDataTable');
     if (!container) {
-        console.error('[RAW TABLE] Error: #bpRawDataTable not found in HTML.');
+        console.error('[RAW TABLE] Container #bpRawDataTable not found');
         return;
     }
 
-    // 1. Get Data
+    // Get all normalized data
     const rawList = Array.isArray(window.NORMALIZED_BP_DATA) ? [...window.NORMALIZED_BP_DATA] : [];
+    
     if (rawList.length === 0) {
         container.innerHTML = '<p style="padding:20px;">No data found to display.</p>';
+        console.warn('[RAW TABLE] No data available');
         return;
     }
 
     try {
-        // 2. Sort Descending (Newest first)
+        // Sort descending (newest first)
         rawList.sort((a, b) => (b.DateObj || 0) - (a.DateObj || 0));
 
-        // 3. Group by Date
+        // Group by date
         const dayGroups = new Map();
         rawList.forEach(record => {
-            // Determine the label for the day (e.g., "2026-01-20")
             let dayLabel = 'Unknown Date';
             if (record.DateObj instanceof Date && !isNaN(record.DateObj)) {
-                // Try to use your existing util if it exists, otherwise fallback
-                dayLabel = (typeof getLocalDateKey === 'function')
-                    ? getLocalDateKey(record.DateObj)
-                    : record.DateObj.toLocaleDateString();
+                dayLabel = getLocalDateKey(record.DateObj) || record.DateObj.toLocaleDateString();
             }
 
             if (!dayGroups.has(dayLabel)) dayGroups.set(dayLabel, []);
             dayGroups.get(dayLabel).push(record);
         });
 
-        // 4. Build the HTML Table
+        // Build HTML table
         let tableHtml = `
             <div class="bp-raw-table-wrapper">
                 <table class="bp-raw-table">
@@ -62,7 +71,7 @@ function renderRawBPTable() {
             rowsInDay.forEach((r, idx) => {
                 const isHigh = (r.Sys >= 140 || r.Dia >= 90);
 
-                // Format Time safely
+                // Format time safely
                 let timeStr = '--:--';
                 if (r.DateObj instanceof Date && !isNaN(r.DateObj)) {
                     timeStr = r.DateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -70,12 +79,12 @@ function renderRawBPTable() {
 
                 tableHtml += '<tr>';
 
-                // Column 1: Date (Merged with Rowspan)
+                // Date column (merged with rowspan)
                 if (idx === 0) {
                     tableHtml += `<td class="date-cell" rowspan="${rowsInDay.length}">${dayKey}</td>`;
                 }
 
-                // Columns 2-10: Data Points
+                // Data columns
                 tableHtml += `
                     <td class="hide-mobile">${r.ReadingID || ''}</td>
                     <td class="time-cell">${timeStr}</td>
@@ -94,15 +103,12 @@ function renderRawBPTable() {
 
         tableHtml += `</tbody></table></div>`;
 
-        // 5. Inject into DOM
+        // Inject into DOM
         container.innerHTML = tableHtml;
-        console.log('[RAW TABLE] Success: Table rendered with ' + rawList.length + ' rows.');
+        console.log('[Trace] bp_rawDataTabularView.js rendered successfully with', rawList.length, 'rows');
 
     } catch (err) {
-        console.error('[RAW TABLE] Render failed mid-loop:', err);
+        console.error('[RAW TABLE] Render failed:', err);
         container.innerHTML = '<div style="color:red; border:1px solid red; padding:10px;">Error generating table. Check Console (F12).</div>';
     }
 }
-
-// Final check: Run it
-renderRawBPTable();

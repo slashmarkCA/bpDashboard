@@ -1,36 +1,52 @@
+/* ============================================================================
+   readingCategoriesSummaryCard.js
+   ---------------------------------------------------------------------------
+   Reading Categories Summary Card
+   - Displays distribution of BP categories
+   - Uses BP_LEVELS for consistent colors and labels
+   - Pure DOM manipulation (no Chart.js)
+   ============================================================================ */
+
 import { BP_LEVELS } from '../utils/bp_utils.js';
 
 /**
- * Summary card showing the distribution of BP categories.
- * Now pulls labels and colors from the Central Source of Truth.
+ * Renders the reading categories summary card
+ * @param {Array} filteredData - Filtered BP data
  */
-export function updateReadingCategoriesSummaryCard(filteredData) {
-    renderReadingCategoriesSummary(filteredData);
-}
-
-function renderReadingCategoriesSummary(filteredData) {
+export function renderReadingCategoriesSummary(filteredData) {
     const container = document.getElementById('readingCategoriesSummaryCard');
-    if (!container) return;
+    if (!container) {
+        console.error('[CATEGORIES SUMMARY] Container #readingCategoriesSummaryCard not found');
+        return;
+    }
 
+    // Clear existing content
     container.innerHTML = '';
 
-    // Convert BP_LEVELS object into a sorted array for the display list
-    // We sort by score (highest risk at top) or reversed if you prefer.
+    // Handle empty data
+    if (!filteredData?.length) {
+        container.innerHTML = '<p style="padding: 20px; text-align: center; color: #999;">No data available</p>';
+        console.warn('[CATEGORIES SUMMARY] No data available');
+        return;
+    }
+
+    // Get categories sorted by score (highest risk first)
     const categories = Object.values(BP_LEVELS)
         .filter(cat => cat.score > 0) // Exclude "Unknown"
         .sort((a, b) => b.score - a.score);
 
-    const total = filteredData.length || 1;
+    const total = filteredData.length;
     const counts = {};
     categories.forEach(c => counts[c.label] = 0);
 
-    // Use the normalized bpCat object we attached in bp_data_normalized.js
+    // Count occurrences using normalized bpCat
     filteredData.forEach(r => {
         if (r.bpCat && counts[r.bpCat.label] !== undefined) {
             counts[r.bpCat.label]++;
         }
     });
 
+    // Build table
     const table = document.createElement('div');
     table.style.cssText = `
         width:100%;
@@ -68,7 +84,5 @@ function renderReadingCategoriesSummary(filteredData) {
     });
 
     container.appendChild(table);
+    console.log('[Trace] readingCategoriesSummaryCard.js rendered successfully');
 }
-
-// Keep the global hook for the dispatcher
-window.updateReadingCategoriesSummaryCard = updateReadingCategoriesSummaryCard;

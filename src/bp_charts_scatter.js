@@ -1,13 +1,20 @@
-/* ============================================================
+/* ============================================================================
    bp_charts_scatter.js
-   ------------------------------------------------------------
+   ---------------------------------------------------------------------------
    Sys / Dia Scatter Chart with Clinical Background Zones
-   - Background shading plugin
-   - Workday vs Non-Workday points
-   ============================================================ */
+   - Workday vs Non-workday differentiation
+   - Clinical zone shading
+   - Standardized ES6 module pattern
+   ============================================================================ */
 
-console.log('bp_charts_scatter.js loaded');
+import { BP_LEVELS, destroyChart } from '../utils/bp_utils.js';
 
+let scatterChartInstance = null;
+
+/**
+ * Background shading plugin
+ * Draws clinical BP zones behind the scatter points
+ */
 const backgroundPlugin = {
     id: 'customBackground',
     beforeDatasetsDraw(chart) {
@@ -22,15 +29,16 @@ const backgroundPlugin = {
         ctx.rect(left, top, right - left, bottom - top);
         ctx.clip();
 
+        // Clinical zones using BP_LEVELS
         const zones = [
-            { xMin: 0,   xMax: 80,  yMin: 0,   yMax: 120, color: '#30693c' },
-            { xMin: 0,   xMax: 80,  yMin: 120, yMax: 130, color: '#204929' },
-            { xMin: 0,   xMax: 80,  yMin: 130, yMax: 140, color: '#eeb649' },
-            { xMin: 80,  xMax: 90,  yMin: 0,   yMax: 140, color: '#eeb649' },
-            { xMin: 0,   xMax: 120, yMin: 139, yMax: 180, color: '#d95139' },
-            { xMin: 90,  xMax: 120, yMin: 0,   yMax: 140, color: '#d95139' },
-            { xMin: 0,   xMax: 130, yMin: 180, yMax: 200, color: '#ad322d' },
-            { xMin: 120, xMax: 130, yMin: 0,   yMax: 200, color: '#ad322d' }
+            { xMin: 0,   xMax: 80,  yMin: 0,   yMax: 120, color: BP_LEVELS.NORMAL.color },
+            { xMin: 0,   xMax: 80,  yMin: 120, yMax: 130, color: BP_LEVELS.ELEVATED.color },
+            { xMin: 0,   xMax: 80,  yMin: 130, yMax: 140, color: BP_LEVELS.STAGE1.color },
+            { xMin: 80,  xMax: 90,  yMin: 0,   yMax: 140, color: BP_LEVELS.STAGE1.color },
+            { xMin: 0,   xMax: 120, yMin: 139, yMax: 180, color: BP_LEVELS.STAGE2.color },
+            { xMin: 90,  xMax: 120, yMin: 0,   yMax: 140, color: BP_LEVELS.STAGE2.color },
+            { xMin: 0,   xMax: 130, yMin: 180, yMax: 200, color: BP_LEVELS.CRISIS.color },
+            { xMin: 120, xMax: 130, yMin: 0,   yMax: 200, color: BP_LEVELS.CRISIS.color }
         ];
 
         const labels = [
@@ -56,9 +64,7 @@ const backgroundPlugin = {
             const xPixel = x.getPixelForValue(label.xValue);
             const yPixel = y.getPixelForValue(label.yValue);
 
-            if (xPixel < left || xPixel > right || yPixel < top  || yPixel > bottom) {
-                return;
-            }
+            if (xPixel < left || xPixel > right || yPixel < top || yPixel > bottom) return;
 
             ctx.globalAlpha = 0.6;
             ctx.fillStyle = '#ffffff';
@@ -72,22 +78,30 @@ const backgroundPlugin = {
     }
 };
 
-let scatterChart = null;
-
-function createScatterChart(bpData) {
+/**
+ * Creates/updates the scatter chart
+ * @param {Array} filteredData - Filtered BP data
+ */
+export function createScatterChart(filteredData) {
     const canvas = document.getElementById('bpScatterChart');
     if (!canvas) {
-        console.warn('bpScatterChart canvas not found – chart skipped');
+        console.error('[SCATTER CHART] Canvas element #bpScatterChart not found');
         return;
     }
 
-    const ctx = canvas.getContext('2d');
-    scatterChart = destroyChart(scatterChart);
+    // Destroy existing instance
+    scatterChartInstance = destroyChart(scatterChartInstance);
+
+    // Handle empty data
+    if (!filteredData?.length) {
+        console.warn('[SCATTER CHART] No data available');
+        return;
+    }
 
     const workdayData = [];
     const nonWorkdayData = [];
 
-    bpData.forEach(r => {
+    filteredData.forEach(r => {
         const point = {
             x: r.Dia,
             y: r.Sys,
@@ -95,11 +109,10 @@ function createScatterChart(bpData) {
             workday: r.Workday,
             comments: r.FormComments || ''
         };
-
         (r.Workday === 'Yes' ? workdayData : nonWorkdayData).push(point);
     });
 
-    scatterChart = new Chart(ctx, {
+    scatterChartInstance = new Chart(canvas.getContext('2d'), {
         type: 'scatter',
         data: {
             datasets: [
@@ -139,9 +152,7 @@ function createScatterChart(bpData) {
                                 `Date: ${p.date}`,
                                 `Workday: ${p.workday}`
                             ];
-                            if (p.comments) {
-                                lines.push(`Comments: ${p.comments}`);
-                            }
+                            if (p.comments) lines.push(`Comments: ${p.comments}`);
                             return lines;
                         }
                     }
@@ -170,8 +181,6 @@ function createScatterChart(bpData) {
         },
         plugins: [backgroundPlugin]
     });
-}
-
-function updateScatterChart(filteredData) {
-    createScatterChart(filteredData);
+    
+    console.log('[Trace] bp_charts_scatter.js rendered successfully');
 }

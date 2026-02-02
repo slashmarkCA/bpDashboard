@@ -1,12 +1,35 @@
-// VERSION 2.1 - 2026-01-29 - Fixed missing final week, future dates, and canvas sizing
-import { BP_LEVELS } from '../utils/bp_utils.js';
+/* ============================================================================
+   bp_heatmap.js
+   ---------------------------------------------------------------------------
+   Blood Pressure Calendar Heatmap (GitHub-style)
+   - Shows daily BP readings colored by category
+   - Responsive touch/mobile support
+   - 10.5 month rolling window
+   ============================================================================ */
 
-let currentTooltip = null;
+import { BP_LEVELS, destroyChart } from '../utils/bp_utils.js';
 
-export function updateHeatmap(filteredData) {
-    console.log('🔥 HEATMAP VERSION 2.1 LOADED');
+let heatmapChart = null;
+
+/**
+ * Creates the BP heatmap visualization
+ * @param {Array} filteredData - Filtered BP readings
+ */
+export function createHeatmap(filteredData) {
     const canvas = document.getElementById('bpHeatmap');
-    if (!canvas) return;
+    if (!canvas) {
+        console.error('[HEATMAP] Canvas element #bpHeatmap not found');
+        return;
+    }
+
+    // Destroy existing chart (though heatmap is canvas-based, not Chart.js)
+    heatmapChart = destroyChart(heatmapChart);
+
+    // Validate data context exists
+    if (!filteredData) {
+        console.error('[HEATMAP] Data context missing');
+        return;
+    }
 
     const allData = window.NORMALIZED_BP_DATA || [];
     
@@ -15,8 +38,6 @@ export function updateHeatmap(filteredData) {
         ? new Date(Math.max(...allData.map(d => d.DateObj)))
         : new Date();
     newestDateObj.setHours(0, 0, 0, 0);
-    
-    console.log('📅 Latest date in dataset:', newestDateObj.toISOString().split('T')[0]);
 
     const filteredDateStrings = new Set(filteredData.map(r => r.Date.split(' ')[0]));
 
@@ -34,10 +55,10 @@ export function updateHeatmap(filteredData) {
         }
     });
 
-    // Build 10.5-month dataset (46 weeks) - adjusted to add 2 more weeks
+    // Build 10.5-month dataset (46 weeks)
     const weeks = [];
     const startDate = new Date(newestDateObj);
-    startDate.setDate(startDate.getDate() - 322); // ~46 weeks (added 2 weeks)
+    startDate.setDate(startDate.getDate() - 322); // ~46 weeks
     
     // Align to Sunday (start of week)
     const dayOfWeek = startDate.getDay();
@@ -45,16 +66,10 @@ export function updateHeatmap(filteredData) {
         startDate.setDate(startDate.getDate() - dayOfWeek);
     }
     
-    // Calculate how many weeks we need (including partial final week)
-    // We want ~12 months, so go back about 370 days from newest
+    // Calculate how many weeks we need
     const totalDays = Math.ceil((newestDateObj - startDate) / (24 * 60 * 60 * 1000)) + 1;
     const maxWeeks = Math.ceil(totalDays / 7);
-    
-    console.log('📊 Start date:', startDate.toISOString().split('T')[0]);
-    console.log('📊 End date:', newestDateObj.toISOString().split('T')[0]);
-    console.log('📊 Total days:', totalDays);
-    console.log('📊 Max weeks:', maxWeeks);
-    
+     
     for (let weekIdx = 0; weekIdx < maxWeeks; weekIdx++) {
         const weekData = [];
         for (let dayIdx = 0; dayIdx < 7; dayIdx++) {
@@ -65,7 +80,7 @@ export function updateHeatmap(filteredData) {
             const dateStr = d.toISOString().split('T')[0];
             const entry = dailyData[dateStr];
             
-            // Don't render future dates (dates after newestDateObj)
+            // Don't render future dates
             const isFuture = d > newestDateObj;
             
             weekData.push({
@@ -79,100 +94,88 @@ export function updateHeatmap(filteredData) {
         }
         weeks.push(weekData);
         
-        // Stop if we've passed the newest date (optimization)
+        // Stop if we've passed the newest date
         if (weekData[6].date >= newestDateObj) {
             break;
         }
     }
     
-    // Reverse so newest dates appear on the LEFT (better for mobile - no scrolling needed)
+    // Reverse so newest dates appear on the LEFT (better for mobile)
     weeks.reverse();
     
-    console.log('📊 First week (LEFT/newest) starts:', weeks[0][0].dateStr);
-    console.log('📊 Last week (RIGHT/oldest) ends:', weeks[weeks.length - 1][6].dateStr);
-    console.log('📊 Total weeks generated:', weeks.length);
-
     drawHeatmap(canvas, weeks, newestDateObj);
+    console.log('[Trace] bp_heatmap.js rendered successfully');
 }
 
+/**
+ * Draws the heatmap on canvas
+ */
 function drawHeatmap(canvas, weeks, newestDate) {
     const ctx = canvas.getContext('2d');
     
     // Get parent container dimensions
     const container = canvas.parentElement;
-    
-    // Use computed style to get the actual dimensions including CSS height
     const containerStyle = window.getComputedStyle(container);
     const containerWidth = container.clientWidth || parseInt(containerStyle.width);
-    const containerHeight = parseInt(containerStyle.height) || 180; // Fallback to 180px
+    const containerHeight = parseInt(containerStyle.height) || 180;
     
     // Configuration
-    const leftPadding = 30;  // Space for day labels
-    const topPadding = 20;   // Space for month labels
+    const leftPadding = 30;
+    const topPadding = 20;
     const bottomPadding = 5;
     const rightPadding = 5;
     
-    // Set canvas size to fill container FIRST
+    // Set canvas size
     canvas.width = containerWidth;
     canvas.height = containerHeight;
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     
-    // Calculate available space for grid
+    // Calculate available space
     const availableWidth = containerWidth - leftPadding - rightPadding;
     const availableHeight = containerHeight - topPadding - bottomPadding;
     
-    // Calculate cell size to fit the space (cells should FILL the available area)
+    // Calculate cell size
     const cellGap = 2;
     const cellWidth = Math.floor((availableWidth - (weeks.length * cellGap)) / weeks.length);
     const cellHeight = Math.floor((availableHeight - (7 * cellGap)) / 7);
-    const cellSize = Math.min(cellWidth, cellHeight); // Keep squares square
-    
-    console.log('🎨 Container dimensions:', containerWidth, 'x', containerHeight);
-    console.log('🎨 Available space:', availableWidth, 'x', availableHeight);
-    console.log('🎨 Cell size:', cellSize, 'Gap:', cellGap);
-    console.log('🎨 Drawing', weeks.length, 'weeks');
-    console.log('🎨 Drawing', weeks.length, 'weeks');
-    
+    const cellSize = Math.min(cellWidth, cellHeight);
+        
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Draw month labels at top
+    // Draw month labels
     drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding);
     
-    // Draw day labels on left
+    // Draw day labels
     drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding);
     
-    // Draw the heatmap cells
+    // Draw heatmap cells
     weeks.forEach((week, weekIdx) => {
         week.forEach((day, dayIdx) => {
             const x = leftPadding + (weekIdx * (cellSize + cellGap));
             const y = topPadding + (dayIdx * (cellSize + cellGap));
             
             // Determine cell color
-            let color = '#ebedf0'; // Default empty color (GitHub style)
+            let color = '#ebedf0';
             let opacity = 1;
             
             if (day.isFuture) {
-                // Future dates: completely transparent to not show
                 opacity = 0;
             } else if (day.value > 0) {
                 const level = Object.values(BP_LEVELS).find(l => l.score === day.value);
                 if (level) {
-                    color = day.isFiltered ? level.color : level.color + '33'; // Add transparency if not filtered
+                    color = day.isFiltered ? level.color : level.color + '33';
                 }
             }
             
-            // Draw cell
             ctx.globalAlpha = opacity;
             ctx.fillStyle = color;
             ctx.fillRect(x, y, cellSize, cellSize);
-            
-            // No border - let the cellGap spacing show through to wrapper background
-            ctx.globalAlpha = 1; // Reset alpha
+            ctx.globalAlpha = 1;
         });
     });
     
-    // Set up hover interaction
+    // Setup hover interaction
     setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, topPadding);
 }
 
@@ -188,7 +191,6 @@ function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding)
         const firstDay = week[0].date;
         const month = firstDay.getMonth();
         
-        // Only draw label when month changes AND it's not the first week (which might be partial)
         if (month !== lastMonth && weekIdx > 0) {
             const x = leftPadding + (weekIdx * (cellSize + cellGap));
             ctx.fillText(monthNames[month], x, topPadding - 6);
@@ -205,7 +207,7 @@ function drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding) {
     
     const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     
-    // Only show Mon, Wed, Fri to reduce clutter (GitHub style)
+    // Only show Mon, Wed, Fri
     [1, 3, 5].forEach(dayIdx => {
         const y = topPadding + (dayIdx * (cellSize + cellGap)) + (cellSize / 2);
         ctx.fillText(dayLabels[dayIdx], leftPadding - 5, y);
@@ -235,20 +237,17 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
         document.body.appendChild(tooltipEl);
     }
     
-    // Unified handler for both mouse and touch
     const handleInteraction = (clientX, clientY) => {
         const rect = canvas.getBoundingClientRect();
         const x = clientX - rect.left;
         const y = clientY - rect.top;
         
-        // Find which cell we're hovering over
         const weekIdx = Math.floor((x - leftPadding) / (cellSize + cellGap));
         const dayIdx = Math.floor((y - topPadding) / (cellSize + cellGap));
         
         if (weekIdx >= 0 && weekIdx < weeks.length && dayIdx >= 0 && dayIdx < 7) {
             const day = weeks[weekIdx][dayIdx];
             
-            // Don't show tooltip for future dates or empty days
             if (!day.isFuture && day.readings.length > 0) {
                 showTooltip(tooltipEl, day, clientX, clientY);
                 canvas.style.cursor = 'pointer';
@@ -271,9 +270,9 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
         canvas.style.cursor = 'default';
     });
     
-    // Touch events for mobile
+    // Touch events
     canvas.addEventListener('touchstart', (e) => {
-        e.preventDefault(); // Prevent scrolling when touching the canvas
+        e.preventDefault();
         const touch = e.touches[0];
         handleInteraction(touch.clientX, touch.clientY);
     });
@@ -285,7 +284,6 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
     });
     
     canvas.addEventListener('touchend', () => {
-        // Keep tooltip visible for a moment after touch ends
         setTimeout(() => hideTooltip(tooltipEl), 2000);
     });
 }
@@ -312,11 +310,9 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
     
     tooltipEl.innerHTML = html;
     tooltipEl.style.opacity = '1';
-    
-    // Use fixed positioning for more reliable placement on mobile
     tooltipEl.style.position = 'fixed';
     
-    // Position tooltip, ensuring it stays on screen
+    // Position tooltip
     const tooltipWidth = tooltipEl.offsetWidth || 200;
     const tooltipHeight = tooltipEl.offsetHeight || 100;
     const viewportWidth = window.innerWidth;
@@ -325,25 +321,16 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
     let left = clientX + 10;
     let top = clientY - 10;
     
-    // Keep tooltip on screen horizontally
     if (left + tooltipWidth > viewportWidth) {
         left = clientX - tooltipWidth - 10;
     }
     
-    // Keep tooltip on screen vertically
     if (top + tooltipHeight > viewportHeight) {
         top = clientY - tooltipHeight - 10;
     }
     
-    // Don't let it go off the left edge
-    if (left < 10) {
-        left = 10;
-    }
-    
-    // Don't let it go off the top edge
-    if (top < 10) {
-        top = clientY + 10;
-    }
+    if (left < 10) left = 10;
+    if (top < 10) top = clientY + 10;
     
     tooltipEl.style.left = left + 'px';
     tooltipEl.style.top = top + 'px';
@@ -352,9 +339,3 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
 function hideTooltip(tooltipEl) {
     tooltipEl.style.opacity = '0';
 }
-
-window.updateHeatmap = updateHeatmap;
-
-// Cache-busting verification
-const loadTime = new Date();
-console.log('✅ bp_heatmap.js v2.1 loaded at:', loadTime.toString());

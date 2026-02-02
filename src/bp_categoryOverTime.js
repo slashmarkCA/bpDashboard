@@ -1,70 +1,70 @@
 /* ============================================================================
    bp_categoryOverTime.js
    ---------------------------------------------------------------------------
-   Blood Pressure Category Over Time
-   - Clinical category logic (Normal → Crisis)
-   - Stepped line (after)
-   - Annotation background bands
+   Reading Categories Over Time (Stepped Line Chart)
+   - Shows BP category transitions
+   - Color-coded background zones
+   - Standardized lifecycle management
    ============================================================================ */
 
-import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate } from '../utils/bp_utils.js';
-
-console.log('bp_categoryOverTime.js loaded');
+import { 
+    BP_LEVELS, 
+    getBPCategory,
+    destroyChart,
+    formatTooltipDate, 
+    formatAxisDate 
+} from '../utils/bp_utils.js';
 
 let categoryChart = null;
 
-function getBPCategory(sys, dia) {
-    if (sys >= 180 || dia >= 120) return 'Crisis';
-    if (sys >= 140 || dia >= 90) return 'Stage 2';
-    if (sys >= 130 || dia >= 80) return 'Stage 1';
-    if (sys >= 120 && dia < 80) return 'Elevated';
-    return 'Normal';
-}
-
-function getCategoryValue(category) {
-    return {
-        'Normal': 1,
-        'Elevated': 2,
-        'Stage 1': 3,
-        'Stage 2': 4,
-        'Crisis': 5
-    }[category];
-}
-
-function getCategoryColor(category) {
-    return {
-        'Normal': '#4CAF50',
-        'Elevated': '#FFC107',
-        'Stage 1': '#FF9800',
-        'Stage 2': '#F44336',
-        'Crisis': '#9C27B0'
-    }[category];
-}
-
-function createCategoryChart(bpData) {
+/**
+ * Creates/updates the category over time chart
+ * @param {Array} bpData - Filtered BP data
+ */
+export function createCategoryChart(bpData) {
     const canvas = document.getElementById('categoryChart');
     if (!canvas) {
-        console.warn('categoryChart canvas not found – chart skipped');
+        console.error('[CATEGORY CHART] Canvas element #categoryChart not found');
         return;
     }
 
-    const ctx = canvas.getContext('2d');
+    // Destroy existing instance
     categoryChart = destroyChart(categoryChart);
 
+    // Handle empty data
+    if (!bpData?.length) {
+        console.warn('[CATEGORY CHART] No data available');
+        return;
+    }
+
+    // Process data with BP categories
     const processed = bpData.map((r, i) => {
-        const category = getBPCategory(r.Sys, r.Dia);
+        const level = getBPCategory(r.Sys, r.Dia); 
         return {
             x: i,
-            y: getCategoryValue(category),
-            category,
-            color: getCategoryColor(category),
+            y: level.score,
+            label: level.label,
+            color: level.color,
             reading: r
         };
     });
 
-    if (!processed.length) return;
+    // Dynamic annotations for background zones
+    const levelAnnotations = {};
+    Object.values(BP_LEVELS).forEach(lvl => {
+        if (lvl.score === 0) return; // Skip UNKNOWN
+        
+        levelAnnotations[lvl.label.toLowerCase()] = {
+            type: 'box',
+            drawTime: 'beforeDatasetsDraw',
+            yMin: lvl.score - 0.5,
+            yMax: lvl.score + 0.5,
+            backgroundColor: lvl.color.replace('1)', '0.15)'),
+            borderWidth: 0
+        };
+    });
 
-    categoryChart = new Chart(ctx, {
+    categoryChart = new Chart(canvas.getContext('2d'), {
         type: 'line',
         data: {
             datasets: [{
@@ -73,106 +73,69 @@ function createCategoryChart(bpData) {
                 borderWidth: 2.5,
                 stepped: 'after',
                 pointRadius: 5,
-                pointHoverRadius: 7,
                 pointBackgroundColor: processed.map(p => p.color),
                 pointBorderColor: '#ffffff',
                 pointBorderWidth: 2,
-                tension: 0
+                tension: 0,
+                z: 10
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            interaction: {
-                mode: 'nearest',
-                intersect: true
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: '#1e1e1e',
-                    titleColor: '#ffffff',
-                    bodyColor: '#ffffff',
-                    borderWidth: 0,
-                    displayColors: false,
-                    callbacks: {
-                        title: () => '',
-                        label(context) {
-                            const r = context.raw.reading;
-                            return [
-                                `Category: ${context.raw.category}`,
-                                '',
-                                `Sys: ${r.Sys}`,
-                                `Dia: ${r.Dia}`,
-                                `Date: ${formatTooltipDate(r.DateObj)}`,
-                                `ReadingID: ${r.ReadingID}`
-                            ];
-                        }
-                    }
-                },
-                annotation: {
-                    annotations: {
-                        normal:  { type:'box', yMin:0.5, yMax:1.5, backgroundColor:'rgba(76,175,80,0.10)', borderWidth:0 },
-                        elevated:{ type:'box', yMin:1.5, yMax:2.5, backgroundColor:'rgba(255,193,7,0.10)', borderWidth:0 },
-                        stage1:  { type:'box', yMin:2.5, yMax:3.5, backgroundColor:'rgba(255,152,0,0.10)', borderWidth:0 },
-                        stage2:  { type:'box', yMin:3.5, yMax:4.5, backgroundColor:'rgba(244,67,54,0.10)', borderWidth:0 },
-                        crisis:  { type:'box', yMin:4.5, yMax:5.5, backgroundColor:'rgba(156,39,176,0.10)', borderWidth:0 }
-                    }
-                }
-            },
             scales: {
                 x: {
                     type: 'linear',
-                    min: 0,
-                    max: processed.length - 1,
+                    grid: { display: false },
                     ticks: {
-                        callback(value) {
-                            const i = Math.round(value);
-                            if (!processed[i]) return '';
-
-                            const total = processed.length;
-                            let skip = 1;
-                            if (total > 100) skip = 10;
-                            else if (total > 50) skip = 5;
-                            else if (total > 20) skip = 2;
-
-                            return i % skip === 0 ? formatAxisDate(processed[i].reading.DateObj) : '';
-                        },
+                        font: { size: 10 },
                         maxRotation: 90,
                         minRotation: 90,
-                        autoSkip: false,
-                        font: { size: 10 }
-                    },
-                    grid: { display: false }
+                        callback: function(value) {
+                            const i = Math.round(value);
+                            if (!processed[i]) return '';
+                            const total = processed.length;
+                            let skip = total > 100 ? 10 : (total > 50 ? 5 : (total > 20 ? 2 : 1));
+                            return i % skip === 0 ? formatAxisDate(processed[i].reading.DateObj) : '';
+                        }
+                    }
                 },
                 y: {
                     min: 0.5,
                     max: 5.5,
+                    grid: { color: '#eeeeee', drawTicks: false },
                     ticks: {
                         stepSize: 1,
-                        callback(value) {
-                            return {
-                                1:'Normal',
-                                2:'Elevated',
-                                3:'Stage 1',
-                                4:'Stage 2',
-                                5:'Crisis'
-                            }[value] || '';
+                        callback: (value) => {
+                            const level = Object.values(BP_LEVELS).find(l => l.score === value);
+                            return level ? level.label : '';
                         }
-                    },
-                    grid: { color: '#f0f0f0', drawTicks: false },
-                    title: {
-                        display: true,
-                        text: 'Blood Pressure Category'
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                annotation: {
+                    annotations: levelAnnotations
+                },
+                tooltip: {
+                    displayColors: false,
+                    callbacks: {
+                        title: () => '',
+                        label: (ctx) => {
+                            const r = ctx.raw.reading;
+                            return [
+                                `Category: ${ctx.raw.label}`,
+                                `Sys/Dia: ${r.Sys}/${r.Dia}`,
+                                `Date: ${formatTooltipDate(r.DateObj)}`,
+                                `ID: ${r.ReadingID}`
+                            ];
+                        }
                     }
                 }
             }
         }
     });
+    
+    console.log('[Trace] bp_categoryOverTime.js rendered successfully');
 }
-
-function updateCategoryChart(filteredData) {
-    createCategoryChart(filteredData);
-}
-
-window.updateCategoryChart = updateCategoryChart;

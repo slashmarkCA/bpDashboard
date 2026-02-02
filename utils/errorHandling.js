@@ -5,6 +5,7 @@
  * - Catches runtime execution errors
  * - Catches unhandled promise rejections
  * - Provides UI feedback for library and network failures
+ * - Now with ES6 module exports
  * ============================================================
  */
 
@@ -90,5 +91,8 @@ function showChartError(msg) {
     });
 }
 
-// Log that the handler is active
-console.log('[ERROR HANDLER] Global listeners initialized.');
+// Window Bridge (Keep for legacy inline script calls if any)
+window.showGlobalErrorBanner = showGlobalErrorBanner;
+
+// ES6 Module Exports
+export { showGlobalErrorBanner, checkChartDependencies, showChartError };

@@ -5,11 +5,7 @@
    - Date formatting (axis & tooltips)
    - Chart lifecycle management
    - Common calculations
-
-   MODERNIZED to use ES Modules across the entire codebase.
    ============================================================================ */
-
-console.log('[UTILS] bp_utils.js loaded');
 
 /* ---------------------------------------------------------------------------
    Date Formatting
@@ -32,17 +28,12 @@ export function formatAxisDate(dateObj) {
  * @returns {string} e.g., "January 17, 2026 9:33:17 pm"
  */
 export function formatTooltipDate(dateObj) {
-    const months = [
-        'January','February','March','April','May','June',
-        'July','August','September','October','November','December'
-    ];
-
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     let hours = dateObj.getHours();
     const minutes = String(dateObj.getMinutes()).padStart(2, '0');
     const seconds = String(dateObj.getSeconds()).padStart(2, '0');
     const ampm = hours >= 12 ? 'pm' : 'am';
     hours = hours % 12 || 12;
-
     return `${months[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()} ${hours}:${minutes}:${seconds} ${ampm}`;
 }
 
@@ -53,11 +44,7 @@ export function formatTooltipDate(dateObj) {
  */
 export function getLocalDateKey(dateObj) {
     if (!(dateObj instanceof Date)) return null;
-    return (
-        dateObj.getFullYear() + '-' +
-        String(dateObj.getMonth() + 1).padStart(2, '0') + '-' +
-        String(dateObj.getDate()).padStart(2, '0')
-    );
+    return dateObj.getFullYear() + '-' + String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
 }
 
 /* ---------------------------------------------------------------------------
@@ -70,7 +57,7 @@ export function getLocalDateKey(dateObj) {
  * @returns {null}
  */
 export function destroyChart(chartInstance) {
-    if (chartInstance) {
+    if (chartInstance && typeof chartInstance.destroy === 'function') {
         chartInstance.destroy();
     }
     return null;
@@ -97,7 +84,7 @@ export function calculateMAP(sys, dia) {
  * @param {Date} lastDate
  * @returns {number} Number of calendar days
  */
-function getCalendarDaySpan(firstDate, lastDate) {
+export function getCalendarDaySpan(firstDate, lastDate) {
     // Strip time components
     const firstDay = new Date(firstDate.getFullYear(), firstDate.getMonth(), firstDate.getDate());
     const lastDay = new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate());
@@ -114,17 +101,24 @@ function getCalendarDaySpan(firstDate, lastDate) {
 // Data dictionaries to keep colors and labels consistent
 export const BP_LEVELS = {
     CRISIS:   { score: 5, label: "Hypertensive Crisis", color: "#ad322d" },
-    STAGE2:   { score: 4, label: "Hypertension Stage 2", color: "#d95139" },
-    STAGE1:   { score: 3, label: "Hypertension Stage 1", color: "#eeb649" },
-    ELEVATED: { score: 2, label: "Elevated",             color: "#204929" },
-    NORMAL:   { score: 1, label: "Normal",               color: "#30693c" },
-    UNKNOWN:  { score: 0, label: "No Known Rule",        color: "#ebedf0" }
+    STAGE2:   { score: 4, label: "Hypertension Stage 2", color: "#d95139", lightColor: "#ebb6ad" },
+    STAGE1:   { score: 3, label: "Hypertension Stage 1", color: "#eeb649", lightColor: "#efcec9" },
+    ELEVATED: { score: 2, label: "Elevated",             color: "#204929", lightColor: "#7fb13d" },
+    NORMAL:   { score: 1, label: "Normal",               color: "#30693c", lightColor: "#d1e3d5" },
+    UNKNOWN:  { score: 0, label: "No Known Rule",        color: "#ebedf0", lightColor: "#f8f9fa" }
+};
+
+// Constant for structural UI elements that aren't specific BP levels
+export const UI_COLORS = {
+    NOT_NORMAL: "#c44a37",
+    WORKDAY: "#2c2c2c",
+    NON_WORKDAY: "#ffffff"
 };
 
 export const PULSE_LEVELS = {
-    TACHY:  { label: "Tachycardia",   color: "#c70000" },
+    TACHY:  { label: "Tachycardia",   color: "#424242"  },
     NORMAL: { label: "Normal Pulse",  color: "#216e39" },
-    BRADY:  { label: "Bradycardia",   color: "#ffcc00" },
+    BRADY:  { label: "Bradycardia",   color: "#424242" },
     UNKNOWN:{ label: "No Known Rule", color: "#ebedf0" }
 };
 
@@ -199,8 +193,7 @@ export function linearRegression(points) {
 
 // Normalize a date range to full calendar days (Midnight to 11:59:59 PM)
 // This ensures all charts and summary cards use the exact same record set.  I had problems with Avg() because of milliseconds.
-
-function getCalendarRange(endDate, daysBack) {
+export function getCalendarRange(endDate, daysBack) {
     // End of today (23:59:59)
     const end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), 23, 59, 59);
     // Midnight N days ago
@@ -208,6 +201,10 @@ function getCalendarRange(endDate, daysBack) {
     return { start, end };
 }
 
-window.destroyChart = destroyChart;  // TODO: Can I delete this since I moved to EM Script import/exports?
-
-console.log('[UTILS] bp_utils.js ready');
+// Added helper for consistent transparency across histograms
+export function getAlphaColor(hex, alpha) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}

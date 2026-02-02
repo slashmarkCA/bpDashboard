@@ -1,18 +1,34 @@
-/* ============================================================
+/* ============================================================================
    bp_pulse_histogram.js
+   ---------------------------------------------------------------------------
    Pulse Histogram with Clinical Background Shading
-============================================================ */
+   - Bradycardia/Normal/Tachycardia zones
+   - Auto-binning with medical thresholds
+   - Percentage labels on bars
+   ============================================================================ */
 
-console.log('bp_pulse_histogram.js loaded');
+import { PULSE_LEVELS, destroyChart, getAlphaColor } from '../utils/bp_utils.js';
 
-let pulseHistogramChart = null;
+let pulseHistogramChartInstance = null;
 
+/**
+ * Builds histogram bins from BPM data
+ * @param {Array} bpData - BP readings
+ * @param {number} bucketSize - Bin width
+ * @returns {Array} Histogram bins
+ */
 function buildPulseHistogram(bpData, bucketSize = 5) {
-    const values = bpData.map(r => r.BPM).filter(v => v != null);
+    const values = bpData
+        .map(r => Number(r.BPM || r.Pulse))
+        .filter(v => !isNaN(v) && v > 0);
+        
     if (!values.length) return [];
 
-    const minVal = Math.floor(Math.min(...values) / bucketSize) * bucketSize;
-    const maxVal = Math.ceil(Math.max(...values) / bucketSize) * bucketSize;
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+
+    const minVal = Math.floor(min / bucketSize) * bucketSize;
+    const maxVal = Math.floor(max / bucketSize) * bucketSize + bucketSize;
 
     const bins = [];
     for (let v = minVal; v < maxVal; v += bucketSize) {
@@ -21,12 +37,17 @@ function buildPulseHistogram(bpData, bucketSize = 5) {
 
     values.forEach(v => {
         const idx = Math.floor((v - minVal) / bucketSize);
-        if (bins[idx]) bins[idx].count++;
+        if (bins[idx]) {
+            bins[idx].count++;
+        }
     });
 
     return bins;
 }
 
+/**
+ * Plugin to draw percentage labels on bars
+ */
 function pulseHistogramLabelsPlugin(bins, total) {
     return {
         id: 'pulseHistogramLabels',
@@ -55,36 +76,47 @@ function pulseHistogramLabelsPlugin(bins, total) {
     };
 }
 
-function createPulseHistogramChart(bpData) {
+/**
+ * Creates/updates the pulse histogram
+ * @param {Array} filteredData - Filtered BP data
+ */
+export function createPulseHistogramChart(filteredData) {
     const canvas = document.getElementById('pulseHistogram');
     if (!canvas) {
-        console.warn('pulseHistogram canvas not found – chart skipped');
+        console.error('[PULSE HISTOGRAM] Canvas element #pulseHistogram not found');
+        return;
+    }
+
+    // Destroy existing instance
+    pulseHistogramChartInstance = destroyChart(pulseHistogramChartInstance);
+
+    // Handle empty data
+    if (!filteredData?.length) {
+        console.warn('[PULSE HISTOGRAM] No data available');
         return;
     }
 
     const ctx = canvas.getContext('2d');
-    pulseHistogramChart = destroyChart(pulseHistogramChart);
+    const bins = buildPulseHistogram(filteredData);
+    
+    if (!bins.length) {
+        console.warn('[PULSE HISTOGRAM] No bins generated');
+        return;
+    }
 
-    const bins = buildPulseHistogram(bpData);
-    if (!bins.length) return;
+    const total = filteredData.length;
 
-    const total = bpData.length;
+    // Calculate zone boundaries (bin indices where thresholds fall)
+    const split60Idx = bins.findIndex(b => b.start >= 60);
+    const indexAt60 = (split60Idx === -1) ? bins.length - 0.5 : split60Idx - 0.5;
 
-    const hasBrady = bins.some(b => b.end <= 60 && b.count > 0);
-    const hasTachy = bins.some(b => b.start >= 100 && b.count > 0);
-
-    let split60 = bins.findIndex(b => b.start >= 60);
-    if (split60 === -1) split60 = bins.length;
-    const indexAt60 = split60 - 0.5;
-
-    let split100 = bins.findIndex(b => b.start >= 100);
-    if (split100 === -1) split100 = bins.length;
-    const indexAt100 = split100 - 0.5;
+    const split100Idx = bins.findIndex(b => b.start >= 100);
+    const indexAt100 = (split100Idx === -1) ? bins.length + 0.5 : split100Idx - 0.5;
 
     const maxCount = Math.max(...bins.map(b => b.count), 1);
-    const yMax = Math.ceil(maxCount * 1.35);
+    const yMax = Math.ceil(maxCount * 1.5);
 
-    pulseHistogramChart = new Chart(ctx, {
+    pulseHistogramChartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: bins.map(b => `${b.start}-${b.end}`),
@@ -105,9 +137,7 @@ function createPulseHistogramChart(bpData) {
                     ticks: { display: false },
                     grid: { color: 'rgba(0,0,0,0.08)' }
                 },
-                x: {
-                    grid: { display: false }
-                }
+                x: { grid: { display: false } }
             },
             plugins: {
                 legend: { display: false },
@@ -117,12 +147,11 @@ function createPulseHistogramChart(bpData) {
                             type: 'box',
                             xMin: -0.5,
                             xMax: indexAt60,
-                            backgroundColor: 'rgba(91,192,222,0.12)',
+                            backgroundColor: getAlphaColor(PULSE_LEVELS.BRADY.color, 0.12),
                             borderWidth: 0,
-                            display: hasBrady,
                             label: {
-                                display: hasBrady,
-                                content: 'BRADYCARDIA',
+                                display: (indexAt60 > -0.5),
+                                content: PULSE_LEVELS.BRADY.label.toUpperCase(),
                                 position: { x: 'start', y: 'start' },
                                 yAdjust: 12,
                                 font: { size: 10, weight: 'bold' },
@@ -133,49 +162,49 @@ function createPulseHistogramChart(bpData) {
                             type: 'line',
                             xMin: indexAt60,
                             xMax: indexAt60,
-                            borderColor: 'rgba(0,0,0,0.35)',
-                            borderDash: [4, 4],
-                            borderWidth: 1,
-                            display: hasBrady
+                            borderColor: 'rgba(0,0,0,0.3)',
+                            borderDash: [5, 5],
+                            borderWidth: 1.5,
+                            display: (indexAt60 > -0.5 && indexAt60 < bins.length)
                         },
                         normalZone: {
                             type: 'box',
                             xMin: indexAt60,
                             xMax: indexAt100,
-                            backgroundColor: 'rgba(47,107,63,0.10)',
+                            backgroundColor: getAlphaColor(PULSE_LEVELS.NORMAL.color, 0.06),
                             borderWidth: 0,
                             label: {
                                 display: true,
-                                content: 'NORMAL',
+                                content: PULSE_LEVELS.NORMAL.label.toUpperCase().replace(' PULSE', ''),
                                 position: { x: 'start', y: 'start' },
                                 yAdjust: 12,
                                 font: { size: 10, weight: 'bold' },
-                                color: 'rgba(0,0,0,0.45)'
+                                color: 'rgba(0,0,0,0.4)'
                             }
                         },
                         tachyDivider: {
                             type: 'line',
                             xMin: indexAt100,
                             xMax: indexAt100,
-                            borderColor: 'rgba(0,0,0,0.35)',
-                            borderDash: [4, 4],
-                            borderWidth: 1,
-                            display: hasTachy
+                            borderColor: 'rgba(0,0,0,0.3)',
+                            borderDash: [5, 5],
+                            borderWidth: 1.5,
+                            display: (indexAt100 < bins.length)
                         },
                         tachyZone: {
                             type: 'box',
                             xMin: indexAt100,
                             xMax: bins.length - 0.5,
-                            backgroundColor: 'rgba(217,81,57,0.12)',
+                            backgroundColor: getAlphaColor(PULSE_LEVELS.TACHY.color, 0.12),
                             borderWidth: 0,
-                            display: hasTachy,
+                            display: (indexAt100 < bins.length),
                             label: {
-                                display: hasTachy,
-                                content: 'TACHYCARDIA',
-                                position: { x: 'start', y: 'start' },
-                                yAdjust: 12,
+                                display: (indexAt100 < bins.length),
+                                content: 'TACHY',
+                                position: { x: 'center', y: 'start' },
+                                yAdjust: 10,
                                 font: { size: 10, weight: 'bold' },
-                                color: 'rgba(0,0,0,0.45)'
+                                color: getAlphaColor(PULSE_LEVELS.TACHY.color, 0.8)
                             }
                         }
                     }
@@ -184,8 +213,10 @@ function createPulseHistogramChart(bpData) {
         },
         plugins: [pulseHistogramLabelsPlugin(bins, total)]
     });
-}
 
-function updatePulseHistogramChart(filteredData) {
-    createPulseHistogramChart(filteredData);
+    console.log('[Trace] bp_pulse_histogram.js rendered successfully', { 
+        indexAt60, 
+        indexAt100, 
+        binCount: bins.length
+    });
 }

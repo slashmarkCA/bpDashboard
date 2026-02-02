@@ -1,19 +1,27 @@
 /* ============================================================================
    bp_7dayAvg_combined_map_line.js
    ---------------------------------------------------------------------------
-   Mean Arterial Pressure (MAP) Line Chart
-   - Daily MAP (per reading date)
-   - True sliding 7-day rolling MAP average
-   - Uses BOTH systolic + diastolic
-   - ✅ FIXED: Rolling window now looks at full dataset history
+   Mean Arterial Pressure (MAP) Chart
+   - Daily MAP calculated from Sys + Dia
+   - True 7-day rolling average with full lookback
+   - Uses global dataset for accurate rolling window
    ============================================================================ */
 
-import { linearRegression, destroyChart, formatTooltipDate, formatAxisDate, getLocalDateKey, calculateMAP } from '../utils/bp_utils.js';
-
-console.log('bp_7dayAvg_combined_map_line.js loaded');
+import { 
+    destroyChart,
+    formatTooltipDate, 
+    formatAxisDate, 
+    getLocalDateKey, 
+    calculateMAP 
+} from '../utils/bp_utils.js';
 
 let map7DayChart = null;
 
+/**
+ * Builds daily MAP values
+ * @param {Array} bpData - BP readings
+ * @returns {Array} Daily MAP aggregates
+ */
 function buildDailyMAP(bpData) {
     const byDay = new Map();
 
@@ -43,6 +51,11 @@ function buildDailyMAP(bpData) {
         .sort((a,b) => a.date - b.date);
 }
 
+/**
+ * Builds 7-day rolling MAP average
+ * @param {Array} dailyMAP - Daily MAP values
+ * @returns {Array} Rolling averages
+ */
 function buildRolling7DayMAP(dailyMAP) {
     return dailyMAP.map(point => {
         const windowStart = new Date(point.date.getTime() - 6 * 86400000);
@@ -51,8 +64,7 @@ function buildRolling7DayMAP(dailyMAP) {
             .filter(p => p.date >= windowStart && p.date <= point.date)
             .map(p => p.map);
 
-        const avg =
-            windowValues.reduce((a,b) => a + b, 0) / windowValues.length;
+        const avg = windowValues.reduce((a,b) => a + b, 0) / windowValues.length;
 
         return {
             date: point.date,
@@ -62,28 +74,34 @@ function buildRolling7DayMAP(dailyMAP) {
     });
 }
 
-function createMAP7DayChart(bpData) {
+/**
+ * Creates/updates the MAP 7-day chart
+ * @param {Array} bpData - Filtered BP data
+ */
+export function createMAP7DayChart(bpData) {
     const canvas = document.getElementById('map7DayChart');
     if (!canvas) {
-        console.warn('map7DayChart canvas not found – chart skipped');
+        console.error('[MAP CHART] Canvas element #map7DayChart not found');
+        return;
+    }
+
+    // Destroy existing instance
+    map7DayChart = destroyChart(map7DayChart);
+
+    // Handle empty data
+    if (!bpData?.length) {
+        console.warn('[MAP CHART] No data available');
         return;
     }
 
     const ctx = canvas.getContext('2d');
-    map7DayChart = destroyChart(map7DayChart);
 
-    if (!bpData.length) return;
-
-    // ✅ FIX: Calculate on full dataset, then filter for display
+    // Use full dataset for accurate rolling calculation
     const fullData = window.NORMALIZED_BP_DATA || [];
-
-    // Step 1: Build daily MAP from ALL data
     const allDailyMAP = buildDailyMAP(fullData);
-
-    // Step 2: Calculate rolling MAP on full history
     const allRollingMAP = buildRolling7DayMAP(allDailyMAP);
 
-    // Step 3: Filter to match the date range of bpData
+    // Filter to visible date range
     const filteredDateKeys = new Set(
         bpData.map(r => new Date(
             r.DateObj.getFullYear(),
@@ -95,7 +113,10 @@ function createMAP7DayChart(bpData) {
     const dailyMAP = allDailyMAP.filter(d => filteredDateKeys.has(d.date.getTime()));
     const rollingMAP = allRollingMAP.filter(d => filteredDateKeys.has(d.date.getTime()));
 
-    if (!dailyMAP.length) return;
+    if (!dailyMAP.length) {
+        console.warn('[MAP CHART] No daily MAP data after filtering');
+        return;
+    }
 
     const dailyData = dailyMAP.map((d, i) => ({
         x: i,
@@ -157,7 +178,6 @@ function createMAP7DayChart(bpData) {
                                 `Date: ${formatTooltipDate(d.readingDate)}`
                             ];
 
-                            // Show window size for rolling average
                             if (d.windowDays !== undefined) {
                                 lines.push(`Window: ${d.windowDays} days`);
                             }
@@ -203,10 +223,6 @@ function createMAP7DayChart(bpData) {
             }
         }
     });
+    
+    console.log('[Trace] bp_7dayAvg_combined_map_line.js rendered successfully');
 }
-
-function updateMAP7DayChart(filteredData) {
-    createMAP7DayChart(filteredData);
-}
-
-window.updateMAP7DayChart = updateMAP7DayChart;
