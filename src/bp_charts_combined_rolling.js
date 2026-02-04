@@ -16,6 +16,7 @@ import {
 
 let combinedRollingChart = null;
 let currentBandMode = 'none';
+let cachedFilteredData = [];          // holds last-known data for the toggle
 
 /**
  * Creates/updates the combined rolling average chart
@@ -36,6 +37,9 @@ export function createCombinedRollingChart(filteredData) {
         console.warn('[COMBINED ROLLING] No data available');
         return;
     }
+
+    // Cache so the toggle function can re-invoke us without needing the filter module
+    cachedFilteredData = filteredData;
 
     // Access global data for lookback window
     const allData = [...window.NORMALIZED_BP_DATA].sort((a, b) => a.DateObj - b.DateObj);
@@ -180,7 +184,8 @@ export function createCombinedRollingChart(filteredData) {
                         autoSkip: true,
                         maxTicksLimit: 20,
                         font: { size: 10 }
-                    }
+                    },
+                    grid: { display: false }
                 },
                 y: { suggestedMin: 60, suggestedMax: 160 }
             }
@@ -191,12 +196,14 @@ export function createCombinedRollingChart(filteredData) {
 }
 
 /**
- * Toggle standard deviation bands
- * Called by UI radio buttons
+ * Toggle standard deviation bands.
+ * Called by HTML radio buttons: onchange="toggleCombinedStdDevBand('systolic')"
+ * Must live on window because it's invoked from an inline onchange attribute.
+ * @param {string} mode - 'systolic' | 'diastolic' | 'none'
  */
 window.toggleCombinedStdDevBand = function(mode) {
     currentBandMode = mode;
-    if (typeof getFilteredBPData === 'function' && typeof getCurrentFilter === 'function') {
-        createCombinedRollingChart(window.getFilteredBPData(window.getCurrentFilter()));
+    if (cachedFilteredData.length > 0) {
+        createCombinedRollingChart(cachedFilteredData);
     }
 };

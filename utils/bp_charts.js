@@ -105,7 +105,3 @@ export function createAllCharts(filteredData) {
         showGlobalErrorBanner(`${errorCount} charts failed to render. Some visualizations may be unavailable.`);
     }
 }
-
-// Export for external use (backwards compatibility) TODO: How do I get rid of this?
-// Note: Prefer importing createAllCharts directly
-window.updateAllCharts = createAllCharts;
