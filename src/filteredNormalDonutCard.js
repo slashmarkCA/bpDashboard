@@ -33,12 +33,14 @@ export function createNormalDonutCard(filteredData) {
         return;
     }
 
-    // Calculate totals
+    // Calculate totals using bpCat object (calculated in bp_data_normalized.js)
     const totalReadings = filteredData.length;
     const counts = { Normal: 0, Elevated: 0, Stage1: 0, Stage2: 0, Crisis: 0 };
 
     filteredData.forEach(r => {
-        switch (r.ReadingCategory) {
+        // Use the calculated bpCat object instead of source string
+        if (!r.bpCat) return;
+        switch (r.bpCat.label) {
             case 'Normal': counts.Normal++; break;
             case 'Elevated': counts.Elevated++; break;
             case 'Hypertension Stage 1': counts.Stage1++; break;

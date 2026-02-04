@@ -4,7 +4,7 @@
    Pulse Pressure Line Chart
    - Reference bands (Narrowed/Normal/Widened/Very Widened)
    - Linear regression trendline
-   - Data source: gPulsePressure (calculated Sys - Dia)
+   - Calculates PP from Sys - Dia on-the-fly
    ============================================================================ */
 
 import { 
@@ -100,8 +100,11 @@ export function createPulsePressureLineChart(bpData) {
 
     const ctx = canvas.getContext('2d');
     const pulsePressureData = bpData
-        .filter(r => r.gPulsePressure != null)
-        .map((r, idx) => ({ x: idx, y: r.gPulsePressure, reading: r }));
+        .filter(r => r.Sys != null && r.Dia != null)
+        .map((r, idx) => {
+            const pp = r.Sys - r.Dia;
+            return { x: idx, y: pp, reading: r };
+        });
 
     // Calculate trendline
     const ppTrend = linearRegression(pulsePressureData);
@@ -150,8 +153,9 @@ export function createPulsePressureLineChart(bpData) {
                             if (!context.raw.reading) return null;
 
                             const r = context.raw.reading;
+                            const pp = r.Sys - r.Dia;
                             return [
-                                `Pulse Pressure: ${r.gPulsePressure}`,
+                                `Pulse Pressure: ${pp}`,
                                 `Date: ${formatAxisDate(r.DateObj)}`,
                                 `ReadingID: ${r.ReadingID}`
                             ];
