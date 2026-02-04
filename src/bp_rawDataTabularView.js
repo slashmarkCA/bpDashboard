@@ -1,32 +1,26 @@
 /* ============================================================================
    bp_rawDataTabularView.js
-   ---------------------------------------------------------------------------
-   Raw Data Table View
-   - Displays all readings in tabular format
-   - Groups by date with rowspan
-   - Highlights risky readings
-   - Pure DOM manipulation (no Chart.js)
-   ============================================================================ */
+   --------------------------------------------------------------------------- */
+// Raw Data Table plus calculated clinical literal categories from measurements
+// No longer depends on source data category fields from original data source
+//    - Groups by date with rowspan
+//    - Highlights risky readings
+//    - Pure DOM manipulation (no Chart.js)
+// ============================================================
 
-import { getLocalDateKey } from '../utils/bp_utils.js';
+import { getBPCategory, getPulseCategory, getPulsePressureCategory } from '../utils/bp_utils.js';
 
-/**
- * Renders the raw BP data table
- * Note: Uses global NORMALIZED_BP_DATA (not filtered) to show all records
- */
 export function renderRawBPTable() {
     const container = document.getElementById('bpRawDataTable');
     if (!container) {
-        console.error('[RAW TABLE] Container #bpRawDataTable not found');
+        console.error('[RAW TABLE] Error: #bpRawDataTable not found in HTML.');
         return;
     }
 
-    // Get all normalized data
+    // Get normalized data
     const rawList = Array.isArray(window.NORMALIZED_BP_DATA) ? [...window.NORMALIZED_BP_DATA] : [];
-    
     if (rawList.length === 0) {
         container.innerHTML = '<p style="padding:20px;">No data found to display.</p>';
-        console.warn('[RAW TABLE] No data available');
         return;
     }
 
@@ -39,14 +33,14 @@ export function renderRawBPTable() {
         rawList.forEach(record => {
             let dayLabel = 'Unknown Date';
             if (record.DateObj instanceof Date && !isNaN(record.DateObj)) {
-                dayLabel = getLocalDateKey(record.DateObj) || record.DateObj.toLocaleDateString();
+                dayLabel = record.DateObj.toISOString().split('T')[0];
             }
 
             if (!dayGroups.has(dayLabel)) dayGroups.set(dayLabel, []);
             dayGroups.get(dayLabel).push(record);
         });
 
-        // Build HTML table
+        // Build table HTML
         let tableHtml = `
             <div class="bp-raw-table-wrapper">
                 <table class="bp-raw-table">
@@ -59,7 +53,9 @@ export function renderRawBPTable() {
                             <th>Dia</th>
                             <th>BPM</th>
                             <th class="hide-mobile">PP</th>
-                            <th class="hide-mobile">Category</th>
+                            <th class="hide-mobile">BP Category</th>
+                            <th class="hide-mobile">Pulse Category</th>
+                            <th class="hide-mobile">PP Category</th>
                             <th class="hide-mobile">Work</th>
                             <th class="comments-col hide-mobile">Comments</th>
                         </tr>
@@ -69,6 +65,12 @@ export function renderRawBPTable() {
 
         dayGroups.forEach((rowsInDay, dayKey) => {
             rowsInDay.forEach((r, idx) => {
+                // Calculate categories on-the-fly
+                const bpCat = getBPCategory(r.Sys, r.Dia);
+                const pulseCat = getPulseCategory(r.BPM);
+                const pulsePressure = r.Sys - r.Dia;
+                const ppCat = getPulsePressureCategory(pulsePressure);
+                
                 const isHigh = (r.Sys >= 140 || r.Dia >= 90);
 
                 // Format time safely
@@ -91,8 +93,10 @@ export function renderRawBPTable() {
                     <td class="${isHigh ? 'bp-risk' : ''}">${r.Sys || ''}</td>
                     <td class="${isHigh ? 'bp-risk' : ''}">${r.Dia || ''}</td>
                     <td>${r.BPM || ''}</td>
-                    <td class="hide-mobile">${r.gPulsePressure || ''}</td>
-                    <td class="category-cell hide-mobile">${r.ReadingCategory || ''}</td>
+                    <td class="hide-mobile">${pulsePressure || ''}</td>
+                    <td class="category-cell hide-mobile">${bpCat.label}</td>
+                    <td class="hide-mobile">${pulseCat.label}</td>
+                    <td class="hide-mobile">${ppCat.label}</td>
                     <td class="hide-mobile">${r.Workday || ''}</td>
                     <td class="comments-col hide-mobile">${r.FormComments || ''}</td>
                 `;
@@ -105,10 +109,13 @@ export function renderRawBPTable() {
 
         // Inject into DOM
         container.innerHTML = tableHtml;
-        console.log('[Trace] bp_rawDataTabularView.js rendered successfully with', rawList.length, 'rows');
+        console.log('[RAW TABLE] Rendered successfully with', rawList.length, 'rows');
 
     } catch (err) {
         console.error('[RAW TABLE] Render failed:', err);
         container.innerHTML = '<div style="color:red; border:1px solid red; padding:10px;">Error generating table. Check Console (F12).</div>';
     }
 }
+
+// Auto-run on module load
+renderRawBPTable();

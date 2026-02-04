@@ -142,13 +142,10 @@ export function normalizeData() {
             return null;
         }
 
-        // Calculate pulse pressure
-        const pulsePressure = sys - dia;
-
         // Calculate all categories from raw values (ignore source categories)
         const bpCategory = getBPCategory(sys, dia);
         const pulseCategory = getPulseCategory(bpm);
-        const pulsePressureCategory = getPulsePressureCategory(pulsePressure);
+        const pulsePressureCategory = getPulsePressureCategory(sys - dia);
 
         return {
             ...r,
@@ -157,16 +154,10 @@ export function normalizeData() {
             Dia: dia,
             BPM: bpm || 0,
             
-            // Computed values (overwrite anything from source)
-            gPulsePressure: pulsePressure,
+            // Calculated category objects (application layer calculates these)
             bpCat: bpCategory,
             pulseCat: pulseCategory,
-            ppCat: pulsePressureCategory,
-            
-            // For backwards compatibility with existing chart code
-            ReadingCategory: bpCategory.label,
-            PulseCategory: pulseCategory.label,
-            PulsePressureCategory: pulsePressureCategory.label
+            ppCat: pulsePressureCategory
         };
     }).filter(Boolean); // Remove null entries
 

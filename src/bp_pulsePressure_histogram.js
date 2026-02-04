@@ -19,8 +19,8 @@ function buildPulsePressureHistogram(bpData, bucketSize = 5) {
     const total = bpData.length;
 
     bpData.forEach(r => {
-        const val = (r.gPulsePressure != null) ? Number(r.gPulsePressure) : 
-                    (r.Sys && r.Dia) ? (Number(r.Sys) - Number(r.Dia)) : null;
+        // Calculate pulse pressure from raw measurements
+        const val = (r.Sys != null && r.Dia != null) ? (Number(r.Sys) - Number(r.Dia)) : null;
         
         if (val === null || isNaN(val)) return;
 

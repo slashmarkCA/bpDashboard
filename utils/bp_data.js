@@ -6,11 +6,7 @@ window.BP_DATA = [
     "Dia": 120,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Hypertensive Crisis",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 61,
-    "FormComments": "This is test data to test for a Hypertensive Crisis reading and a 'widened' pulse pressure reading.  Ignore if you see this reading.",
-    "PulsePressureCategory": "Widened"
+    "FormComments": "This is test data to test for a Hypertensive Crisis reading and a 'widened' pulse pressure reading.  Ignore if you see this reading."
   },
   {
     "ReadingID": 119,
@@ -19,11 +15,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 57,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Bradycardia",
-    "gPulsePressure": 102,
-    "FormComments": "This is test data to simulate a Brachadya reading, and a 'very widened' pulse pressure reading.  Ignore if you see this reading.",
-    "PulsePressureCategory": "Very Widened"
+    "FormComments": "This is test data to simulate a Brachadya reading, and a 'very widened' pulse pressure reading.  Ignore if you see this reading."
   },
   {
     "ReadingID": 120,
@@ -32,11 +24,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 105,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Tachycardia",
-    "gPulsePressure": 22,
-    "FormComments": "This is test data to simulate a Tachycardia reading.  Ignore if you see this reading.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "This is test data to simulate a Tachycardia reading.  Ignore if you see this reading."
   },
   {
     "ReadingID": 121,
@@ -45,11 +33,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "This is test data so the calendar viz MONTH() doesn't collapse in july 2025 (stupid tableau needs 1 day per month with 2 readings)",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "This is test data so the calendar viz MONTH() doesn't collapse in july 2025 (stupid tableau needs 1 day per month with 2 readings)"
   },
   {
     "ReadingID": 1,
@@ -58,11 +42,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 2,
@@ -71,11 +51,7 @@ window.BP_DATA = [
     "Dia": 72,
     "BPM": 76,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 3,
@@ -84,11 +60,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 80,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 4,
@@ -97,11 +69,7 @@ window.BP_DATA = [
     "Dia": 74,
     "BPM": 68,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 5,
@@ -110,11 +78,7 @@ window.BP_DATA = [
     "Dia": 73,
     "BPM": 83,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 6,
@@ -123,11 +87,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 21,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 7,
@@ -136,11 +96,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 77,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 8,
@@ -149,11 +105,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 28,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 9,
@@ -162,11 +114,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 85,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 10,
@@ -175,11 +123,7 @@ window.BP_DATA = [
     "Dia": 74,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 11,
@@ -188,11 +132,7 @@ window.BP_DATA = [
     "Dia": 74,
     "BPM": 81,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 22,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 12,
@@ -201,11 +141,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 67,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 13,
@@ -214,11 +150,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 66,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 14,
@@ -227,11 +159,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 72,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 15,
@@ -240,11 +168,7 @@ window.BP_DATA = [
     "Dia": 67,
     "BPM": 82,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 16,
@@ -253,11 +177,7 @@ window.BP_DATA = [
     "Dia": 64,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 17,
@@ -266,11 +186,7 @@ window.BP_DATA = [
     "Dia": 93,
     "BPM": 65,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 18,
@@ -279,11 +195,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 63,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 41,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 19,
@@ -292,11 +204,7 @@ window.BP_DATA = [
     "Dia": 78,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 20,
@@ -305,11 +213,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 68,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 21,
@@ -318,11 +222,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 66,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 22,
@@ -331,11 +231,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 28,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 23,
@@ -344,11 +240,7 @@ window.BP_DATA = [
     "Dia": 75,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 24,
@@ -357,11 +249,7 @@ window.BP_DATA = [
     "Dia": 95,
     "BPM": 81,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 25,
@@ -370,11 +258,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 73,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 26,
@@ -383,11 +267,7 @@ window.BP_DATA = [
     "Dia": 75,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 27,
@@ -396,11 +276,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 23,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 28,
@@ -409,11 +285,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 24,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 29,
@@ -422,11 +294,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 63,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 25,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 30,
@@ -435,11 +303,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 69,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 31,
@@ -448,11 +312,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 21,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 32,
@@ -461,11 +321,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 33,
@@ -474,11 +330,7 @@ window.BP_DATA = [
     "Dia": 75,
     "BPM": 81,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 34,
@@ -487,11 +339,7 @@ window.BP_DATA = [
     "Dia": 81,
     "BPM": 78,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 35,
@@ -500,11 +348,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 73,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 36,
@@ -513,11 +357,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 37,
@@ -526,11 +366,7 @@ window.BP_DATA = [
     "Dia": 81,
     "BPM": 74,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 28,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 38,
@@ -539,11 +375,7 @@ window.BP_DATA = [
     "Dia": 78,
     "BPM": 72,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 39,
@@ -552,11 +384,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 70,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 40,
@@ -565,11 +393,7 @@ window.BP_DATA = [
     "Dia": 81,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 28,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 41,
@@ -578,11 +402,7 @@ window.BP_DATA = [
     "Dia": 77,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 42,
@@ -591,11 +411,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 43,
@@ -604,11 +420,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 25,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 44,
@@ -617,11 +429,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 67,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 45,
@@ -630,11 +438,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 46,
@@ -643,11 +447,7 @@ window.BP_DATA = [
     "Dia": 77,
     "BPM": 70,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 47,
@@ -656,11 +456,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 68,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 48,
@@ -669,11 +465,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 63,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 23,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 49,
@@ -682,11 +474,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 50,
@@ -695,11 +483,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 51,
@@ -708,11 +492,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 62,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 52,
@@ -721,11 +501,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 69,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 53,
@@ -734,11 +510,7 @@ window.BP_DATA = [
     "Dia": 75,
     "BPM": 67,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 54,
@@ -747,11 +519,7 @@ window.BP_DATA = [
     "Dia": 93,
     "BPM": 66,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 55,
@@ -760,11 +528,7 @@ window.BP_DATA = [
     "Dia": 70,
     "BPM": 64,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 23,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 56,
@@ -773,11 +537,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 57,
@@ -786,11 +546,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 58,
@@ -799,11 +555,7 @@ window.BP_DATA = [
     "Dia": 75,
     "BPM": 69,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 25,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 59,
@@ -812,11 +564,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 22,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 60,
@@ -825,11 +573,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 28,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 61,
@@ -838,11 +582,7 @@ window.BP_DATA = [
     "Dia": 75,
     "BPM": 72,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 23,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 62,
@@ -851,11 +591,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 69,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 63,
@@ -864,11 +600,7 @@ window.BP_DATA = [
     "Dia": 70,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 64,
@@ -877,11 +609,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 63,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 65,
@@ -890,11 +618,7 @@ window.BP_DATA = [
     "Dia": 81,
     "BPM": 81,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 66,
@@ -903,11 +627,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 69,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 67,
@@ -916,11 +636,7 @@ window.BP_DATA = [
     "Dia": 97,
     "BPM": 77,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 68,
@@ -929,11 +645,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 71,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 69,
@@ -942,11 +654,7 @@ window.BP_DATA = [
     "Dia": 81,
     "BPM": 69,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 70,
@@ -955,11 +663,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 75,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 46,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 71,
@@ -968,11 +672,7 @@ window.BP_DATA = [
     "Dia": 73,
     "BPM": 70,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 72,
@@ -981,11 +681,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 73,
@@ -994,11 +690,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 74,
@@ -1007,11 +699,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 73,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 25,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 75,
@@ -1020,11 +708,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 79,
     "Workday": "No",
-    "ReadingCategory": "Elevated",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 49,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 76,
@@ -1033,11 +717,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 71,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 25,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 77,
@@ -1046,11 +726,7 @@ window.BP_DATA = [
     "Dia": 74,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 78,
@@ -1059,11 +735,7 @@ window.BP_DATA = [
     "Dia": 61,
     "BPM": 71,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 50,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 79,
@@ -1072,11 +744,7 @@ window.BP_DATA = [
     "Dia": 101,
     "BPM": 88,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 80,
@@ -1085,11 +753,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 81,
@@ -1098,11 +762,7 @@ window.BP_DATA = [
     "Dia": 77,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Elevated",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 52,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 82,
@@ -1111,11 +771,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 83,
@@ -1124,11 +780,7 @@ window.BP_DATA = [
     "Dia": 109,
     "BPM": 89,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 43,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 84,
@@ -1137,11 +789,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 95,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 85,
@@ -1150,11 +798,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 80,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 28,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 86,
@@ -1163,11 +807,7 @@ window.BP_DATA = [
     "Dia": 78,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 87,
@@ -1176,11 +816,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 88,
@@ -1189,11 +825,7 @@ window.BP_DATA = [
     "Dia": 97,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 89,
@@ -1202,11 +834,7 @@ window.BP_DATA = [
     "Dia": 90,
     "BPM": 78,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 44,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 90,
@@ -1215,11 +843,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 91,
@@ -1228,11 +852,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 92,
@@ -1241,11 +861,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 72,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 6,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 93,
@@ -1254,11 +870,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 77,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 94,
@@ -1267,11 +879,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 87,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 21,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 95,
@@ -1280,11 +888,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 85,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 96,
@@ -1293,11 +897,7 @@ window.BP_DATA = [
     "Dia": 93,
     "BPM": 83,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 97,
@@ -1306,11 +906,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 80,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 25,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 98,
@@ -1319,11 +915,7 @@ window.BP_DATA = [
     "Dia": 67,
     "BPM": 72,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 23,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 99,
@@ -1332,11 +924,7 @@ window.BP_DATA = [
     "Dia": 102,
     "BPM": 67,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 54,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 100,
@@ -1345,11 +933,7 @@ window.BP_DATA = [
     "Dia": 63,
     "BPM": 68,
     "Workday": "no",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 101,
@@ -1358,11 +942,7 @@ window.BP_DATA = [
     "Dia": 73,
     "BPM": 85,
     "Workday": "no",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 102,
@@ -1371,11 +951,7 @@ window.BP_DATA = [
     "Dia": 79,
     "BPM": 75,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 103,
@@ -1384,11 +960,7 @@ window.BP_DATA = [
     "Dia": 79,
     "BPM": 73,
     "Workday": "no",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 22,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 104,
@@ -1397,11 +969,7 @@ window.BP_DATA = [
     "Dia": 70,
     "BPM": 68,
     "Workday": "no",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 23,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 105,
@@ -1410,11 +978,7 @@ window.BP_DATA = [
     "Dia": 79,
     "BPM": 87,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 106,
@@ -1423,11 +987,7 @@ window.BP_DATA = [
     "Dia": 69,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 24,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 107,
@@ -1436,11 +996,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 108,
@@ -1449,11 +1005,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 65,
     "Workday": "no",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 22,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 109,
@@ -1462,11 +1014,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 81,
     "Workday": "no",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 110,
@@ -1475,11 +1023,7 @@ window.BP_DATA = [
     "Dia": 75,
     "BPM": 74,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 111,
@@ -1488,11 +1032,7 @@ window.BP_DATA = [
     "Dia": 78,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 112,
@@ -1501,11 +1041,7 @@ window.BP_DATA = [
     "Dia": 104,
     "BPM": 78,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 113,
@@ -1514,11 +1050,7 @@ window.BP_DATA = [
     "Dia": 77,
     "BPM": 76,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 21,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 114,
@@ -1527,11 +1059,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 69,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 115,
@@ -1540,11 +1068,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 77,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 116,
@@ -1553,11 +1077,7 @@ window.BP_DATA = [
     "Dia": 70,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 117,
@@ -1566,11 +1086,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 22,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 122,
@@ -1579,11 +1095,7 @@ window.BP_DATA = [
     "Dia": 79,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 123,
@@ -1592,11 +1104,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 70,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 124,
@@ -1605,11 +1113,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 77,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 125,
@@ -1618,11 +1122,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 66,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 126,
@@ -1631,11 +1131,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 69,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 127,
@@ -1644,11 +1140,7 @@ window.BP_DATA = [
     "Dia": 74,
     "BPM": 65,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 128,
@@ -1657,11 +1149,7 @@ window.BP_DATA = [
     "Dia": 103,
     "BPM": 75,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 43,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 129,
@@ -1670,11 +1158,7 @@ window.BP_DATA = [
     "Dia": 77,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 24,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 130,
@@ -1683,11 +1167,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 70,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 28,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 131,
@@ -1696,11 +1176,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 22,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 132,
@@ -1709,11 +1185,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 67,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 133,
@@ -1722,11 +1194,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 74,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 134,
@@ -1735,11 +1203,7 @@ window.BP_DATA = [
     "Dia": 79,
     "BPM": 72,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 22,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 135,
@@ -1748,11 +1212,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 73,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 136,
@@ -1761,11 +1221,7 @@ window.BP_DATA = [
     "Dia": 94,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 41,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 137,
@@ -1774,11 +1230,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 64,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 138,
@@ -1787,11 +1239,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 77,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 139,
@@ -1800,11 +1248,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 71,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 140,
@@ -1813,11 +1257,7 @@ window.BP_DATA = [
     "Dia": 77,
     "BPM": 80,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 141,
@@ -1826,11 +1266,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 70,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 142,
@@ -1839,11 +1275,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 80,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 143,
@@ -1852,11 +1284,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 75,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 144,
@@ -1865,11 +1293,7 @@ window.BP_DATA = [
     "Dia": 97,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 45,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 145,
@@ -1878,11 +1302,7 @@ window.BP_DATA = [
     "Dia": 72,
     "BPM": 69,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 146,
@@ -1891,11 +1311,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 83,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 147,
@@ -1904,11 +1320,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 84,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 148,
@@ -1917,11 +1329,7 @@ window.BP_DATA = [
     "Dia": 90,
     "BPM": 73,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 149,
@@ -1930,11 +1338,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 66,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 150,
@@ -1943,11 +1347,7 @@ window.BP_DATA = [
     "Dia": 94,
     "BPM": 77,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 151,
@@ -1956,11 +1356,7 @@ window.BP_DATA = [
     "Dia": 92,
     "BPM": 76,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 152,
@@ -1969,11 +1365,7 @@ window.BP_DATA = [
     "Dia": 95,
     "BPM": 62,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 153,
@@ -1982,11 +1374,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 154,
@@ -1995,11 +1383,7 @@ window.BP_DATA = [
     "Dia": 81,
     "BPM": 69,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 32,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 155,
@@ -2008,11 +1392,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 28,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 156,
@@ -2021,11 +1401,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 74,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 157,
@@ -2034,11 +1410,7 @@ window.BP_DATA = [
     "Dia": 101,
     "BPM": 82,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 158,
@@ -2047,11 +1419,7 @@ window.BP_DATA = [
     "Dia": 95,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 44,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 159,
@@ -2060,11 +1428,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 160,
@@ -2073,11 +1437,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 68,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 161,
@@ -2086,11 +1446,7 @@ window.BP_DATA = [
     "Dia": 92,
     "BPM": 77,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 162,
@@ -2099,11 +1455,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 163,
@@ -2112,11 +1464,7 @@ window.BP_DATA = [
     "Dia": 98,
     "BPM": 68,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 164,
@@ -2125,11 +1473,7 @@ window.BP_DATA = [
     "Dia": 101,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 44,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 165,
@@ -2138,11 +1482,7 @@ window.BP_DATA = [
     "Dia": 94,
     "BPM": 77,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 166,
@@ -2151,11 +1491,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 167,
@@ -2164,11 +1500,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 41,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 168,
@@ -2177,11 +1509,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 72,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 42,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 169,
@@ -2190,11 +1518,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 73,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 170,
@@ -2203,11 +1527,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 71,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 171,
@@ -2216,11 +1536,7 @@ window.BP_DATA = [
     "Dia": 69,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 172,
@@ -2229,11 +1545,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "Spent all day in bed with AI trying to make tableau analysis charts.  Pressure may be so high because I'm both frustrated and impressed by AI.  Giving up on Claude and going with Gemini as google is better with medical data.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Spent all day in bed with AI trying to make tableau analysis charts.  Pressure may be so high because I'm both frustrated and impressed by AI.  Giving up on Claude and going with Gemini as google is better with medical data."
   },
   {
     "ReadingID": 173,
@@ -2242,11 +1554,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 78,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 51,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 174,
@@ -2255,11 +1563,7 @@ window.BP_DATA = [
     "Dia": 81,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 40,
-    "FormComments": "Not a strenuous day.  Did groceries, and spent the day in tableau trying to get the Standard Deviation features in my dashboard working.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Not a strenuous day.  Did groceries, and spent the day in tableau trying to get the Standard Deviation features in my dashboard working."
   },
   {
     "ReadingID": 175,
@@ -2268,11 +1572,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 54,
-    "FormComments": "Why is it so high today?",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Why is it so high today?"
   },
   {
     "ReadingID": 176,
@@ -2281,11 +1581,7 @@ window.BP_DATA = [
     "Dia": 74,
     "BPM": 85,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "Light headed when I stood up.  I went from Hyper2 to Normal in just 5 hours.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Light headed when I stood up.  I went from Hyper2 to Normal in just 5 hours."
   },
   {
     "ReadingID": 177,
@@ -2294,11 +1590,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 43,
-    "FormComments": "I had a tooth extracted 30 mins prior to this reading.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "I had a tooth extracted 30 mins prior to this reading."
   },
   {
     "ReadingID": 178,
@@ -2307,11 +1599,7 @@ window.BP_DATA = [
     "Dia": 92,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 47,
-    "FormComments": "woke up after a nap.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "woke up after a nap."
   },
   {
     "ReadingID": 179,
@@ -2320,11 +1608,7 @@ window.BP_DATA = [
     "Dia": 94,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "1 hour after nap, stood up; light headed.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "1 hour after nap, stood up; light headed."
   },
   {
     "ReadingID": 180,
@@ -2333,11 +1617,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 80,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 48,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 181,
@@ -2346,11 +1626,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 182,
@@ -2359,11 +1635,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 79,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "Sad day - I accidentally overwrote my tableau workbook and had to rebuild it.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Sad day - I accidentally overwrote my tableau workbook and had to rebuild it."
   },
   {
     "ReadingID": 183,
@@ -2372,11 +1644,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 79,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 40,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 184,
@@ -2385,11 +1653,7 @@ window.BP_DATA = [
     "Dia": 94,
     "BPM": 77,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 48,
-    "FormComments": "Not a strenuous day.  Don't know why it's so high again!",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Not a strenuous day.  Don't know why it's so high again!"
   },
   {
     "ReadingID": 185,
@@ -2398,11 +1662,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 73,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 186,
@@ -2411,11 +1671,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 69,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 23,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 187,
@@ -2424,11 +1680,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 82,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 188,
@@ -2437,11 +1689,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 80,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 189,
@@ -2450,11 +1698,7 @@ window.BP_DATA = [
     "Dia": 79,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "How did I drop from Hyper2 to Normal in 1 hour?",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "How did I drop from Hyper2 to Normal in 1 hour?"
   },
   {
     "ReadingID": 190,
@@ -2463,11 +1707,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 92,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 25,
-    "FormComments": "Whoa.  Why is my bpm so high?  It wasn't strenuous today, but I was out for 11 hours.  I feel fine.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Whoa.  Why is my bpm so high?  It wasn't strenuous today, but I was out for 11 hours.  I feel fine."
   },
   {
     "ReadingID": 191,
@@ -2476,11 +1716,7 @@ window.BP_DATA = [
     "Dia": 72,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 24,
-    "FormComments": "Light headed.  Seems to happen at night only lately.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Light headed.  Seems to happen at night only lately."
   },
   {
     "ReadingID": 192,
@@ -2489,11 +1725,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 193,
@@ -2502,11 +1734,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 83,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 43,
-    "FormComments": "Feeling very shaky.  worked hard today; long day, poor high-sodium diet.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Feeling very shaky.  worked hard today; long day, poor high-sodium diet."
   },
   {
     "ReadingID": 194,
@@ -2515,11 +1743,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 68,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 47,
-    "FormComments": "BPM is down over similar reading last night - feel fine; minimal activity today.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "BPM is down over similar reading last night - feel fine; minimal activity today."
   },
   {
     "ReadingID": 195,
@@ -2528,11 +1752,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "Just finished baking so not a strenuous day.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Just finished baking so not a strenuous day."
   },
   {
     "ReadingID": 196,
@@ -2541,11 +1761,7 @@ window.BP_DATA = [
     "Dia": 72,
     "BPM": 81,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 31,
-    "FormComments": "just woke up.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "just woke up."
   },
   {
     "ReadingID": 197,
@@ -2554,11 +1770,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 70,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 198,
@@ -2567,11 +1779,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 76,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 42,
-    "FormComments": "Just got home from working late - probably why so high.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Just got home from working late - probably why so high."
   },
   {
     "ReadingID": 199,
@@ -2580,11 +1788,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 83,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 47,
-    "FormComments": "Worked today, but it shouldn't be this high!",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Worked today, but it shouldn't be this high!"
   },
   {
     "ReadingID": 200,
@@ -2593,11 +1797,7 @@ window.BP_DATA = [
     "Dia": 94,
     "BPM": 71,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 40,
-    "FormComments": "I took this reading a few hours after the last.  It is still unusually high after a stress-free evening.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "I took this reading a few hours after the last.  It is still unusually high after a stress-free evening."
   },
   {
     "ReadingID": 201,
@@ -2606,11 +1806,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 78,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 21,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 202,
@@ -2619,11 +1815,7 @@ window.BP_DATA = [
     "Dia": 103,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 203,
@@ -2632,11 +1824,7 @@ window.BP_DATA = [
     "Dia": 92,
     "BPM": 78,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 16,
-    "FormComments": "Felt light headed when I stood up.  Compare to the reading before, and note the pulse pressure.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Felt light headed when I stood up.  Compare to the reading before, and note the pulse pressure."
   },
   {
     "ReadingID": 204,
@@ -2645,11 +1833,7 @@ window.BP_DATA = [
     "Dia": 99,
     "BPM": 84,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "Just shoveled the driveway.  Stupid winter.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Just shoveled the driveway.  Stupid winter."
   },
   {
     "ReadingID": 205,
@@ -2658,11 +1842,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 76,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 206,
@@ -2671,11 +1851,7 @@ window.BP_DATA = [
     "Dia": 90,
     "BPM": 78,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 207,
@@ -2684,11 +1860,7 @@ window.BP_DATA = [
     "Dia": 100,
     "BPM": 74,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "Just got home from doing laundry; carried heavy bags and backpack on the bus.  Periods of lightheadedness.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Just got home from doing laundry; carried heavy bags and backpack on the bus.  Periods of lightheadedness."
   },
   {
     "ReadingID": 208,
@@ -2697,11 +1869,7 @@ window.BP_DATA = [
     "Dia": 74,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 209,
@@ -2710,11 +1878,7 @@ window.BP_DATA = [
     "Dia": 74,
     "BPM": 78,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 210,
@@ -2723,11 +1887,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 81,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 211,
@@ -2736,11 +1896,7 @@ window.BP_DATA = [
     "Dia": 88,
     "BPM": 80,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 45,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 212,
@@ -2749,11 +1905,7 @@ window.BP_DATA = [
     "Dia": 86,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 43,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 213,
@@ -2762,11 +1914,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 84,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 51,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 214,
@@ -2775,11 +1923,7 @@ window.BP_DATA = [
     "Dia": 97,
     "BPM": 74,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 52,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 215,
@@ -2788,11 +1932,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 79,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 40,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 216,
@@ -2801,11 +1941,7 @@ window.BP_DATA = [
     "Dia": 98,
     "BPM": 92,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 39,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 217,
@@ -2814,11 +1950,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 96,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 45,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 218,
@@ -2827,11 +1959,7 @@ window.BP_DATA = [
     "Dia": 92,
     "BPM": 90,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 22,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 219,
@@ -2840,11 +1968,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 40,
-    "FormComments": "Light Headed.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Light Headed."
   },
   {
     "ReadingID": 220,
@@ -2853,11 +1977,7 @@ window.BP_DATA = [
     "Dia": 100,
     "BPM": 84,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "Just got home from work - light headed.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Just got home from work - light headed."
   },
   {
     "ReadingID": 221,
@@ -2866,11 +1986,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 78,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 58,
-    "FormComments": "Stayed still for hours after last reading; sys rose, PP rose, Dia dropped.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Stayed still for hours after last reading; sys rose, PP rose, Dia dropped."
   },
   {
     "ReadingID": 222,
@@ -2879,11 +1995,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 83,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 42,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 223,
@@ -2892,11 +2004,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 82,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 30,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 224,
@@ -2905,11 +2013,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 76,
     "Workday": "Yes",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 25,
-    "FormComments": "Phew, almost fell down - went from Hypertension to the first Normal reading in a looong time.  Pulse pressure is super low.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Phew, almost fell down - went from Hypertension to the first Normal reading in a looong time.  Pulse pressure is super low."
   },
   {
     "ReadingID": 225,
@@ -2918,11 +2022,7 @@ window.BP_DATA = [
     "Dia": 87,
     "BPM": 81,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 226,
@@ -2931,11 +2031,7 @@ window.BP_DATA = [
     "Dia": 90,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "Light headed when I woke up.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Light headed when I woke up."
   },
   {
     "ReadingID": 227,
@@ -2944,11 +2040,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 37,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 228,
@@ -2957,11 +2049,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 36,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 229,
@@ -2970,11 +2058,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 230,
@@ -2983,11 +2067,7 @@ window.BP_DATA = [
     "Dia": 99,
     "BPM": 75,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 40,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 231,
@@ -2996,11 +2076,7 @@ window.BP_DATA = [
     "Dia": 83,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 232,
@@ -3009,11 +2085,7 @@ window.BP_DATA = [
     "Dia": 92,
     "BPM": 82,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 26,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 233,
@@ -3022,11 +2094,7 @@ window.BP_DATA = [
     "Dia": 80,
     "BPM": 73,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 33,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 234,
@@ -3035,11 +2103,7 @@ window.BP_DATA = [
     "Dia": 81,
     "BPM": 68,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 235,
@@ -3048,11 +2112,7 @@ window.BP_DATA = [
     "Dia": 84,
     "BPM": 77,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 236,
@@ -3061,11 +2121,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 71,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 43,
-    "FormComments": "Lazy day coding away - bp and pp are high. Why?  Haven't eaten.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Lazy day coding away - bp and pp are high. Why?  Haven't eaten."
   },
   {
     "ReadingID": 237,
@@ -3074,11 +2130,7 @@ window.BP_DATA = [
     "Dia": 71,
     "BPM": 87,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 61,
-    "FormComments": "Whoa - highest pulse pressure to date. Look at Jan 5 too.  No lightheadedness.",
-    "PulsePressureCategory": "Widened"
+    "FormComments": "Whoa - highest pulse pressure to date. Look at Jan 5 too.  No lightheadedness."
   },
   {
     "ReadingID": 238,
@@ -3087,11 +2139,7 @@ window.BP_DATA = [
     "Dia": 82,
     "BPM": 79,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 38,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 239,
@@ -3100,11 +2148,7 @@ window.BP_DATA = [
     "Dia": 85,
     "BPM": 75,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 35,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 240,
@@ -3113,11 +2157,7 @@ window.BP_DATA = [
     "Dia": 76,
     "BPM": 73,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 24,
-    "FormComments": "Wow!  Haven't had a normal BP in forever; PP is super low.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "Wow!  Haven't had a normal BP in forever; PP is super low."
   },
   {
     "ReadingID": 241,
@@ -3126,11 +2166,7 @@ window.BP_DATA = [
     "Dia": 89,
     "BPM": 75,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 41,
-    "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "FormComments": ""
   },
   {
     "ReadingID": 242,
@@ -3139,11 +2175,7 @@ window.BP_DATA = [
     "Dia": 91,
     "BPM": 70,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 29,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 243,
@@ -3152,11 +2184,7 @@ window.BP_DATA = [
     "Dia": 93,
     "BPM": 72,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 34,
-    "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": ""
   },
   {
     "ReadingID": 244,
@@ -3165,11 +2193,7 @@ window.BP_DATA = [
     "Dia": 96,
     "BPM": 67,
     "Workday": "No",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 48,
-    "FormComments": "Sys hasn't been this high in a long time!",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Sys hasn't been this high in a long time!"
   },
   {
     "ReadingID": 245,
@@ -3178,11 +2202,7 @@ window.BP_DATA = [
     "Dia": 115,
     "BPM": 76,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 57,
-    "FormComments": "Almost grey'd out - just walked to grocery store after snowstorm - not all sidewalks shoveled - carried 20lbs.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Almost grey'd out - just walked to grocery store after snowstorm - not all sidewalks shoveled - carried 20lbs."
   },
   {
     "ReadingID": 246,
@@ -3191,11 +2211,7 @@ window.BP_DATA = [
     "Dia": 95,
     "BPM": 90,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 43,
-    "FormComments": "Shoveled the loading dock at work; lightheaded all day afterwards.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "Shoveled the loading dock at work; lightheaded all day afterwards."
   },
   {
     "ReadingID": 247,
@@ -3204,11 +2220,7 @@ window.BP_DATA = [
     "Dia": 100,
     "BPM": 75,
     "Workday": "Yes",
-    "ReadingCategory": "Hypertension Stage 2",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 27,
-    "FormComments": "A little foggy all day.",
-    "PulsePressureCategory": "Narrowed"
+    "FormComments": "A little foggy all day."
   },
   {
     "ReadingID": 248,
@@ -3217,10 +2229,51 @@ window.BP_DATA = [
     "Dia": 73,
     "BPM": 74,
     "Workday": "No",
-    "ReadingCategory": "Normal",
-    "PulseCategory": "Normal Pulse",
-    "gPulsePressure": 44,
-    "FormComments": "whoa - a rare \"normal\" reading category tonight - I'm lightheaded while pulse pressure isn't too low.",
-    "PulsePressureCategory": "Normal"
+    "FormComments": "whoa - a rare \"normal\" reading category tonight - I'm lightheaded while pulse pressure isn't too low."
+  },
+  {
+    "ReadingID": 249,
+    "Date": "2026-01-30 05:10:00 pm",
+    "Sys": 124,
+    "Dia": 80,
+    "BPM": 75,
+    "Workday": "Yes",
+    "FormComments": ""
+  },
+  {
+    "ReadingID": 250,
+    "Date": "2026-01-31 05:36:33 pm",
+    "Sys": 146,
+    "Dia": 99,
+    "BPM": 71,
+    "Workday": "No",
+    "FormComments": ""
+  },
+  {
+    "ReadingID": 251,
+    "Date": "2026-02-01 07:16:41 pm",
+    "Sys": 125,
+    "Dia": 86,
+    "BPM": 79,
+    "Workday": "No",
+    "FormComments": ""
+  },
+  {
+    "ReadingID": 252,
+    "Date": "2026-02-02 05:02:24 pm",
+    "Sys": 132,
+    "Dia": 85,
+    "BPM": 81,
+    "Workday": "Yes",
+    "FormComments": ""
+  },
+  {
+    "ReadingID": 253,
+    "Date": "2026-02-03 05:11:11 pm",
+    "Sys": 107,
+    "Dia": 76,
+    "BPM": 71,
+    "Workday": "Yes",
+    "FormComments": "Yay!  A normal reading; low pulse pressure."
   }
 ];
