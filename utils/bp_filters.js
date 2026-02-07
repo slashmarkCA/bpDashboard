@@ -129,9 +129,9 @@ function updateAllCharts(filteredData) {
 }
 
 /**
- * Initialize UI wiring on DOM ready
+ * Initialize filter buttons and render initial charts
  */
-document.addEventListener('DOMContentLoaded', () => {
+function initializeFilters() {
     const buttons = document.querySelectorAll('.date-pill');
 
     if (!buttons.length) {
@@ -162,4 +162,35 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('[FILTER] Initializing dashboard with default filter:', currentFilter);
     const initial = getFilteredBPData(currentFilter);
     updateAllCharts(initial);
+}
+
+/**
+ * Wait for both DOM and data to be ready before initializing
+ */
+let domReady = false;
+let dataReady = false;
+
+function checkAndInitialize() {
+    if (domReady && dataReady) {
+        console.log('[FILTER] ✅ DOM and data both ready, initializing filters...');
+        initializeFilters();
+    }
+}
+
+// Listen for DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('[FILTER] DOM loaded, waiting for data...');
+    domReady = true;
+    checkAndInitialize();
+});
+
+// Listen for data ready (fired by bp_data_normalized.js after normalization completes)
+window.addEventListener('bpDataLoaded', () => {
+    console.log('[FILTER] Data load event received, waiting for normalization...');
+    
+    // Small delay to ensure NORMALIZED_BP_DATA is fully set
+    setTimeout(() => {
+        dataReady = true;
+        checkAndInitialize();
+    }, 100);
 });
