@@ -2,6 +2,7 @@
    bp_data_normalized.js
    ---------------------------------------------------------------------------
    One-time normalization layer with robust validation
+   - Waits for data to load from GitHub (bp_data_loader.js)
    - Multi-format date parsing with detailed error reporting
    - Data type validation and sanitization
    - BP category calculation via bp_utils.js
@@ -10,12 +11,20 @@
 
 import { getBPCategory, getPulseCategory, getPulsePressureCategory } from './bp_utils.js';
 
-const RAW_BP_DATA =
-    window.ALL_BP_DATA ||
-    window.BP_DATA ||
-    window.sourceData ||
-    window.bpData ||
-    null;
+/**
+ * Wait for BP_DATA to be loaded before normalizing
+ * The bp_data_loader.js script fetches from GitHub and dispatches this event
+ */
+window.addEventListener('bpDataLoaded', () => {
+    console.log('[NORMALIZER] Data loaded event received, starting normalization...');
+    window.NORMALIZED_BP_DATA = normalizeData();
+});
+
+// Defensive: if data is already loaded when this script runs
+if (window.isBPDataLoaded && window.isBPDataLoaded()) {
+    console.log('[NORMALIZER] Data already present, normalizing immediately...');
+    window.NORMALIZED_BP_DATA = normalizeData();
+}
 
 /**
  * Robust Date Parser
@@ -99,6 +108,14 @@ function validateNumericReading(value, fieldName, min, max) {
  * @returns {Array} Normalized and validated BP records
  */
 export function normalizeData() {
+    // Get raw data - check multiple possible locations for backwards compatibility
+    const RAW_BP_DATA =
+        window.ALL_BP_DATA ||
+        window.BP_DATA ||
+        window.sourceData ||
+        window.bpData ||
+        null;
+    
     if (!Array.isArray(RAW_BP_DATA)) {
         console.error('[NORMALIZER] No raw BP data array found on window');
         if (typeof showGlobalErrorBanner === 'function') {
@@ -210,11 +227,5 @@ export function normalizeData() {
     return normalized;
 }
 
-// Initialize global normalized data
-const normalizedData = normalizeData();
-
-// Expose to window for backwards compatibility (will phase out)
-window.NORMALIZED_BP_DATA = normalizedData;
-
-// Also export for ES6 modules
-export { normalizedData as NORMALIZED_BP_DATA };
+// DO NOT auto-execute - wait for data to load via event listener above
+// The normalizeData() function is called when 'bpDataLoaded' event fires

@@ -300,7 +300,9 @@
     <script src="src/docLibrary.js" defer></script>
 
     <!-- Core data & utilities -->
-    <script type="module" src="utils/bp_data.js" onerror="showGlobalErrorBanner('Critical Data File (bp_data.js) failed to load.')" defer></script>
+    <!-- Core data loader (fetches from GitHub) -->
+    <!-- Cannot be a module....The loader needs to run in global scope to set window.BP_DATA-->
+    <script src="utils/bp_data_loader.js" defer></script>
     <script type="module" src="utils/bp_data_normalized.js" defer></script>
     <script type="module" src="utils/bp_utils.js" defer></script>
     <script type="module" src="utils/bp_filters.js" data-logic="volume-window" defer></script>
