@@ -3321,8 +3321,8 @@
     "Dia": 80,
     "BPM": 75,
     "Workday": "",
-    "ReadingCategory": "Hypertension Stage 1",
-    "PulseCategory": "Normal Pulse",
+    "ReadingCategory": "Moo2",
+    "PulseCategory": "Moo",
     "gPulsePressure": 29,
     "FormComments": "Testing editing the .json file in github.",
     "PulsePressureCategory": "Narrowed"
