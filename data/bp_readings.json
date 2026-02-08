@@ -3320,11 +3320,24 @@
     "Sys": 109,
     "Dia": 80,
     "BPM": 75,
-    "Workday": "",
-    "ReadingCategory": "Moo2",
-    "PulseCategory": "Moo",
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
-    "FormComments": "Testing editing the .json file in github.",
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed"
+  },
+  {
+    "ReadingID": 257,
+    "Date": "2026-02-07 05:52:07 PM",
+    "Sys": 134,
+    "Dia": 96,
+    "BPM": 71,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 38,
+    "FormComments": "",
     "PulsePressureCategory": "Narrowed"
   }
 ]
