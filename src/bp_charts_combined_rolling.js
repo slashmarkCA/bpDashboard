@@ -108,7 +108,7 @@ export function createCombinedRollingChart(filteredData) {
                     data: stats.map(s => s.sysAvg),
                     borderColor: '#d32f2f',
                     borderWidth: 2,
-                    pointRadius: 2,
+                    pointRadius: 1.5,
                     tension: 0.3,
                     fill: false,
                     zIndex: 10
@@ -135,7 +135,7 @@ export function createCombinedRollingChart(filteredData) {
                     data: stats.map(s => s.diaAvg),
                     borderColor: '#1976d2',
                     borderWidth: 2,
-                    pointRadius: 2,
+                    pointRadius: 1.5,
                     tension: 0.3,
                     fill: false,
                     zIndex: 10

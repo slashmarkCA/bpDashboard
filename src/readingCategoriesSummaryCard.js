@@ -53,7 +53,6 @@ export function renderReadingCategoriesSummary(filteredData) {
         height:100%;
         display:grid;
         grid-template-rows: repeat(${categories.length}, 1fr);
-        font-family:'Trebuchet MS', Tahoma, arial;
         font-size:12px;
         color:#666666;
     `;
@@ -68,15 +67,16 @@ export function renderReadingCategoriesSummary(filteredData) {
             grid-template-columns: minmax(115px, 1.2fr) 20px 30px 2.5fr;
             align-items:center;
             gap:8px;
-            border-bottom:${i < categories.length - 1 ? '1px solid #c4c4c4' : 'none'};
+            border-bottom:${i < categories.length - 1 ? '1px solid #3D444D' : 'none'};
             padding:0 6px;
+            color: #686e75;
         `;
 
         row.innerHTML = `
             <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${cat.label}</div>
             <div style="text-align:right;">${count}</div>
             <div style="text-align:right;">${pct}%</div>
-            <div style="height:10px; background:#eeeeee; border-radius:2px; overflow:hidden;">
+            <div style="height:10px; background:#3f464e; border-radius:2px; overflow:hidden;">
                 <div style="width:${pct}%; height:100%; background:${cat.color};"></div>
             </div>
         `;

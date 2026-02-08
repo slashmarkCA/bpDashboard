@@ -20,12 +20,11 @@
 </head>
 
 <body>
+    <!-- look into bringing in some different fonts at fonts.google.com. -->
+    <!-- What is BEM notation?  It's the __ he used -->
     <header class="header">
-        <!-- look into bringing in some different fonts at fonts.google.com. -->
-        <!-- What is BEM notation?  It's the __ he used -->
         <div class="header__content">
-                <h1>Blood Pressure <span>history and analysis</span></h1>
-            <nav>
+            <nav class="nav-container">
                 <ul class="nav__list">
                     <li><a href="#" class="date-pill active" data-filter="last7days">7 Days</a></li>
                     <li><a href="#" class="date-pill" data-filter="last14days">14 Days</a></li>
@@ -33,8 +32,99 @@
                     <li><a href="#" class="date-pill" data-filter="all">All</a></li>
                 </ul>
             </nav>
+            <div class="header-title">
+                <h1>Blood Pressure <span>history and analysis</span></h1>
+                <p class="last-reading">Last Reading Date: <span id="last-reading-date">Loading...</span></p>
+            </div>
         </div>
     </header>
+
+    <section class="summary-band">
+        <div class="container">
+            <div id="5colTopSummary">
+                <div class="five-col">
+                    <div class="measureCardBadges" id="summary-counts-card">
+                        <div class="badge-item badge-readings">
+                            <span class="badge-number" id="total-readings">--</span>
+                            <span class="badge-label">READINGS</span>
+                        </div>
+                        <div class="badge-item badge-days">
+                            <span class="badge-number" id="total-days">--</span>
+                            <span class="badge-label">DAYS</span>
+                        </div>
+                    </div>
+                    <div class="measureCard" id="sys-card">
+                        <span id="sys-warning" class="warning-badge">⚠️</span>
+                        <div class="measureName">SYS<small>TOLIC</small></div>
+                        <div class="measureHiLo">
+                            High: <span id="sys-high">--</span><br>
+                            Low: <span id="sys-low">--</span>
+                        </div>
+                        <div class="measureAvg">
+                            <small>Average</small> <span id="sys-avg">--</span>
+                        </div>
+                    </div>
+                    <div class="measureCard" id="dia-card">
+                        <span id="dia-warning" class="warning-badge">⚠️</span>
+                        <div class="measureName">DIA<small>STOLIC</small></div>
+                        <div class="measureHiLo">
+                            High: <span id="dia-high">--</span><br>
+                            Low: <span id="dia-low">--</span>
+                        </div>
+                        <div class="measureAvg"><small>Average</small> <span id="dia-avg">--</span></div>
+                    </div>
+                    <div class="measureCard" id="pulse-card">
+                        <span id="pulse-warning" class="warning-badge">⚠️</span>
+                        <div class="measureName">BPM<small>PULSE</small></div>
+                        <div class="measureHiLo">
+                            High: <span id="pulse-high">--</span><br>
+                            Low: <span id="pulse-low">--</span>
+                        </div>
+                        <div class="measureAvg"><small>Average</small> <span id="pulse-avg">--</span></div>
+                    </div>
+                    <div class="measureCard" id="PulsePressure-card">
+                        <span id="pp-warning" class="warning-badge">⚠️</span>
+                        <div class="measureName">PULSE<small>PRESSURE</small></div>
+                        <div class="measureHiLo">
+                            High: <span id="pp-high">--</span><br>
+                            Low: <span id="pp-low">--</span>
+                        </div>
+                        <div class="measureAvg"><small>Average</small> <span id="pp-avg">--</span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="3colTopSummary">
+                <div class="three-col">
+                    <div class="nobgCard">
+                        <div class="heatmap-wrapper">
+                            <div class="heatmap-scroll-area">
+                                <canvas id="bpHeatmap"></canvas>
+                            </div>
+                        </div>            
+                    </div>
+
+                    <div class="nobgCard">
+    <!--                <h3>
+                            <span class="info-icon" onclick="openDocDrawer('readingCategorySummary')">ℹ️</span>
+                            Reading Categories Summary
+                        </h3> -->
+                        <div id="readingCategoriesSummaryCard"></div>
+                    </div>
+
+                    <div class="nobgCard">
+    <!--                <h3>
+                            <span class="info-icon" onclick="openDocDrawer('normalNotNormalDonut')">ℹ️</span>
+                            Normal Vs Risky
+                        </h3>-->
+                        <div class="donut-wrapper">
+                            <canvas id="normalDonutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <noscript>
     <div class="noscript-warning">
         This dashboard requires JavaScript to function properly.
@@ -43,93 +133,6 @@
     </noscript>
 
     <main class="container">
-        <section id="5colTopSummary">
-            <div class="five-col">
-                <div class="measureCardBadges" id="summary-counts-card">
-                    <div class="badge-item badge-readings">
-                        <span class="badge-number" id="total-readings">--</span>
-                        <span class="badge-label">READINGS</span>
-                    </div>
-                    <div class="badge-item badge-days">
-                        <span class="badge-number" id="total-days">--</span>
-                        <span class="badge-label">DAYS</span>
-                    </div>
-                </div>
-                <div class="measureCard" id="sys-card">
-                    <span id="sys-warning" class="warning-badge">⚠️</span>
-                    <div class="measureName">SYS<small>TOLIC</small></div>
-                    <div class="measureHiLo">
-                        High: <span id="sys-high">--</span><br>
-                        Low: <span id="sys-low">--</span>
-                    </div>
-                    <div class="measureAvg">
-                        <small>Average</small> <span id="sys-avg">--</span>
-                    </div>
-                </div>
-                <div class="measureCard" id="dia-card">
-                    <span id="dia-warning" class="warning-badge">⚠️</span>
-                    <div class="measureName">DIA<small>STOLIC</small></div>
-                    <div class="measureHiLo">
-                        High: <span id="dia-high">--</span><br>
-                        Low: <span id="dia-low">--</span>
-                    </div>
-                    <div class="measureAvg"><small>Average</small> <span id="dia-avg">--</span></div>
-                </div>
-                <div class="measureCard" id="pulse-card">
-                    <span id="pulse-warning" class="warning-badge">⚠️</span>
-                    <div class="measureName">BPM<small>PULSE</small></div>
-                    <div class="measureHiLo">
-                        High: <span id="pulse-high">--</span><br>
-                        Low: <span id="pulse-low">--</span>
-                    </div>
-                    <div class="measureAvg"><small>Average</small> <span id="pulse-avg">--</span></div>
-                </div>
-                <div class="measureCard" id="PulsePressure-card">
-                    <span id="pp-warning" class="warning-badge">⚠️</span>
-                    <div class="measureName">PULSE<small>PRESSURE</small></div>
-                    <div class="measureHiLo">
-                        High: <span id="pp-high">--</span><br>
-                        Low: <span id="pp-low">--</span>
-                    </div>
-                    <div class="measureAvg"><small>Average</small> <span id="pp-avg">--</span></div>
-                </div>
-            </div>
-        </section>
-
-		<section id="3colTopSummary">
-            <div class="three-col">
-                <div class="nobgCard">
-<!--                <h3>
-                        <span class="info-icon" onclick="openDocDrawer('readingCategorySummary')">ℹ️</span>
-                        Daily Readings
-                    </h3> -->
-                    <div class="heatmap-wrapper">
-                        <div class="heatmap-scroll-area">
-                            <canvas id="bpHeatmap"></canvas>
-                        </div>
-                    </div>            
-                </div>
-
-                <div class="nobgCard">
-<!--                <h3>
-                        <span class="info-icon" onclick="openDocDrawer('readingCategorySummary')">ℹ️</span>
-                        Reading Categories Summary
-                    </h3> -->
-                    <div id="readingCategoriesSummaryCard"></div>
-                </div>
-        
-                <div class="nobgCard">
-<!--                <h3>
-                        <span class="info-icon" onclick="openDocDrawer('normalNotNormalDonut')">ℹ️</span>
-                        Normal Vs Risky
-                    </h3>-->
-                    <div class="donut-wrapper">
-                        <canvas id="normalDonutChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="ReadingCategories">
             <div class="two-col">
                 <div class="card">
@@ -240,7 +243,7 @@
                 <div class="rolling-controls-container">
                     <h3 style="margin: 0;">
                         <span class="info-icon" onclick="openDocDrawer('sysAndDiaRollingAvg')">ℹ️</span>
-                        Combined 7-Day Rolling Average (Systolic + Diastolic)</h3>
+                        7-Day Rolling Averages (Systolic + Diastolic)</h3>
                     <div class="rolling-controls">
                         <div class="control-label">Standard Deviation Band:</div>
                         <div class="radio-group">
@@ -312,6 +315,7 @@
     <script type="module" src="utils/bp_charts.js" defer></script>
 
     <!-- Chart modules -->
+    <script type="module" src="src/lastReadingDate.js" defer></script>
 	<script type="module" src="src/bp_charts_line.js" data-aggregation="raw" defer></script>
     <script type="module" src="src/bp_pulse_line.js" data-aggregation="raw" defer></script>
     <script type="module" src="src/bp_charts_scatter.js" data-aggregation="raw" defer></script>

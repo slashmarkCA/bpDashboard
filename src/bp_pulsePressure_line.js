@@ -119,7 +119,7 @@ export function createPulsePressureLineChart(bpData) {
                     borderColor: '#2D434E',
                     backgroundColor: '#2D434E',
                     borderWidth: 1.5,
-                    pointRadius: 3,
+                    pointRadius: 1.5,
                     pointHoverRadius: 5,
                     pointHitRadius: 10,
                     tension: 0.2,

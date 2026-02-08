@@ -100,7 +100,7 @@ export function createPulseLineChart(bpData) {
                     borderColor: '#2D434E',
                     backgroundColor: '#2D434E',
                     borderWidth: 1,
-                    pointRadius: 3,
+                    pointRadius: 1.5,
                     pointHoverRadius: 5,
                     tension: 0.2
                 },

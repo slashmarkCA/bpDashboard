@@ -156,7 +156,7 @@ function drawHeatmap(canvas, weeks, newestDate) {
             const y = topPadding + (dayIdx * (cellSize + cellGap));
             
             // Determine cell color
-            let color = '#ebedf0';
+            let color = '#2d3034';
             let opacity = 1;
             
             if (day.isFuture) {
