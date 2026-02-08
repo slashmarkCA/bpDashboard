@@ -55,7 +55,7 @@ export function createSysAndDiaChart(bpData) {
                     borderColor: '#2D434E',
                     backgroundColor: '#2D434E',
                     borderWidth: 1.5,
-                    pointRadius: 3,
+                    pointRadius: 1.5,
                     pointHoverRadius: 5,
                     tension: 0.2,
                     order: 1
@@ -66,7 +66,7 @@ export function createSysAndDiaChart(bpData) {
                     borderColor: '#6aafd2',
                     backgroundColor: '#6aafd2',
                     borderWidth: 1.5,
-                    pointRadius: 3,
+                    pointRadius: 1.5,
                     pointHoverRadius: 5,
                     tension: 0.2,
                     order: 2

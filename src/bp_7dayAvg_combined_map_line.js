@@ -141,7 +141,7 @@ export function createMAP7DayChart(bpData) {
                     borderColor: '#4E79A7',
                     backgroundColor: '#4E79A7',
                     borderWidth: 1.5,
-                    pointRadius: 3,
+                    pointRadius: 1.5,
                     pointHoverRadius: 5,
                     tension: 0.2
                 },
@@ -151,7 +151,7 @@ export function createMAP7DayChart(bpData) {
                     borderColor: '#F28E2B',
                     backgroundColor: '#F28E2B',
                     borderWidth: 2,
-                    pointRadius: 3,
+                    pointRadius: 1.5,
                     pointHoverRadius: 5,
                     tension: 0.25
                 }

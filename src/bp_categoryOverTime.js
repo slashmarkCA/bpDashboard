@@ -70,12 +70,12 @@ export function createCategoryChart(bpData) {
             datasets: [{
                 data: processed,
                 borderColor: '#333',
-                borderWidth: 2.5,
+                borderWidth: 1,
                 stepped: 'after',
-                pointRadius: 5,
+                pointRadius: 1.5,
                 pointBackgroundColor: processed.map(p => p.color),
                 pointBorderColor: '#ffffff',
-                pointBorderWidth: 2,
+                pointBorderWidth: 1,
                 tension: 0,
                 z: 10
             }]

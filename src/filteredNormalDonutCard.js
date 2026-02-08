@@ -64,6 +64,7 @@ export function createNormalDonutCard(filteredData) {
                     BP_LEVELS.STAGE2.lightColor, 
                     BP_LEVELS.CRISIS.lightColor
                 ],
+                borderColor: '#3D444D',
                 borderWidth: 1,
                 weight: 1 
             },
@@ -74,6 +75,7 @@ export function createNormalDonutCard(filteredData) {
                     BP_LEVELS.NORMAL.color, 
                     UI_COLORS.NOT_NORMAL
                 ],
+                borderColor: '#3D444D',
                 borderWidth: 1,
                 weight: 3 
             }
