@@ -11,10 +11,12 @@ import {
     destroyChart,
     formatTooltipDate, 
     formatAxisDate, 
-    getLocalDateKey 
+    getLocalDateKey,
+    getCssStyles
 } from '../utils/bp_utils.js';
 
 let combinedRollingChart = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 let currentBandMode = 'none';
 let cachedFilteredData = [];          // holds last-known data for the toggle
 
@@ -183,11 +185,27 @@ export function createCombinedRollingChart(filteredData) {
                         minRotation: 90,
                         autoSkip: true,
                         maxTicksLimit: 20,
-                        font: { size: 10 }
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
                     },
                     grid: { display: false }
                 },
-                y: { suggestedMin: 60, suggestedMax: 160 }
+                y: { 
+                    suggestedMin: 60, 
+                    suggestedMax: 160, 
+                    ticks:{
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
+                    },
+                }
             }
         }
     });

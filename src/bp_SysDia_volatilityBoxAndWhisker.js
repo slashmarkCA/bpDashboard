@@ -8,9 +8,10 @@
    ============================================================================ */
 
 import { getCurrentFilter } from '../utils/bp_filters.js';
-import { destroyChart, formatAxisDate } from '../utils/bp_utils.js';
+import { destroyChart, formatAxisDate, getCssStyles } from '../utils/bp_utils.js';
 
 let volatilityChart = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Groups data into time windows for box plot
@@ -145,14 +146,25 @@ export function createBoxWhiskerChart(filteredData) {
                         drawTicks: false
                     },
                     ticks: {
-                        display: false
+                        display: true,
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
                     }
                 },
                 y: {
                     min: 55,
                     max: 165,
                     ticks: {
-                        font: { size: 10 },
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
                         stepSize: 10,
                         autoSkip: false
                     },

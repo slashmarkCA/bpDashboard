@@ -12,10 +12,12 @@ import {
     destroyChart,
     linearRegression, 
     formatTooltipDate, 
-    formatAxisDate 
+    formatAxisDate,
+    getCssStyles
 } from '../utils/bp_utils.js';
 
 let sysAndDiaChart = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Creates/updates the Sys/Dia line chart
@@ -150,15 +152,28 @@ export function createSysAndDiaChart(bpData) {
 
                             return i % skip === 0 ? formatAxisDate(bpData[i].DateObj) : '';
                         },
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
                         maxRotation: 90,
                         minRotation: 90,
                         autoSkip: false,
-                        font: { size: 10 }
                     },
                     grid: { display: false }
                 },
                 y: {
-                    grid: { color: '#f0f0f0' }
+                    grid: { color: '#f0f0f0' },
+                    ticks: {
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
+                    }
                 }
             }
         }

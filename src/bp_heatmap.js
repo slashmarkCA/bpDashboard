@@ -7,9 +7,10 @@
    - 10.5 month rolling window
    ============================================================================ */
 
-import { BP_LEVELS, destroyChart } from '../utils/bp_utils.js';
+import { BP_LEVELS, destroyChart, getCssStyles } from '../utils/bp_utils.js';
 
 let heatmapChart = null;
+const cssStyle = getCssStyles("dark", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Creates the BP heatmap visualization
@@ -156,7 +157,7 @@ function drawHeatmap(canvas, weeks, newestDate) {
             const y = topPadding + (dayIdx * (cellSize + cellGap));
             
             // Determine cell color
-            let color = '#2d3034';
+            let color = '#282d35';
             let opacity = 1;
             
             if (day.isFuture) {
@@ -180,8 +181,8 @@ function drawHeatmap(canvas, weeks, newestDate) {
 }
 
 function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding) {
-    ctx.font = '9px Arial';
-    ctx.fillStyle = '#666';
+    ctx.font = `${cssStyle.weight} ${cssStyle.size} ${cssStyle.family}`;
+    ctx.fillStyle = `${cssStyle.color}`;
     ctx.textAlign = 'left';
     
     let lastMonth = -1;
@@ -200,8 +201,8 @@ function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding)
 }
 
 function drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding) {
-    ctx.font = '9px Arial';
-    ctx.fillStyle = '#666';
+    ctx.font = `${cssStyle.weight} ${cssStyle.size} ${cssStyle.family}`;
+    ctx.fillStyle = `${cssStyle.family}`;
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
     

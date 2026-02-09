@@ -69,7 +69,7 @@ export function renderReadingCategoriesSummary(filteredData) {
             gap:8px;
             border-bottom:${i < categories.length - 1 ? '1px solid #3D444D' : 'none'};
             padding:0 6px;
-            color: #686e75;
+            color: var(--color-text-dark);
         `;
 
         row.innerHTML = `

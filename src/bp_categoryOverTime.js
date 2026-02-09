@@ -12,10 +12,12 @@ import {
     getBPCategory,
     destroyChart,
     formatTooltipDate, 
-    formatAxisDate 
+    formatAxisDate, 
+    getCssStyles
 } from '../utils/bp_utils.js';
 
 let categoryChart = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Creates/updates the category over time chart
@@ -72,10 +74,10 @@ export function createCategoryChart(bpData) {
                 borderColor: '#333',
                 borderWidth: 1,
                 stepped: 'after',
-                pointRadius: 1.5,
+                pointRadius: 2,
                 pointBackgroundColor: processed.map(p => p.color),
-                pointBorderColor: '#ffffff',
-                pointBorderWidth: 1,
+                pointBorderColor: '#a8a8a8',
+                pointBorderWidth: 2,
                 tension: 0,
                 z: 10
             }]
@@ -88,7 +90,12 @@ export function createCategoryChart(bpData) {
                     type: 'linear',
                     grid: { display: false },
                     ticks: {
-                        font: { size: 10 },
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
                         maxRotation: 90,
                         minRotation: 90,
                         callback: function(value) {

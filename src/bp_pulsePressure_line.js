@@ -11,10 +11,12 @@ import {
     destroyChart,
     linearRegression, 
     formatTooltipDate, 
-    formatAxisDate 
+    formatAxisDate, 
+    getCssStyles
 } from '../utils/bp_utils.js';
 
 let pulsePressureLineChart = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Plugin to draw pulse pressure reference bands
@@ -183,17 +185,30 @@ export function createPulsePressureLineChart(bpData) {
 
                             return i % skip === 0 ? formatAxisDate(bpData[i].DateObj) : '';
                         },
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
                         maxRotation: 90,
                         minRotation: 90,
                         autoSkip: false,
-                        font: { size: 10 }
                     },
                     grid: { color: 'rgba(0,0,0,0)' }
                 },
                 y: {
                     min: 0,
                     max: 108,
-                    ticks: { stepSize: 5 },
+                    ticks: { 
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
+                        stepSize: 5 
+                    },
                     grid: {
                         color: 'rgba(0,0,0,0.05)',
                         drawTicks: false

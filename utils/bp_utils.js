@@ -208,3 +208,31 @@ export function getAlphaColor(hex, alpha) {
     const b = parseInt(hex.slice(5, 7), 16);
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
+
+/* ---------------------------------------------------------------------------
+   Font selector from .css :root for vanilla .js and chart.js <canvas> renders.
+--------------------------------------------------------------------------- */
+
+// bp_utils.js
+
+export function getCssStyles(theme = "light", familyType = "chart") {
+    const root = getComputedStyle(document.documentElement);
+
+    // Build axis‑label variable names dynamically
+    const colorVar  = `--font-${theme}-axisLabel-color`;
+    const sizeVar   = `--font-${theme}-axisLabel-size`;
+    const weightVar = `--font-${theme}-axisLabel-weight`;
+    const axisTitleWeightVar = `--font-${theme}-axisTitle-weight`
+    const axisTitleSizeVar = `--font-${theme}-axisTitle-size`
+
+    // Choose which family variable to read
+    const familyVar = familyType === "chart" ? "--font-chart" : "--font-base";
+
+    const family = root.getPropertyValue(familyVar).trim();
+    const color  = root.getPropertyValue(colorVar).trim();
+    const size   = parseFloat(root.getPropertyValue(sizeVar));
+    const weight = root.getPropertyValue(weightVar).trim();
+    const axisTitleWeight = root.getPropertyValue(axisTitleWeightVar).trim();
+    const axisTitleSize = root.getPropertyValue(axisTitleSizeVar).trim();
+    return { family, color, size, weight, axisTitleSize, axisTitleWeight };
+}

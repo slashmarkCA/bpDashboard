@@ -7,9 +7,10 @@
    - Horizontal gridlines
    ============================================================================ */
 
-import { destroyChart } from '../utils/bp_utils.js';
+import { destroyChart, getCssStyles } from '../utils/bp_utils.js';
 
 let pulsePressureHistogramChart = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Builds histogram bins from pulse pressure data
@@ -134,7 +135,17 @@ export function createPulsePressureHistogram(filteredData) {
                         drawTicks: false
                     } 
                 },
-                x: { grid: { display: false } }
+                x: { 
+                    ticks:{
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
+                    },
+                    grid: { display: false } 
+                },
             },
             plugins: {
                 legend: { display: false },
