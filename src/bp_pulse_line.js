@@ -11,10 +11,11 @@ import {
     destroyChart,
     linearRegression, 
     formatTooltipDate, 
-    formatAxisDate 
+    formatAxisDate , getCssStyles
 } from '../utils/bp_utils.js';
 
 let pulseLineChart = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Plugin to draw Bradycardia/Tachycardia reference bands
@@ -163,14 +164,27 @@ export function createPulseLineChart(bpData) {
                         maxRotation: 90,
                         minRotation: 90,
                         autoSkip: false,
-                        font: { size: 10 }
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
                     },
                     grid: { display: false }
                 },
                 y: {
                     min: 55,
                     max: 105,
-                    ticks: { stepSize: 5 },
+                    ticks: { 
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,    
+                        stepSize: 5 
+                    },
                     grid: { color: 'rgba(240,240,240,1)' }
                 }
             }

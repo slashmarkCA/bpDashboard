@@ -7,9 +7,10 @@
    - Standardized ES6 module pattern
    ============================================================================ */
 
-import { BP_LEVELS, destroyChart } from '../utils/bp_utils.js';
+import { BP_LEVELS, destroyChart, getCssStyles } from '../utils/bp_utils.js';
 
 let scatterChartInstance = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Background shading plugin
@@ -165,8 +166,20 @@ export function createScatterChart(filteredData) {
                     title: {
                         display: true,
                         text: 'Dia',
-                        font: { size: 14, weight: 'bold' }
-                    }
+                        font: { 
+                            size: cssStyle.axisTitleSize, 
+                            weight: cssStyle.axisTitleWeight 
+                        },
+                        color: cssStyle.color,
+                    },
+                    ticks: {
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
+                    }, 
                 },
                 y: {
                     min: 40,
@@ -174,8 +187,20 @@ export function createScatterChart(filteredData) {
                     title: {
                         display: true,
                         text: 'Sys',
-                        font: { size: 14, weight: 'bold' }
-                    }
+                        font: { 
+                            size: cssStyle.axisTitleSize, 
+                            weight: cssStyle.axisTitleWeight 
+                        },
+                        color: cssStyle.color,
+                    },
+                    ticks: {
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
+                    }, 
                 }
             }
         },

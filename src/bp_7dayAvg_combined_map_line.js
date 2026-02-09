@@ -12,10 +12,12 @@ import {
     formatTooltipDate, 
     formatAxisDate, 
     getLocalDateKey, 
-    calculateMAP 
+    calculateMAP, 
+    getCssStyles
 } from '../utils/bp_utils.js';
 
 let map7DayChart = null;
+const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Builds daily MAP values
@@ -86,7 +88,7 @@ export function createMAP7DayChart(bpData) {
     }
 
     // Destroy existing instance
-    map7DayChart = destroyChart(map7DayChart);
+    map7DayChart = destroyChart(map7DayChart); // TODO: This should not be here!
 
     // Handle empty data
     if (!bpData?.length) {
@@ -206,15 +208,28 @@ export function createMAP7DayChart(bpData) {
 
                             return i % skip === 0 ? formatAxisDate(dailyMAP[i].date) : '';
                         },
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
                         maxRotation: 90,
                         minRotation: 90,
                         autoSkip: false,
-                        font: { size: 10 }
                     },
                     grid: { display: false }
                 },
                 y: {
                     grid: { color: '#f0f0f0' },
+                    ticks:{
+                        font: {
+                            weight: cssStyle.weight, 
+                            size: cssStyle.size, 
+                            family: cssStyle.family,
+                        },
+                        color: cssStyle.color,
+                    },
                     title: {
                         display: true,
                         text: 'Mean Arterial Pressure (MAP)'

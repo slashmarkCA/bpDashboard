@@ -1,4 +1,35 @@
 /* ==========================================================================
+   Global typography - bulding towards a theme-switcher   
+   ========================================================================== */
+:root { 
+    /* chart.js rasterizes fonts to render in a <canvas> elelment so I need a 
+    different font specifically for that purpose; bp_utils.js switches them */ 
+    /* Note to self: chart.js uses defaults I overrode: 
+    'Helvetica Neue', 'Helvetica', 'Arial', sans-serif, 12px, Color: #666, Style: 'normal' */
+
+    --font-base: 'Archivo', 'Segoe UI', 'Trebuchet MS', Tahoma, Verdana, sans-serif;
+    --font-chart: 'Segoe UI', Tahoma, Verdana, sans-serif;
+
+    --band-colour-dark: #212830;
+    --color-text-dark: #64768c  ;      
+    
+    /* Charts: Dark. TODO: Gridlines and Backgrounds */
+    --font-dark-axisLabel-color: #64768c;
+    --font-dark-axisLabel-size: 9px; /*TODO: replace with rem*/ 
+    --font-dark-axisLabel-weight: 100;
+    --font-dark-axisTitle-size: 16px; /*TODO: replace with rem*/
+    --font-dark-axisTitle-weight: 200;
+    
+    /* Charts: Light. TODO: Gridlines and Backgrounds */
+    --color-text-light: #676767;
+    --font-light-axisLabel-color: #676767;
+    --font-light-axisLabel-size: 12px; /*TODO: replace with rem*/
+    --font-light-axisLabel-weight: 100;
+    --font-light-axisTitle-size: 16px; /*TODO: replace with rem*/
+    --font-light-axisTitle-weight: 200;
+}
+
+/* ==========================================================================
    GLOBAL RESETS & BASE STYLES
    ========================================================================== */
 * {
@@ -17,19 +48,14 @@ ul {
 }
 
 h3 {
-    font-size: 16px;
-    color: #444;
-    line-height: 1;
-
+    font-size: .9rem;
+    padding-bottom: 12px;
 }
 
 body {
-    font-family: archivo, 'Segoe UI', 'Trebuchet MS', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-base);
+    color: var(--color-text-light);
     background-color: #f6f5f7;
-    color: #333333;
-    /* Desktop padding to accommodate sticky header */
-    /* Remove padding-top: 80px; since we are using sticky now */
-    padding-top: 0; 
 }
 
 /* canvas { outline: 2px dashed purple; } keep handy for debugging chart.js layout */
@@ -38,7 +64,7 @@ body {
    HEADER, FOOTER & NAVIGATION
    ========================================================================== */
 .header {
-    background-color: #212830;
+    background-color: var(--band-colour-dark);
     /* position: fixed; I used to use this to stick to the top */
     position: sticky;
     top: 0;
@@ -114,13 +140,13 @@ header h1 span {
 footer {
     text-align: center;
     padding: 40px 0;
-    color: #888;
-    background-color: #eeeeee;
-    font-size: 13px;
+    color: var(--color-text-dark);
+    background-color: var(--band-colour-dark);
+    font-size: 0.8rem;
 }
 
 .summary-band {
-    background-color: #212830; /* Matches header background */
+    background-color: var(--band-colour-dark);
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
@@ -143,10 +169,6 @@ section {
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
     height: 100%;  
-}
-
-.card h3 {
-    padding-bottom: 12px;
 }
 
 .nobgCard {
@@ -416,7 +438,7 @@ section {
 
 
 /* ==========================================================================
-   5. DATA TABLE STYLES
+   RAW DATA TABLE STYLES
    ========================================================================== */
 .bp-raw-table-wrapper {
     max-height: 450px;
@@ -428,7 +450,6 @@ section {
 .bp-raw-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 12px;
     table-layout: auto;
 }
 
@@ -443,15 +464,11 @@ section {
 }
 
 .bp-raw-table td {
-    padding: 8px 10px;
     border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
 }
 
 .bp-risk { background-color: #fff4f4; color: #d32f2f; font-weight: bold; }
-
-/* ==========================================================================
-   RAW DATA TABLE - Bug fixes:
-   ========================================================================== */
 
 /* 1. All standard cells: Shrink to fit, No wrapping */
 .bp-raw-table th,
@@ -459,13 +476,8 @@ section {
     white-space: nowrap;
     width: 1%;
     padding: 8px 10px;
-    text-align: center;
-}
-
-/* 2. Exceptions: Left align labels and dates */
-.bp-raw-table .date-cell,
-.bp-raw-table .category-cell {
     text-align: left;
+    font-size: 0.8rem;
 }
 
 /* 3. The "Greedy" Column: Comments takes all leftover space */
@@ -515,7 +527,7 @@ section {
         position: sticky;
         top: 0;
         z-index: 5003;
-        background-color: #212830; /* Your dark theme color */
+        background-color: var(--band-colour-dark);
         padding: 15px 0;
         display: flex;
         justify-content: center;
@@ -524,9 +536,8 @@ section {
 
     /* Ensure the title behaves as a normal scrolling block */
     .header-title {
-        border-bottom: 1px solid #d32f2f; /* The red line from your mockup */
         display: block;
-        background-color: #212830;
+        background-color: var(--band-colour-dark);
         width: 100%;
         text-align: center;
         padding: 3px 0;

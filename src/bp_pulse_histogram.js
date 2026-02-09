@@ -7,15 +7,13 @@
    - Percentage labels on bars
    ============================================================================ */
 
-import { PULSE_LEVELS, destroyChart, getAlphaColor } from '../utils/bp_utils.js';
+import { PULSE_LEVELS, destroyChart, getAlphaColor, getCssStyles } from '../utils/bp_utils.js';
 
 let pulseHistogramChartInstance = null;
+const cssStyle = getCssStyles("light", "chart");
 
 /**
  * Builds histogram bins from BPM data
- * @param {Array} bpData - BP readings
- * @param {number} bucketSize - Bin width
- * @returns {Array} Histogram bins
  */
 function buildPulseHistogram(bpData, bucketSize = 5) {
     const values = bpData
@@ -37,9 +35,7 @@ function buildPulseHistogram(bpData, bucketSize = 5) {
 
     values.forEach(v => {
         const idx = Math.floor((v - minVal) / bucketSize);
-        if (bins[idx]) {
-            bins[idx].count++;
-        }
+        if (bins[idx]) bins[idx].count++;
     });
 
     return bins;
@@ -78,7 +74,6 @@ function pulseHistogramLabelsPlugin(bins, total) {
 
 /**
  * Creates/updates the pulse histogram
- * @param {Array} filteredData - Filtered BP data
  */
 export function createPulseHistogramChart(filteredData) {
     const canvas = document.getElementById('pulseHistogram');
@@ -87,10 +82,8 @@ export function createPulseHistogramChart(filteredData) {
         return;
     }
 
-    // Destroy existing instance
     pulseHistogramChartInstance = destroyChart(pulseHistogramChartInstance);
 
-    // Handle empty data
     if (!filteredData?.length) {
         console.warn('[PULSE HISTOGRAM] No data available');
         return;
@@ -106,7 +99,6 @@ export function createPulseHistogramChart(filteredData) {
 
     const total = filteredData.length;
 
-    // Calculate zone boundaries (bin indices where thresholds fall)
     const split60Idx = bins.findIndex(b => b.start >= 60);
     const indexAt60 = (split60Idx === -1) ? bins.length - 0.5 : split60Idx - 0.5;
 
@@ -137,7 +129,17 @@ export function createPulseHistogramChart(filteredData) {
                     ticks: { display: false },
                     grid: { color: 'rgba(0,0,0,0.08)' }
                 },
-                x: { grid: { display: false } }
+                x: {
+                    grid: { display: false },
+                    ticks: {
+                        font: {
+                            weight: cssStyle.weight,
+                            size: cssStyle.size,
+                            family: cssStyle.family
+                        },
+                        color: cssStyle.color
+                    }
+                }
             },
             plugins: {
                 legend: { display: false },
