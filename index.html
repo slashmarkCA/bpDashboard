@@ -14,14 +14,22 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
     
     <!-- for my imported archivo font - preconnect because I'm seeing HTTP2 transport failures -->
+    <!-- TODO: look into bringing in some different fonts at fonts.google.com. -->
+    <!-- TODO: What is css class BEM notation?  It's the __ he used -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!-- look into bringing in some different fonts at fonts.google.com. -->
-    <!-- What is BEM notation?  It's the __ he used -->
+    
+    <noscript>
+    <div class="noscript-warning">
+        This dashboard requires JavaScript to function properly.
+        Please enable JavaScript and reload the page.
+    </div>
+    </noscript>
+
     <header class="header">
         <div class="header__content">
             <nav class="nav-container">
@@ -39,7 +47,7 @@
         </div>
     </header>
 
-    <section class="summary-band">
+    <section id="summary-band">
         <div class="container">
             <div id="5colTopSummary">
                 <div class="five-col">
@@ -104,33 +112,18 @@
                     </div>
 
                     <div class="nobgCard">
-    <!--                <h3>
-                            <span class="info-icon" onclick="openDocDrawer('readingCategorySummary')">ℹ️</span>
-                            Reading Categories Summary
-                        </h3> -->
                         <div id="readingCategoriesSummaryCard"></div>
                     </div>
 
                     <div class="nobgCard">
-    <!--                <h3>
-                            <span class="info-icon" onclick="openDocDrawer('normalNotNormalDonut')">ℹ️</span>
-                            Normal Vs Risky
-                        </h3>-->
-                        <div class="donut-wrapper">
+                        <div>
                             <canvas id="normalDonutChart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <noscript>
-    <div class="noscript-warning">
-        This dashboard requires JavaScript to function properly.
-        Please enable JavaScript and reload the page.
-    </div>
-    </noscript>
+    </section>    
 
     <main class="container">
         <section id="ReadingCategories">
@@ -139,17 +132,17 @@
                     <h3 class="info-icon" onclick="openDocDrawer('readingCategoriesLineChart')">
                         ℹ️ Reading Categories - Individual Readings Over Time
                     </h3>
-                    <div style="position: relative; width: 100%; height: 350px;">
+                    <div>
                         <canvas id="categoryChart"></canvas>
                     </div>
                 </div>
 
-               <div class="card" style="overflow: visible;">
+               <div class="card">
                    <h3 class="info-icon" onclick="openDocDrawer('readingCategoriesScatterDistribution')">
                         ℹ️ Reading Categories - Distribution Pattern
                     </h3>
-                   <div style="position: relative;">
-                       <canvas id="bpScatterChart" style="aspect-ratio: 4 / 4.5;"></canvas>
+                   <div>
+                       <canvas id="bpScatterChart"></canvas>
                    </div>
                </div>
             </div>
@@ -161,7 +154,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('BPMLineChart')">
                         ℹ️ Pulse (Beats per Minute)
                     </h3>
-                    <div style="position: relative; aspect-ratio: 16 / 6;">
+                    <div>
                         <canvas id="pulseLineChart"></canvas>
                     </div>
                 </div>
@@ -170,7 +163,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('bpmHistogram')">
                         ℹ️ Pulse Distribution (Histogram)
                     </h3>
-                    <div style="position: relative; aspect-ratio: 4/3;">
+                    <div>
                         <canvas id="pulseHistogram"></canvas>
                     </div>
                 </div>
@@ -183,7 +176,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('ppLineChart')">
                         ℹ️ Pulse Pressure
                     </h3>
-                    <div style="position: relative; width: 100%; aspect-ratio: 16 / 6;">
+                    <div>
                         <canvas id="pulsePressureLineChart"></canvas>
                     </div>
                 </div>
@@ -191,7 +184,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('pulsePressureHistogram')">
                         ℹ️ Pulse Pressure Distribution (Histogram)
                     </h3>
-                    <div style="position: relative; width: 100%; aspect-ratio: 4/3;">
+                    <div>
                         <canvas id="pulsePressureHistogram"></canvas>
                     </div>
                 </div>
@@ -204,7 +197,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('sysAndDiaLineChart')">
                         ℹ️ Systolic and Diastolic Raw Readings
                     </h3>
-                    <div style="aspect-ratio: 16 / 6; position: relative;">
+                    <div>
                         <canvas id="sysAndDiaChart"></canvas>
                     </div>
                 </div>
@@ -212,7 +205,7 @@
                 <div class="card">
                     <h3 class="info-icon" onclick="openDocDrawer('sysAndDiaBoxAndWhisker')">
                         ℹ️ Sys & Dia Volatility (Box & Whisker)</h3>
-                    <div style="width:100%; aspect-ratio:4/3;">
+                    <div>
                         <canvas id="boxWhiskerChart"></canvas>
                     </div>
                 </div>
@@ -223,7 +216,7 @@
             <div class="card">
                 <h3 class="info-icon" onclick="openDocDrawer('7DayMAP')">
                     ℹ️ 7 Day Rolling Average - Mean Arterial Pressure</h3>
-                <div style="position: relative; width: 100%; aspect-ratio: 16 / 4;">
+                <div>
                     <canvas id="map7DayChart"></canvas>
                 </div>
             </div>
@@ -253,7 +246,7 @@
                         </div>
                     </div>
                 </div>
-                <div style="height: 400px; position: relative;">
+                <div>
                     <canvas id="combinedRollingChart"></canvas>
                 </div>
             </div>
