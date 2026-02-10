@@ -3352,5 +3352,18 @@
     "gPulsePressure": 42,
     "FormComments": "I think I know why BP is so high today - I'm undoing garbage AI slop from my application code.",
     "PulsePressureCategory": "Normal"
+  },
+  {
+    "ReadingID": 259,
+    "Date": "2026-02-09 11:35:53 PM",
+    "Sys": 131,
+    "Dia": 87,
+    "BPM": 76,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 44,
+    "FormComments": "",
+    "PulsePressureCategory": "Normal"
   }
 ]
