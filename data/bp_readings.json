@@ -3365,5 +3365,18 @@
     "gPulsePressure": 44,
     "FormComments": "",
     "PulsePressureCategory": "Normal"
+  },
+  {
+    "ReadingID": 260,
+    "Date": "2026-02-10 06:11:27 PM",
+    "Sys": 130,
+    "Dia": 91,
+    "BPM": 76,
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 39,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed"
   }
 ]
