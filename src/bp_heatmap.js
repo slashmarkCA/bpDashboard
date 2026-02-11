@@ -1,16 +1,29 @@
 /* ============================================================================
-   bp_heatmap.js - FIXED VERSION
+   bp_heatmap.js - COMPLETE FIXED VERSION
    ---------------------------------------------------------------------------
    Blood Pressure Calendar Heatmap (GitHub-style)
-   - Fixed height management to prevent blowout
-   - Proper canvas sizing
+   - Shows daily BP readings colored by category
    - Responsive touch/mobile support
+   - 10.5 month rolling window
+   - Fixed height management for desktop and mobile
    ============================================================================ */
 
-import { BP_LEVELS, destroyChart } from '../utils/bp_utils.js';
+import { BP_LEVELS, destroyChart, getCssStyles } from '../utils/bp_utils.js';
 
 let heatmapChart = null;
+const cssStyle = getCssStyles("dark", "chart");
 
+/**
+ * Helper function to detect mobile
+ */
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+/**
+ * Creates the BP heatmap visualization
+ * @param {Array} filteredData - Filtered BP readings
+ */
 export function createHeatmap(filteredData) {
     const canvas = document.getElementById('bpHeatmap');
     if (!canvas) {
@@ -18,8 +31,10 @@ export function createHeatmap(filteredData) {
         return;
     }
 
+    // Destroy existing chart
     heatmapChart = destroyChart(heatmapChart);
 
+    // Validate data context exists
     if (!filteredData) {
         console.error('[HEATMAP] Data context missing');
         return;
@@ -27,6 +42,7 @@ export function createHeatmap(filteredData) {
 
     const allData = window.NORMALIZED_BP_DATA || [];
     
+    // Determine date range (52 weeks from newest reading)
     const newestDateObj = allData.length > 0 
         ? new Date(Math.max(...allData.map(d => d.DateObj)))
         : new Date();
@@ -34,7 +50,7 @@ export function createHeatmap(filteredData) {
 
     const filteredDateStrings = new Set(filteredData.map(r => r.Date.split(' ')[0]));
 
-    // Aggregate daily data
+    // Aggregate daily data (max BP score per day)
     const dailyData = {};
     allData.forEach(entry => {
         const dateStr = entry.Date.split(' ')[0];
@@ -48,16 +64,18 @@ export function createHeatmap(filteredData) {
         }
     });
 
-    // Build weeks data
+    // Build 10.5-month dataset (46 weeks)
     const weeks = [];
     const startDate = new Date(newestDateObj);
-    startDate.setDate(startDate.getDate() - 322);
+    startDate.setDate(startDate.getDate() - 322); // ~46 weeks
     
+    // Align to Sunday (start of week)
     const dayOfWeek = startDate.getDay();
     if (dayOfWeek !== 0) {
         startDate.setDate(startDate.getDate() - dayOfWeek);
     }
     
+    // Calculate how many weeks we need
     const totalDays = Math.ceil((newestDateObj - startDate) / (24 * 60 * 60 * 1000)) + 1;
     const maxWeeks = Math.ceil(totalDays / 7);
      
@@ -70,6 +88,8 @@ export function createHeatmap(filteredData) {
             
             const dateStr = d.toISOString().split('T')[0];
             const entry = dailyData[dateStr];
+            
+            // Don't render future dates
             const isFuture = d > newestDateObj;
             
             weekData.push({
@@ -83,48 +103,68 @@ export function createHeatmap(filteredData) {
         }
         weeks.push(weekData);
         
+        // Stop if we've passed the newest date
         if (weekData[6].date >= newestDateObj) {
             break;
         }
     }
     
+    // Reverse so newest dates appear on the LEFT (better for mobile)
     weeks.reverse();
     
     drawHeatmap(canvas, weeks, newestDateObj);
+    
+    // Add resize handler for responsiveness
+    let resizeTimeout;
+    const resizeHandler = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            drawHeatmap(canvas, weeks, newestDateObj);
+        }, 250);
+    };
+    
+    // Remove old listener if it exists
+    window.removeEventListener('resize', resizeHandler);
+    window.addEventListener('resize', resizeHandler);
+    
     console.log('[Trace] bp_heatmap.js rendered successfully');
 }
 
 /**
- * FIXED: Draws the heatmap with proper height management
+ * Draws the heatmap on canvas
  */
 function drawHeatmap(canvas, weeks, newestDate) {
     const ctx = canvas.getContext('2d');
     
-    // FIX: Get parent dimensions - use scroll-area as the constraint
-    const scrollArea = canvas.parentElement;
-    const wrapper = scrollArea.parentElement;
+    // Get parent dimensions - FIXED for mobile
+    const scrollArea = canvas.parentElement; // .heatmap-scroll-area
+    const wrapper = scrollArea.parentElement; // .heatmap-wrapper
     
-    // FIX: Use getComputedStyle to get actual rendered dimensions
-    const scrollStyle = window.getComputedStyle(scrollArea);
-    const wrapperStyle = window.getComputedStyle(wrapper);
+    let containerHeight, containerWidth;
     
-    // FIX: Use clientHeight (excludes scrollbars) instead of offsetHeight
-    const containerHeight = scrollArea.clientHeight;
-    const containerWidth = scrollArea.clientWidth;
+    if (isMobile()) {
+        // Mobile: Use wrapper's explicit height from CSS
+        containerHeight = wrapper.clientHeight || 180;
+        containerWidth = scrollArea.scrollWidth || 700;
+    } else {
+        // Desktop: Use scrollArea dimensions
+        containerHeight = scrollArea.clientHeight || 155;
+        containerWidth = scrollArea.clientWidth || 600;
+    }
     
-    // Configuration
-    const leftPadding = 30;
-    const topPadding = 20;
+    // Configuration - adjust padding for mobile
+    const leftPadding = isMobile() ? 25 : 30;
+    const topPadding = isMobile() ? 15 : 20;
     const bottomPadding = 5;
     const rightPadding = 5;
     
-    // FIX: Set canvas size EXACTLY to container
-    // Use device pixel ratio for sharp rendering on high-DPI displays
+    // Device pixel ratio for sharp rendering
     const dpr = window.devicePixelRatio || 1;
     
-    // Set display size (CSS pixels)
+    // Set canvas size - display size (CSS pixels)
     canvas.style.width = containerWidth + 'px';
     canvas.style.height = containerHeight + 'px';
+    canvas.style.display = 'block';
     
     // Set actual size in memory (scaled for DPI)
     canvas.width = containerWidth * dpr;
@@ -133,28 +173,41 @@ function drawHeatmap(canvas, weeks, newestDate) {
     // Scale context to account for DPI
     ctx.scale(dpr, dpr);
     
-    // Calculate available space (using CSS pixels)
+    // Calculate available space
     const availableWidth = containerWidth - leftPadding - rightPadding;
     const availableHeight = containerHeight - topPadding - bottomPadding;
     
     // Calculate cell size
-    const cellGap = 2;
+    const cellGap = isMobile() ? 1 : 2;
     const cellWidth = Math.floor((availableWidth - (weeks.length * cellGap)) / weeks.length);
     const cellHeight = Math.floor((availableHeight - (7 * cellGap)) / 7);
     const cellSize = Math.min(cellWidth, cellHeight);
+    
+    // Debug log for mobile
+    if (isMobile()) {
+        console.log('[HEATMAP] Mobile dimensions:', {
+            containerHeight,
+            containerWidth,
+            cellSize,
+            weeks: weeks.length
+        });
+    }
         
     ctx.clearRect(0, 0, containerWidth, containerHeight);
     
-    // Draw components
+    // Draw month labels
     drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding);
+    
+    // Draw day labels
     drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding);
     
-    // Draw cells
+    // Draw heatmap cells
     weeks.forEach((week, weekIdx) => {
         week.forEach((day, dayIdx) => {
             const x = leftPadding + (weekIdx * (cellSize + cellGap));
             const y = topPadding + (dayIdx * (cellSize + cellGap));
             
+            // Determine cell color
             let color = '#282d35';
             let opacity = 1;
             
@@ -174,12 +227,16 @@ function drawHeatmap(canvas, weeks, newestDate) {
         });
     });
     
+    // Setup hover interaction
     setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, topPadding);
 }
 
+/**
+ * Draws month labels at the top
+ */
 function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding) {
-    ctx.font = '9px Arial';
-    ctx.fillStyle = '#666';
+    ctx.font = `${cssStyle.weight} ${cssStyle.size} ${cssStyle.family}`;
+    ctx.fillStyle = `${cssStyle.color}`;
     ctx.textAlign = 'left';
     
     let lastMonth = -1;
@@ -197,21 +254,33 @@ function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding)
     });
 }
 
+/**
+ * Draws day labels on the left
+ */
 function drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding) {
-    ctx.font = '9px Arial';
-    ctx.fillStyle = '#666';
+    ctx.font = `${cssStyle.weight} ${cssStyle.size} ${cssStyle.family}`;
+    ctx.fillStyle = `${cssStyle.color}`;
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
     
     const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     
+    // Only show Mon, Wed, Fri
     [1, 3, 5].forEach(dayIdx => {
         const y = topPadding + (dayIdx * (cellSize + cellGap)) + (cellSize / 2);
         ctx.fillText(dayLabels[dayIdx], leftPadding - 5, y);
     });
 }
 
+/**
+ * Sets up hover and touch interactions
+ */
 function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, topPadding) {
+    // Disable tooltips on mobile - allows smooth horizontal scrolling
+    if (window.innerWidth <= 768) {
+        return;
+    }
+    
     let tooltipEl = document.getElementById('chartjs-tooltip');
     if (!tooltipEl) {
         tooltipEl = document.createElement('div');
@@ -257,6 +326,7 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
         return false;
     };
     
+    // Mouse events
     canvas.addEventListener('mousemove', (e) => {
         handleInteraction(e.clientX, e.clientY);
     });
@@ -266,6 +336,7 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
         canvas.style.cursor = 'default';
     });
     
+    // Touch events
     canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
@@ -283,6 +354,9 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
     });
 }
 
+/**
+ * Shows tooltip with reading details
+ */
 function showTooltip(tooltipEl, day, clientX, clientY) {
     const dateHead = day.date.toLocaleDateString(undefined, { 
         month: 'short', 
@@ -307,6 +381,7 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
     tooltipEl.style.opacity = '1';
     tooltipEl.style.position = 'fixed';
     
+    // Position tooltip
     const tooltipWidth = tooltipEl.offsetWidth || 200;
     const tooltipHeight = tooltipEl.offsetHeight || 100;
     const viewportWidth = window.innerWidth;
@@ -330,6 +405,9 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
     tooltipEl.style.top = top + 'px';
 }
 
+/**
+ * Hides the tooltip
+ */
 function hideTooltip(tooltipEl) {
     tooltipEl.style.opacity = '0';
 }

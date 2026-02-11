@@ -174,14 +174,22 @@ section {
 
 .two-col, .three-col, .five-col{
     display: grid;
-    gap: 10px;
-    align-items: start; /* Prevents one tall card from stretching others */
+    gap: 20px;
+    align-items: stretch; /* CHANGED: Force equal heights in grid */
 } 
 
 .one-col {} /* TODO: build this and put the 1 coloumn ones in it - remember rawTable */
-.two-col { grid-template-columns: 2fr 1fr; min-heighft:350px; max-height:450px}
-.three-col { grid-template-columns: .95fr .4fr .15fr; padding-top: 10px; height: 175px; align-items: stretch;} /* align-items: force children to fill.  TODO: change to 175 height. */ 
-.five-col { grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr; }
+.two-col { 
+    grid-template-columns: 2fr 1fr; 
+    /* Removed broken min-heighft and max-height - using section-specific heights instead */
+}
+.three-col { 
+    grid-template-columns: .95fr .4fr .15fr; 
+    padding-top: 10px; 
+}
+.five-col { 
+    grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr; 
+}
 
 .card {
     background: white;
@@ -213,35 +221,34 @@ canvas{
 }
 
 /* ==========================================================================
-   COMPONENT SPECIFIC STYLES
+   DESKTOP CHART HEIGHTS - Section-based approach
    ========================================================================== */
-/* TODO: Work out how to get these to be responsive when it's companion goes berzerk */
-/* TODO: Now build the min-height max-heights on the containers! THEN do @medias */
 
-/* Get the chart.js charts sized inside their containers */
+/* Reading Categories section - taller for detail */
+#ReadingCategories .two-col {
+    min-height: 400px;
+}
 
-/*
-#categoryChart { width: 100%; height: 350px; } 
-#bpScatterChart {aspect-ratio: 4 / 4.5; }
-#pulseLineChart { aspect-ratio: 16 / 6; }
-#pulseHistogram { aspect-ratio: 4/3; }
-#pulsePressureLineChart { width: 100%; aspect-ratio: 16 / 6; }
-#pulsePressureHistogram { width: 100%; aspect-ratio: 4/3; }
-#sysAndDiaChart { aspect-ratio: 16 / 6 }
-#boxWhiskerChart { width:100%; aspect-ratio:4/3; }
-#map7DayChart { width: 100%; aspect-ratio: 16 / 4; }
-#combinedRollingChart { height: 400px; }
+/* Pulse, Pulse Pressure, Sys/Dia sections */
+#Pulse .two-col,
+#PulsePressure .two-col,
+#SysDiaVolatility .two-col {
+    min-height: 350px;
+}
+
+/* 7-Day Rolling section - needs more height */
+#sevenDayRolling .two-col {
+    min-height: 400px;
+}
+
+/* Individual canvas elements - ensure they fill their containers */
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
 #bpRawDataTable {}
-
-
-#normalDonutChart {max-height:150px}
-
-*/
-
-#readingCategoriesSummaryCard { height: 100%; } This stretches the rows to consume the hight of the container
-
- 
-
+#readingCategoriesSummaryCard {  } 
 
 .measureName {
     font-size: 36px;
@@ -291,7 +298,7 @@ canvas{
 }
 
 .badge-item {
-    flex: 1;             /* Force 50/50 split of the parent width */
+    flex: 1; /* Force 50/50 split of the parent width */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -299,7 +306,7 @@ canvas{
     border-radius: 8px;
     padding: 5px;
     color: #638eba;
-    min-width: 0;        /* Critical for flex-shrink */
+    min-width: 0; /* Critical for flex-shrink */
 }
 
 /* Gradient backgrounds */
@@ -535,24 +542,29 @@ canvas{
         padding: 3px 0;
     }
 
-    /* Affect the height of the pulse line graph on mobile only without affecting it's .two-col histogram neighbor */
-    /* Target: #Pluse section → .two-col → first .card → the div containing canvas */
-    :is(#Pluse, #PulsePressure) .card:first-child > div[style*="aspect-ratio"] {
-        height: 250px !important;
-        aspect-ratio: auto !important;
-        /* TODO: Do I need this? */
-    }
-
-    /* squish Reading Categories over Time */
-    :is(#ReadingCategories) .card:first-child > div[style*="height"] {
-        height: 200px !important;
-        aspect-ratio: auto !important;
-    }
-
     /* Force all grid layouts to single column for a mobile phone */
     .two-col, .two-col.unequal, .three-col, .four-col, .five-col {
         grid-template-columns: 1fr !important;
+        min-height: unset !important; /* Remove desktop height constraints */
     }
+    
+    /* Mobile: Cards get auto height */
+    .card {
+        height: auto !important;
+        min-height: 200px;
+    }
+    
+    /* Mobile: Individual chart heights by canvas ID */
+    #categoryChart { height: 250px !important; }
+    #bpScatterChart { height: 300px !important; }
+    #pulseLineChart { height: 250px !important; }
+    #pulseHistogram { height: 280px !important; }
+    #pulsePressureLineChart { height: 250px !important; }
+    #pulsePressureHistogram { height: 280px !important; }
+    #sysAndDiaChart { height: 250px !important; }
+    #boxWhiskerChart { height: 300px !important; }
+    #map7DayChart { height: 300px !important; }
+    #combinedRollingChart { height: 350px !important; }
 
     /* Tighten up summary cards for small screens */
     #readingCategoriesSummaryCard {
@@ -619,11 +631,60 @@ canvas{
         max-width: 100%;
     }
 
+    .nobgCard:has(#readingCategoriesSummaryCard) {
+        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
+    }
+
+    #readingCategoriesSummaryCard {
+        height: 100%; /* Critical! */
+    }
+
     /* Hide specific columns in the raw data table on mobile to keep things readable */
     .hide-mobile {
         display: none !important;
     }
 }
+
+
+/* Mobile: Each card gets explicit height */
+.nobgCard:has(.heatmap-wrapper) {
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+}
+
+.nobgCard:has(#normalDonutChart) {
+    height: 130px;
+    min-height: 130px;
+    max-height: 130px;
+}
+
+.nobgCard:has(#readingCategoriesSummaryCard) {
+    height: 110px;
+    min-height: 110px;
+    max-height: 110px;
+}
+
+/* Desktop: .three-col and Cards */
+@media (min-width: 769px) {
+    .three-col { 
+        grid-template-columns: .95fr .4fr .15fr;
+        height: 155px;
+        align-items: stretch;
+    }
+
+    .nobgCard:has(.heatmap-wrapper),
+    .nobgCard:has(#normalDonutChart),
+    .nobgCard:has(#readingCategoriesSummaryCard) {
+        height: 100%; /* Use grid height */
+        min-height: unset;
+        max-height: unset;
+    }
+}
+
+
 
 /* ==========================================================================
    DOCUMENTATION SLIDING DRAWER
