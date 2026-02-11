@@ -183,10 +183,12 @@ section {
     grid-template-columns: 2fr 1fr; 
     /* Removed broken min-heighft and max-height - using section-specific heights instead */
 }
+
 .three-col { 
     grid-template-columns: .95fr .4fr .15fr; 
     padding-top: 10px; 
 }
+
 .five-col { 
     grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr; 
 }
@@ -202,8 +204,8 @@ section {
     outline: 2px solid blue;
 }
 
-/* Direct children of card should fill available space */
-.card > div {
+/* Direct children of card should fill available space (but NOT rolling-controls-container) */
+.card > div:not(.rolling-controls-container) {
     flex: 1; /* Grow to fill card height */
     min-height: 0; /* Allow shrinking below content */
     display: flex; /* Make this a flex container too */
@@ -446,20 +448,6 @@ canvas {
     overflow-y:hidden;
 }
 
-#chartjs-tooltip {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.95);
-    color: white;
-    border-radius: 4px;
-    padding: 10px;
-    pointer-events: none;
-    z-index: 1000;
-    border: 1px solid #444;
-    font-family: sans-serif;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    transition: opacity 0.2s ease;
-}
-
 
 /* ==========================================================================
    RAW DATA TABLE STYLES
@@ -573,15 +561,23 @@ canvas {
         min-height: unset !important; /* Remove desktop height constraints */
     }
     
-    /* Mobile: Cards get auto height */
+    /* Mobile: Cards need to contain their content properly */
     .card {
         height: auto !important;
-        min-height: 200px;
+        min-height: fit-content !important; /* Fit content, don't collapse */
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* Mobile: Canvas wrapper divs should size to their canvas */
+    .card > div:not(.rolling-controls-container) {
+        flex: 0 0 auto !important; /* Don't grow or shrink on mobile */
+        min-height: 0;
     }
     
     /* Mobile: Individual chart heights by canvas ID */
-    #categoryChart { height: 3000px !important; }
-    #bpScatterChart { height: 400px !important; }
+    #categoryChart { height: 250px !important; }
+    #bpScatterChart { height: 300px !important; }
     #pulseLineChart { height: 250px !important; }
     #pulseHistogram { height: 280px !important; }
     #pulsePressureLineChart { height: 250px !important; }
@@ -605,11 +601,12 @@ canvas {
     /* MOBILE: 7 day rolling SD radio buttons - Stack everything vertically */
     /* 1. Force the heading and the control box to stack vertically */
     .rolling-controls-container {
-        display: flex;
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
         align-items: center;
-        gap: 10px;
+        gap: 5px; /* Reduced from 10px for tighter spacing */
         text-align: center;
+        flex: 0 0 auto !important; /* Don't grow, don't shrink, auto size */
     }
 
     /* 2. Remove any side-margins on the title so it centers perfectly */
@@ -706,6 +703,10 @@ canvas {
         height: 100%; /* Use grid height */
         min-height: unset;
         max-height: unset;
+    }
+
+    .nobgCard:has(#normalDonutChart) {
+        width: 180px
     }
 }
 

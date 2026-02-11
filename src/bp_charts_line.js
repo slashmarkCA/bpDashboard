@@ -107,9 +107,14 @@ export function createSysAndDiaChart(bpData) {
                     display: true,
                     labels: {
                         // Hide trendlines from legend
-                        filter: item => item.text
+                        filter: item => item.text,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        boxWidth: 4,
+                        boxHeight: 4,
+                        padding: 15
                     }
-                },
+                },                
                 tooltip: {
                     callbacks: {
                         title: () => '',

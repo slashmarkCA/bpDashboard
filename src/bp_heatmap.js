@@ -287,10 +287,9 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
         tooltipEl.id = 'chartjs-tooltip';
         tooltipEl.style.cssText = `
             position: fixed;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid #ccc;
+            background: rgba(0, 0, 0, 0.95);
             border-radius: 4px;
-            color: #333;
+            color: #ffffff;
             opacity: 0;
             pointer-events: none;
             padding: 8px;
@@ -364,15 +363,15 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
         year: 'numeric' 
     });
     
-    let html = `<div style="font-weight:bold; color:#666; margin-bottom:5px; border-bottom:1px solid #eee;">${dateHead}</div>`;
+    let html = `<div style="color:#ffffff; margin-bottom:5px;">${dateHead}</div>`;
     
     day.readings.forEach(r => {
         const timeVal = r.Time || (r.Date ? r.Date.split(' ')[1] : '--:--');
         const pulseVal = r.Pulse || r.BPM || '--';
         
         html += `
-            <div style="padding:4px 0; font-size:11px; line-height:1.4;">
-                <span style="color:${r.bpCat.color}">●</span> <b>${r.bpCat.label}</b><br>
+            <div style="padding:4px 0; font-size:11px; line-height:1.4; font-weight: normal;">
+                <span style="color:${r.bpCat.color}">●</span> ${r.bpCat.label}<br>
                 ${r.Sys}/${r.Dia} <span style="color:#888;">(${pulseVal} bpm)</span> @ ${timeVal}
             </div>`;
     });

@@ -177,7 +177,15 @@ export function createBoxWhiskerChart(filteredData) {
                 legend: {
                     display: true,
                     position: 'top',
-                    labels: { boxWidth: 10, font: { size: 10 } }
+                    labels: { 
+                        boxWidth: 10, 
+                        font: { size: 10 },
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        boxWidth: 4,
+                        boxHeight: 4,
+                        padding: 15 
+                    }
                 },
                 tooltip: {
                     enabled: true,

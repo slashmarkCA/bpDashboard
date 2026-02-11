@@ -165,6 +165,7 @@ export function createCategoryChart(bpData) {
                                 `Category: ${ctx.raw.label}`,
                                 `Sys/Dia: ${r.Sys}/${r.Dia}`,
                                 `Date: ${formatTooltipDate(r.DateObj)}`,
+                                `Comments: ${r.FormComments || ''}`,
                                 `ID: ${r.ReadingID}`
                             ];
                         }

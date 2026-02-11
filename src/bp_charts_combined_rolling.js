@@ -109,8 +109,9 @@ export function createCombinedRollingChart(filteredData) {
                     label: '7-Day Sys Avg',
                     data: stats.map(s => s.sysAvg),
                     borderColor: '#d32f2f',
+                    backgroundColor: '#d32f2f',
                     borderWidth: 2,
-                    pointRadius: 1.5,
+                    pointRadius: 2,
                     tension: 0.3,
                     fill: false,
                     zIndex: 10
@@ -136,8 +137,9 @@ export function createCombinedRollingChart(filteredData) {
                     label: '7-Day Dia Avg',
                     data: stats.map(s => s.diaAvg),
                     borderColor: '#1976d2',
+                    backgroundColor: '#1976d2',
                     borderWidth: 2,
-                    pointRadius: 1.5,
+                    pointRadius: 2,
                     tension: 0.3,
                     fill: false,
                     zIndex: 10
@@ -166,7 +168,14 @@ export function createCombinedRollingChart(filteredData) {
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    labels: { filter: item => !item.text.includes('SD') }
+                    labels: { 
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        boxWidth: 4,
+                        boxHeight: 4,
+                        padding: 15,
+                        filter: item => !item.text.includes('SD') 
+                    }
                 },
                 tooltip: {
                     callbacks: {
