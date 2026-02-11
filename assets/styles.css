@@ -196,8 +196,25 @@ section {
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    height: 100%;  
+    height: 100%;
+    display: flex; /* Make card a flex container */
+    flex-direction: column; /* Stack children vertically */
     outline: 2px solid blue;
+}
+
+/* Direct children of card should fill available space */
+.card > div {
+    flex: 1; /* Grow to fill card height */
+    min-height: 0; /* Allow shrinking below content */
+    display: flex; /* Make this a flex container too */
+    flex-direction: column; /* For nested content */
+}
+
+/* Canvas elements fill their container */
+.card canvas {
+    flex: 1;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .nobgCard {
@@ -216,35 +233,43 @@ section {
     overflow: hidden;
 }
 
-canvas{
+canvas {
     outline: 2px solid red;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 /* ==========================================================================
    DESKTOP CHART HEIGHTS - Section-based approach
    ========================================================================== */
 
-/* Reading Categories section - taller for detail */
+/* Reading Categories section */
 #ReadingCategories .two-col {
-    min-height: 400px;
+    height: 375px;
 }
 
-/* Pulse, Pulse Pressure, Sys/Dia sections */
-#Pulse .two-col,
-#PulsePressure .two-col,
-#SysDiaVolatility .two-col {
-    min-height: 350px;
+#Pulse .two-col {
+    height: 350px;
 }
 
-/* 7-Day Rolling section - needs more height */
-#sevenDayRolling .two-col {
-    min-height: 400px;
+/* Pulse Pressure section */
+#PulsePressure .two-col {
+    height: 350px;
 }
 
-/* Individual canvas elements - ensure they fill their containers */
-canvas {
-    width: 100% !important;
-    height: 100% !important;
+/* Sys and Dia section */
+#SysAndDia .two-col {
+    height: 350px;
+}
+
+/* 7-Day Rolling Map section */
+#map7DayLineChart {
+    height: 350px;
+}
+
+/* 7-Day Rolling Map section */
+#section-combined-rolling {
+    height: 375px;
 }
 
 #bpRawDataTable {}
@@ -555,8 +580,8 @@ canvas {
     }
     
     /* Mobile: Individual chart heights by canvas ID */
-    #categoryChart { height: 250px !important; }
-    #bpScatterChart { height: 300px !important; }
+    #categoryChart { height: 3000px !important; }
+    #bpScatterChart { height: 400px !important; }
     #pulseLineChart { height: 250px !important; }
     #pulseHistogram { height: 280px !important; }
     #pulsePressureLineChart { height: 250px !important; }
