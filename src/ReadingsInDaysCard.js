@@ -5,6 +5,8 @@
    - Shows total readings count
    - Shows distinct calendar days with readings
    - Pure DOM manipulation (no Chart.js)
+   - changed from .toISOString() to locale date to address UTC time defect for 
+     └ reradings after -5 EST readings being grouped into the day after.
    ============================================================================ */
 
 /**
@@ -33,9 +35,10 @@ export function createReadingsInDays(filteredData) {
     readingsEl.innerText = filteredData.length;
 
     // Update Total Days (distinct calendar days)
+    // replaced return dateObj.toISOString().split('T')[0]; for ISO/UTC defect on line 41.
     const distinctDays = new Set(filteredData.map(d => {
         const dateObj = d.DateObj || new Date(d.Date);
-        return dateObj.toISOString().split('T')[0];
+        return `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}`;
     })).size;
 
     daysEl.innerText = distinctDays;

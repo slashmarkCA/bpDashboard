@@ -85,8 +85,7 @@ export function createHeatmap(filteredData) {
             const d = new Date(startDate);
             d.setDate(d.getDate() + (weekIdx * 7) + dayIdx);
             d.setHours(0, 0, 0, 0);
-            
-            const dateStr = d.toISOString().split('T')[0];
+            const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
             const entry = dailyData[dateStr];
             
             // Don't render future dates
