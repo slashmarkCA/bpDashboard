@@ -163,6 +163,7 @@ footer {
 section {
     margin: 10px 0px;
     outline: 1px solid orange;
+    height:auto !important;
 }
 
 /* This selectes the first child of this element and NOT grandchildren, in my case the first Card inside the row. */
@@ -174,11 +175,15 @@ section {
 
 .two-col, .three-col, .five-col{
     display: grid;
-    gap: 20px;
+    gap: 10px;
     align-items: stretch; /* CHANGED: Force equal heights in grid */
 } 
 
-.one-col {} /* TODO: build this and put the 1 coloumn ones in it - remember rawTable */
+.one-col {
+    display: grid;
+    grid-template-columns: 1fr;
+} 
+
 .two-col { 
     grid-template-columns: 2fr 1fr; 
     /* Removed broken min-heighft and max-height - using section-specific heights instead */
@@ -271,11 +276,8 @@ canvas {
 
 /* 7-Day Rolling Map section */
 #section-combined-rolling {
-    height: 375px;
+    height: 175px;
 }
-
-#bpRawDataTable {}
-#readingCategoriesSummaryCard {  } 
 
 .measureName {
     font-size: 36px;
@@ -558,34 +560,41 @@ canvas {
     /* Force all grid layouts to single column for a mobile phone */
     .two-col, .two-col.unequal, .three-col, .four-col, .five-col {
         grid-template-columns: 1fr !important;
-        min-height: unset !important; /* Remove desktop height constraints */
+        min-height: unset !important;
     }
     
-    /* Mobile: Cards need to contain their content properly */
+    /* Mobile: Cards contain content */
     .card {
         height: auto !important;
-        min-height: fit-content !important; /* Fit content, don't collapse */
         display: flex !important;
         flex-direction: column !important;
     }
     
-    /* Mobile: Canvas wrapper divs should size to their canvas */
-    .card > div:not(.rolling-controls-container) {
-        flex: 0 0 auto !important; /* Don't grow or shrink on mobile */
-        min-height: 0;
+    /* Mobile: h3 and wrapper divs don't stretch */
+    .card h3,
+    .card > div[id$="Wrapper"] {
+        flex: 0 0 auto !important;
     }
     
-    /* Mobile: Individual chart heights by canvas ID */
-    #categoryChart { height: 250px !important; }
-    #bpScatterChart { height: 300px !important; }
-    #pulseLineChart { height: 250px !important; }
-    #pulseHistogram { height: 280px !important; }
-    #pulsePressureLineChart { height: 250px !important; }
-    #pulsePressureHistogram { height: 280px !important; }
-    #sysAndDiaChart { height: 250px !important; }
-    #boxWhiskerChart { height: 300px !important; }
-    #map7DayChart { height: 300px !important; }
-    #combinedRollingChart { height: 350px !important; }
+    /* Mobile: Chart wrapper heights */
+    #categoryChartWrapper { height: 850px !important; }
+    #bpScatterChartWrapper { height: 300px !important; }
+    #pulseLineChartWrapper { height: 250px !important; }
+    #pulseHistogramWrapper { height: 280px !important; }
+    #pulsePressureLineChartWrapper { height: 250px !important; }
+    #pulsePressureHistogramWrapper { height: 280px !important; }
+    #sysAndDiaChartWrapper { height: 250px !important; }
+    #boxWhiskerChartWrapper { height: 300px !important; }
+    #map7DayChartWrapper { height: 250px !important; }
+    #combinedRollingChartWrapper { height: 350px !important; }
+    #bpRawDataTable { height: 100% !important; }
+    #bpRawDataTableWrapper { height: 650px !important; overflow-y: auto !important; flex: 0 0 auto !important; }
+    
+    /* Mobile: Canvas fills wrapper */
+    .card canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
 
     /* Tighten up summary cards for small screens */
     #readingCategoriesSummaryCard {

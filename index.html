@@ -132,7 +132,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('readingCategoriesLineChart')">
                         ℹ️ Reading Categories - Individual Readings Over Time
                     </h3>
-                    <div>
+                    <div id="categoryChartWrapper">
                         <canvas id="categoryChart"></canvas>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                    <h3 class="info-icon" onclick="openDocDrawer('readingCategoriesScatterDistribution')">
                         ℹ️ Reading Categories - Distribution Pattern
                     </h3>
-                   <div>
+                   <div id="bpScatterChartWrapper">
                        <canvas id="bpScatterChart"></canvas>
                    </div>
                </div>
@@ -154,7 +154,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('BPMLineChart')">
                         ℹ️ Pulse (Beats per Minute)
                     </h3>
-                    <div>
+                    <div id="pulseLineChartWrapper">
                         <canvas id="pulseLineChart"></canvas>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('bpmHistogram')">
                         ℹ️ Pulse Distribution (Histogram)
                     </h3>
-                    <div>
+                    <div id="pulseHistogramWrapper">
                         <canvas id="pulseHistogram"></canvas>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('ppLineChart')">
                         ℹ️ Pulse Pressure
                     </h3>
-                    <div>
+                    <div id="pulsePressureLineChartWrapper">
                         <canvas id="pulsePressureLineChart"></canvas>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('pulsePressureHistogram')">
                         ℹ️ Pulse Pressure Distribution (Histogram)
                     </h3>
-                    <div>
+                    <div id="pulsePressureHistogramWrapper">
                         <canvas id="pulsePressureHistogram"></canvas>
                     </div>
                 </div>
@@ -197,7 +197,7 @@
                     <h3 class="info-icon" onclick="openDocDrawer('sysAndDiaLineChart')">
                         ℹ️ Systolic and Diastolic Raw Readings
                     </h3>
-                    <div>
+                    <div id="sysAndDiaChartWrapper">
                         <canvas id="sysAndDiaChart"></canvas>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                 <div class="card">
                     <h3 class="info-icon" onclick="openDocDrawer('sysAndDiaBoxAndWhisker')">
                         ℹ️ Sys & Dia Volatility (Box & Whisker)</h3>
-                    <div>
+                    <div id="boxWhiskerChartWrapper">
                         <canvas id="boxWhiskerChart"></canvas>
                     </div>
                 </div>
@@ -213,51 +213,59 @@
         </section>
 
         <section id="map7DayLineChart">
-            <div class="card">
-                <h3 class="info-icon" onclick="openDocDrawer('7DayMAP')">
-                    ℹ️ 7 Day Rolling Average - Mean Arterial Pressure</h3>
-                <div>
-                    <canvas id="map7DayChart"></canvas>
+            <div class="one-col">
+                <div class="card">
+                    <h3 class="info-icon" onclick="openDocDrawer('7DayMAP')">
+                        ℹ️ 7 Day Rolling Average - Mean Arterial Pressure</h3>
+                    <div id="map7DayChartWrapper">
+                        <canvas id="map7DayChart"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="section-combined-rolling">
-            <div class="card">
-                <div class="rolling-controls-container">
-                    <h3 style="margin: 0;" class="info-icon" onclick="openDocDrawer('sysAndDiaRollingAvg')">
-                        ℹ️ 7-Day Rolling Averages (Systolic + Diastolic)
-                    </h3>
-                    <div class="rolling-controls">
-                        <div class="control-label">Standard Deviation Band:</div>
-                        <div class="radio-group">
-                            <label class="control-option">
-                                <input type="radio" name="combinedBandMode" value="systolic" onchange="toggleCombinedStdDevBand('systolic')" />
-                                <span class="sys-text">Sys</span>
-                            </label>
-                            <label class="control-option">
-                                <input type="radio" name="combinedBandMode" value="diastolic" onchange="toggleCombinedStdDevBand('diastolic')" />
-                                <span class="dia-text">Dia</span>
-                            </label>
-                            <label class="control-option">
-                                <input type="radio" name="combinedBandMode" value="none" checked onchange="toggleCombinedStdDevBand('none')" />
-                                <span>No Band</span>
-                            </label>
+            <div class="one-col">
+                <div class="card">
+                    <div class="rolling-controls-container">
+                        <h3 class="info-icon" onclick="openDocDrawer('sysAndDiaRollingAvg')">
+                            ℹ️ 7-Day Rolling Averages (Systolic + Diastolic)
+                        </h3>
+                        <div class="rolling-controls">
+                            <div class="control-label">Standard Deviation Band:</div>
+                            <div class="radio-group">
+                                <label class="control-option">
+                                    <input type="radio" name="combinedBandMode" value="systolic" onchange="toggleCombinedStdDevBand('systolic')" />
+                                    <span class="sys-text">Sys</span>
+                                </label>
+                                <label class="control-option">
+                                    <input type="radio" name="combinedBandMode" value="diastolic" onchange="toggleCombinedStdDevBand('diastolic')" />
+                                    <span class="dia-text">Dia</span>
+                                </label>
+                                <label class="control-option">
+                                    <input type="radio" name="combinedBandMode" value="none" checked onchange="toggleCombinedStdDevBand('none')" />
+                                    <span>No Band</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
+                    <div id="combinedRollingChartWrapper">
+                        <canvas id="combinedRollingChart"></canvas>
+                    </div>
                 </div>
-                <div>
-                    <canvas id="combinedRollingChart"></canvas>
-                </div>
-            </div>
+            </div>    
         </section>
 
         <section id="rawData">
-            <div class="card">
-                <h3 class="info-icon" onclick="openDocDrawer('rawDataGridview')">
-                    ℹ️ Raw Data
-                </h3>
-                    <div id="bpRawDataTable"></div>
+            <div class="one-col">
+                <div class="card">
+                    <h3 class="info-icon" onclick="openDocDrawer('rawDataGridview')">
+                        ℹ️ Raw Data
+                    </h3>
+                    <div id="bpRawDataTableWrapper">
+                        <div id="bpRawDataTable"></div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
