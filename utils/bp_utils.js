@@ -236,3 +236,27 @@ export function getCssStyles(theme = "light", familyType = "chart") {
     const axisTitleSize = root.getPropertyValue(axisTitleSizeVar).trim();
     return { family, color, size, weight, axisTitleSize, axisTitleWeight };
 }
+
+/* ---------------------------------------------------------------------------
+   Global Event Listener
+--------------------------------------------------------------------------- */
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.info-icon')) {
+        const drawerId = e.target.dataset.drawer;
+        openDocDrawer(drawerId);
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Event delegation for info icons
+    document.addEventListener('click', (e) => {
+        const infoIcon = e.target.closest('.info-icon');
+        if (infoIcon && infoIcon.dataset.drawer) {
+            openDocDrawer(infoIcon.dataset.drawer);
+        }
+    });
+
+    // TODO: Add filter button clicks here.
+
+});

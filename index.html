@@ -126,109 +126,109 @@
     </section>    
 
     <main class="container">
-        <section id="ReadingCategories">
+        <section id="ReadingCategories" class="chart-section">
             <div class="two-col">
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('readingCategoriesLineChart')">
+                    <h3 class="info-icon" data-drawer="readingCategoriesLineChart">
                         ℹ️ Reading Categories - Individual Readings Over Time
                     </h3>
-                    <div id="categoryChartWrapper">
+                    <div id="categoryChartWrapper" class="chart-wrapper">
                         <canvas id="categoryChart"></canvas>
                     </div>
                 </div>
 
                <div class="card">
-                   <h3 class="info-icon" onclick="openDocDrawer('readingCategoriesScatterDistribution')">
+                   <h3 class="info-icon" data-drawer="readingCategoriesScatterDistribution">
                         ℹ️ Reading Categories - Distribution Pattern
                     </h3>
-                   <div id="bpScatterChartWrapper">
+                   <div id="bpScatterChartWrapper" class="chart-wrapper">
                        <canvas id="bpScatterChart"></canvas>
                    </div>
                </div>
             </div>
         </section>
 
-        <section id="Pulse">
+        <section id="Pulse" class="chart-section">
             <div class="two-col">
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('BPMLineChart')">
+                    <h3 class="info-icon" data-drawer="BPMLineChart">
                         ℹ️ Pulse (Beats per Minute)
                     </h3>
-                    <div id="pulseLineChartWrapper">
+                    <div id="pulseLineChartWrapper" class="chart-wrapper">
                         <canvas id="pulseLineChart"></canvas>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('bpmHistogram')">
+                    <h3 class="info-icon" data-drawer="bpmHistogram">
                         ℹ️ Pulse Distribution (Histogram)
                     </h3>
-                    <div id="pulseHistogramWrapper">
+                    <div id="pulseHistogramWrapper" class="chart-wrapper">
                         <canvas id="pulseHistogram"></canvas>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="PulsePressure">
+        <section id="PulsePressure" class="chart-section">
             <div class="two-col">
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('ppLineChart')">
+                    <h3 class="info-icon" data-drawer="ppLineChart">
                         ℹ️ Pulse Pressure
                     </h3>
-                    <div id="pulsePressureLineChartWrapper">
+                    <div id="pulsePressureLineChartWrapper" class="chart-wrapper">
                         <canvas id="pulsePressureLineChart"></canvas>
                     </div>
                 </div>
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('pulsePressureHistogram')">
+                    <h3 class="info-icon" data-drawer="pulsePressureHistogram">
                         ℹ️ Pulse Pressure Distribution (Histogram)
                     </h3>
-                    <div id="pulsePressureHistogramWrapper">
+                    <div id="pulsePressureHistogramWrapper" class="chart-wrapper">
                         <canvas id="pulsePressureHistogram"></canvas>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="SysAndDia">
+        <section id="SysAndDia" class="chart-section">
             <div class="two-col">
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('sysAndDiaLineChart')">
+                    <h3 class="info-icon" data-drawer="sysAndDiaLineChart">
                         ℹ️ Systolic and Diastolic Raw Readings
                     </h3>
-                    <div id="sysAndDiaChartWrapper">
+                    <div id="sysAndDiaChartWrapper" class="chart-wrapper">
                         <canvas id="sysAndDiaChart"></canvas>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('sysAndDiaBoxAndWhisker')">
+                    <h3 class="info-icon" data-drawer="sysAndDiaBoxAndWhisker">
                         ℹ️ Sys & Dia Volatility (Box & Whisker)</h3>
-                    <div id="boxWhiskerChartWrapper">
+                    <div id="boxWhiskerChartWrapper" class="chart-wrapper">
                         <canvas id="boxWhiskerChart"></canvas>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="map7DayLineChart">
+        <section id="map7DayLineChart" class="chart-section">
             <div class="one-col">
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('7DayMAP')">
+                    <h3 class="info-icon" data-drawer="7DayMAP">
                         ℹ️ 7 Day Rolling Average - Mean Arterial Pressure</h3>
-                    <div id="map7DayChartWrapper">
+                    <div id="map7DayChartWrapper" class="chart-wrapper">
                         <canvas id="map7DayChart"></canvas>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="section-combined-rolling">
+        <section id="section-combined-rolling" class="chart-section">
             <div class="one-col">
                 <div class="card">
                     <div class="rolling-controls-container">
-                        <h3 class="info-icon" onclick="openDocDrawer('sysAndDiaRollingAvg')">
+                        <h3 class="info-icon" data-drawer="sysAndDiaRollingAvg">
                             ℹ️ 7-Day Rolling Averages (Systolic + Diastolic)
                         </h3>
                         <div class="rolling-controls">
@@ -249,20 +249,20 @@
                             </div>
                         </div>
                     </div>
-                    <div id="combinedRollingChartWrapper">
+                    <div id="combinedRollingChartWrapper" class="chart-wrapper">
                         <canvas id="combinedRollingChart"></canvas>
                     </div>
                 </div>
             </div>    
         </section>
 
-        <section id="rawData">
+        <section id="rawData"class="table-section">
             <div class="one-col">
                 <div class="card">
-                    <h3 class="info-icon" onclick="openDocDrawer('rawDataGridview')">
+                    <h3 class="info-icon" data-drawer="rawDataGridview">
                         ℹ️ Raw Data
                     </h3>
-                    <div id="bpRawDataTableWrapper">
+                    <div id="bpRawDataTableWrapper" class="table-wrapper"></div>
                         <div id="bpRawDataTable"></div>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
     </main>
 
     <footer>
-        <p><a href="https://slashmarkca.github.io/bpDashboard/">Blood Pressure Dashboard</a> | <a href="https://github.com/slashmarkCA/bpDashboard">github repo</a> | <a href="#">tableau</a> | <a href="https://forms.gle/N4FZoaGy3GxCN75P6">Contact Me</a></p>
+        <p><a href="https://slashmarkca.github.io/bpDashboard/">Blood Pressure Dashboard</a> | <a href="https://github.com/slashmarkCA/bpDashboard">github repo</a> | <a href="#">tableau</a> | <a href="https://forms.gle/N4FZoaGy3GxCN75P6" target="_blank">Contact Me 🍁</a></p>
     </footer>
 
     <div id="infoDrawer" class="info-drawer">

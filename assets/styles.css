@@ -459,12 +459,14 @@ canvas {
     overflow-y: auto;
     border: 1px solid #ddd;
     border-radius: 6px;
+    outline: 1px dashed orange;
 }
 
 .bp-raw-table {
     width: 100%;
     border-collapse: collapse;
     table-layout: auto;
+    outline: 1px dashed blue;
 }
 
 .bp-raw-table th {
@@ -558,27 +560,13 @@ canvas {
     }
 
     /* Force all grid layouts to single column for a mobile phone */
-    .two-col, .two-col.unequal, .three-col, .four-col, .five-col {
+    .two-col, .two-col.unequal, .three-col, .four-col, .five-col, .one-col {
         grid-template-columns: 1fr !important;
-        min-height: unset !important;
     }
     
-    /* Mobile: Cards contain content */
-    .card {
-        height: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-    
-    /* Mobile: h3 and wrapper divs don't stretch */
-    .card h3,
-    .card > div[id$="Wrapper"] {
-        flex: 0 0 auto !important;
-    }
-    
-    /* Mobile: Chart wrapper heights */
-    #categoryChartWrapper { height: 850px !important; }
-    #bpScatterChartWrapper { height: 300px !important; }
+    /* Mobile: Wrapper heights - simple and explicit */
+    #categoryChartWrapper { height: 450px !important; }
+    #bpScatterChartWrapper { height: 450px !important; }
     #pulseLineChartWrapper { height: 250px !important; }
     #pulseHistogramWrapper { height: 280px !important; }
     #pulsePressureLineChartWrapper { height: 250px !important; }
@@ -587,14 +575,7 @@ canvas {
     #boxWhiskerChartWrapper { height: 300px !important; }
     #map7DayChartWrapper { height: 250px !important; }
     #combinedRollingChartWrapper { height: 350px !important; }
-    #bpRawDataTable { height: 100% !important; }
-    #bpRawDataTableWrapper { height: 650px !important; overflow-y: auto !important; flex: 0 0 auto !important; }
-    
-    /* Mobile: Canvas fills wrapper */
-    .card canvas {
-        width: 100% !important;
-        height: 100% !important;
-    }
+    #bpRawDataTableWrapper { height: 350px !important; }
 
     /* Tighten up summary cards for small screens */
     #readingCategoriesSummaryCard {
