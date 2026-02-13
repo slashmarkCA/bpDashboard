@@ -167,7 +167,7 @@ footer {
 section {
     margin: 10px 0px;
     outline: 1px solid orange;
-    height:auto !important;
+    height:auto; /* Remove !important so media queries can actually work */
 }
 
 /* This selectes the first child of this element and NOT grandchildren, in my case the first Card inside the row. */
@@ -265,47 +265,49 @@ canvas {
 }
 
 /* ==========================================================================
-   SECTION HEIGHTS - Desktop Default
+   SECTION HEIGHTS - Desktop Default TODO: remove class="chart-section" in html - there's no .css definition.
    ========================================================================== */
 
-/* Reading Categories section */
+/* WORKS PERFECTLY IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
 #ReadingCategories .two-col {
-    height: 375px;
-    grid-template-rows: 1fr; /* Single row fills all height */
+    height: 675px;
+    grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
 }
 
+/* WORKS PERFECTLY IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
 #Pulse .two-col {
-    height: 350px;
-    grid-template-rows: 1fr;
+    height: 675px;
+    grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
 }
 
-/* Pulse Pressure section */
+/* WORKS IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH   */
 #PulsePressure .two-col {
-    height: 350px;
-    grid-template-rows: 1fr;
+    height: 675px;
+    grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
 }
 
-/* Sys and Dia section */
+/* WORKS IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
 #SysAndDia .two-col {
-    height: 350px;
-    grid-template-rows: 1fr;
+    height: 675px;
+    grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */ 
 }
 
 /* 7-Day Rolling Map section */
 #map7DayLineChart .one-col {
-    height: 350px;
-    grid-template-rows: 1fr;
+    height: auto; /* IF I USE px HEIGHT, THE SECTIONS OVERLAP.  WHY??? */
+    grid-template-rows: 1fr; /* IF I REMOVE THIS, THE HEIGHT GETS MASSIVE.  WHY?? WHAT IS SO SPECIAL ABOUT 1 COLUMN SECTIONS? */ 
 }
 
 /* 7-Day Rolling combined section */
 #section-combined-rolling .one-col {
-    height: 175px;
+
+    height: auto;
     grid-template-rows: 1fr;
 }
 
 /* Raw Data table section */
 #rawData .one-col {
-    height: 450px;
+    height: 450px; /* WORKS FINE IN DESKTOP FOR THE SECTION LOOKS FINE IN MOBILE.  REMEMBER THE WRAPPER HAS ITS OWN INDEPENDENT HEIGHT AND DOESN'T STRETCH */
     grid-template-rows: 1fr;
 }
 
@@ -485,9 +487,9 @@ canvas {
    RAW DATA TABLE STYLES
    ========================================================================== */
 
-/* Outer wrapper - fills the card's chart-wrapper/table-wrapper div */
+/* The table itself incl. the vertical scrollbar (not the card & not the section) */
 .bp-raw-table-wrapper {
-    max-height: 400px; /* Fill parent */
+    max-height: 400px; 
     overflow-y: auto;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -522,7 +524,6 @@ canvas {
 .bp-raw-table th,
 .bp-raw-table td {
     white-space: nowrap;
-    width: 1%;
     padding: 8px 10px;
     text-align: left;
     font-size: 0.8rem;
@@ -552,7 +553,7 @@ canvas {
 /* MOBILE VIEW (Under 768px - Targets your TCL phone width) */
 @media (max-width: 768px) {
 
-/* Dissolve the containers so the nav can stick to the whole page */
+    /* Dissolve the containers so the nav can stick to the whole page */
     .header, 
     .header__content {
         display: contents; 
@@ -569,8 +570,8 @@ canvas {
     }
 
 
-/* Style the nav to be the new "top" of the page */
-/* This makes ONLY the buttons sticky */
+    /* Style the nav to be the new "top" of the page */
+    /* This makes ONLY the buttons sticky */
     .nav-container {
         position: sticky;
         top: 0;
@@ -592,7 +593,7 @@ canvas {
     }
 
     /* Force all grid layouts to single column for a mobile phone */
-    .two-col, .two-col.unequal, .three-col, .four-col, .five-col, .one-col {
+    .two-col, .three-col, .four-col, .five-col, .one-col {
         grid-template-columns: 1fr !important;
     }
     
@@ -607,18 +608,17 @@ canvas {
         height: auto !important;
     }
     
-    /* Mobile: Wrapper heights - simple and explicit */
-    #categoryChartWrapper { height: 250px !important; }
-    #bpScatterChartWrapper { height: 300px !important; }
-    #pulseLineChartWrapper { height: 250px !important; }
-    #pulseHistogramWrapper { height: 280px !important; }
-    #pulsePressureLineChartWrapper { height: 250px !important; }
-    #pulsePressureHistogramWrapper { height: 280px !important; }
-    #sysAndDiaChartWrapper { height: 250px !important; }
-    #boxWhiskerChartWrapper { height: 300px !important; }
-    #map7DayChartWrapper { height: 250px !important; }
-    #combinedRollingChartWrapper { height: 350px !important; }
-    #bpRawDataTableWrapper { height: 350px !important; }
+    #categoryChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #bpScatterChart { height: 250px !important; }  /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #pulseLineChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #pulseHistogram { height: 200px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #pulsePressureLineChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #pulsePressureHistogram { height: 200px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #sysAndDiaChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #boxWhiskerChart { height: 300px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #map7DayChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #combinedRollingChart { height: 250px !important; } /* TODO: double check - DO NOT TOUCH */
+
 
     /* Tighten up summary cards for small screens */
     #readingCategoriesSummaryCard {
@@ -719,10 +719,9 @@ canvas {
     }
 
     .nobgCard:has(#normalDonutChart) {
-        width: 180px
+        width: 180px;
     }
 }
-
 
 /* ==========================================================================
    DOCUMENTATION SLIDING DRAWER
