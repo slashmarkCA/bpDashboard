@@ -110,26 +110,6 @@ Keep this section tight and reader‑friendly.
 - How it’s validated  
 - Any domain‑specific logic  
 
----
-
-## Screenshots
-(Replace with your actual images)
-
-<img src="images/screenshot1.png" alt="Dashboard Screenshot" width="600">
-
-<img src="images/screenshot2.png" alt="Chart Example" width="600">
-
----
-
-## Installation
-1. Clone the repo  
-2. Install dependencies  
-3. Run the development server  
-4. Build for production  
-
-Add commands here as needed.
-
----
 
 ## Roadmap
 - Planned feature A  
@@ -145,26 +125,6 @@ This project is open for community review. I welcome feedback from both medical 
 
 If you’d like to contribute your expertise, feel free to open a discussion, file an issue, or comment directly on the repository.
 
----
-
-## Contributing
-- How to submit feedback  
-- How to open issues  
-- Coding conventions  
-- Branching or PR guidelines  
-
-Keep this lightweight unless you expect many contributors.
-
----
 
 ## License
 MIT / Apache / etc.
-
----
-
-## Acknowledgments
-Optional:
-- Inspirations  
-- Contributors  
-- Libraries or datasets  
-
