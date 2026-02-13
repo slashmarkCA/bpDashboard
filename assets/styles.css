@@ -151,6 +151,10 @@ footer {
     margin:auto; /* makes this section butt agains the header */
 }
 
+.nobgCard:has(.heatmap-wrapper) { height: 120px; min-height: 120px; max-height: 120px; } /* looks like a hack, but it works */
+.nobgCard:has(#normalDonutChart) { height: 130px; min-height: 130px; max-height: 130px; } /* looks like a hack, but it works */
+.nobgCard:has(#readingCategoriesSummaryCard) { height: 110px; min-height: 110px; max-height: 110px; } /* looks like a hack, but it works */
+
 /* ==========================================================================
    LAYOUT & GRIDS
    ========================================================================== */
@@ -179,14 +183,20 @@ section {
     align-items: stretch; /* CHANGED: Force equal heights in grid */
 } 
 
-.one-col {
+.one-col,
+.two-col,
+.three-col,
+.five-col {
     display: grid;
+    gap: 20px;
+}
+
+.one-col {
     grid-template-columns: 1fr;
 } 
 
 .two-col { 
     grid-template-columns: 2fr 1fr; 
-    /* Removed broken min-heighft and max-height - using section-specific heights instead */
 }
 
 .three-col { 
@@ -204,22 +214,30 @@ section {
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
     height: 100%;
-    display: flex; /* Make card a flex container */
-    flex-direction: column; /* Stack children vertically */
+    display: flex;
+    flex-direction: column;
     outline: 2px solid blue;
 }
 
-/* Direct children of card should fill available space (but NOT rolling-controls-container) */
-.card > div:not(.rolling-controls-container) {
-    flex: 1; /* Grow to fill card height */
-    min-height: 0; /* Allow shrinking below content */
-    display: flex; /* Make this a flex container too */
-    flex-direction: column; /* For nested content */
+/* Titles don't stretch */
+.card h3 {
+    flex: 0 0 auto;
 }
 
-/* Canvas elements fill their container */
+/* Chart and table wrappers fill remaining space */
+.card .chart-wrapper,
+.card .table-wrapper {
+    flex: 1; /* Grow to fill available space */
+    min-height: 0;
+}
+
+/* Table wrapper must not allow content to push it out */
+.card .table-wrapper {
+    overflow: hidden; /* Critical - prevents table from pushing wrapper */
+}
+
+/* Canvas fills wrapper */
 .card canvas {
-    flex: 1;
     width: 100% !important;
     height: 100% !important;
 }
@@ -247,36 +265,48 @@ canvas {
 }
 
 /* ==========================================================================
-   DESKTOP CHART HEIGHTS - Section-based approach
+   SECTION HEIGHTS - Desktop Default
    ========================================================================== */
 
 /* Reading Categories section */
 #ReadingCategories .two-col {
     height: 375px;
+    grid-template-rows: 1fr; /* Single row fills all height */
 }
 
 #Pulse .two-col {
     height: 350px;
+    grid-template-rows: 1fr;
 }
 
 /* Pulse Pressure section */
 #PulsePressure .two-col {
     height: 350px;
+    grid-template-rows: 1fr;
 }
 
 /* Sys and Dia section */
 #SysAndDia .two-col {
     height: 350px;
+    grid-template-rows: 1fr;
 }
 
 /* 7-Day Rolling Map section */
-#map7DayLineChart {
+#map7DayLineChart .one-col {
     height: 350px;
+    grid-template-rows: 1fr;
 }
 
-/* 7-Day Rolling Map section */
-#section-combined-rolling {
+/* 7-Day Rolling combined section */
+#section-combined-rolling .one-col {
     height: 175px;
+    grid-template-rows: 1fr;
+}
+
+/* Raw Data table section */
+#rawData .one-col {
+    height: 450px;
+    grid-template-rows: 1fr;
 }
 
 .measureName {
@@ -454,8 +484,10 @@ canvas {
 /* ==========================================================================
    RAW DATA TABLE STYLES
    ========================================================================== */
+
+/* Outer wrapper - fills the card's chart-wrapper/table-wrapper div */
 .bp-raw-table-wrapper {
-    max-height: 450px;
+    max-height: 400px; /* Fill parent */
     overflow-y: auto;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -564,9 +596,20 @@ canvas {
         grid-template-columns: 1fr !important;
     }
     
+    /* Mobile: Remove desktop section heights - let wrapper heights control */
+    #ReadingCategories .two-col,
+    #Pulse .two-col,
+    #PulsePressure .two-col,
+    #SysAndDia .two-col,
+    #map7DayLineChart .one-col,
+    #section-combined-rolling .one-col,
+    #rawData .one-col {
+        height: auto !important;
+    }
+    
     /* Mobile: Wrapper heights - simple and explicit */
-    #categoryChartWrapper { height: 450px !important; }
-    #bpScatterChartWrapper { height: 450px !important; }
+    #categoryChartWrapper { height: 250px !important; }
+    #bpScatterChartWrapper { height: 300px !important; }
     #pulseLineChartWrapper { height: 250px !important; }
     #pulseHistogramWrapper { height: 280px !important; }
     #pulsePressureLineChartWrapper { height: 250px !important; }
@@ -659,27 +702,7 @@ canvas {
     }
 }
 
-
-/* Mobile: Each card gets explicit height */
-.nobgCard:has(.heatmap-wrapper) {
-    height: 120px;
-    min-height: 120px;
-    max-height: 120px;
-}
-
-.nobgCard:has(#normalDonutChart) {
-    height: 130px;
-    min-height: 130px;
-    max-height: 130px;
-}
-
-.nobgCard:has(#readingCategoriesSummaryCard) {
-    height: 110px;
-    min-height: 110px;
-    max-height: 110px;
-}
-
-/* Desktop: .three-col and Cards */
+/* Desktop: .three-col and Cards  TODO: Try and get rid of this hack @media*/
 @media (min-width: 769px) {
     .three-col { 
         grid-template-columns: .95fr .4fr .15fr;
@@ -699,7 +722,6 @@ canvas {
         width: 180px
     }
 }
-
 
 
 /* ==========================================================================
