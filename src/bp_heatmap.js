@@ -1,16 +1,24 @@
 /* ============================================================================
-   bp_heatmap.js
+   bp_heatmap.js - COMPLETE FIXED VERSION
    ---------------------------------------------------------------------------
    Blood Pressure Calendar Heatmap (GitHub-style)
    - Shows daily BP readings colored by category
    - Responsive touch/mobile support
    - 10.5 month rolling window
+   - Fixed height management for desktop and mobile
    ============================================================================ */
 
 import { BP_LEVELS, destroyChart, getCssStyles } from '../utils/bp_utils.js';
 
 let heatmapChart = null;
-const cssStyle = getCssStyles("dark", "chart"); // call in some css styles from styles.css via bp_utils.js
+const cssStyle = getCssStyles("dark", "chart");
+
+/**
+ * Helper function to detect mobile
+ */
+function isMobile() {
+    return window.innerWidth <= 768;
+}
 
 /**
  * Creates the BP heatmap visualization
@@ -23,7 +31,7 @@ export function createHeatmap(filteredData) {
         return;
     }
 
-    // Destroy existing chart (though heatmap is canvas-based, not Chart.js)
+    // Destroy existing chart
     heatmapChart = destroyChart(heatmapChart);
 
     // Validate data context exists
@@ -77,8 +85,7 @@ export function createHeatmap(filteredData) {
             const d = new Date(startDate);
             d.setDate(d.getDate() + (weekIdx * 7) + dayIdx);
             d.setHours(0, 0, 0, 0);
-            
-            const dateStr = d.toISOString().split('T')[0];
+            const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
             const entry = dailyData[dateStr];
             
             // Don't render future dates
@@ -105,6 +112,20 @@ export function createHeatmap(filteredData) {
     weeks.reverse();
     
     drawHeatmap(canvas, weeks, newestDateObj);
+    
+    // Add resize handler for responsiveness
+    let resizeTimeout;
+    const resizeHandler = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            drawHeatmap(canvas, weeks, newestDateObj);
+        }, 250);
+    };
+    
+    // Remove old listener if it exists
+    window.removeEventListener('resize', resizeHandler);
+    window.addEventListener('resize', resizeHandler);
+    
     console.log('[Trace] bp_heatmap.js rendered successfully');
 }
 
@@ -114,35 +135,64 @@ export function createHeatmap(filteredData) {
 function drawHeatmap(canvas, weeks, newestDate) {
     const ctx = canvas.getContext('2d');
     
-    // Get parent container dimensions
-    const container = canvas.parentElement;
-    const containerStyle = window.getComputedStyle(container);
-    const containerWidth = container.clientWidth || parseInt(containerStyle.width);
-    const containerHeight = parseInt(containerStyle.height) || 180;
+    // Get parent dimensions - FIXED for mobile
+    const scrollArea = canvas.parentElement; // .heatmap-scroll-area
+    const wrapper = scrollArea.parentElement; // .heatmap-wrapper
     
-    // Configuration
-    const leftPadding = 30;
-    const topPadding = 20;
+    let containerHeight, containerWidth;
+    
+    if (isMobile()) {
+        // Mobile: Use wrapper's explicit height from CSS
+        containerHeight = wrapper.clientHeight || 180;
+        containerWidth = scrollArea.scrollWidth || 700;
+    } else {
+        // Desktop: Use scrollArea dimensions
+        containerHeight = scrollArea.clientHeight || 155;
+        containerWidth = scrollArea.clientWidth || 600;
+    }
+    
+    // Configuration - adjust padding for mobile
+    const leftPadding = isMobile() ? 25 : 30;
+    const topPadding = isMobile() ? 15 : 20;
     const bottomPadding = 5;
     const rightPadding = 5;
     
-    // Set canvas size
-    canvas.width = containerWidth;
-    canvas.height = containerHeight;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
+    // Device pixel ratio for sharp rendering
+    const dpr = window.devicePixelRatio || 1;
+    
+    // Set canvas size - display size (CSS pixels)
+    canvas.style.width = containerWidth + 'px';
+    canvas.style.height = containerHeight + 'px';
+    canvas.style.display = 'block';
+    
+    // Set actual size in memory (scaled for DPI)
+    canvas.width = containerWidth * dpr;
+    canvas.height = containerHeight * dpr;
+    
+    // Scale context to account for DPI
+    ctx.scale(dpr, dpr);
     
     // Calculate available space
     const availableWidth = containerWidth - leftPadding - rightPadding;
     const availableHeight = containerHeight - topPadding - bottomPadding;
     
     // Calculate cell size
-    const cellGap = 2;
+    const cellGap = isMobile() ? 1 : 2;
     const cellWidth = Math.floor((availableWidth - (weeks.length * cellGap)) / weeks.length);
     const cellHeight = Math.floor((availableHeight - (7 * cellGap)) / 7);
     const cellSize = Math.min(cellWidth, cellHeight);
+    
+    // Debug log for mobile
+    if (isMobile()) {
+        console.log('[HEATMAP] Mobile dimensions:', {
+            containerHeight,
+            containerWidth,
+            cellSize,
+            weeks: weeks.length
+        });
+    }
         
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, containerWidth, containerHeight);
     
     // Draw month labels
     drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding);
@@ -180,6 +230,9 @@ function drawHeatmap(canvas, weeks, newestDate) {
     setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, topPadding);
 }
 
+/**
+ * Draws month labels at the top
+ */
 function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding) {
     ctx.font = `${cssStyle.weight} ${cssStyle.size} ${cssStyle.family}`;
     ctx.fillStyle = `${cssStyle.color}`;
@@ -200,9 +253,12 @@ function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding)
     });
 }
 
+/**
+ * Draws day labels on the left
+ */
 function drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding) {
     ctx.font = `${cssStyle.weight} ${cssStyle.size} ${cssStyle.family}`;
-    ctx.fillStyle = `${cssStyle.family}`;
+    ctx.fillStyle = `${cssStyle.color}`;
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
     
@@ -215,17 +271,24 @@ function drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding) {
     });
 }
 
+/**
+ * Sets up hover and touch interactions
+ */
 function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, topPadding) {
+    // Disable tooltips on mobile - allows smooth horizontal scrolling
+    if (window.innerWidth <= 768) {
+        return;
+    }
+    
     let tooltipEl = document.getElementById('chartjs-tooltip');
     if (!tooltipEl) {
         tooltipEl = document.createElement('div');
         tooltipEl.id = 'chartjs-tooltip';
         tooltipEl.style.cssText = `
             position: fixed;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid #ccc;
+            background: rgba(0, 0, 0, 0.95);
             border-radius: 4px;
-            color: #333;
+            color: #ffffff;
             opacity: 0;
             pointer-events: none;
             padding: 8px;
@@ -289,6 +352,9 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
     });
 }
 
+/**
+ * Shows tooltip with reading details
+ */
 function showTooltip(tooltipEl, day, clientX, clientY) {
     const dateHead = day.date.toLocaleDateString(undefined, { 
         month: 'short', 
@@ -296,15 +362,15 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
         year: 'numeric' 
     });
     
-    let html = `<div style="font-weight:bold; color:#666; margin-bottom:5px; border-bottom:1px solid #eee;">${dateHead}</div>`;
+    let html = `<div style="color:#ffffff; margin-bottom:5px;">${dateHead}</div>`;
     
     day.readings.forEach(r => {
         const timeVal = r.Time || (r.Date ? r.Date.split(' ')[1] : '--:--');
         const pulseVal = r.Pulse || r.BPM || '--';
         
         html += `
-            <div style="padding:4px 0; font-size:11px; line-height:1.4;">
-                <span style="color:${r.bpCat.color}">●</span> <b>${r.bpCat.label}</b><br>
+            <div style="padding:4px 0; font-size:11px; line-height:1.4; font-weight: normal;">
+                <span style="color:${r.bpCat.color}">●</span> ${r.bpCat.label}<br>
                 ${r.Sys}/${r.Dia} <span style="color:#888;">(${pulseVal} bpm)</span> @ ${timeVal}
             </div>`;
     });
@@ -337,6 +403,9 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
     tooltipEl.style.top = top + 'px';
 }
 
+/**
+ * Hides the tooltip
+ */
 function hideTooltip(tooltipEl) {
     tooltipEl.style.opacity = '0';
 }

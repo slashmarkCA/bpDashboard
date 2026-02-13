@@ -145,10 +145,15 @@ footer {
     font-size: 0.8rem;
 }
 
-.summary-band {
+#summary-band {
     background-color: var(--band-colour-dark);
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    margin:auto; /* makes this section butt agains the header */
 }
+
+.nobgCard:has(.heatmap-wrapper) { height: 120px; min-height: 120px; max-height: 120px; } /* looks like a hack, but it works */
+.nobgCard:has(#normalDonutChart) { height: 130px; min-height: 130px; max-height: 130px; } /* looks like a hack, but it works */
+.nobgCard:has(#readingCategoriesSummaryCard) { height: 110px; min-height: 110px; max-height: 110px; } /* looks like a hack, but it works */
 
 /* ==========================================================================
    LAYOUT & GRIDS
@@ -160,88 +165,163 @@ footer {
 }
 
 section {
-    margin-bottom: 30px;
+    margin: 10px 0px;
+    outline: 1px solid orange;
+    height:auto; /* Remove !important so media queries can actually work */
 }
 
-.card {
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    height: 100%;  
-}
-
-.nobgCard {
-    display: flex; flex-direction: column;
-    height: 100%;
-    padding: 3px;
-}
-
-#readingCategoriesSummaryCard { 
-    height: 100%; /* This stretches the rows to consume the hight of the container */
-} 
-
-/* Fix for Canvas/chart.js overflows in grid layouts - they tend to blow up grids. */
+/* This selectes the first child of this element and NOT grandchildren, in my case the first Card inside the row. */
+/* Did this because Canvas/chart.js overflows in grid layouts - they tend to blow up grids. */
 .two-col > *, .three-col > *, .four-col > *, .five-col > * {
     min-width: 0; 
     overflow: hidden;
 }
 
-.two-col {
+.two-col, .three-col, .five-col{
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-}
+    gap: 10px;
+    align-items: stretch; /* CHANGED: Force equal heights in grid */
+} 
 
-.two-col.unequal {
-    grid-template-columns: 1fr 2fr;
-}
-
-.three-col {
-    display: grid;
-    grid-template-columns: .95fr .4fr .15fr;
-    gap: 20px;
-    align-items: start;
-    padding-top:10px;
-}
-
-/* four-col was used but isn't now, so I left it in just in case */
-.four-col {
-    display: grid;
-    grid-template-columns: .75fr 1fr 1fr .55fr;
-    /* grid-template-columns: 1.2fr 1.5fr 2fr 1.2fr; */
-    gap: 15px;
-    align-items: start; /* Prevents one tall card from stretching others */
-}
-
+.one-col,
+.two-col,
+.three-col,
 .five-col {
     display: grid;
-    grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr;
-    gap: 15px;
-    align-items: start; /* Prevents one tall card from stretching others */;
+    gap: 20px;
 }
 
-.card-placeholder {
-    background: #f9f9f9;
-    border: 1px dashed #ddd;
+.one-col {
+    grid-template-columns: 1fr;
+} 
+
+.two-col { 
+    grid-template-columns: 2fr 1fr; 
+}
+
+.three-col { 
+    grid-template-columns: .95fr .4fr .15fr; 
+    padding-top: 10px; 
+}
+
+.five-col { 
+    grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr; 
+}
+
+.card {
+    background: white;
     border-radius: 8px;
     padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    height: 100%;
     display: flex;
-    width: 100%;
-    min-height: 150px;
+    flex-direction: column;
+    outline: 2px solid blue;
 }
 
-    .measureName {
+/* Titles don't stretch */
+.card h3 {
+    flex: 0 0 auto;
+}
+
+/* Chart and table wrappers fill remaining space */
+.card .chart-wrapper,
+.card .table-wrapper {
+    flex: 1; /* Grow to fill available space */
+    min-height: 0;
+}
+
+/* Table wrapper must not allow content to push it out */
+.card .table-wrapper {
+    overflow: hidden; /* Critical - prevents table from pushing wrapper */
+}
+
+/* Canvas fills wrapper */
+.card canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.nobgCard {
+    display: flex; 
+    flex-direction: column;
+    height: 100%;
+    min-height: 0; /* Allow shrinking */
+    overflow: hidden; /* Prevent blowout */
+    outline: 2px solid blue;
+}
+
+/* Selects the first child element of each - this fixed the donut canvas height from misbehaving */
+.nobgCard > * {
+    flex: 1 1 0; /* Equal distribution */
+    min-height: 0; /* Critical for flex shrinking */
+    overflow: hidden;
+}
+
+canvas {
+    outline: 2px solid red;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ==========================================================================
+   SECTION HEIGHTS - Desktop Default TODO: remove class="chart-section" in html - there's no .css definition.
+   ========================================================================== */
+
+/* WORKS PERFECTLY IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
+#ReadingCategories .two-col {
+    height: 675px;
+    grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
+}
+
+/* WORKS PERFECTLY IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
+#Pulse .two-col {
+    height: 675px;
+    grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
+}
+
+/* WORKS IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH   */
+#PulsePressure .two-col {
+    height: 675px;
+    grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
+}
+
+/* WORKS IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
+#SysAndDia .two-col {
+    height: 675px;
+    grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */ 
+}
+
+/* 7-Day Rolling Map section */
+#map7DayLineChart .one-col {
+    height: auto; /* IF I USE px HEIGHT, THE SECTIONS OVERLAP.  WHY??? */
+    grid-template-rows: 1fr; /* IF I REMOVE THIS, THE HEIGHT GETS MASSIVE.  WHY?? WHAT IS SO SPECIAL ABOUT 1 COLUMN SECTIONS? */ 
+}
+
+/* 7-Day Rolling combined section */
+#section-combined-rolling .one-col {
+
+    height: auto;
+    grid-template-rows: 1fr;
+}
+
+/* Raw Data table section */
+#rawData .one-col {
+    height: 450px; /* WORKS FINE IN DESKTOP FOR THE SECTION LOOKS FINE IN MOBILE.  REMEMBER THE WRAPPER HAS ITS OWN INDEPENDENT HEIGHT AND DOESN'T STRETCH */
+    grid-template-rows: 1fr;
+}
+
+.measureName {
     font-size: 36px;
     line-height: 0.80;
     margin-bottom: 6px;
     grid-area: name;
-    }
+}
 
-    .measureName small {
-        display: block;
-        font-size: 14px;
-    }
+.measureName small {
+    display: block;
+    font-size: 14px;
+}
 
 /* Fix: Removed display:flex to allow <br> to work. 
    Added vertical alignment for the High/Low labels. */
@@ -268,10 +348,6 @@ section {
         text-align: right; 
     }
 
-/* ==========================================================================
-   CLEAN START AT READINGS IN DAYS BADGES
-   ========================================================================== */
-
 /* Container for the 1st column of the 5-col grid */
 .measureCardBadges {
     display: flex;
@@ -283,7 +359,7 @@ section {
 }
 
 .badge-item {
-    flex: 1;             /* Force 50/50 split of the parent width */
+    flex: 1; /* Force 50/50 split of the parent width */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -291,7 +367,7 @@ section {
     border-radius: 8px;
     padding: 5px;
     color: #638eba;
-    min-width: 0;        /* Critical for flex-shrink */
+    min-width: 0; /* Critical for flex-shrink */
 }
 
 /* Gradient backgrounds */
@@ -314,13 +390,6 @@ section {
     opacity: 0.9;
     margin-top: 4px;
 }
-
-
-/* ==========================================================================
-   COMPONENT SPECIFIC STYLES
-   ========================================================================== */
-
-   /* Now Viewing Card Fix */
 
 .measureCard {
     background: #081618;
@@ -354,11 +423,6 @@ section {
         width: 100%;
         white-space: nowrap;
     }
-
-#normalDonutChart {
-    max-height: 150px !important;
-    object-fit: contain;
-}
 
 /* Combined Rolling Controls - DESKTOP (Issue 1a) */
 .rolling-controls-container {
@@ -407,50 +471,36 @@ section {
 
 /* heatmap wrapper that respects the flex layout limits */
 .heatmap-wrapper {
-    width: 100%;
-    height: 100%; /* This stretches the rows to consume the hight of the container */
+    height: 100%;
     overflow-x: auto; 
 }
 
-/* The heatmap actual drawing area - it's a minimum width so 
-   the squares don't get squashed into tiny slivers */
+/* Keep the min-width - this activates the scrollbar in mobile. */
 .heatmap-scroll-area {
-    min-width: 700px; 
-    max-height: 150px;  /* This does govern the whole card row height in desktop */
-    position: relative;
-    overflow-y: hidden;
-    padding-top: 5px ;
-}
-
-#chartjs-tooltip {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.95);
-    color: white;
-    border-radius: 4px;
-    padding: 10px;
-    pointer-events: none;
-    z-index: 1000;
-    border: 1px solid #444;
-    font-family: sans-serif;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    transition: opacity 0.2s ease;
+    min-width: 700px;  
+    height: 100%;
+    overflow-y:hidden;
 }
 
 
 /* ==========================================================================
    RAW DATA TABLE STYLES
    ========================================================================== */
+
+/* The table itself incl. the vertical scrollbar (not the card & not the section) */
 .bp-raw-table-wrapper {
-    max-height: 450px;
+    max-height: 400px; 
     overflow-y: auto;
     border: 1px solid #ddd;
     border-radius: 6px;
+    outline: 1px dashed orange;
 }
 
 .bp-raw-table {
     width: 100%;
     border-collapse: collapse;
     table-layout: auto;
+    outline: 1px dashed blue;
 }
 
 .bp-raw-table th {
@@ -470,11 +520,10 @@ section {
 
 .bp-risk { background-color: #fff4f4; color: #d32f2f; font-weight: bold; }
 
-/* 1. All standard cells: Shrink to fit, No wrapping */
+/* All standard cells: Shrink to fit, No wrapping */
 .bp-raw-table th,
 .bp-raw-table td {
     white-space: nowrap;
-    width: 1%;
     padding: 8px 10px;
     text-align: left;
     font-size: 0.8rem;
@@ -504,7 +553,7 @@ section {
 /* MOBILE VIEW (Under 768px - Targets your TCL phone width) */
 @media (max-width: 768px) {
 
-/* Dissolve the containers so the nav can stick to the whole page */
+    /* Dissolve the containers so the nav can stick to the whole page */
     .header, 
     .header__content {
         display: contents; 
@@ -521,8 +570,8 @@ section {
     }
 
 
-/* Style the nav to be the new "top" of the page */
-/* This makes ONLY the buttons sticky */
+    /* Style the nav to be the new "top" of the page */
+    /* This makes ONLY the buttons sticky */
     .nav-container {
         position: sticky;
         top: 0;
@@ -543,23 +592,33 @@ section {
         padding: 3px 0;
     }
 
-    /* Affect the height of the pulse line graph on mobile only without affecting it's .two-col histogram neighbor */
-    /* Target: #Pluse section → .two-col → first .card → the div containing canvas */
-    :is(#Pluse, #PulsePressure) .card:first-child > div[style*="aspect-ratio"] {
-        height: 250px !important;
-        aspect-ratio: auto !important;
-    }
-
-    /* squish Reading Categories over Time */
-    :is(#ReadingCategories) .card:first-child > div[style*="height"] {
-        height: 200px !important;
-        aspect-ratio: auto !important;
-    }
-
     /* Force all grid layouts to single column for a mobile phone */
-    .two-col, .two-col.unequal, .three-col, .four-col, .five-col {
+    .two-col, .three-col, .four-col, .five-col, .one-col {
         grid-template-columns: 1fr !important;
     }
+    
+    /* Mobile: Remove desktop section heights - let wrapper heights control */
+    #ReadingCategories .two-col,
+    #Pulse .two-col,
+    #PulsePressure .two-col,
+    #SysAndDia .two-col,
+    #map7DayLineChart .one-col,
+    #section-combined-rolling .one-col,
+    #rawData .one-col {
+        height: auto !important;
+    }
+    
+    #categoryChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #bpScatterChart { height: 250px !important; }  /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #pulseLineChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #pulseHistogram { height: 200px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #pulsePressureLineChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #pulsePressureHistogram { height: 200px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #sysAndDiaChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #boxWhiskerChart { height: 300px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #map7DayChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
+    #combinedRollingChart { height: 250px !important; } /* TODO: double check - DO NOT TOUCH */
+
 
     /* Tighten up summary cards for small screens */
     #readingCategoriesSummaryCard {
@@ -575,11 +634,12 @@ section {
     /* MOBILE: 7 day rolling SD radio buttons - Stack everything vertically */
     /* 1. Force the heading and the control box to stack vertically */
     .rolling-controls-container {
-        display: flex;
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
         align-items: center;
-        gap: 10px;
+        gap: 5px; /* Reduced from 10px for tighter spacing */
         text-align: center;
+        flex: 0 0 auto !important; /* Don't grow, don't shrink, auto size */
     }
 
     /* 2. Remove any side-margins on the title so it centers perfectly */
@@ -626,9 +686,40 @@ section {
         max-width: 100%;
     }
 
+    .nobgCard:has(#readingCategoriesSummaryCard) {
+        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
+    }
+
+    #readingCategoriesSummaryCard {
+        height: 100%; /* Critical! */
+    }
+
     /* Hide specific columns in the raw data table on mobile to keep things readable */
     .hide-mobile {
         display: none !important;
+    }
+}
+
+/* Desktop: .three-col and Cards  TODO: Try and get rid of this hack @media*/
+@media (min-width: 769px) {
+    .three-col { 
+        grid-template-columns: .95fr .4fr .15fr;
+        height: 155px;
+        align-items: stretch;
+    }
+
+    .nobgCard:has(.heatmap-wrapper),
+    .nobgCard:has(#normalDonutChart),
+    .nobgCard:has(#readingCategoriesSummaryCard) {
+        height: 100%; /* Use grid height */
+        min-height: unset;
+        max-height: unset;
+    }
+
+    .nobgCard:has(#normalDonutChart) {
+        width: 180px;
     }
 }
 

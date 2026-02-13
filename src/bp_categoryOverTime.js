@@ -1,11 +1,9 @@
 /* ============================================================================
    bp_categoryOverTime.js
-   ---------------------------------------------------------------------------
-   Reading Categories Over Time (Stepped Line Chart)
-   - Shows BP category transitions
-   - Color-coded background zones
-   - Standardized lifecycle management
    ============================================================================ */
+
+    // TODO: Consider refining "skip" so the x-axis isn't so crowded when filtering "All". 
+    // └ Would need to consider how I want the other charts to work if I do just this one.
 
 import { 
     BP_LEVELS, 
@@ -17,29 +15,57 @@ import {
 } from '../utils/bp_utils.js';
 
 let categoryChart = null;
-const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
+const cssStyle = getCssStyles("light", "chart");
 
 /**
- * Creates/updates the category over time chart
- * @param {Array} bpData - Filtered BP data
+ * Custom Label Plugin
+ * Draws category names on the left side of the chart area
  */
+const categoryLabelPlugin = {
+    id: 'categoryLabels',
+    afterDatasetsDraw(chart) {
+        const { ctx, chartArea: { left, top, bottom }, scales: { y } } = chart;
+
+        const labels = [
+            { text: 'Normal',                 yValue: 1 },
+            { text: 'Elevated',               yValue: 2 },
+            { text: 'Hypertension Stage 1',   yValue: 3 },
+            { text: 'Hypertension Stage 2',   yValue: 4 },
+            { text: 'Hypertensive Crisis',    yValue: 5 }
+        ];
+
+        ctx.save();
+        labels.forEach(label => {
+            const yPixel = y.getPixelForValue(label.yValue);
+            const xPixel = left + 10; 
+
+            // ADJUST THIS VALUE: 
+            // +5 moves it 5 pixels down, -5 moves it 5 pixels up
+            const verticalNudge = 12; 
+
+            if (yPixel >= top && yPixel <= bottom) {
+                ctx.globalAlpha = 0.6;
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 11px Arial';
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'top'; // Your current setting
+                
+                // Apply the nudge here
+                ctx.fillText(label.text, xPixel, yPixel + verticalNudge);
+            }
+        });
+        ctx.restore();
+    }
+};
+
 export function createCategoryChart(bpData) {
     const canvas = document.getElementById('categoryChart');
-    if (!canvas) {
-        console.error('[CATEGORY CHART] Canvas element #categoryChart not found');
-        return;
-    }
+    if (!canvas) return;
 
-    // Destroy existing instance
     categoryChart = destroyChart(categoryChart);
 
-    // Handle empty data
-    if (!bpData?.length) {
-        console.warn('[CATEGORY CHART] No data available');
-        return;
-    }
+    if (!bpData?.length) return;
 
-    // Process data with BP categories
     const processed = bpData.map((r, i) => {
         const level = getBPCategory(r.Sys, r.Dia); 
         return {
@@ -51,10 +77,12 @@ export function createCategoryChart(bpData) {
         };
     });
 
-    // Dynamic annotations for background zones
+    // Determine the max index to force the chart to stretch to the right edge
+    const maxIndex = processed.length > 0 ? processed.length - 1 : 0;
+
     const levelAnnotations = {};
     Object.values(BP_LEVELS).forEach(lvl => {
-        if (lvl.score === 0) return; // Skip UNKNOWN
+        if (lvl.score === 0) return;
         
         levelAnnotations[lvl.label.toLowerCase()] = {
             type: 'box',
@@ -88,6 +116,8 @@ export function createCategoryChart(bpData) {
             scales: {
                 x: {
                     type: 'linear',
+                    min: 0,        // Force start at left edge
+                    max: maxIndex, // Force end at right edge
                     grid: { display: false },
                     ticks: {
                         font: {
@@ -135,14 +165,14 @@ export function createCategoryChart(bpData) {
                                 `Category: ${ctx.raw.label}`,
                                 `Sys/Dia: ${r.Sys}/${r.Dia}`,
                                 `Date: ${formatTooltipDate(r.DateObj)}`,
+                                `Comments: ${r.FormComments || ''}`,
                                 `ID: ${r.ReadingID}`
                             ];
                         }
                     }
                 }
             }
-        }
+        },
+        plugins: [categoryLabelPlugin] 
     });
-    
-    console.log('[Trace] bp_categoryOverTime.js rendered successfully');
 }

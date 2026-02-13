@@ -28,14 +28,18 @@ export function renderRawBPTable() {
         // Sort descending (newest first)
         rawList.sort((a, b) => (b.DateObj || 0) - (a.DateObj || 0));
 
-        // Group by date
+        // Group by date - NOT using ISO or UTC dates - this fixes a defect where 11:30pm readings when behind UTC caused the next day to be the Date when split.
         const dayGroups = new Map();
         rawList.forEach(record => {
             let dayLabel = 'Unknown Date';
             if (record.DateObj instanceof Date && !isNaN(record.DateObj)) {
-                dayLabel = record.DateObj.toISOString().split('T')[0];
+                // Use local date components to avoid UTC shifting
+                const y = record.DateObj.getFullYear();
+                const m = String(record.DateObj.getMonth() + 1).padStart(2, '0');
+                const d = String(record.DateObj.getDate()).padStart(2, '0');
+                dayLabel = `${y}-${m}-${d}`; 
             }
-
+            
             if (!dayGroups.has(dayLabel)) dayGroups.set(dayLabel, []);
             dayGroups.get(dayLabel).push(record);
         });

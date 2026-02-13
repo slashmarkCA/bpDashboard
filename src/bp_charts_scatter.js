@@ -151,6 +151,7 @@ export function createScatterChart(filteredData) {
                                 `Sys: ${p.y}`,
                                 `Dia: ${p.x}`,
                                 `Date: ${p.date}`,
+                                `Comments: ${p.FormComments || ''}`,
                                 `Workday: ${p.workday}`
                             ];
                             if (p.comments) lines.push(`Comments: ${p.comments}`);

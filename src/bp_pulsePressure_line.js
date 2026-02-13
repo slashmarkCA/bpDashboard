@@ -159,6 +159,7 @@ export function createPulsePressureLineChart(bpData) {
                             return [
                                 `Pulse Pressure: ${pp}`,
                                 `Date: ${formatAxisDate(r.DateObj)}`,
+                                `Comments: ${r.FormComments || ''}`,
                                 `ReadingID: ${r.ReadingID}`
                             ];
                         }
