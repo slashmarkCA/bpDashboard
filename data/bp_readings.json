@@ -3482,5 +3482,18 @@
     "gPulsePressure": 45,
     "FormComments": "",
     "PulsePressureCategory": "Normal"
+  },
+  {
+    "ReadingID": 269,
+    "Date": "2026-02-18 04:58:30 PM",
+    "Sys": 105,
+    "Dia": 78,
+    "BPM": 77,
+    "Workday": "No",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 27,
+    "FormComments": "Whoa.  pulse pressure is super-low - no wonder I almost fainted.",
+    "PulsePressureCategory": "Narrowed"
   }
 ]
