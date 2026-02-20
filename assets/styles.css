@@ -166,7 +166,7 @@ footer {
 
 section {
     margin: 10px 0px;
-    outline: 1px solid orange;
+    /* outline: 1px solid orange; */
     height:auto; /* Remove !important so media queries can actually work */
 }
 
@@ -216,7 +216,7 @@ section {
     height: 100%;
     display: flex;
     flex-direction: column;
-    outline: 2px solid blue;
+    /* outline: 2px solid blue; */
 }
 
 /* Titles don't stretch */
@@ -248,7 +248,7 @@ section {
     height: 100%;
     min-height: 0; /* Allow shrinking */
     overflow: hidden; /* Prevent blowout */
-    outline: 2px solid blue;
+    /* outline: 2px solid blue; */
 }
 
 /* Selects the first child element of each - this fixed the donut canvas height from misbehaving */
@@ -259,7 +259,7 @@ section {
 }
 
 canvas {
-    outline: 2px solid red;
+    /* outline: 2px solid red; */
     width: 100% !important;
     height: 100% !important;
 }
@@ -270,25 +270,25 @@ canvas {
 
 /* WORKS PERFECTLY IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
 #ReadingCategories .two-col {
-    height: 675px;
+    height: 350px;
     grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
 }
 
 /* WORKS PERFECTLY IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
 #Pulse .two-col {
-    height: 675px;
+    height: 350px;
     grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
 }
 
 /* WORKS IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH   */
 #PulsePressure .two-col {
-    height: 675px;
+    height: 350px;
     grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */
 }
 
 /* WORKS IN DESKTOP.  DOESN'T AFFECT MOBILE - DO NOT TOUOCH */
 #SysAndDia .two-col {
-    height: 675px;
+    height: 400px;
     grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */ 
 }
 
@@ -493,14 +493,14 @@ canvas {
     overflow-y: auto;
     border: 1px solid #ddd;
     border-radius: 6px;
-    outline: 1px dashed orange;
+    /* outline: 1px dashed orange; */
 }
 
 .bp-raw-table {
     width: 100%;
     border-collapse: collapse;
     table-layout: auto;
-    outline: 1px dashed blue;
+    /* outline: 1px dashed blue; */
 }
 
 .bp-raw-table th {
@@ -628,7 +628,7 @@ canvas {
     
     .nobgCard {
         border-radius: 8px;
-        border: 1px solid #3D444D;
+        /* border: 1px solid #3D444D; */
     }
 
     /* MOBILE: 7 day rolling SD radio buttons - Stack everything vertically */
