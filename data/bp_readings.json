@@ -3495,5 +3495,18 @@
     "gPulsePressure": 27,
     "FormComments": "Whoa.  pulse pressure is super-low - no wonder I almost fainted.",
     "PulsePressureCategory": "Narrowed"
+  },
+  {
+    "ReadingID": 270,
+    "Date": "2026-02-19 05:06:41 PM",
+    "Sys": 124,
+    "Dia": 83,
+    "BPM": 79,
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 41,
+    "FormComments": "",
+    "PulsePressureCategory": "Normal"
   }
 ]
