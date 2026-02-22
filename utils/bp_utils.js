@@ -248,7 +248,4 @@ document.addEventListener('DOMContentLoaded', () => {
             openDocDrawer(infoIcon.dataset.drawer);
         }
     });
-
-    // TODO: Add filter button clicks here.
-
 });

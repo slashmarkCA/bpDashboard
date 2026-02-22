@@ -27,6 +27,12 @@
     --font-light-axisLabel-weight: 100;
     --font-light-axisTitle-size: 16px; /*TODO: replace with rem*/
     --font-light-axisTitle-weight: 200;
+    
+    /* For tooltip documentation bullets TODO: Refactor bp_utils.js to pull from these vars instead of inline */
+    --pp-narrow: #f0ad4e;
+    --pp-normal: #5cb85c;
+    --pp-widened: #d9534f;
+    --pp-very-widened: #a94442;
 }
 
 /* ==========================================================================
@@ -96,6 +102,21 @@ header h1 span {
 .last-reading{
     color: #7f90a3;
     font-size: 12px;
+}
+
+.header-title {
+    margin-left: auto; /* Move the title out of center alignment in the flexbox and to the right against the .header-btnHelp div */
+    text-align: right; /* Right-align the text children */
+}
+
+.header-btnHelp {
+    display: block;
+    background-color: #7f90a3;
+    color: #081618;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
 }
 
 .nav__list {
@@ -567,6 +588,7 @@ canvas {
     .header__content {
         flex-direction: column; /* this is what keeps the buttons together when they wrap under the logo instead of row. Ahhhh flex.*/
         padding: 15px 0;
+        background-color: var(--band-colour-dark);
     }
 
 
@@ -736,7 +758,7 @@ canvas {
     top: 0;
     right: 0;
     height: 100%;
-    width: 400px;
+    width: 800px;
     background: #ffffff;
     box-shadow: -5px 0 15px rgba(0,0,0,0.15);
     transform: translateX(100%);
@@ -745,7 +767,7 @@ canvas {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    overflow-y: auto;
+    overflow-y: scroll;
     box-sizing: border-box;
 }
 
@@ -778,11 +800,6 @@ canvas {
     margin-bottom: 20px;
 }
 
-.drawer-header h2 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: #333;
-}
 
 /* The "x" Button Styling */
 .close-btn {
@@ -814,15 +831,26 @@ canvas {
 .drawer-content h3 {
     font-size: 1.1rem;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
     margin-top: 20px;
+    margin-bottom: 10px;
     color: #333;
 }
 
 .drawer-content p {
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.2;
     color: #555;
+}
+
+.drawer-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.drawer-content li {
+    list-style: disc;
+    margin-left: 10px;
 }
 
 /* Minimalist List for Drawer */
@@ -834,7 +862,6 @@ canvas {
 
 .doc-list li {
     margin-bottom: 10px;
-    line-height: 1.4;
 }
 
 /* ==========================================================================
