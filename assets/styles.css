@@ -119,6 +119,14 @@ header h1 span {
     margin: 5px;
 }
 
+/* Wraps header-title and header-btnHelp together so they scroll away as one unit.
+   On mobile, display:contents dissolves .header and .header__content, making this
+   wrapper the real box that can paint the dark background behind both children. */
+.header-scrolls {
+    display: flex;
+    align-items: center;
+}
+
 .nav__list {
     display: flex; /* they were in a column with the parent having flex, but having this here nests it, so now they sit on their own line too */
     gap: 30px; /* with flex, this or column-gap spaces the <li>s apart */
@@ -574,26 +582,15 @@ canvas {
 /* MOBILE VIEW (Under 768px - Targets your TCL phone width) */
 @media (max-width: 768px) {
 
-    /* Dissolve the containers so the nav can stick to the whole page */
+    /* Dissolve the containers so the nav can stick to the whole page.
+       display:contents removes the box — children become direct flow items,
+       which is what lets .nav-container sticky-escape the header. */
     .header, 
     .header__content {
         display: contents; 
     }
 
-    .header {
-        position: static; /* Header container scrolls away */
-        background-color: transparent;
-    }
-
-    .header__content {
-        flex-direction: column; /* this is what keeps the buttons together when they wrap under the logo instead of row. Ahhhh flex.*/
-        padding: 15px 0;
-        background-color: var(--band-colour-dark);
-    }
-
-
-    /* Style the nav to be the new "top" of the page */
-    /* This makes ONLY the buttons sticky */
+    /* Style the nav to be the new top of the page — sticky independently */
     .nav-container {
         position: sticky;
         top: 0;
@@ -605,12 +602,20 @@ canvas {
         width: 100%;
     }
 
-    /* Ensure the title behaves as a normal scrolling block */
-    .header-title {
-        display: block;
+    /* .header-scrolls is a real box (not dissolved), so it CAN paint its own
+       background. It wraps header-title and header-btnHelp together and scrolls
+       away naturally while the nav above stays stuck. */
+    .header-scrolls {
         background-color: var(--band-colour-dark);
         width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0 15px;
+    }
+
+    .header-title {
         text-align: center;
+        margin-left: 0; /* Reset desktop margin-left: auto */
         padding: 3px 0;
     }
 
