@@ -3573,5 +3573,18 @@
     "gPulsePressure": 32,
     "FormComments": "Light headed - compare to last reading a few hours ago.",
     "PulsePressureCategory": "Narrowed"
+  },
+  {
+    "ReadingID": 276,
+    "Date": "2026-02-25 10:50:09 PM",
+    "Sys": 122,
+    "Dia": 85,
+    "BPM": 76,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 37,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed"
   }
 ]
