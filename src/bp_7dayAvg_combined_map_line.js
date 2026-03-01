@@ -5,6 +5,24 @@
    - Daily MAP calculated from Sys + Dia
    - True 7-day rolling average with full lookback
    - Uses global dataset for accurate rolling window
+
+   DATE HANDLING NOTES (important - do not regress):
+   -------------------------------------------------
+   Day grouping uses getLocalDateKey(r.DateObj) from bp_utils.js → "YYYY-MM-DD".
+   This uses getFullYear/getMonth/getDate (local time components), NOT ISO string
+   conversion or r.Date.split() from the raw JSON field.
+
+   WHY: Readings taken close to midnight in EST (GMT-5) would group to the wrong
+   day if converted via toISOString() because JS Date internals are UTC.
+
+   THE PIPELINE:
+     Google Sheet → Apps Script ETL → GitHub /data/bp_readings.json
+     JSON "Date" field format: "YYYY-MM-DD HH:MM:SS AM/PM"  e.g. "2025-07-24 05:00:01 PM"
+     bp_data_normalized.js parses this into DateObj (local Date object)
+     All downstream code (filters, charts, table, heatmap) must use DateObj only.
+
+   THE STANDARD: getLocalDateKey(dateObj) → "YYYY-MM-DD" (locale-safe)
+   See also: bp_filters.js toDayKey(), bp_heatmap.js, bp_rawDataTabularView.js
    ============================================================================ */
 
 import { 
@@ -20,9 +38,11 @@ let map7DayChart = null;
 const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
- * Builds daily MAP values
+ * Builds daily MAP values grouped by local calendar date.
+ * Uses getLocalDateKey() for grouping - NOT new Date(y,m,d).getTime() - 
+ * keeps this consistent with bp_filters.js and the rest of the app.
  * @param {Array} bpData - BP readings
- * @returns {Array} Daily MAP aggregates
+ * @returns {Array} Daily MAP aggregates sorted ascending by date
  */
 function buildDailyMAP(bpData) {
     const byDay = new Map();
@@ -30,17 +50,14 @@ function buildDailyMAP(bpData) {
     bpData.forEach(r => {
         if (r.Sys == null || r.Dia == null || !(r.DateObj instanceof Date)) return;
 
-        const d = new Date(
-            r.DateObj.getFullYear(),
-            r.DateObj.getMonth(),
-            r.DateObj.getDate()
-        );
-
-        const key = d.getTime();
+        // getLocalDateKey uses local date components - safe for late-night readings
+        const key = getLocalDateKey(r.DateObj);
         const mapVal = calculateMAP(r.Sys, r.Dia);
 
         if (!byDay.has(key)) {
-            byDay.set(key, { date: d, values: [] });
+            // Store a local-midnight Date for axis/tooltip use downstream
+            const midnight = new Date(r.DateObj.getFullYear(), r.DateObj.getMonth(), r.DateObj.getDate());
+            byDay.set(key, { date: midnight, values: [] });
         }
         byDay.get(key).values.push(mapVal);
     });
@@ -48,9 +65,9 @@ function buildDailyMAP(bpData) {
     return Array.from(byDay.values())
         .map(d => ({
             date: d.date,
-            map: d.values.reduce((a,b) => a + b, 0) / d.values.length
+            map: d.values.reduce((a, b) => a + b, 0) / d.values.length
         }))
-        .sort((a,b) => a.date - b.date);
+        .sort((a, b) => a.date - b.date);
 }
 
 /**
@@ -66,7 +83,7 @@ function buildRolling7DayMAP(dailyMAP) {
             .filter(p => p.date >= windowStart && p.date <= point.date)
             .map(p => p.map);
 
-        const avg = windowValues.reduce((a,b) => a + b, 0) / windowValues.length;
+        const avg = windowValues.reduce((a, b) => a + b, 0) / windowValues.length;
 
         return {
             date: point.date,
@@ -98,22 +115,19 @@ export function createMAP7DayChart(bpData) {
 
     const ctx = canvas.getContext('2d');
 
-    // Use full dataset for accurate rolling calculation
+    // Use full dataset for accurate rolling calculation (not just filtered window)
     const fullData = window.NORMALIZED_BP_DATA || [];
     const allDailyMAP = buildDailyMAP(fullData);
     const allRollingMAP = buildRolling7DayMAP(allDailyMAP);
 
-    // Filter to visible date range
-    const filteredDateKeys = new Set(
-        bpData.map(r => new Date(
-            r.DateObj.getFullYear(),
-            r.DateObj.getMonth(),
-            r.DateObj.getDate()
-        ).getTime())
-    );
+    // Build set of day keys from filtered data to determine visible range.
+    // Use getLocalDateKey() - consistent with buildDailyMAP() keying above.
+    const filteredDateKeys = new Set(bpData.map(r => getLocalDateKey(r.DateObj)));
 
-    const dailyMAP = allDailyMAP.filter(d => filteredDateKeys.has(d.date.getTime()));
-    const rollingMAP = allRollingMAP.filter(d => filteredDateKeys.has(d.date.getTime()));
+    // Match allDailyMAP entries to the filtered range by comparing their stored
+    // local-midnight dates back to a key string
+    const dailyMAP  = allDailyMAP.filter(d  => filteredDateKeys.has(getLocalDateKey(d.date)));
+    const rollingMAP = allRollingMAP.filter(d => filteredDateKeys.has(getLocalDateKey(d.date)));
 
     if (!dailyMAP.length) {
         console.warn('[MAP CHART] No daily MAP data after filtering');
@@ -231,7 +245,7 @@ export function createMAP7DayChart(bpData) {
                 },
                 y: {
                     grid: { color: '#f0f0f0' },
-                    ticks:{
+                    ticks: {
                         font: {
                             weight: cssStyle.weight, 
                             size: cssStyle.size, 

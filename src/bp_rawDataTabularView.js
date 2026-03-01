@@ -1,14 +1,34 @@
 /* ============================================================================
    bp_rawDataTabularView.js
-   --------------------------------------------------------------------------- */
-// Raw Data Table plus calculated clinical literal categories from measurements
-// No longer depends on source data category fields from original data source
-//    - Groups by date with rowspan
-//    - Highlights risky readings
-//    - Pure DOM manipulation (no Chart.js)
-// ============================================================
+   ---------------------------------------------------------------------------
+   Raw Data Table plus calculated clinical literal categories from measurements
+   - No longer depends on source data category fields from original data source
+   - Groups by date with rowspan
+   - Highlights risky readings
+   - Pure DOM manipulation (no Chart.js)
 
-import { getBPCategory, getPulseCategory, getPulsePressureCategory } from '../utils/bp_utils.js';
+   DATE HANDLING NOTES (important - do not regress):
+   -------------------------------------------------
+   Date grouping uses getLocalDateKey(record.DateObj) from bp_utils.js.
+   This uses getFullYear/getMonth/getDate (local time components), NOT ISO string
+   conversion or r.Date.split(' ')[0] from the raw JSON field.
+
+   WHY: Readings taken close to midnight in EST (GMT-5) would appear on the
+   wrong day if converted via toISOString() because JS Date internals are UTC.
+   A reading at "2026-02-27 11:45:00 PM" EST is still Feb 27 locally, but
+   ISO conversion shifts it to Feb 28 UTC — causing it to group under the wrong date.
+
+   THE PIPELINE:
+     Google Sheet → Apps Script ETL → GitHub /data/bp_readings.json
+     JSON "Date" field format: "YYYY-MM-DD HH:MM:SS AM/PM"  e.g. "2025-07-24 05:00:01 PM"
+     bp_data_normalized.js parses this into DateObj (local Date object)
+     All downstream code (filters, charts, table, heatmap) must use DateObj only.
+
+   THE STANDARD: getLocalDateKey(dateObj) → "YYYY-MM-DD" (locale-safe)
+   See also: bp_filters.js toDayKey(), bp_heatmap.js daily aggregation.
+   ============================================================================ */
+
+import { getBPCategory, getPulseCategory, getPulsePressureCategory, getLocalDateKey } from '../utils/bp_utils.js';
 
 export function renderRawBPTable() {
     const container = document.getElementById('bpRawDataTable');
@@ -28,18 +48,15 @@ export function renderRawBPTable() {
         // Sort descending (newest first)
         rawList.sort((a, b) => (b.DateObj || 0) - (a.DateObj || 0));
 
-        // Group by date - NOT using ISO or UTC dates - this fixes a defect where 11:30pm readings when behind UTC caused the next day to be the Date when split.
+        // Group by local calendar date using getLocalDateKey() from bp_utils.js.
+        // NOT using ISO/UTC conversion - see DATE HANDLING NOTES in header above.
+        // Consistent with bp_filters.js toDayKey() and bp_heatmap.js aggregation.
         const dayGroups = new Map();
         rawList.forEach(record => {
-            let dayLabel = 'Unknown Date';
-            if (record.DateObj instanceof Date && !isNaN(record.DateObj)) {
-                // Use local date components to avoid UTC shifting
-                const y = record.DateObj.getFullYear();
-                const m = String(record.DateObj.getMonth() + 1).padStart(2, '0');
-                const d = String(record.DateObj.getDate()).padStart(2, '0');
-                dayLabel = `${y}-${m}-${d}`; 
-            }
-            
+            const dayLabel = (record.DateObj instanceof Date && !isNaN(record.DateObj))
+                ? getLocalDateKey(record.DateObj)
+                : 'Unknown Date';
+
             if (!dayGroups.has(dayLabel)) dayGroups.set(dayLabel, []);
             dayGroups.get(dayLabel).push(record);
         });
@@ -69,7 +86,8 @@ export function renderRawBPTable() {
 
         dayGroups.forEach((rowsInDay, dayKey) => {
             rowsInDay.forEach((r, idx) => {
-                // Calculate categories on-the-fly
+                // Calculate categories on-the-fly from normalized values.
+                // This file does NOT rely on category fields from the source JSON.
                 const bpCat = getBPCategory(r.Sys, r.Dia);
                 const pulseCat = getPulseCategory(r.BPM);
                 const pulsePressure = r.Sys - r.Dia;
@@ -77,7 +95,7 @@ export function renderRawBPTable() {
                 
                 const isHigh = (r.Sys >= 140 || r.Dia >= 90);
 
-                // Format time safely
+                // Format time from DateObj - NOT from r.Date string split
                 let timeStr = '--:--';
                 if (r.DateObj instanceof Date && !isNaN(r.DateObj)) {
                     timeStr = r.DateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -85,7 +103,7 @@ export function renderRawBPTable() {
 
                 tableHtml += '<tr>';
 
-                // Date column (merged with rowspan)
+                // Date column - merged across all readings for this day using rowspan
                 if (idx === 0) {
                     tableHtml += `<td class="date-cell" rowspan="${rowsInDay.length}">${dayKey}</td>`;
                 }

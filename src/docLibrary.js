@@ -46,7 +46,9 @@ const docLibrary = {
     },
     "readingCategoriesLineChart": {
         title: "Reading Categories",
-        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+        content: `<h3>Coming soon</h3>
+        <p>This Step Chart shows your "Persistent State".</p>
+        `
     },
     "readingCategoriesScatterDistribution": {
         title: "Readings Distribution",
@@ -299,8 +301,27 @@ const docLibrary = {
         `
     },
         "7DayMAP": {
-        title: "Mean Arterial Pressure",
-        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+        title: "Mean Arterial Pressure (MAP)",
+        content: `
+            <h3>What is MAP?</h3>
+            <p>Mean Arterial Pressure represents the average pressure in your arteries during one full cardiac cycle. It is often a more reliable indicator of organ perfusion (blood flow) than Systolic pressure alone.</p>
+            
+            <p><strong>Normal Range:</strong> 70 – 100 mmHg.</p>
+
+            <h3>How to Read This Chart</h3>
+            <ul>
+                <li><strong>Daily MAP (Blue):</strong> The average of all readings taken on a single day.</li>
+                <li><strong>7-Day Rolling MAP (Orange):</strong> A rolling average that includes the current day and the 6 most recent days of activity.</li>
+            </ul>
+
+            <h3>What to Look For</h3>
+            <ul>
+                <li><strong>The Gap:</strong> If the Orange line is significantly smoother than the Blue points, your 7-day average is successfully filtering out daily "spikes" to show your true baseline.</li>
+                <li><strong>The 70 mmHg Floor:</strong> Clinical guidelines suggest a MAP of at least 60–70 mmHg is necessary to ensure organs receive enough oxygenated blood.</li>
+            </ul>
+            <p>&nbsp</p>
+            <p>* A little note: MAP is not a simple average of Systolic and Diastolic. Because the heart spends twice as much time in Diastole (resting/filling) as it does in Systole (contracting), the Diastolic number is weighted more heavily in the calculation.</p>
+            `
     },
         "sysAndDiaRollingAvg": {
         title: "7 Day Rolling Average with Standard Deviation",

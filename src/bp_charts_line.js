@@ -23,6 +23,7 @@ const cssStyle = getCssStyles("light", "chart"); // call in some css styles from
  * Creates/updates the Sys/Dia line chart
  * @param {Array} bpData - Filtered BP data
  */
+
 export function createSysAndDiaChart(bpData) {
     const canvas = document.getElementById('sysAndDiaChart');
     if (!canvas) {
@@ -183,6 +184,7 @@ export function createSysAndDiaChart(bpData) {
             }
         }
     });
-    
+    console.log(bpData);
+    console.log(bpData.DateObj)
     console.log('[Trace] bp_charts_line.js rendered successfully');
 }

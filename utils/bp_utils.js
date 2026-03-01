@@ -76,6 +76,9 @@ export function destroyChart(chartInstance) {
  */
 export function calculateMAP(sys, dia) {
     return (sys + (2 * dia)) / 3;
+    // TODO: Study this: https://gemini.google.com/app/71c6be281e028883
+    // The "2x" Multiplier: By multiplying the Diastolic (bottom) number by 2, the code ensures it accounts for two-thirds of the total result.
+    // The Division by 3: Since you are essentially adding one part Systolic and two parts Diastolic, you divide by 3 to get the weighted average.
 }
 
 /**

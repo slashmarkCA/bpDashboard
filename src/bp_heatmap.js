@@ -8,7 +8,37 @@
    - Fixed height management for desktop and mobile
    ============================================================================ */
 
-import { BP_LEVELS, destroyChart, getCssStyles } from '../utils/bp_utils.js';
+/* ============================================================================
+   bp_heatmap.js
+   ---------------------------------------------------------------------------
+   Blood Pressure Calendar Heatmap (GitHub-style)
+   - Shows daily BP readings colored by category
+   - Responsive touch/mobile support
+   - 10.5 month rolling window
+   - Fixed height management for desktop and mobile
+
+   DATE HANDLING NOTES (important - do not regress):
+   -------------------------------------------------
+   All date keys in this file use getLocalDateKey(r.DateObj) from bp_utils.js.
+   This uses getFullYear/getMonth/getDate (local time components), NOT ISO string
+   conversion or r.Date.split(' ')[0] from the raw JSON field.
+
+   WHY: Readings taken close to midnight in EST (GMT-5) would produce the WRONG
+   date if converted via toISOString() or new Date(str) because JS Date internals
+   are UTC. A reading at "2026-02-27 11:45:00 PM" EST is still Feb 27 locally,
+   but ISO conversion shifts it to Feb 28 UTC.
+
+   THE PIPELINE:
+     Google Sheet → Apps Script ETL → GitHub /data/bp_readings.json
+     JSON "Date" field format: "YYYY-MM-DD HH:MM:SS AM/PM"  e.g. "2025-07-24 05:00:01 PM"
+     bp_data_normalized.js parses this into DateObj (local Date object)
+     All downstream code (filters, charts, table, heatmap) must use DateObj only.
+
+   THE STANDARD: getLocalDateKey(dateObj) → "YYYY-MM-DD" (locale-safe)
+   See also: bp_filters.js toDayKey(), bp_rawDataTabularView.js grouping logic.
+   ============================================================================ */
+
+import { BP_LEVELS, destroyChart, getCssStyles, getLocalDateKey } from '../utils/bp_utils.js';
 
 let heatmapChart = null;
 const cssStyle = getCssStyles("dark", "chart");
@@ -22,7 +52,7 @@ function isMobile() {
 
 /**
  * Creates the BP heatmap visualization
- * @param {Array} filteredData - Filtered BP readings
+ * @param {Array} filteredData - Filtered BP readings (used to dim/highlight cells)
  */
 export function createHeatmap(filteredData) {
     const canvas = document.getElementById('bpHeatmap');
@@ -42,18 +72,21 @@ export function createHeatmap(filteredData) {
 
     const allData = window.NORMALIZED_BP_DATA || [];
     
-    // Determine date range (52 weeks from newest reading)
+    // Determine date range (52 weeks back from newest reading)
     const newestDateObj = allData.length > 0 
         ? new Date(Math.max(...allData.map(d => d.DateObj)))
         : new Date();
     newestDateObj.setHours(0, 0, 0, 0);
 
-    const filteredDateStrings = new Set(filteredData.map(r => r.Date.split(' ')[0]));
+    // Build set of filtered day keys using locale-safe key (not r.Date string split).
+    // This must match the grid cell keys built below, both using getLocalDateKey().
+    const filteredDateStrings = new Set(filteredData.map(r => getLocalDateKey(r.DateObj)));
 
-    // Aggregate daily data (max BP score per day)
+    // Aggregate daily data (max BP score per day).
+    // Key by locale-safe YYYY-MM-DD so late-night readings aren't shifted to next day.
     const dailyData = {};
     allData.forEach(entry => {
-        const dateStr = entry.Date.split(' ')[0];
+        const dateStr = getLocalDateKey(entry.DateObj); // locale-safe, matches grid keys below
         if (!dailyData[dateStr]) {
             dailyData[dateStr] = { maxScore: 0, readings: [] };
         }
@@ -67,7 +100,7 @@ export function createHeatmap(filteredData) {
     // Build 10.5-month dataset (46 weeks)
     const weeks = [];
     const startDate = new Date(newestDateObj);
-    startDate.setDate(startDate.getDate() - 322); // ~46 weeks
+    startDate.setDate(startDate.getDate() - 322); // ~46 weeks back
     
     // Align to Sunday (start of week)
     const dayOfWeek = startDate.getDay();
@@ -85,7 +118,10 @@ export function createHeatmap(filteredData) {
             const d = new Date(startDate);
             d.setDate(d.getDate() + (weekIdx * 7) + dayIdx);
             d.setHours(0, 0, 0, 0);
-            const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+            // Build grid cell key using local date components - same method as dailyData
+            // keys above and filteredDateStrings. All three must be consistent.
+            const dateStr = getLocalDateKey(d);
             const entry = dailyData[dateStr];
             
             // Don't render future dates
@@ -108,7 +144,7 @@ export function createHeatmap(filteredData) {
         }
     }
     
-    // Reverse so newest dates appear on the LEFT (better for mobile)
+    // Reverse so newest dates appear on the LEFT (better for mobile scrolling)
     weeks.reverse();
     
     drawHeatmap(canvas, weeks, newestDateObj);
@@ -122,7 +158,7 @@ export function createHeatmap(filteredData) {
         }, 250);
     };
     
-    // Remove old listener if it exists
+    // Remove old listener if it exists before adding new one
     window.removeEventListener('resize', resizeHandler);
     window.addEventListener('resize', resizeHandler);
     
@@ -157,15 +193,15 @@ function drawHeatmap(canvas, weeks, newestDate) {
     const bottomPadding = 5;
     const rightPadding = 5;
     
-    // Device pixel ratio for sharp rendering
+    // Device pixel ratio for sharp rendering on hi-DPI screens
     const dpr = window.devicePixelRatio || 1;
     
-    // Set canvas size - display size (CSS pixels)
+    // Set canvas display size (CSS pixels)
     canvas.style.width = containerWidth + 'px';
     canvas.style.height = containerHeight + 'px';
     canvas.style.display = 'block';
     
-    // Set actual size in memory (scaled for DPI)
+    // Set actual backing size in memory (scaled for DPI)
     canvas.width = containerWidth * dpr;
     canvas.height = containerHeight * dpr;
     
@@ -176,13 +212,12 @@ function drawHeatmap(canvas, weeks, newestDate) {
     const availableWidth = containerWidth - leftPadding - rightPadding;
     const availableHeight = containerHeight - topPadding - bottomPadding;
     
-    // Calculate cell size
+    // Calculate cell size to fill available space
     const cellGap = isMobile() ? 1 : 2;
     const cellWidth = Math.floor((availableWidth - (weeks.length * cellGap)) / weeks.length);
     const cellHeight = Math.floor((availableHeight - (7 * cellGap)) / 7);
     const cellSize = Math.min(cellWidth, cellHeight);
     
-    // Debug log for mobile
     if (isMobile()) {
         console.log('[HEATMAP] Mobile dimensions:', {
             containerHeight,
@@ -206,15 +241,16 @@ function drawHeatmap(canvas, weeks, newestDate) {
             const x = leftPadding + (weekIdx * (cellSize + cellGap));
             const y = topPadding + (dayIdx * (cellSize + cellGap));
             
-            // Determine cell color
-            let color = '#282d35';
+            // Determine cell color based on BP category score
+            let color = '#282d35'; // empty/no-data color
             let opacity = 1;
             
             if (day.isFuture) {
-                opacity = 0;
+                opacity = 0; // hide future cells
             } else if (day.value > 0) {
                 const level = Object.values(BP_LEVELS).find(l => l.score === day.value);
                 if (level) {
+                    // Full color if in current filter window, dimmed (33 = ~20% alpha) if outside
                     color = day.isFiltered ? level.color : level.color + '33';
                 }
             }
@@ -226,12 +262,12 @@ function drawHeatmap(canvas, weeks, newestDate) {
         });
     });
     
-    // Setup hover interaction
+    // Setup hover/touch interaction
     setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, topPadding);
 }
 
 /**
- * Draws month labels at the top
+ * Draws month labels at the top of the heatmap
  */
 function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding) {
     ctx.font = `${cssStyle.weight} ${cssStyle.size} ${cssStyle.family}`;
@@ -242,6 +278,7 @@ function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding)
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
     weeks.forEach((week, weekIdx) => {
+        // Use local getMonth() - date objects in weeks[] are constructed with local midnight
         const firstDay = week[0].date;
         const month = firstDay.getMonth();
         
@@ -254,7 +291,7 @@ function drawMonthLabels(ctx, weeks, cellSize, cellGap, leftPadding, topPadding)
 }
 
 /**
- * Draws day labels on the left
+ * Draws day-of-week labels on the left side
  */
 function drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding) {
     ctx.font = `${cssStyle.weight} ${cssStyle.size} ${cssStyle.family}`;
@@ -264,7 +301,7 @@ function drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding) {
     
     const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     
-    // Only show Mon, Wed, Fri
+    // Only show Mon, Wed, Fri to keep labels sparse
     [1, 3, 5].forEach(dayIdx => {
         const y = topPadding + (dayIdx * (cellSize + cellGap)) + (cellSize / 2);
         ctx.fillText(dayLabels[dayIdx], leftPadding - 5, y);
@@ -272,7 +309,8 @@ function drawDayLabels(ctx, cellSize, cellGap, leftPadding, topPadding) {
 }
 
 /**
- * Sets up hover and touch interactions
+ * Sets up hover and touch interactions for the heatmap canvas.
+ * Tooltips are disabled on mobile to allow smooth horizontal scrolling.
  */
 function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, topPadding) {
     // Disable tooltips on mobile - allows smooth horizontal scrolling
@@ -353,9 +391,11 @@ function setupHoverInteraction(canvas, weeks, cellSize, cellGap, leftPadding, to
 }
 
 /**
- * Shows tooltip with reading details
+ * Shows tooltip with reading details for a hovered heatmap cell.
+ * Uses day.date (local Date object) for the header - NOT r.Date string.
  */
 function showTooltip(tooltipEl, day, clientX, clientY) {
+    // toLocaleDateString() is safe here - day.date is constructed with local midnight (setHours(0,0,0,0))
     const dateHead = day.date.toLocaleDateString(undefined, { 
         month: 'short', 
         day: 'numeric', 
@@ -365,8 +405,12 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
     let html = `<div style="color:#ffffff; margin-bottom:5px;">${dateHead}</div>`;
     
     day.readings.forEach(r => {
-        const timeVal = r.Time || (r.Date ? r.Date.split(' ')[1] : '--:--');
-        const pulseVal = r.Pulse || r.BPM || '--';
+        // Use DateObj for time display - NOT r.Date string split.
+        // r.DateObj is the normalized local Date object from bp_data_normalized.js.
+        const timeVal = r.DateObj instanceof Date
+            ? r.DateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            : '--:--';
+        const pulseVal = r.BPM || '--';
         
         html += `
             <div style="padding:4px 0; font-size:11px; line-height:1.4; font-weight: normal;">
@@ -379,7 +423,7 @@ function showTooltip(tooltipEl, day, clientX, clientY) {
     tooltipEl.style.opacity = '1';
     tooltipEl.style.position = 'fixed';
     
-    // Position tooltip
+    // Position tooltip - keep within viewport
     const tooltipWidth = tooltipEl.offsetWidth || 200;
     const tooltipHeight = tooltipEl.offsetHeight || 100;
     const viewportWidth = window.innerWidth;

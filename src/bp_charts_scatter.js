@@ -5,9 +5,24 @@
    - Workday vs Non-workday differentiation
    - Clinical zone shading
    - Standardized ES6 module pattern
+
+   DATE HANDLING NOTES (important - do not regress):
+   -------------------------------------------------
+   Tooltip dates use formatTooltipDate(r.DateObj) from bp_utils.js.
+   Never use r.Date (raw JSON string) for display - it bypasses the normalized
+   local Date object and can show inconsistent formatting.
+
+   THE PIPELINE:
+     Google Sheet → Apps Script ETL → GitHub /data/bp_readings.json
+     JSON "Date" field format: "YYYY-MM-DD HH:MM:SS AM/PM"  e.g. "2025-07-24 05:00:01 PM"
+     bp_data_normalized.js parses this into DateObj (local Date object)
+     All downstream code must use DateObj only - never r.Date string directly.
+
+   THE STANDARD: formatTooltipDate(dateObj) for display, getLocalDateKey(dateObj) for grouping
+   See also: bp_filters.js, bp_heatmap.js, bp_rawDataTabularView.js
    ============================================================================ */
 
-import { BP_LEVELS, destroyChart, getCssStyles } from '../utils/bp_utils.js';
+import { BP_LEVELS, destroyChart, getCssStyles, formatTooltipDate } from '../utils/bp_utils.js';
 
 let scatterChartInstance = null;
 const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
@@ -106,7 +121,8 @@ export function createScatterChart(filteredData) {
         const point = {
             x: r.Dia,
             y: r.Sys,
-            date: r.Date,
+            // Use formatTooltipDate(r.DateObj) - NOT r.Date raw string
+            date: formatTooltipDate(r.DateObj),
             workday: r.Workday,
             comments: r.FormComments || ''
         };
@@ -151,9 +167,9 @@ export function createScatterChart(filteredData) {
                                 `Sys: ${p.y}`,
                                 `Dia: ${p.x}`,
                                 `Date: ${p.date}`,
-                                `Comments: ${p.FormComments || ''}`,
                                 `Workday: ${p.workday}`
                             ];
+                            // Only show comments line if there's actually a comment
                             if (p.comments) lines.push(`Comments: ${p.comments}`);
                             return lines;
                         }
