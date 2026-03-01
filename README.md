@@ -8,7 +8,8 @@ Text.
 Visit [https://slashmarkca.github.io/bpDashboard/](https://slashmarkca.github.io/bpDashboard/) to view the dashboard.
 
 (Tip: Right-click the link or hold Ctrl/Cmd to open in a new tab)
-[https://forms.gle/N4FZoaGy3GxCN75P6](Contact Me)  with any questions, or to collaborate.
+
+[Contact Me](https://forms.gle/N4FZoaGy3GxCN75P6)  with any questions, or to collaborate.  I am actively seeking medical practitioner feedback as well as code reviews.
 
 | Feature | Description |
 |--------|-------------|
