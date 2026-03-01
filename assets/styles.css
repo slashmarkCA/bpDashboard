@@ -321,17 +321,26 @@ canvas {
     grid-template-rows: 1fr; /* WHY IS THERE A GRID-TEMPLATE-ROWS DEFINED HERE?? */ 
 }
 
-/* 7-Day Rolling Map section */
+/* 7-Day Rolling Map section
+   ROOT CAUSE: .card uses height:100% which requires an ancestor with a resolved
+   px height. In .two-col the sibling columns give the grid row a natural height
+   so 100% resolves fine. A .one-col grid with one child has nothing to measure —
+   height:100% stays unresolved and Chart.js gets 0 at render time.
+   FIX: Skip the height:100% chain entirely. Give .card a direct px height and
+   let the chart-wrapper flex:1 fill it. No height needed on .one-col at all. */
 #map7DayLineChart .one-col {
-    height: auto; /* IF I USE px HEIGHT, THE SECTIONS OVERLAP.  WHY??? */
-    grid-template-rows: 1fr; /* IF I REMOVE THIS, THE HEIGHT GETS MASSIVE.  WHY?? WHAT IS SO SPECIAL ABOUT 1 COLUMN SECTIONS? */ 
+    /* no height here — .card below owns the height */
+}
+#map7DayLineChart .card {
+    height: 360px;
 }
 
-/* 7-Day Rolling combined section */
+/* 7-Day Rolling combined section — same fix; taller to fit the controls bar */
 #section-combined-rolling .one-col {
-
-    height: auto;
-    grid-template-rows: 1fr;
+    /* no height here — .card below owns the height */
+}
+#section-combined-rolling .card {
+    height: 420px;
 }
 
 /* Raw Data table section */
@@ -629,11 +638,12 @@ canvas {
     #Pulse .two-col,
     #PulsePressure .two-col,
     #SysAndDia .two-col,
-    #map7DayLineChart .one-col,
-    #section-combined-rolling .one-col,
     #rawData .one-col {
         height: auto !important;
     }
+
+    #map7DayLineChart .card { height: 300px; }
+
     
     #categoryChart { height: 250px !important; } /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */
     #bpScatterChart { height: 250px !important; }  /* WORKS ON MOBILE, DOES NOT AFFECT DESKTOP - DO NOT TOUCH */

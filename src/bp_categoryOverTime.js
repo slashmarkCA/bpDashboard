@@ -27,11 +27,11 @@ const categoryLabelPlugin = {
         const { ctx, chartArea: { left, top, bottom }, scales: { y } } = chart;
 
         const labels = [
-            { text: 'Normal',                 yValue: 1 },
-            { text: 'Elevated',               yValue: 2 },
-            { text: 'Hypertension Stage 1',   yValue: 3 },
-            { text: 'Hypertension Stage 2',   yValue: 4 },
-            { text: 'Hypertensive Crisis',    yValue: 5 }
+            { text: 'Normal',                 yValue: 1.1 },
+            { text: 'Elevated',               yValue: 2.1 },
+            { text: 'Hypertension Stage 1',   yValue: 3.1 },
+            { text: 'Hypertension Stage 2',   yValue: 4.1 },
+            { text: 'Hypertensive Crisis',    yValue: 5.1 }
         ];
 
         ctx.save();
