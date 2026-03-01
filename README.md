@@ -5,6 +5,8 @@ Text
 ### Features
 Text.
 
+Visit [https://slashmarkca.github.io/bpDashboard/](https://slashmarkca.github.io/bpDashboard/) to view the dashboard.
+
 | Feature | Description |
 |--------|-------------|
 | Charts | Canvas-based, responsive and this is a reeeallly long sentence.  let's see how it handles line wrapping.  especially if i go beyond the table width in github|
