@@ -34,6 +34,8 @@ Another H2 way.
 * asterisks for bullets?
 * Can't indent like the "Feature A with the hyphen indents.
 
+    code
+
 1. Item
 2. Item
  * Mixed
@@ -127,5 +129,6 @@ If you’d like to contribute your expertise, feel free to open a discussion, fi
 ## License
 MIT / Apache / etc.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5OTk1OTcyMywtMTk3NzkzOTIwN119
+eyJoaXN0b3J5IjpbOTMxNDEzNDc4LC0xOTk5NTk3MjMsLTE5Nz
+c5MzkyMDddfQ==
 -->
