@@ -3612,5 +3612,57 @@
     "gPulsePressure": 36,
     "FormComments": "",
     "PulsePressureCategory": "Narrowed"
+  },
+  {
+    "ReadingID": 279,
+    "Date": "2026-02-28 05:11:08 PM",
+    "Sys": 135,
+    "Dia": 94,
+    "BPM": 72,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 41,
+    "FormComments": "",
+    "PulsePressureCategory": "Normal"
+  },
+  {
+    "ReadingID": 280,
+    "Date": "2026-03-01 07:11:06 PM",
+    "Sys": 131,
+    "Dia": 96,
+    "BPM": 74,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 35,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed"
+  },
+  {
+    "ReadingID": 281,
+    "Date": "2026-03-03 06:31:11 PM",
+    "Sys": 138,
+    "Dia": 93,
+    "BPM": 76,
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 45,
+    "FormComments": "",
+    "PulsePressureCategory": "Normal"
+  },
+  {
+    "ReadingID": 282,
+    "Date": "2026-03-04 05:20:56 PM",
+    "Sys": 127,
+    "Dia": 90,
+    "BPM": 76,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 37,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed"
   }
 ]
