@@ -174,7 +174,6 @@ Keep this section tight and reader‑friendly.
 - Planned feature B  
 - Planned refactor  
 - Clinical validation steps  
-<<<<<<< Updated upstream
 - UI/UX improvements  
 
 ---
@@ -187,10 +186,3 @@ If you’d like to contribute your expertise, feel free to open a discussion, fi
 
 ## License
 MIT / Apache / etc.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbOTMxNDEzNDc4LC0xOTk5NTk3MjMsLTE5Nz
-c5MzkyMDddfQ==
--->
-=======
-- UI/UX improvements  
->>>>>>> Stashed changes
