@@ -26,9 +26,9 @@ const DATA_SOURCE = {
     console.log('[DATA LOADER] Starting data fetch from GitHub...');
     
     try {
-        // Show loading indicator
+        // Show loading banner div
         showLoadingState();
-        
+        fetch()
         // Fetch with timeout
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), DATA_SOURCE.timeout);
@@ -80,7 +80,7 @@ const DATA_SOURCE = {
  * Show loading indicator
  */
 function showLoadingState() {
-    // Remove any existing error message
+    // Remove any existing error message first from the warning banner.
     const existingError = document.getElementById('data-load-error');
     if (existingError) existingError.remove();
     

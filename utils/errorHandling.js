@@ -77,6 +77,7 @@ function checkChartDependencies() {
 /**
  * Targets all containers with the class .chart-container and 
  * injects an error message.
+ * TODO: What is this for? 
  */
 function showChartError(msg) {
     const containers = document.querySelectorAll(".chart-container");
