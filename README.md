@@ -17,7 +17,7 @@ This project is open for community review. I welcome feedback from both medical 
     
 - V1:  I used excel for data and visualization.
 - V2: Time to go to google sheets as Apps Script can do more and is way more elegant for developing than the Microsoft ecosystem.  But - I found google charts inside sheets couldn't do what I wanted to.
-- V3:  I use tableau, so tried thta for visualization. It is more sophisticated for charting, however:
+- V3:  I use tableau, so tried that for visualization. It is more sophisticated for charting, however:
 	- Connectivity to google sheets frequently fails requiring manual data refreshes using the desktop application (bleh),
  	- Its canvas based layout imposes too many design sacrifices. 
 	- It gets really laggy as you add more coding and charts.
@@ -53,11 +53,12 @@ This project is open for community review. I welcome feedback from both medical 
 |--------|-------------|
 | Categorization | Reading Categories are very common and recognized by health advocacy organizations and healthcare providers around the world. |
 | Analysis Perspectives | Most charts come in pairs: A Time-Series (Line charts showing the "path" of readings) and Summary (called a Histogram or “Box & Whisker” showing the groupings of the heart’s performance). |
-| Time Windows | These filters allow you to toggle between seeing immediate reactions (short-term) and identifying sustained patterns (long-term). |
+| Time Windows | The 7/14/30 day filters allow you to differentiate between immediate trends (short-term) and sustained patterns (long-term). |
 | Reading Comments | It accepts an optional field called "Comments" (e.g., "I just worked out") which appears in the chart markers tooltips to help and clinicians explain sudden spikes or dips, or for thoughts for review after the fact (e.g. “I’ve been on a medication for a week and noticed something feels “off”). This was the second most requested feature from my health team. |
 | Informational "Drawers" | Most charts have an information drawer explaining what it is for, on top of a general "How to use this dashboard" explaining calculation "business rules" and nuances. | 
 | Design | "Desktop First" with responsive .css and will purposefully avoid being a phone app. |
 | Themes | Plumbing is in place but haven't implemented yet. |
+| Clinician Insights | Doctors consulted have requested High/Low data, and visual colouring applied when thresholds requiring a closer watch for intervention are met. |
 
 
 ## Product Goals
