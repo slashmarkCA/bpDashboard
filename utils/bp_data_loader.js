@@ -28,7 +28,6 @@ const DATA_SOURCE = {
     try {
         // Show loading banner div
         showLoadingState();
-        fetch()
         // Fetch with timeout
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), DATA_SOURCE.timeout);
@@ -59,7 +58,7 @@ const DATA_SOURCE = {
         
         // Set global variable (same as old bp_data.js did)
         window.BP_DATA = data;
-        window.ALL_BP_DATA = data; // Alias for compatibility
+        window.ALL_BP_DATA = data; // Alias for compatibility - TODO: Why do we do this?  If one changes, they both change :/
         
         console.log(`[DATA LOADER] ✅ Successfully loaded ${data.length} readings`);
         

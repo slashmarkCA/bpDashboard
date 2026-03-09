@@ -3681,7 +3681,7 @@
   {
     "ReadingID": 284,
     "Date": "2026-03-07 05:31:40 PM",
-    "Sys": 129,
+    "Sys": 0,
     "Dia": 93,
     "BPM": 79,
     "Workday": "No",
@@ -3694,7 +3694,7 @@
   {
     "ReadingID": 285,
     "Date": "2026-03-08 12:01:32 AM",
-    "Sys": 89,
+    "Sys": 0,
     "Dia": 61,
     "BPM": 84,
     "Workday": "No",

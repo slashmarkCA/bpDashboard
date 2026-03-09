@@ -58,11 +58,11 @@ const docLibrary = {
         title: "Pulse",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
     },
-        "bpmHistogram": {
+    "bpmHistogram": {
         title: "Pulse Distribution",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
     },
-        "ppLineChart": {
+    "ppLineChart": {
         title: "Pulse Pressure",
         content: `
             <h3>What is this chart?</h3>
@@ -110,7 +110,7 @@ const docLibrary = {
             </ul>
         `
     },
-        "sysAndDiaLineChart": {
+    "sysAndDiaLineChart": {
         title: "Systolic And Diastolic",
         content: `
             <h3>What is this chart?</h3>
@@ -136,7 +136,7 @@ const docLibrary = {
             </ul>
         `
     },
-        "sysAndDiaBoxAndWhisker": {
+    "sysAndDiaBoxAndWhisker": {
         title: "Systolic And Diastolic Volatility",
         content: `
         <h3>What is this chart?</h3>
@@ -300,7 +300,7 @@ const docLibrary = {
         </svg>
         `
     },
-        "7DayMAP": {
+    "7DayMAP": {
         title: "Mean Arterial Pressure (MAP)",
         content: `
             <h3>What is MAP?</h3>
@@ -323,17 +323,16 @@ const docLibrary = {
             <p>* A little note: MAP is not a simple average of Systolic and Diastolic. Because the heart spends twice as much time in Diastole (resting/filling) as it does in Systole (contracting), the Diastolic number is weighted more heavily in the calculation.</p>
             `
     },
-        "sysAndDiaRollingAvg": {
+    "sysAndDiaRollingAvg": {
         title: "7 Day Rolling Average with Standard Deviation",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
     },
-        "rawDataGridview": {
+    "rawDataGridview": {
         title: "Raw Data",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
     },
-        "mainDocumentation": {
+    "mainDocumentation": {
         title: "How To Use This Dashboard",
         content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
     },
-
 };
