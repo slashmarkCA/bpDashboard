@@ -10,7 +10,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 61,
     "FormComments": "This is test data to test for a Hypertensive Crisis reading and a 'widened' pulse pressure reading.  Ignore if you see this reading.",
-    "PulsePressureCategory": "Widened"
+    "PulsePressureCategory": "Widened",
+    "": 132
   },
   {
     "ReadingID": 119,
@@ -23,7 +24,8 @@
     "PulseCategory": "Bradycardia",
     "gPulsePressure": 102,
     "FormComments": "This is test data to simulate a Brachadya reading, and a 'very widened' pulse pressure reading.  Ignore if you see this reading.",
-    "PulsePressureCategory": "Very Widened"
+    "PulsePressureCategory": "Very Widened",
+    "": 128
   },
   {
     "ReadingID": 120,
@@ -36,7 +38,8 @@
     "PulseCategory": "Tachycardia",
     "gPulsePressure": 22,
     "FormComments": "This is test data to simulate a Tachycardia reading.  Ignore if you see this reading.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 85
   },
   {
     "ReadingID": 121,
@@ -49,7 +52,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "This is test data so the calendar viz MONTH() doesn't collapse in july 2025 (stupid tableau needs 1 day per month with 2 readings)",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 130
   },
   {
     "ReadingID": 1,
@@ -62,7 +66,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 2,
@@ -75,7 +80,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 3,
@@ -88,7 +94,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 4,
@@ -101,7 +108,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 5,
@@ -114,7 +122,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 6,
@@ -127,7 +136,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 21,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 7,
@@ -140,7 +150,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 8,
@@ -153,7 +164,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 9,
@@ -166,7 +178,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 10,
@@ -179,7 +192,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 11,
@@ -192,7 +206,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 22,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 12,
@@ -205,7 +220,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 13,
@@ -218,7 +234,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 14,
@@ -231,7 +248,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 15,
@@ -244,7 +262,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 16,
@@ -257,7 +276,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 17,
@@ -270,7 +290,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 18,
@@ -283,7 +304,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 41,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 19,
@@ -296,7 +318,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 20,
@@ -309,7 +332,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 21,
@@ -322,7 +346,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 22,
@@ -335,7 +360,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 23,
@@ -348,7 +374,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 24,
@@ -361,7 +388,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 25,
@@ -374,7 +402,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 26,
@@ -387,7 +416,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 27,
@@ -400,7 +430,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 23,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 28,
@@ -413,7 +444,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 24,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 29,
@@ -426,7 +458,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 25,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 30,
@@ -439,7 +472,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 31,
@@ -452,7 +486,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 21,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 32,
@@ -465,7 +500,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 33,
@@ -478,7 +514,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 34,
@@ -491,7 +528,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 35,
@@ -504,7 +542,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 36,
@@ -517,7 +556,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 37,
@@ -530,7 +570,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 38,
@@ -543,7 +584,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 39,
@@ -556,7 +598,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 40,
@@ -569,7 +612,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 41,
@@ -582,7 +626,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 42,
@@ -595,7 +640,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 43,
@@ -608,7 +654,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 25,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 44,
@@ -621,7 +668,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 45,
@@ -634,7 +682,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 46,
@@ -647,7 +696,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 47,
@@ -660,7 +710,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 48,
@@ -673,7 +724,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 23,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 49,
@@ -686,7 +738,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 50,
@@ -699,7 +752,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 51,
@@ -712,7 +766,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 52,
@@ -725,7 +780,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 53,
@@ -738,7 +794,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 54,
@@ -751,7 +808,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 55,
@@ -764,7 +822,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 23,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 56,
@@ -777,7 +836,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 57,
@@ -790,7 +850,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 58,
@@ -803,7 +864,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 25,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 59,
@@ -816,7 +878,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 22,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 60,
@@ -829,7 +892,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 61,
@@ -842,7 +906,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 23,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 62,
@@ -855,7 +920,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 63,
@@ -868,7 +934,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 64,
@@ -881,7 +948,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 65,
@@ -894,7 +962,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 66,
@@ -907,7 +976,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 67,
@@ -920,7 +990,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 68,
@@ -933,7 +1004,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 69,
@@ -946,7 +1018,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 70,
@@ -959,7 +1032,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 46,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 71,
@@ -972,7 +1046,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 72,
@@ -985,7 +1060,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 73,
@@ -998,7 +1074,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 74,
@@ -1011,7 +1088,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 25,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 75,
@@ -1024,7 +1102,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 49,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 76,
@@ -1037,7 +1116,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 25,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 77,
@@ -1050,7 +1130,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 78,
@@ -1063,7 +1144,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 50,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 79,
@@ -1076,7 +1158,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 80,
@@ -1089,7 +1172,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 81,
@@ -1102,7 +1186,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 52,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 82,
@@ -1115,7 +1200,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 83,
@@ -1128,7 +1214,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 43,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 84,
@@ -1141,7 +1228,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 85,
@@ -1154,7 +1242,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 86,
@@ -1167,7 +1256,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 87,
@@ -1180,7 +1270,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 88,
@@ -1193,7 +1284,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 89,
@@ -1206,7 +1298,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 44,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 90,
@@ -1219,7 +1312,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 91,
@@ -1232,7 +1326,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 92,
@@ -1245,7 +1340,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 6,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 93,
@@ -1258,7 +1354,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 94,
@@ -1271,7 +1368,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 21,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 95,
@@ -1284,7 +1382,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 96,
@@ -1297,7 +1396,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 97,
@@ -1310,7 +1410,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 25,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 98,
@@ -1323,7 +1424,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 23,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 99,
@@ -1336,7 +1438,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 54,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 100,
@@ -1349,7 +1452,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 101,
@@ -1362,7 +1466,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 102,
@@ -1375,7 +1480,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 103,
@@ -1388,7 +1494,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 22,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 104,
@@ -1401,7 +1508,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 23,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 105,
@@ -1414,7 +1522,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 106,
@@ -1427,7 +1536,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 24,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 107,
@@ -1440,7 +1550,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 108,
@@ -1453,7 +1564,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 22,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 109,
@@ -1466,7 +1578,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 110,
@@ -1479,7 +1592,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 111,
@@ -1492,7 +1606,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 112,
@@ -1505,7 +1620,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 113,
@@ -1518,7 +1634,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 21,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 114,
@@ -1531,7 +1648,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 115,
@@ -1544,7 +1662,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 116,
@@ -1557,7 +1676,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 117,
@@ -1570,7 +1690,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 22,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 122,
@@ -1583,7 +1704,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 123,
@@ -1596,7 +1718,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 124,
@@ -1609,7 +1732,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 125,
@@ -1622,7 +1746,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 126,
@@ -1635,7 +1760,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 127,
@@ -1648,7 +1774,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 128,
@@ -1661,7 +1788,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 43,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 129,
@@ -1674,7 +1802,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 24,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 130,
@@ -1687,7 +1816,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 131,
@@ -1700,7 +1830,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 22,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 132,
@@ -1713,7 +1844,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 133,
@@ -1726,7 +1858,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 134,
@@ -1739,7 +1872,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 22,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 135,
@@ -1752,7 +1886,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 136,
@@ -1765,7 +1900,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 41,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 137,
@@ -1778,7 +1914,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 138,
@@ -1791,7 +1928,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 139,
@@ -1804,7 +1942,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 140,
@@ -1817,7 +1956,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 141,
@@ -1830,7 +1970,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 142,
@@ -1843,7 +1984,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 143,
@@ -1856,7 +1998,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 144,
@@ -1869,7 +2012,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 45,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 145,
@@ -1882,7 +2026,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 146,
@@ -1895,7 +2040,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 147,
@@ -1908,7 +2054,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 148,
@@ -1921,7 +2068,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 149,
@@ -1934,7 +2082,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 150,
@@ -1947,7 +2096,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 151,
@@ -1960,7 +2110,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 152,
@@ -1973,7 +2124,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 153,
@@ -1986,7 +2138,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 154,
@@ -1999,7 +2152,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 155,
@@ -2012,7 +2166,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 156,
@@ -2025,7 +2180,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 157,
@@ -2038,7 +2194,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 158,
@@ -2051,7 +2208,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 44,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 159,
@@ -2064,7 +2222,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 160,
@@ -2077,7 +2236,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 161,
@@ -2090,7 +2250,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 162,
@@ -2103,7 +2264,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 163,
@@ -2116,7 +2278,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 164,
@@ -2129,7 +2292,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 44,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 165,
@@ -2142,7 +2306,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 166,
@@ -2155,7 +2320,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 167,
@@ -2168,7 +2334,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 41,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 168,
@@ -2181,7 +2348,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 42,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 169,
@@ -2194,7 +2362,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 170,
@@ -2207,7 +2376,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 171,
@@ -2220,7 +2390,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 172,
@@ -2233,7 +2404,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "Spent all day in bed with AI trying to make tableau analysis charts.  Pressure may be so high because I'm both frustrated and impressed by AI.  Giving up on Claude and going with Gemini as google is better with medical data.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 224
   },
   {
     "ReadingID": 173,
@@ -2246,7 +2418,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 51,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 174,
@@ -2259,7 +2432,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "Not a strenuous day.  Did groceries, and spent the day in tableau trying to get the Standard Deviation features in my dashboard working.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 136
   },
   {
     "ReadingID": 175,
@@ -2272,7 +2446,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 54,
     "FormComments": "Why is it so high today?",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 24
   },
   {
     "ReadingID": 176,
@@ -2285,7 +2460,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "Light headed when I stood up.  I went from Hyper2 to Normal in just 5 hours.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 76
   },
   {
     "ReadingID": 177,
@@ -2298,7 +2474,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 43,
     "FormComments": "I had a tooth extracted 30 mins prior to this reading.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 54
   },
   {
     "ReadingID": 178,
@@ -2311,7 +2488,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 47,
     "FormComments": "woke up after a nap.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 20
   },
   {
     "ReadingID": 179,
@@ -2324,7 +2502,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "1 hour after nap, stood up; light headed.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 41
   },
   {
     "ReadingID": 180,
@@ -2337,7 +2516,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 48,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 181,
@@ -2350,7 +2530,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 182,
@@ -2363,7 +2544,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "Sad day - I accidentally overwrote my tableau workbook and had to rebuild it.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 77
   },
   {
     "ReadingID": 183,
@@ -2376,7 +2558,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 184,
@@ -2389,7 +2572,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 48,
     "FormComments": "Not a strenuous day.  Don't know why it's so high again!",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 56
   },
   {
     "ReadingID": 185,
@@ -2402,7 +2586,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 186,
@@ -2415,7 +2600,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 23,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 187,
@@ -2428,7 +2614,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 188,
@@ -2441,7 +2628,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 189,
@@ -2454,7 +2642,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "How did I drop from Hyper2 to Normal in 1 hour?",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 47
   },
   {
     "ReadingID": 190,
@@ -2467,7 +2656,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 25,
     "FormComments": "Whoa.  Why is my bpm so high?  It wasn't strenuous today, but I was out for 11 hours.  I feel fine.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 99
   },
   {
     "ReadingID": 191,
@@ -2480,7 +2670,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 24,
     "FormComments": "Light headed.  Seems to happen at night only lately.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 52
   },
   {
     "ReadingID": 192,
@@ -2493,7 +2684,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 193,
@@ -2506,7 +2698,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 43,
     "FormComments": "Feeling very shaky.  worked hard today; long day, poor high-sodium diet.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 72
   },
   {
     "ReadingID": 194,
@@ -2519,7 +2712,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 47,
     "FormComments": "BPM is down over similar reading last night - feel fine; minimal activity today.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 80
   },
   {
     "ReadingID": 195,
@@ -2532,7 +2726,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "Just finished baking so not a strenuous day.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 44
   },
   {
     "ReadingID": 196,
@@ -2545,7 +2740,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "just woke up.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 13
   },
   {
     "ReadingID": 197,
@@ -2558,7 +2754,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 198,
@@ -2571,7 +2768,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 42,
     "FormComments": "Just got home from working late - probably why so high.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 55
   },
   {
     "ReadingID": 199,
@@ -2584,7 +2782,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 47,
     "FormComments": "Worked today, but it shouldn't be this high!",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 44
   },
   {
     "ReadingID": 200,
@@ -2597,7 +2796,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "I took this reading a few hours after the last.  It is still unusually high after a stress-free evening.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 104
   },
   {
     "ReadingID": 201,
@@ -2610,7 +2810,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 21,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 202,
@@ -2623,7 +2824,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 203,
@@ -2636,7 +2838,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 16,
     "FormComments": "Felt light headed when I stood up.  Compare to the reading before, and note the pulse pressure.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 95
   },
   {
     "ReadingID": 204,
@@ -2649,7 +2852,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "Just shoveled the driveway.  Stupid winter.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 43
   },
   {
     "ReadingID": 205,
@@ -2662,7 +2866,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 206,
@@ -2675,7 +2880,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 207,
@@ -2688,7 +2894,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "Just got home from doing laundry; carried heavy bags and backpack on the bus.  Periods of lightheadedness.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 106
   },
   {
     "ReadingID": 208,
@@ -2701,7 +2908,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 209,
@@ -2714,7 +2922,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 210,
@@ -2727,7 +2936,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 211,
@@ -2740,7 +2950,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 45,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 212,
@@ -2753,7 +2964,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 43,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 213,
@@ -2766,7 +2978,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 51,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 214,
@@ -2779,7 +2992,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 52,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 215,
@@ -2792,7 +3006,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 216,
@@ -2805,7 +3020,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 217,
@@ -2818,7 +3034,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 45,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 218,
@@ -2831,7 +3048,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 22,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 219,
@@ -2844,7 +3062,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "Light Headed.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 13
   },
   {
     "ReadingID": 220,
@@ -2857,7 +3076,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "Just got home from work - light headed.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 39
   },
   {
     "ReadingID": 221,
@@ -2870,7 +3090,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 58,
     "FormComments": "Stayed still for hours after last reading; sys rose, PP rose, Dia dropped.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 74
   },
   {
     "ReadingID": 222,
@@ -2883,7 +3104,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 42,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 0
   },
   {
     "ReadingID": 223,
@@ -2896,7 +3118,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 30,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 224,
@@ -2909,7 +3132,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 25,
     "FormComments": "Phew, almost fell down - went from Hypertension to the first Normal reading in a looong time.  Pulse pressure is super low.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 123
   },
   {
     "ReadingID": 225,
@@ -2922,7 +3146,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 226,
@@ -2935,7 +3160,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "Light headed when I woke up.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 28
   },
   {
     "ReadingID": 227,
@@ -2948,7 +3174,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 228,
@@ -2961,7 +3188,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 229,
@@ -2974,7 +3202,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 230,
@@ -2987,7 +3216,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 231,
@@ -3000,7 +3230,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 232,
@@ -3013,7 +3244,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 26,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 233,
@@ -3026,7 +3258,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 234,
@@ -3039,7 +3272,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 235,
@@ -3052,7 +3286,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": 0
   },
   {
     "ReadingID": 236,
@@ -3065,7 +3300,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 43,
     "FormComments": "Lazy day coding away - bp and pp are high. Why?  Haven't eaten.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": 63
   },
   {
     "ReadingID": 237,
@@ -3078,7 +3314,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 61,
     "FormComments": "Whoa - highest pulse pressure to date. Look at Jan 5 too.  No lightheadedness.",
-    "PulsePressureCategory": "Widened"
+    "PulsePressureCategory": "Widened",
+    "": 78
   },
   {
     "ReadingID": 238,
@@ -3091,7 +3328,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 239,
@@ -3104,7 +3342,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 240,
@@ -3117,7 +3356,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 24,
     "FormComments": "Wow!  Haven't had a normal BP in forever; PP is super low.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 241,
@@ -3130,7 +3370,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 41,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 242,
@@ -3143,7 +3384,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 243,
@@ -3156,7 +3398,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 244,
@@ -3169,7 +3412,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 48,
     "FormComments": "Sys hasn't been this high in a long time!",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 245,
@@ -3182,7 +3426,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 57,
     "FormComments": "Almost grey'd out - just walked to grocery store after snowstorm - not all sidewalks shoveled - carried 20lbs.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 246,
@@ -3195,7 +3440,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 43,
     "FormComments": "Shoveled the loading dock at work; lightheaded all day afterwards.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 247,
@@ -3208,7 +3454,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "A little foggy all day.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 248,
@@ -3221,7 +3468,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 44,
     "FormComments": "whoa - a rare \"normal\" reading category tonight - I'm lightheaded while pulse pressure isn't too low.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 249,
@@ -3234,7 +3482,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 44,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 250,
@@ -3247,7 +3496,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 47,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 251,
@@ -3260,7 +3510,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 252,
@@ -3273,7 +3524,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 47,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 253,
@@ -3286,7 +3538,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "Yay!  A normal reading; low pulse pressure.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 254,
@@ -3299,7 +3552,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 255,
@@ -3312,7 +3566,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 49,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 256,
@@ -3325,7 +3580,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 29,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 257,
@@ -3338,7 +3594,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 38,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 258,
@@ -3351,7 +3608,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 42,
     "FormComments": "I think I know why BP is so high today - I'm undoing garbage AI slop from my application code.",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 259,
@@ -3364,7 +3622,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 44,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 260,
@@ -3377,7 +3636,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 261,
@@ -3390,7 +3650,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 31,
     "FormComments": "Phew, light headed.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 262,
@@ -3403,7 +3664,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 41,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 263,
@@ -3416,7 +3678,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 264,
@@ -3429,7 +3692,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 34,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 265,
@@ -3442,7 +3706,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 39,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 266,
@@ -3455,7 +3720,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 47,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 267,
@@ -3468,7 +3734,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 268,
@@ -3481,7 +3748,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 45,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 269,
@@ -3494,7 +3762,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 27,
     "FormComments": "Whoa.  pulse pressure is super-low - no wonder I almost fainted.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 270,
@@ -3507,7 +3776,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 41,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 271,
@@ -3520,7 +3790,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 272,
@@ -3533,7 +3804,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 33,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 273,
@@ -3546,7 +3818,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 274,
@@ -3559,7 +3832,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 24,
     "FormComments": "Hmm, a very low PP and I don't feel light headed.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 275,
@@ -3572,7 +3846,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 32,
     "FormComments": "Light headed - compare to last reading a few hours ago.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 276,
@@ -3585,7 +3860,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 277,
@@ -3598,7 +3874,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 278,
@@ -3611,7 +3888,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 279,
@@ -3624,7 +3902,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 41,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 280,
@@ -3637,7 +3916,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 35,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 281,
@@ -3650,7 +3930,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 45,
     "FormComments": "",
-    "PulsePressureCategory": "Normal"
+    "PulsePressureCategory": "Normal",
+    "": ""
   },
   {
     "ReadingID": 282,
@@ -3663,7 +3944,8 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 37,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 283,
@@ -3676,12 +3958,13 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 40,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 284,
     "Date": "2026-03-07 05:31:40 PM",
-    "Sys": 0,
+    "Sys": 129,
     "Dia": 93,
     "BPM": 79,
     "Workday": "No",
@@ -3689,12 +3972,13 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 36,
     "FormComments": "",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   },
   {
     "ReadingID": 285,
     "Date": "2026-03-08 12:01:32 AM",
-    "Sys": 0,
+    "Sys": 89,
     "Dia": 61,
     "BPM": 84,
     "Workday": "No",
@@ -3702,6 +3986,21 @@
     "PulseCategory": "Normal Pulse",
     "gPulsePressure": 28,
     "FormComments": "yikes - low numbers; super lightheaded only when I stand.",
-    "PulsePressureCategory": "Narrowed"
+    "PulsePressureCategory": "Narrowed",
+    "": ""
+  },
+  {
+    "ReadingID": 286,
+    "Date": "2026-03-08 05:03:24 PM",
+    "Sys": 124,
+    "Dia": 93,
+    "BPM": 72,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 31,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
