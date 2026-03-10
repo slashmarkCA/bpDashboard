@@ -4002,5 +4002,19 @@
     "FormComments": "<a href=\"javascript:alert('hacked')\">Click me</a>",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 287,
+    "Date": "2026-03-09 12:36:07 PM",
+    "Sys": 129,
+    "Dia": 90,
+    "BPM": 76,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 39,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
