@@ -871,6 +871,68 @@ canvas {
     margin-bottom: 10px;
 }
 
+
+
+.accordion .doc-container {
+    position: relative;
+    margin: 5px 5px;
+    background-color: #F6F5F7;
+}
+
+.accordion .label {
+    position: relative;
+    padding: 10px 0;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+.accordion .label::before {
+    content: "+";
+    color: black;
+    position: absolute;
+    top: 50%;
+    right: -0.1px;
+    font-size: 30px;
+    transform: translateY(-50%);
+}
+
+.accordion .doc-content {
+    position: relative;
+    max-height: 0;
+    text-align: justify;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.accordion .doc-container.active .doc-content {
+    /* min-height: 150px; */
+    max-height: 1000px;
+    padding: 4px 4px;
+    background-color: white;
+}
+
+.accordion .doc-container.active .label::before {
+    content: "-";
+    font-size: 30px;
+}
+
+/* TODO - add this to the root and rename the ids in docLibrary.js properly */
+.doc-ReadingCategories { list-style: disc; padding-left: 15px; }
+#normal::marker { color: #30693c; font-size: 30px }
+#elevated::marker { color: #204929; font-size: 30px }
+#hyper1::marker { color: #eeb649; font-size: 30px }
+#hyper2::marker { color: #d95139; font-size: 30px }
+#crisis::marker { color: #ad322d; font-size: 30px }
+
+.doc-ul { list-style: disc; padding-left: 15px; }
+
+.doc-pp { list-style: disc; padding-left: 15px; }
+#narrowedpp::marker { color: #9be9a8; font-size: 30px }
+#normalpp::marker { color: #216e39; font-size: 30px }
+#widenedpp::marker { color: #ffcc00; font-size: 30px }
+#verywidenedpp::marker { color: #c70000; font-size: 30px }
+
 /* ==========================================================================
    EXCEPTION HANDLING VISUAL DIVs
    ========================================================================== */

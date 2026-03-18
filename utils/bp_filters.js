@@ -7,7 +7,6 @@
    - Last N days WITH readings (no empty-day padding)
    - Include ALL readings within each included day
    - Return [] if no data in range
-   - NO window object pollution
    ============================================================================ */
 
 import { getLocalDateKey } from './bp_utils.js';
