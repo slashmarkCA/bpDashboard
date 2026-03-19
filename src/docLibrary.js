@@ -333,6 +333,133 @@ const docLibrary = {
     },
     "mainDocumentation": {
         title: "How To Use This Dashboard",
-        content: `<h3>Coming soon</h3><p>Content To Be Written</p>`
+        content: `
+            <div class="accordion-body">
+            <div class="accordion">
+                <hr />
+                <div class="doc-container">
+                <div class="label">Welcome</div>
+                <div class="doc-content">
+                    This dashboard analyzes your blood pressure readings and separates them into raw trends, volatility, and 
+                    distribution frequency (called histograms) to give different insights.<br><br>
+                    <p>It takes raw, intimidating numbers and translates them into easier to understand views of your Heart’s health, and behavior over time.</p>
+                </div>
+                </div>
+                <hr />
+
+                <div class="doc-container">
+                <div class="label">Navigation & Features</div>
+                <div class="doc-content">
+                    Coming Soon.
+                </div>
+                </div>
+                <hr />
+
+                <div class="doc-container">
+                <div class="label">What are Reading Categories?</div>
+                <div class="doc-content">
+                    Reading Categories are very common and recognized by health advocacy organizations and healthcare providers around the world. 
+                    These are clinical definitions that weigh your Systolic and Diastolic (your heart pumping and contracting) and are categorized based on these rules:
+                        <ul class="doc-ReadingCategories">
+                        <li id="normal"><span style="text-decoration: underline;"><strong>Normal Category:</strong></span><br />Less than 120/80 mmHg. &nbsp;<br />Your heart and arteries are working in an ideal range.</li>
+                        <li id="elevated"><span style="text-decoration: underline;"><strong>Elevated Category:</strong></span>&nbsp;&nbsp;<br />Systolic between 120&minus;129 mmHg AND Diastolic less than 80 mmHg. &nbsp; &nbsp;<br />A cautionary zone indicating your pressure is consistently higher than ideal, though not yet in the hypertension range.</li>
+                        <li id="hyper1"><span style="text-decoration: underline;"><strong>Hypertension Stage 1 Category:</strong></span>&nbsp;&nbsp;<br />Systolic between 130&minus;139 mmHg OR Diastolic between 80&minus;89 mmHg. &nbsp;<br />Often the first point of medical intervention. This suggests your heart is working harder than it should to move blood.</li>
+                        <li id="hyper2"><span style="text-decoration: underline;"><strong>Hypertension Stage 2 Category:</strong></span> &nbsp;<br />Systolic 140 mmHg or higher OR Diastolic 90 mmHg or higher. &nbsp;<br />A clear signal of high cardiovascular stress that requires active management with your healthcare provider.</li>
+                        <li id="crisis"><span style="text-decoration: underline;"><strong>Hypertensive Crisis:</strong></span> &nbsp;<br />Systolic pressure greater than 180 mmHg AND/OR Diastolic pressure greater than 120 mmHg. &nbsp;<br />Seek immediate medical attention. This represents a level of pressure that puts immediate strain on your vital organs.</li>
+                        </ul>
+                        <br> <strong>Clinical Insight:</strong> This Dashboard takes those categories further and analyzes them in a variety of ways over time, and because blood pressure is dynamic, it looks for where your "density" lives (e.g. if 80% of your readings are in the green, an occasional "Elevated" reading is often just a snapshot of a stressful moment). 
+                </div>
+                </div>
+                <hr />
+
+                <div class="doc-container">
+                <div class="label">About Pulse (BPM)</div>
+                <div class="doc-content">
+                    <p>Your pulse, measured in Beats Per Minute (BPM), reveals how hard your heart is working to circulate blood throughout your body. While blood pressure measures the force against your artery walls, your pulse measures the rhythm and effort of the pump itself.</p>
+                    <ul class="doc-ul">
+                    <li>Normal: 60&ndash;100 BPM. The standard resting range for most adults.</li>
+                    <li>Bradycardia (&lt;60): A slower-than-normal heart rate.</li>
+                    <li>Tachycardia (&gt;100): A faster-than-normal heart rate.</li>
+                    </ul><br>
+                    <p><strong>The Two Sides of a "Slow" Heart (Bradycardia)</strong> <br />A pulse below 60 BPM isn't always a cause for concern. It is critical to distinguish between the two types:</p>
+                    <ul class="doc-ul">
+                    <li><strong>Physiological</strong> (The Athlete&rsquo;s Pulse): In highly fit individuals, the heart muscle is so strong and efficient that it can provide plenty of blood to the body with fewer beats.</li>
+                    <li><strong>Pathological</strong> (The Clinical Marker): A slow heart rate can also be caused by certain medications (like Beta-Blockers) or underlying medical conditions.</li>
+                    </ul><br>
+                    <p><strong>The Golden Rule of Pulse:</strong> The most important factor is the <strong>presence or absence of symptoms</strong>. A low heart rate is usually healthy if you feel fine, but it requires medical attention if it is accompanied by dizziness, shortness of breath, or extreme fatigue.</p>
+                </div>
+                </div>
+                <hr />
+
+                <div class="doc-container">
+                <div class="label">What is Pulse Pressure?</div>
+                <div class="doc-content">
+                    <p>Pulse pressure (The &ldquo;Gap&rdquo;) is the difference between your systolic and diastolic blood pressure readings (Sys minus Dia). Think of it as the "volume" of your heartbeat&mdash;it represents the actual pressure wave generated every time your heart contracts, and are categorized as such:</p>
+                    <ul class="doc-pp">
+                    <li id="narrowedpp"><span style="text-decoration: underline;">Narrowed (Low): 100 mmHg</span> <br />Considered severe; this may indicate significant cardiovascular issues that require immediate medical discussion.</li>
+                    <li id="normalpp"><span style="text-decoration: underline;">Normal: 40-60 mmHg</span><br />The ideal healthy range for cardiovascular efficiency</li>
+                    <li id="widenedpp"><span style="text-decoration: underline;">Widened (High): 61-100 mmHg</span><br />Often a primary indicator of arterial stiffness (arteriosclerosis), which can increase the risk of heart attack or stroke.</li>
+                    <li id="verywidenedpp"><span style="text-decoration: underline;">Very Widened: &gt;100 mmHg</span><br />Considered severe; this may indicate significant cardiovascular issues that require immediate medical discussion.</li>
+                    </ul><br>
+                    <p><strong>Why it Matters: The Vascular "Stiffness"</strong> <br />Insight While Systolic and Diastolic are the "Gold Standard," Pulse Pressure provides a deeper look at the <strong>health of your pipes</strong> (arteries), not just the strength of the pump:</p>
+                    <ul class="doc-pp">
+                    <li><strong>Hidden Trends</strong>: A widening gap can reveal vascular stiffness that is often invisible if you only look at your standard blood pressure or heart rate alone.</li>
+                    <li><strong>Heart Efficiency</strong>: A narrowed gap can indicate that your heart is struggling to maintain an effective output.</li>
+                    <li><strong>Elasticity</strong>: If your trendline shows a widening gap over months or years, it often indicates that your large arteries are becoming less elastic&mdash;a key marker of vascular aging.</li>
+                    </ul>
+                </div>
+                </div>
+                <hr />
+
+                <div class="doc-container">
+                <div class="label">What Mean Arterial Pressure (MAP)?</div>
+                <div class="doc-content">
+                    <p>Coming Soon</p>
+                </div>
+                </div>
+                <hr />
+
+                <div class="doc-container">
+                <div class="label">How are Averges calculated?</div>
+                <div class="doc-content">
+                    <p>Coming Soon</p>
+                </div>
+                </div>
+                <hr />
+                <div class="doc-container">
+                <div class="label">Life Factors & Considerations</div>
+                <div class="doc-content">
+                    <p>Data tells a story, but it doesn't always tell the whole story. Your age, fitness level, and even your morning coffee can influence your readings. Use these considerations to help "filter" the data through the lens of your own life.</p>
+                    <ul class="doc-ul">
+                    <li><strong>The Athlete&rsquo;s Profile</strong>: Highly fit individuals often have a resting pulse below 60 BPM (Bradycardia). This is generally a sign of a very efficient heart that pumps more blood per beat, not a medical issue. Athletes may also naturally show a wider Pulse Pressure due to this high stroke volume. They may also show a wider Pulse Pressure.</li>
+                    <li><strong>Age &amp; Arteries</strong>: As we age, arteries naturally lose some elasticity (arteriosclerosis). It is common for older adults to have a higher Systolic (top number) and a wider Pulse Pressure than younger adults, as the "pipes" become less flexible over time.</li>
+                    <li><strong>The "Snapshot" Rule</strong>: Readings capture a moment, but it doesn't see your environment. A single "Crisis" reading after a gallon of coffee, a high-stress meeting, or a massive argument is a "spike," not necessarily your "state." Always prioritize the Trendlines over individual outliers.</li>
+                    <li><strong>The Symptom Rule</strong>: The most critical factor in evaluating a low heart rate is the presence or absence of symptoms, such as dizziness, fatigue, or shortness of breath. A low heart rate is often perfectly healthy for a fit individual, but it requires medical scrutiny if you feel unwell.</li>
+                    <li><strong>The "White Coat" Effect</strong>: It is common for your first reading when taking one after another in one sitting to be higher than subsequent ones due to the "stress" of the measurement itself. If your first reading is high but the second is normal, your body is likely just reacting to the cuff.</li>
+                    </ul>
+                </div>
+                </div>
+                <hr />
+
+                <div class="doc-container">
+                <div class="label">Medical Disclaimer</div>
+                <div class="doc-content">
+                    <p> This dashboard is a data visualization tool for educational purposes only and does not provide medical advice.  <br><br>
+                    The color-coding, categories, and cautionary markers are based on general common-knowledge and published clinical guidelines and may not reflect your individual health requirements.  <br> <br>
+                    Always consult with a healthcare professional before making changes to your medication, diet, or lifestyle.</p>
+                </div>
+                </div>
+                <hr />
+                
+                <div class="doc-container">
+                <div class="label">Privacy</div>
+                <div class="doc-content">
+                    <p>Coming Soon</p>
+                </div>
+                </div>
+                <hr />
+            </div>
+            </div>
+        `
     },
 };

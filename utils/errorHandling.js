@@ -5,7 +5,6 @@
  * - Catches runtime execution errors
  * - Catches unhandled promise rejections
  * - Provides UI feedback for library and network failures
- * - Now with ES6 module exports
  * ============================================================
  */
 

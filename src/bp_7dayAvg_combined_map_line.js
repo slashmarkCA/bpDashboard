@@ -6,14 +6,14 @@
    - True 7-day rolling average with full lookback
    - Uses global dataset for accurate rolling window
 
-   DATE HANDLING NOTES (important - do not regress):
+   DATE HANDLING NOTES:
    -------------------------------------------------
    Day grouping uses getLocalDateKey(r.DateObj) from bp_utils.js → "YYYY-MM-DD".
    This uses getFullYear/getMonth/getDate (local time components), NOT ISO string
    conversion or r.Date.split() from the raw JSON field.
 
-   WHY: Readings taken close to midnight in EST (GMT-5) would group to the wrong
-   day if converted via toISOString() because JS Date internals are UTC.
+    Readings taken close to midnight in EST (GMT-5) would group to the wrong
+    day if converted via toISOString() because JS Date internals are UTC.
 
    THE PIPELINE:
      Google Sheet → Apps Script ETL → GitHub /data/bp_readings.json

@@ -243,12 +243,31 @@ export function getCssStyles(theme = "light", familyType = "chart") {
 /* ---------------------------------------------------------------------------
    Global Event Listener
 --------------------------------------------------------------------------- */
+    
 document.addEventListener('DOMContentLoaded', () => {
-    // Event delegation for info icons
+    
     document.addEventListener('click', (e) => {
+        // 1. Handle Info Icon (Drawer Opener)
         const infoIcon = e.target.closest('.info-icon');
         if (infoIcon && infoIcon.dataset.drawer) {
             openDocDrawer(infoIcon.dataset.drawer);
+            return;
+        }
+
+        // 2. Handle Accordion Toggle
+        const currentContainer = e.target.closest('.doc-container');
+        if (currentContainer) {
+            const isActive = currentContainer.classList.contains('active');
+
+            // Close all other open containers first
+            document.querySelectorAll('.doc-container.active').forEach(openItem => {
+                openItem.classList.remove('active');
+            });
+
+            // If the one they clicked wasn't already open, open it now
+            if (!isActive) {
+                currentContainer.classList.add('active');
+            }
         }
     });
 });
