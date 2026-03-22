@@ -145,3 +145,10 @@ vite.config.ts.timestamp-*
 # My bpProject ignores.  I added .env above for when I move to API keys.
 BPChartJsArchives/
 
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+# allow /tests to be pushed - these are my spec files.  Just do not embed user/pass!!!  Use a .env file which is ignored above.

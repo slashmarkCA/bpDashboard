@@ -1,0 +1,24 @@
+{
+  "name": "bpdashboard",
+  "version": "1.0.0",
+  "description": "- This dashboard analyzes blood pressure readings and separates them into raw trends, volatility, and distribution frequency (called histograms) to give different insights.\r - It takes raw, intimidating numbers and translates them into easier to understand views of heart health, and behavior over time.\r - It is currently a SPA utilizing chart.js and vanilla javascript that reads from a .json file fed from a google sheets Apps Script -> GitHub API.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slashmarkCA/bpDashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/slashmarkCA/bpDashboard/issues"
+  },
+  "homepage": "https://github.com/slashmarkCA/bpDashboard#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0",
+    "dotenv": "^17.3.1"
+  }
+}
