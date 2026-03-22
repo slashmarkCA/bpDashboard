@@ -4114,5 +4114,47 @@
     "FormComments": "",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 295,
+    "Date": "2026-03-18 05:15:22 PM",
+    "Sys": 131,
+    "Dia": 95,
+    "BPM": 74,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 36,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
+  },
+  {
+    "ReadingID": 296,
+    "Date": "2026-03-19 05:59:44 PM",
+    "Sys": 118,
+    "Dia": 78,
+    "BPM": 85,
+    "Workday": "No",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 40,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
+  },
+  {
+    "ReadingID": 297,
+    "Date": "2026-03-20 05:12:12 PM",
+    "Sys": 126,
+    "Dia": 88,
+    "BPM": 68,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 38,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
