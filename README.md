@@ -60,6 +60,13 @@ This project is open for community review. I welcome feedback from both medical 
 | Themes | Plumbing is in place but haven't implemented yet. |
 | Clinician Insights | Doctors consulted have requested High/Low data, and visual colouring applied when thresholds requiring a closer watch for intervention are met. |
 
+## Application Flow
+<details>
+  <summary><strong>Click to expand Data Flow</strong></summary>
+	
+  ![Data pipeline](assets/bp_dashboard_pipeline.svg)
+</details>
+
 
 ## Product Goals
 - Start small, invest nothing until a user critical mass is achieved.
