@@ -2,6 +2,8 @@
 <details>
   <summary><strong>Click to expand Data Flow</strong></summary>
 
+  ![Data pipeline](assets/bp_dashboard_pipeline1.svg)
+
   ```mermaid
 flowchart TD
     subgraph INPUT["Input layer"]
