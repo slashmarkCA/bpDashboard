@@ -60,6 +60,31 @@ This project is open for community review. I welcome feedback from both medical 
 | Themes | Plumbing is in place but haven't implemented yet. |
 | Clinician Insights | Doctors consulted have requested High/Low data, and visual colouring applied when thresholds requiring a closer watch for intervention are met. |
 
+## Clinician Insights
+<details>
+  <summary><strong>Click to see rules</strong></summary>
+
+	The Measures (Sys, Dia, Pulse, Pulse Pressure) have visual stylings applied to the measures individually (mutually exclusive from the whole reading record itself) based on high and low thresholds that merrit a closer look to determine if closser monitoring is needed or intervention is necessary.
+	- in the Summary Cards, if the average or the highest/lowest reading in the filtered timeframe.
+	- in the Raw Data Table, cells are highlighted (like a spreadsheet's conditional formatting).
+
+	Measures outside of these ranges are generally considered to be acceptable:
+	
+	| Measure | High Warning (>=) | Low Warning (<=) |
+	| --- | --- | --- |
+	| Systolic | 140 | 90 |	
+	| Diastolic | 90 | 60 |
+	| Pulse | 100 | 60 |
+	| Pulse Pressure | 60 | 30 |	
+
+</details>
+
+## Application Flow
+<details>
+  <summary><strong>Click to expand Data Flow</strong></summary>
+	
+  ![Data pipeline](assets/bp_dashboard_pipeline.svg)
+</details>
 
 ## Product Goals
 - Start small, invest nothing until a user critical mass is achieved.
