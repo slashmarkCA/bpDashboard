@@ -28,7 +28,7 @@
    See also: bp_filters.js toDayKey(), bp_heatmap.js daily aggregation.
    ============================================================================ */
 
-import { getBPCategory, getPulseCategory, getPulsePressureCategory, getLocalDateKey } from '../utils/bp_utils.js';
+import { getBPCategory, getPulseCategory, getPulsePressureCategory, getLocalDateKey, MEDICAL_THRESHOLDS } from '../utils/bp_utils.js';
 
 export function renderRawBPTable() {
     const container = document.getElementById('bpRawDataTable');
@@ -95,6 +95,12 @@ export function renderRawBPTable() {
                 
                 const isHigh = (r.Sys >= 140 || r.Dia >= 90);
 
+                // Evaluate cautionary colour coding for each measure
+                const sysRisk = (r.Sys >= MEDICAL_THRESHOLDS.SYS.high || r.Sys <= MEDICAL_THRESHOLDS.SYS.low);
+                const diaRisk = (r.Dia >= MEDICAL_THRESHOLDS.DIA.high || r.Dia <= MEDICAL_THRESHOLDS.DIA.low);
+                const bpmRisk = (r.BPM >= MEDICAL_THRESHOLDS.PULSE.high || r.BPM <= MEDICAL_THRESHOLDS.PULSE.low);
+                const ppRisk  = (pulsePressure >= MEDICAL_THRESHOLDS.PP.high || pulsePressure <= MEDICAL_THRESHOLDS.PP.low);
+
                 // Format time from DateObj - NOT from r.Date string split
                 let timeStr = '--:--';
                 if (r.DateObj instanceof Date && !isNaN(r.DateObj)) {
@@ -112,10 +118,10 @@ export function renderRawBPTable() {
                 tableHtml += `
                     <td class="hide-mobile">${r.ReadingID || ''}</td>
                     <td class="time-cell">${timeStr}</td>
-                    <td class="${isHigh ? 'bp-risk' : ''}">${r.Sys || ''}</td>
-                    <td class="${isHigh ? 'bp-risk' : ''}">${r.Dia || ''}</td>
-                    <td>${r.BPM || ''}</td>
-                    <td class="hide-mobile">${pulsePressure || ''}</td>
+                    <td class="${sysRisk ? 'bp-risk' : ''}">${r.Sys || ''}</td>
+                    <td class="${diaRisk ? 'bp-risk' : ''}">${r.Dia || ''}</td>
+                    <td class="${bpmRisk ? 'bp-risk' : ''}">${r.BPM || ''}</td>
+                    <td class="hide-mobile ${ppRisk ? 'bp-risk' : ''}">${pulsePressure || ''}</td>
                     <td class="category-cell hide-mobile">${bpCat.label}</td>
                     <td class="hide-mobile">${pulseCat.label}</td>
                     <td class="hide-mobile">${ppCat.label}</td>

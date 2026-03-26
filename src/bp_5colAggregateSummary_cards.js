@@ -7,11 +7,14 @@
    - No Chart.js dependency
    ============================================================================ */
 
-/**
- * Updates the 4 metric summary cards
- * @param {Array} filteredData - Filtered BP data
- */
-export function create5ColAggregateSummary(filteredData) {
+    import { MEDICAL_THRESHOLDS } from '../utils/bp_utils.js';
+
+    /**
+     * Updates the 4 metric summary cards
+     * @param {Array} filteredData - Filtered BP data
+     */
+    
+    export function create5ColAggregateSummary(filteredData) {
     // Handle empty data - reset all cards to '--'
     if (!filteredData || filteredData.length === 0) {
         ['sys', 'dia', 'pulse', 'pp'].forEach(key => {
@@ -25,12 +28,30 @@ export function create5ColAggregateSummary(filteredData) {
         return;
     }
 
-    // Configuration with medical thresholds
+
+
+    // prep the cards for the out of normal cautionary colouring
     const statsConfig = {
-        sys:   { vals: filteredData.map(d => Number(d.Sys)).filter(v => !isNaN(v)), limit: 140, lowLimit: 90 },
-        dia:   { vals: filteredData.map(d => Number(d.Dia)).filter(v => !isNaN(v)), limit: 90,  lowLimit: 60 },
-        pulse: { vals: filteredData.map(d => Number(d.BPM)).filter(v => !isNaN(v)), limit: 100, lowLimit: 60 },
-        pp:    { vals: filteredData.map(d => Number(d.Sys - d.Dia)).filter(v => !isNaN(v)), limit: 60, lowLimit: 30 }
+        sys:   { 
+            vals: filteredData.map(d => Number(d.Sys)).filter(v => !isNaN(v)), 
+            limit: MEDICAL_THRESHOLDS.SYS.high, 
+            lowLimit: MEDICAL_THRESHOLDS.SYS.low 
+        },
+        dia:   { 
+            vals: filteredData.map(d => Number(d.Dia)).filter(v => !isNaN(v)), 
+            limit: MEDICAL_THRESHOLDS.DIA.high, 
+            lowLimit: MEDICAL_THRESHOLDS.DIA.low 
+        },
+        pulse: { 
+            vals: filteredData.map(d => Number(d.BPM)).filter(v => !isNaN(v)), 
+            limit: MEDICAL_THRESHOLDS.PULSE.high, 
+            lowLimit: MEDICAL_THRESHOLDS.PULSE.low 
+        },
+        pp:    { 
+            vals: filteredData.map(d => Number(d.Sys - d.Dia)).filter(v => !isNaN(v)), 
+            limit: MEDICAL_THRESHOLDS.PP.high, 
+            lowLimit: MEDICAL_THRESHOLDS.PP.low 
+        }
     };
 
     Object.keys(statsConfig).forEach(key => {

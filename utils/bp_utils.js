@@ -159,6 +159,14 @@ export function getPulsePressureCategory(pp) {
     return { label: "No Known Rule", color: "#ebedf0" };
 }
 
+// Cautionary thresholds for the measures (a.k.a Dr. Leung's rules)
+export const MEDICAL_THRESHOLDS = {
+    SYS:   { high: 140, low: 90 },
+    DIA:   { high: 90,  low: 60 },
+    PULSE: { high: 100, low: 60 },
+    PP:    { high: 60,  low: 30 }
+};
+
 /* ---------------------------------------------------------------------------
    Linear Regression (for trendlines)
 --------------------------------------------------------------------------- */
