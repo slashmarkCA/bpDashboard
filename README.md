@@ -1,0 +1,108 @@
+# Blood Pressure Dashboard
+- This dashboard analyzes blood pressure readings and separates them into raw trends, volatility, and distribution frequency (called histograms) to give different insights.
+- It takes raw, intimidating numbers and translates them into easier to understand views of heart health, and behavior over time.
+- It is currently a SPA utilizing chart.js and vanilla javascript that reads from a .json file fed from a google sheets Apps Script -> GitHub API.
+
+Visit [https://slashmarkca.github.io/bpDashboard/](https://slashmarkca.github.io/bpDashboard/) to view the dashboard.
+<br /><sub>(Tip: Right-click the link or hold Ctrl/Cmd to open in a new tab)</sub>
+
+## Community Review Invitation
+This project is open for community review. I welcome feedback from both medical practitioners and developers — clinical insights, critiques, and technical suggestions are all appreciated.
+[Contact Me](https://forms.gle/N4FZoaGy3GxCN75P6) or open a github issue.
+
+
+## Project History
+<details>
+  <summary><strong>Click to expand project background</strong></summary>
+    
+- V1:  I used excel for data and visualization.
+- V2: Time to go to google sheets as Apps Script can do more and is way more elegant for developing than the Microsoft ecosystem.  But - I found google charts inside sheets couldn't do what I wanted to.
+- V3:  I use tableau, so tried that for visualization. It is more sophisticated for charting, however:
+	- Connectivity to google sheets frequently fails requiring manual data refreshes using the desktop application (bleh),
+ 	- Its canvas based layout imposes too many design sacrifices. 
+	- It gets really laggy as you add more coding and charts.
+ 	- Cost: Tableau Public is free (but doesn't have an API so excel->Power Automate->Tableau is out), and Looker is great (but not if you want others to use the dashboard).
+- V4:  There had to be a better way.... so here we are today.  
+	- A chart.js & vanilla javascript dashboard.
+ 	- GitHub + GitHub pages to serve
+	- google sheets as the data source and Apps Script as an ETL layer -> GitHub...
+ 	- Nice modern SPA option, no react or node.js required, no database needed since data is minimal enough for .json to handle
+  	- If chart.js can't handle a requirement then there's google and apache charts you can use too! 	  
+</details>
+
+
+## Why did I build this?
+- I had a health event requiring me to buy a cuff and monitor my blood pressure at home.
+- I'm a curious guy about my health, can't see my busy doctor often, and have been in tech jobs for over 20 years.
+- Other friends I've talked to are curious as well about their heart, but only have a Systolic + Diastolic line graph available, and jumbled spikes tells them nothing.
+- I have consulted clinicians in my health team and heard "I wish I had xyz instead of doing mental math from raw tabular readings" requirements.
+- I'm naturally an analytical thinker, and have been in many data-centric and visualization roles.
+- I looked at devices and apps that store data, and they all fall short at analysis and can't answer basic questions the more I do research into heart health - so I built it myself.
+- I'm very structured in my thinking as a BA and QA Tester in my career - I don't need expensive HP ALM or Jira licenses so I do see value in github's Issues features!
+- I want to stay marketable and upskill constantly in the era of AI disruption, software adjacent landscape, and massive tech layoffs in the 2020's.
+- I see opportunity in gaps.
+  - There are reading storge methods, but the last mile (getting a usable report into a clinician's hand and even decent analysis) is very broken and differs by device and app manufacturers.
+  - Manufacturers are in the business of making the devices, not investing developers, BI platforms, or data integration services.  
+  - Devices like Fitbit, Galaxy watches, and blood pressure cuffs do what they do, and it usually ends there.  
+  - Apps like PC Health here in Canada, Apple Health and Samsung Health are MOSTLY closed loops. You put data in, and then what? Show your doctor your phone in-person?
+  - My healthcare region offers MyChart/Epic access - Their goal is to be a connection between patiends and health care teams - sounds like an awesome idea, so I can abandon this project!  The problem is most doctors aren't on the other end to consume it, and while lab and visit reports contain technical analysis which are a piece of the puzzle, it doesn't have blood pressure, or any "health" features (e.g. Weight, blood oxygenation, diabetes management, etc).
+
+
+## Features
+| Feature | Description |
+|--------|-------------|
+| Categorization | Reading Categories are very common and recognized by health advocacy organizations and healthcare providers around the world. |
+| Analysis Perspectives | Most charts come in pairs: A Time-Series (Line charts showing the "path" of readings) and Summary (called a Histogram or “Box & Whisker” showing the groupings of the heart’s performance). |
+| Time Windows | The 7/14/30 day filters allow you to differentiate between immediate trends (short-term) and sustained patterns (long-term). |
+| Reading Comments | It accepts an optional field called "Comments" (e.g., "I just worked out") which appears in the chart markers tooltips to help and clinicians explain sudden spikes or dips, or for thoughts for review after the fact (e.g. “I’ve been on a medication for a week and noticed something feels “off”). This was the second most requested feature from my health team. |
+| Informational "Drawers" | Most charts have an information drawer explaining what it is for, on top of a general "How to use this dashboard" explaining calculation "business rules" and nuances. | 
+| Design | "Desktop First" with responsive .css and will purposefully avoid being a phone app. |
+| Themes | Plumbing is in place but haven't implemented yet. |
+| Clinician Insights | Doctors consulted have requested High/Low data, and visual colouring applied when thresholds requiring a closer watch for intervention are met. |
+
+## Clinician Insights
+<details>
+  <summary><strong>Click to see rules</strong></summary>
+
+	The Measures (Sys, Dia, Pulse, Pulse Pressure) have visual stylings applied to the measures individually (mutually exclusive from the whole reading record itself) based on high and low thresholds that merrit a closer look to determine if closser monitoring is needed or intervention is necessary.
+	- in the Summary Cards, if the average or the highest/lowest reading in the filtered timeframe.
+	- in the Raw Data Table, cells are highlighted (like a spreadsheet's conditional formatting).
+
+	Measures outside of these ranges are generally considered to be acceptable:
+	
+	| Measure | High Warning (>=) | Low Warning (<=) |
+	| --- | --- | --- |
+	| Systolic | 140 | 90 |	
+	| Diastolic | 90 | 60 |
+	| Pulse | 100 | 60 |
+	| Pulse Pressure | 60 | 30 |	
+
+</details>
+
+## Application Flow
+<details>
+  <summary><strong>Click to expand Data Flow</strong></summary>
+	
+  ![Data pipeline](assets/bp_dashboard_pipeline.svg)
+</details>
+
+## Product Goals
+- Start small, invest nothing until a user critical mass is achieved.
+- To make complicated-to-set-up analysis charts something "Your elderly parents could use" with as few clicks as possible.
+- Use tools people already know how to use (like google sheets, excel, browsers, their wearable devices, their health apps). 
+- Users shouldn't be forced to, nor do they want to, set up hosting accounts nor download and learn "under the hood" deployments to achieve their goal.
+- Design with anticipation to accommodate both heavy and sporadic users.
+- Avoid gaps in time-based analysis, and empty charts when viewing after a large period of inactivity - resist Linear Interpolation, Forward Fill, Moving Average or Mean Fill imputation methods.
+- To educate users on generally accepted clinical benchmarks using their own data ("academia with context"), removing gaps their health network may not explain.
+- To make insights available in a manner people can see themselves, and share with their doctor and have a "Here's what I see, what do you think?" conversation.
+- To help people feel more informed when seeing a doctor every single day is not feasible.  
+- Generate a conversation and improve; invite patients and clinician feedback early.  
+- Avoid being a phone-only app  
+  - It keeps your data accessible - apps on the market tend to lock a user's own information away out of reach, and stuck in their software should they decide to try something else.
+  - Many apps like Facebook serve a purpose well, however analysis should not be shoved into such a small space and difficult to read.  
+	  "Browser First" sounds backwards these days, but using responsive .css ensures users desiring to use a cellphone are able to see their dashboard.
+- Avoid using spreadsheets as an analytical dashboard.  Just accept it - charts are fragile and limited - it's too easy for a user to inadvertently break things with one click requiring maintenance work, and you can't lock them.
+- Be responsible, and "stay in your lane" - build with purpose and avoid legal entanglement (HIPPA, PHIPA, CCPA, PIPEDA, GDPR, UK GDPR - it's boring and exhausting but necessary to be aware of).
+
+## License
+TBD

@@ -8,6 +8,7 @@
    ============================================================================ */
 
     import { MEDICAL_THRESHOLDS } from '../utils/bp_utils.js';
+    import { showGlobalErrorBanner } from '../utils/errorHandling.js';
 
     /**
      * Updates the 4 metric summary cards

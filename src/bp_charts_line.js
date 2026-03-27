@@ -16,8 +16,9 @@ import {
     getCssStyles
 } from '../utils/bp_utils.js';
 
+
+
 let sysAndDiaChart = null;
-const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
 
 /**
  * Creates/updates the Sys/Dia line chart
@@ -25,6 +26,7 @@ const cssStyle = getCssStyles("light", "chart"); // call in some css styles from
  */
 
 export function createSysAndDiaChart(bpData) {
+    const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js
     const canvas = document.getElementById('sysAndDiaChart');
     if (!canvas) {
         console.error('[SYS/DIA CHART] Canvas element #sysAndDiaChart not found');
@@ -184,7 +186,11 @@ export function createSysAndDiaChart(bpData) {
             }
         }
     });
-    console.log(bpData);
-    console.log(bpData.DateObj)
+    
+    console.log("[TRACE: bpData is currently: ", bpData);
+
+    if (bpData.length > 0) {
+    console.log('[DEBUG] First Record DateObj:', bpData[0].DateObj);
+    }
     console.log('[Trace] bp_charts_line.js rendered successfully');
 }

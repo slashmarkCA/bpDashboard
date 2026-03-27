@@ -30,6 +30,7 @@
 
 import { getBPCategory, getPulseCategory, getPulsePressureCategory, getLocalDateKey, MEDICAL_THRESHOLDS } from '../utils/bp_utils.js';
 
+// If I ever want to filter the table data, just throw filteredData into renderRawBPTable()'s parameter because it shows all records now:
 export function renderRawBPTable() {
     const container = document.getElementById('bpRawDataTable');
     if (!container) {
@@ -144,6 +145,3 @@ export function renderRawBPTable() {
         container.innerHTML = '<div style="color:red; border:1px solid red; padding:10px;">Error generating table. Check Console (F12).</div>';
     }
 }
-
-// Auto-run on module load
-renderRawBPTable();
