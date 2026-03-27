@@ -33,6 +33,7 @@ import {
     calculateMAP, 
     getCssStyles
 } from '../utils/bp_utils.js';
+import { showGlobalErrorBanner } from '../utils/errorHandling.js';
 
 let map7DayChart = null;
 const cssStyle = getCssStyles("light", "chart"); // call in some css styles from styles.css via bp_utils.js

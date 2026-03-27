@@ -52,12 +52,10 @@ export function getFilteredBPData(range) {
         return [];
     }
 
-    // "All" filter - return everything sorted
     if (range === 'all') {
         return [...SOURCE_DATA].sort((a, b) => a.DateObj - b.DateObj);
     }
 
-    // Determine number of days required
     const daysRequired = {
         last7days: 7,
         last14days: 14,
@@ -69,56 +67,34 @@ export function getFilteredBPData(range) {
         return SOURCE_DATA;
     }
 
-    // 1. Group all available data by local date key
     const byDay = new Map();
     SOURCE_DATA.forEach(r => {
         const key = getLocalDateKey(r.DateObj);
-        if (!key) {
-            console.warn('[FILTER] Skipping record with invalid date:', r.ReadingID);
-            return;
-        }
+        if (!key) return;
         if (!byDay.has(key)) byDay.set(key, []);
         byDay.get(key).push(r);
     });
 
-    // 2. Sort unique dates newest to oldest
     const sortedDays = Array.from(byDay.keys()).sort((a, b) => b.localeCompare(a));
-
-    // 3. Take the N most recent days that actually have readings
     const selectedDays = sortedDays.slice(0, daysRequired);
 
-    if (!selectedDays.length) {
-        console.warn(`[FILTER] No days found for range: ${range}`);
-        return [];
-    }
+    if (!selectedDays.length) return [];
 
-    // 4. Flatten the readings from those selected days back into a single array
     const result = [];
     selectedDays.forEach(dayKey => {
         result.push(...byDay.get(dayKey));
     });
 
-    // 5. Return sorted oldest to newest for Chart.js
     return result.sort((a, b) => a.DateObj - b.DateObj);
 }
 
 /**
  * UI event handler with error boundaries
- * @param {Array} filteredData - Filtered dataset
  */
 function updateAllCharts(filteredData) {
     try {
-        if (!filteredData.length) {
-            console.warn('[FILTER] No data for current filter, showing empty state');
-        }
-        
         createAllCharts(filteredData);
-        
-        console.log(
-            `[FILTER] ${currentFilter}`,
-            `Days: ${new Set(filteredData.map(r => getLocalDateKey(r.DateObj))).size}`,
-            `Readings: ${filteredData.length}`
-        );
+        console.log(`[FILTER] Rendered ${currentFilter}: ${filteredData.length} readings`);
     } catch (error) {
         console.error('[FILTER] Error updating charts:', error);
         if (typeof showGlobalErrorBanner === 'function') {
@@ -129,10 +105,14 @@ function updateAllCharts(filteredData) {
 
 /**
  * Initialize filter buttons and render initial charts
+ * Exported to be called by main.js
+ * @param {Array} normalizedData - The fully processed data array
  */
-function initializeFilters() {
-    const buttons = document.querySelectorAll('.date-pill');
+export function initializeFilters(normalizedData) {
+    // Ensure the internal state is set before filtering
+    window.NORMALIZED_BP_DATA = normalizedData;
 
+    const buttons = document.querySelectorAll('.date-pill');
     if (!buttons.length) {
         console.error('[FILTER] No filter buttons found in DOM');
         return;
@@ -141,55 +121,17 @@ function initializeFilters() {
     buttons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            // Update UI state
             buttons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Update filter
             currentFilter = btn.dataset.filter || 'last7days';
-
-            // Get filtered data
             const filtered = getFilteredBPData(currentFilter);
-
-            // Update charts
             updateAllCharts(filtered);
         });
     });
 
-    // Initial render
+    // Initial render call
     console.log('[FILTER] Initializing dashboard with default filter:', currentFilter);
     const initial = getFilteredBPData(currentFilter);
     updateAllCharts(initial);
 }
-
-/**
- * Wait for both DOM and data to be ready before initializing
- */
-let domReady = false;
-let dataReady = false;
-
-function checkAndInitialize() {
-    if (domReady && dataReady) {
-        console.log('[FILTER] ✅ DOM and data both ready, initializing filters...');
-        initializeFilters();
-    }
-}
-
-// Listen for DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('[FILTER] DOM loaded, waiting for data...');
-    domReady = true;
-    checkAndInitialize();
-});
-
-// Listen for data ready (fired by bp_data_normalized.js after normalization completes)
-window.addEventListener('bpDataLoaded', () => {
-    console.log('[FILTER] Data load event received, waiting for normalization...');
-    
-    // Small delay to ensure NORMALIZED_BP_DATA is fully set
-    setTimeout(() => {
-        dataReady = true;
-        checkAndInitialize();
-    }, 100);
-});

@@ -2,7 +2,6 @@
    bp_data_normalized.js
    ---------------------------------------------------------------------------
    One-time normalization layer with robust validation
-   - Waits for data to load from GitHub (bp_data_loader.js)
    - Multi-format date parsing with detailed error reporting
    - Data type validation and sanitization
    - BP category calculation via bp_utils.js
@@ -10,25 +9,11 @@
    ============================================================================ */
 
 import { getBPCategory, getPulseCategory, getPulsePressureCategory } from './bp_utils.js';
-
-/**
- * Wait for BP_DATA to be loaded before normalizing
- * The bp_data_loader.js script fetches from GitHub and dispatches this event
- */
-window.addEventListener('bpDataLoaded', () => {
-    console.log('[NORMALIZER] Data loaded event received, starting normalization...');
-    window.NORMALIZED_BP_DATA = normalizeData();
-});
-
-// Defensive: if data is already loaded when this script runs
-if (window.isBPDataLoaded && window.isBPDataLoaded()) {
-    console.log('[NORMALIZER] Data already present, normalizing immediately...');
-    window.NORMALIZED_BP_DATA = normalizeData();
-}
+import { showGlobalErrorBanner } from './errorHandling.js';
 
 /**
  * Robust Date Parser
- * Handles format: "YYYY-MM-DD HH:MM:SS AM/PM" (your actual data format)
+ * Handles format: "YYYY-MM-DD HH:MM:SS AM/PM"
  * @param {string} dateStr - Date string to parse
  * @returns {Date|null} Parsed date or null if invalid
  */
@@ -45,8 +30,6 @@ function parseBPDate(dateStr) {
     }
 
     const [datePart, timePart, ampm] = parts;
-    
-    // Handle YYYY-MM-DD format
     const [year, month, day] = datePart.split('-');
     
     if (!year || !month || !day) {
@@ -65,7 +48,6 @@ function parseBPDate(dateStr) {
     if (ampm && ampm.toLowerCase() === 'pm' && h < 12) h += 12;
     if (ampm && ampm.toLowerCase() === 'am' && h === 12) h = 0;
 
-    // Construct ISO string for Date constructor
     const iso = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}T${String(h).padStart(2, '0')}:${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
     const d = new Date(iso);
     
@@ -79,11 +61,6 @@ function parseBPDate(dateStr) {
 
 /**
  * Validates and sanitizes a numeric medical reading
- * @param {*} value - Value to validate
- * @param {string} fieldName - Field name for error reporting
- * @param {number} min - Minimum acceptable value
- * @param {number} max - Maximum acceptable value
- * @returns {number|null} Validated number or null
  */
 function validateNumericReading(value, fieldName, min, max) {
     const num = Number(value);
@@ -95,7 +72,6 @@ function validateNumericReading(value, fieldName, min, max) {
     
     if (num < min || num > max) {
         console.warn(`[VALIDATOR] ${fieldName} out of range (${min}-${max}):`, num);
-        // Return null for clearly invalid data, but allow processing to continue
         if (num < 0 || num > max * 2) return null;
     }
     
@@ -105,27 +81,15 @@ function validateNumericReading(value, fieldName, min, max) {
 /**
  * Main normalization function
  * Processes raw BP data with comprehensive validation
+ * @param {Array} rawData - The raw JSON array from the loader
  * @returns {Array} Normalized and validated BP records
  */
-export function normalizeData() {
-    // Get raw data - check multiple possible locations for backwards compatibility
-    const RAW_BP_DATA =
-        window.ALL_BP_DATA ||
-        window.BP_DATA ||
-        window.sourceData ||
-        window.bpData ||
-        null;
+export function normalizeData(rawData) {
+    const RAW_BP_DATA = rawData || [];
     
-    if (!Array.isArray(RAW_BP_DATA)) {
-        console.error('[NORMALIZER] No raw BP data array found on window');
-        if (typeof showGlobalErrorBanner === 'function') {
-            showGlobalErrorBanner('Critical: Blood pressure data not loaded');
-        }
-        return [];
-    }
-
-    if (RAW_BP_DATA.length === 0) {
-        console.warn('[NORMALIZER] Raw data array is empty');
+    if (!Array.isArray(RAW_BP_DATA) || RAW_BP_DATA.length === 0) {
+        console.error('[NORMALIZER] No valid raw BP data provided');
+        showGlobalErrorBanner('Critical: Blood pressure data could not be processed.');
         return [];
     }
 
@@ -133,36 +97,20 @@ export function normalizeData() {
     const validationErrors = [];
     
     const normalized = RAW_BP_DATA.map((r, index) => {
-        // Validate date
         const dObj = parseBPDate(r.Date);
         if (!dObj) {
-            parseErrors.push({ 
-                index, 
-                readingID: r.ReadingID, 
-                dateString: r.Date 
-            });
+            parseErrors.push({ index, readingID: r.ReadingID, dateString: r.Date });
             return null;
         }
 
-        // Validate numeric readings with medical ranges
         const sys = validateNumericReading(r.Sys, 'Systolic', 40, 250);
         const dia = validateNumericReading(r.Dia, 'Diastolic', 20, 150);
         const bpm = validateNumericReading(r.BPM || r.Pulse, 'BPM', 30, 200);
 
         if (sys === null || dia === null) {
-            validationErrors.push({ 
-                index, 
-                readingID: r.ReadingID, 
-                sys: r.Sys, 
-                dia: r.Dia 
-            });
+            validationErrors.push({ index, readingID: r.ReadingID, sys: r.Sys, dia: r.Dia });
             return null;
         }
-
-        // Calculate all categories from raw values (ignore source categories)
-        const bpCategory = getBPCategory(sys, dia);
-        const pulseCategory = getPulseCategory(bpm);
-        const pulsePressureCategory = getPulsePressureCategory(sys - dia);
 
         return {
             ...r,
@@ -170,62 +118,20 @@ export function normalizeData() {
             Sys: sys,
             Dia: dia,
             BPM: bpm || 0,
-            
-            // Calculated category objects (application layer calculates these)
-            bpCat: bpCategory,
-            pulseCat: pulseCategory,
-            ppCat: pulsePressureCategory
+            bpCat: getBPCategory(sys, dia),
+            pulseCat: getPulseCategory(bpm),
+            ppCat: getPulsePressureCategory(sys - dia)
         };
-    }).filter(Boolean); // Remove null entries
+    }).filter(Boolean);
 
-    // Detailed Error Reporting
-    if (parseErrors.length > 0) {
-        console.error(`[NORMALIZER] Failed to parse ${parseErrors.length} dates:`);
-        parseErrors.slice(0, 5).forEach(err => {
-            console.error(`  ReadingID ${err.readingID}: "${err.dateString}"`);
-        });
-        if (parseErrors.length > 5) {
-            console.error(`  ... and ${parseErrors.length - 5} more`);
-        }
-    }
-
-    if (validationErrors.length > 0) {
-        console.error(`[NORMALIZER] ${validationErrors.length} records failed validation:`);
-        validationErrors.slice(0, 5).forEach(err => {
-            console.error(`  ReadingID ${err.readingID}: Sys=${err.sys}, Dia=${err.dia}`);
-        });
-    }
-
-    // Success Logging & Statistics
     if (normalized.length === 0) {
-        console.error('[NORMALIZER] No valid records after normalization');
-        if (typeof showGlobalErrorBanner === 'function') {
-            showGlobalErrorBanner('Error: No valid blood pressure readings found');
-        }
+        showGlobalErrorBanner('Error: No valid blood pressure readings found after processing.');
         return [];
     }
 
-    const distinctDays = new Set(
-        normalized.map(r => 
-            `${r.DateObj.getFullYear()}-${r.DateObj.getMonth()+1}-${r.DateObj.getDate()}`
-        )
-    ).size;
+    // Set global for console debugging/backwards compatibility
+    window.NORMALIZED_BP_DATA = normalized;
 
-    console.log('[NORMALIZER] Successfully normalized:');
-    console.log('  Records:', normalized.length);
-    console.log('  Distinct days:', distinctDays);
-    console.log('  Date range:', 
-        normalized[0].DateObj.toLocaleDateString(), 
-        '→', 
-        normalized[normalized.length - 1].DateObj.toLocaleDateString()
-    );
-    
-    if (parseErrors.length > 0 || validationErrors.length > 0) {
-        console.warn('  Skipped records:', parseErrors.length + validationErrors.length);
-    }
-
+    console.log('[NORMALIZER] Successfully normalized:', normalized.length, 'records');
     return normalized;
 }
-
-// DO NOT auto-execute - wait for data to load via event listener above
-// The normalizeData() function is called when 'bpDataLoaded' event fires

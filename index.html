@@ -297,20 +297,12 @@
     <!-- raw: No aggregation, just show the dots -->
 
     <!-- Content inside the sliding drawer "about this chart" -->
-    <script type="module" src="utils/errorHandling.js" defer></script>
     <script src="src/docLibrary.js" defer></script>
-
-    <!-- Core data & utilities -->
-    <!-- Core data loader (fetches from GitHub) -->
-    <!-- Cannot be a module....The loader needs to run in global scope to set window.BP_DATA-->
-    <script src="utils/bp_data_loader.js" defer></script>
-    <script type="module" src="utils/bp_data_normalized.js" defer></script>
-    <script type="module" src="utils/bp_utils.js" defer></script>
-    <script type="module" src="utils/bp_filters.js" data-logic="volume-window" defer></script>
     <script src="utils/bp_docs.js" defer></script> <!-- sliding drawer constructor -->
 
-    <!-- Chart dispatcher -->
-    <script type="module" src="utils/bp_charts.js" defer></script>
+    <!-- Core utilities - Cannot be a module....The loader needs to run in global scope to set window.BP_DATA -->
+    <script type="module" src="utils/main.js"></script>
+    <script type="module" src="utils/bp_utils.js" defer></script>
 
     <!-- Chart modules -->
     <script type="module" src="src/lastReadingDate.js" defer></script>
