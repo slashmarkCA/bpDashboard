@@ -154,5 +154,4 @@ BPChartJsArchives/
 # allow /tests to be pushed - these are my spec files.  Just do not embed user/pass!!!  Use a .env file which is ignored above.
 
 # Ignore these because I edit README.md in github.com and google sheets writes bp_readings.json to github too.
-README.md
 data/bp_readings.json

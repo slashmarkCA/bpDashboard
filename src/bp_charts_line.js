@@ -186,8 +186,9 @@ export function createSysAndDiaChart(bpData) {
             }
         }
     });
-    console.log(bpData);
     
+    console.log("[TRACE: bpData is currently: ", bpData);
+
     if (bpData.length > 0) {
     console.log('[DEBUG] First Record DateObj:', bpData[0].DateObj);
     }

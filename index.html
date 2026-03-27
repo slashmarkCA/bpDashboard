@@ -290,40 +290,10 @@
     </div>
     <div id="drawerOverlay" class="drawer-overlay"></div>
 
-
-    <!-- Laws of Aggregation for data-aggregation="..." and data-logic  -->
-    <!-- reading-simple: Every measurement counts as 1 -->
-    <!-- day-mean-simple: Every day counts as 1 (after collapsing its readings) -->
-    <!-- raw: No aggregation, just show the dots -->
-
     <!-- Content inside the sliding drawer "about this chart" -->
     <script src="src/docLibrary.js" defer></script>
     <script src="utils/bp_docs.js" defer></script> <!-- sliding drawer constructor -->
 
-    <!-- Core utilities - Cannot be a module....The loader needs to run in global scope to set window.BP_DATA -->
     <script type="module" src="utils/main.js"></script>
-    <script type="module" src="utils/bp_utils.js" defer></script>
-
-    <!-- Chart modules -->
-    <script type="module" src="src/lastReadingDate.js" defer></script>
-	<script type="module" src="src/bp_charts_line.js" data-aggregation="raw" defer></script>
-    <script type="module" src="src/bp_pulse_line.js" data-aggregation="raw" defer></script>
-    <script type="module" src="src/bp_charts_scatter.js" data-aggregation="raw" defer></script>
-    <script type="module" src="src/bp_pulse_histogram.js" data-aggregation="raw" defer></script>
-    <script type="module" src="src/bp_pulsePressure_histogram.js" data-aggregation="raw" defer></script>
-    <script type="module" src="src/bp_SysDia_volatilityBoxAndWhisker.js" data-aggregation="raw" defer></script>
-    <script type="module" src="src/bp_pulsePressure_line.js" data-aggregation="raw" defer></script>
-    <script type="module" src="src/bp_categoryOverTime.js" data-aggregation="day-mean-simple" defer></script>
-    <script type="module" src="src/bp_charts_combined_rolling.js" data-aggregation="day-mean-simple" defer></script>
-    <script type="module" src="src/bp_7dayAvg_combined_map_line.js" data-aggregation="day-mean-simple" defer></script>
-    <script type="module" src="src/bp_heatmap.js" data-aggregation="raw" defer></script>
-
-    <!-- Summary cards -->
-    <script type="module" src="src/ReadingsInDaysCard.js" data-aggregation="reading-simple" defer></script>
-    <script type="module" src="src/readingCategoriesSummaryCard.js" data-aggregation="reading-simple" defer></script>
-    <script type="module" src="src/bp_5colAggregateSummary_cards.js" data-aggregation="reading-simple" defer></script>
-    <script type="module" src="src/filteredNormalDonutCard.js" data-aggregation="reading-simple" defer></script>
-    <script type="module" src="src/bp_rawDataTabularView.js" data-aggregation="raw" defer></script>
-
 </body>
 </html>

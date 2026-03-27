@@ -109,9 +109,6 @@ function updateAllCharts(filteredData) {
  * @param {Array} normalizedData - The fully processed data array
  */
 export function initializeFilters(normalizedData) {
-    // Ensure the internal state is set before filtering
-    window.NORMALIZED_BP_DATA = normalizedData;
-
     const buttons = document.querySelectorAll('.date-pill');
     if (!buttons.length) {
         console.error('[FILTER] No filter buttons found in DOM');

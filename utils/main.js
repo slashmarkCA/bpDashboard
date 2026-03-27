@@ -10,6 +10,7 @@ import { loadBPData } from './bp_data_loader.js';
 import { normalizeData } from './bp_data_normalized.js';
 import { initializeFilters } from './bp_filters.js';
 import { showGlobalErrorBanner } from './errorHandling.js';
+import { updateLastReadingDate } from '../src/lastReadingDate.js';
 
 async function startDashboard() {
     console.log('[MAIN] Starting dashboard orchestration...');
@@ -27,6 +28,7 @@ async function startDashboard() {
 
         // 3. Normalize data
         const cleanData = normalizeData(rawData);
+        updateLastReadingDate(); // ← reads window.NORMALIZED_BP_DATA set by normalizeData()
         console.log('[MAIN] Step 3: Normalization complete');
 
         // 4. Wire up UI and perform initial render
