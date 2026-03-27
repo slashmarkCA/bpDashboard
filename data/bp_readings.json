@@ -4184,5 +4184,19 @@
     "FormComments": "",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 300,
+    "Date": "2026-03-26 08:59:23 PM",
+    "Sys": 104,
+    "Dia": 81,
+    "BPM": 73,
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 23,
+    "FormComments": "whew, lightheaded.",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
