@@ -53,9 +53,11 @@ test.describe('Blood Pressure Dashboard Smoke Tests', () => {
       '#bpScatterChart'
     ];
 
-    // REWRITE AND LEARN WITH THIS TEST.
+    // TODO: REWRITE AND LEARN WITH THIS TEST.
     // https://chatgpt.com/c/69c0b6c5-719c-832d-abfe-6521110494c6
     // Check for bpDataLoaded since dashboard is event-driven
+    // And after reading chatgpt, also check https://claude.ai/chat/535110b2-9273-4421-aaa0-5491a2b83e0b - there's a better way - this test's description is totally
+    // ...wrong and it's not what it does at all - it just tests for the element to be present and NOT wether anything was rendered in it.  Stupid gemini lied.
     await page.evaluate(() => {
       return new Promise(resolve => {
         if (window.NORMALIZED_BP_DATA) resolve(); // Already loaded?
