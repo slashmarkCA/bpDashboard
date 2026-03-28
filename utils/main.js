@@ -25,6 +25,7 @@ async function startDashboard() {
         // 2. Fetch data from GitHub
         const rawData = await loadBPData();
         console.log('[MAIN] Step 2: Raw data loaded');
+        console.log("[DEBUG] rawData before normalization scrubbing is: ", rawData);
 
         // 3. Normalize data
         const cleanData = normalizeData(rawData);

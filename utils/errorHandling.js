@@ -8,7 +8,7 @@
  * ============================================================
  */
 
-// 1. Listen for standard JS errors (syntax, reference, etc.)
+// 1. Listen for standard JS errors (syntax, reference, etc.) and if chart.js CDN is down.
 window.addEventListener("error", (event) => {
     // Some browser extensions or cross-origin scripts might trigger generic "Script error."
     // We log the details we have and show the banner.
@@ -53,46 +53,7 @@ function showGlobalErrorBanner(msg) {
     document.body.prepend(div);
 }
 
-/**
- * Dependency Check
- * Called by updateAllCharts() to ensure Chart.js is available.
- * Hardened to trigger both Global and Local alerts.
- */
-function checkChartDependencies() {
-    if (!window.Chart) {
-        console.error("Chart.js failed to load");
-        
-        // Trigger the top banner for high visibility
-        showGlobalErrorBanner("Charts could not be initialized (Chart.js library missing).");
-        
-        // Trigger local messages in the chart slots
-        showChartError("Charts unavailable (library failed to load)");
-        
-        return false;
-    }
-    return true;
-}
-
-/**
- * Targets all containers with the class .chart-container and 
- * injects an error message.
- * TODO: What is this for? 
- */
-function showChartError(msg) {
-    const containers = document.querySelectorAll(".chart-container");
-    
-    if (containers.length === 0) {
-        console.warn("No .chart-container elements found to display error:", msg);
-        return;
-    }
-
-    containers.forEach(el => {
-        el.innerHTML = `<div class="chart-error">${msg}</div>`;
-    });
-}
-
 // Window Bridge (Keep for legacy inline script calls if any)
 window.showGlobalErrorBanner = showGlobalErrorBanner;
 
-// ES6 Module Exports
-export { showGlobalErrorBanner, checkChartDependencies, showChartError };
+export { showGlobalErrorBanner};

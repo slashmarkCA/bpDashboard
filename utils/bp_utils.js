@@ -81,6 +81,10 @@ export function calculateMAP(sys, dia) {
     // The Division by 3: Since you are essentially adding one part Systolic and two parts Diastolic, you divide by 3 to get the weighted average.
 }
 
+
+// Retaining getCalendarDaySpan() for planned UTC migration — when dates are stored in UTC and 
+// converted to locale at the UI layer, these will replace getLocalDateKey()
+// grouping logic in bp_filters.js and bp_heatmap.js.
 /**
  * Calculate calendar day span (ignores time-of-day)
  * @param {Date} firstDate
@@ -98,7 +102,7 @@ export function getCalendarDaySpan(firstDate, lastDate) {
 
 
 /* ---------------------------------------------------------------------------
-   Single Source of Truth for 
+   Single Source of Truth for categories and calculations app wide.
 --------------------------------------------------------------------------- */
 
 // Data dictionaries to keep colors and labels consistent
@@ -202,6 +206,9 @@ export function linearRegression(points) {
 }
 
 
+// Retaining getCalendarRange() for planned UTC migration — when dates are stored in UTC and 
+// converted to locale at the UI layer, these will replace getLocalDateKey()
+// grouping logic in bp_filters.js and bp_heatmap.js.
 // Normalize a date range to full calendar days (Midnight to 11:59:59 PM)
 // This ensures all charts and summary cards use the exact same record set.  I had problems with Avg() because of milliseconds.
 export function getCalendarRange(endDate, daysBack) {
