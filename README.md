@@ -86,6 +86,22 @@ This project is open for community review. I welcome feedback from both medical 
   ![Data pipeline](assets/bp_dashboard_pipeline.svg)
 </details>
 
+## Test Plans
+<details>
+  <summary><strong>Click to expand test suite and reporting</strong></summary>
+At this moment, I am writing a test suite in google sheets because HP ALM is far too expensive at this time.
+
+- Draft test suite and scripts [are here](https://raw.githubusercontent.com/slashmarkCA/bpDashboard/refs/heads/main/tests/TestSuite.html)
+- Manual test run report [is here](https://raw.githubusercontent.com/slashmarkCA/bpDashboard/refs/heads/main/tests/ManualRunReport.html)
+- Playwright Automation scripts are in ./tests
+- Playwright Automation reports are coming when I implement Allure reports.  Hiring managers may ask to see Playwright reports on request for security purposes.
+
+I will tidy this all up into a nice package eventually without paying for testrail, and am planning on choosing Allure Reports\
+Fellow testers and managers will understand where I'm going with this.\
+The irony is that I've already [opened a github issue](https://github.com/slashmarkCA/bpDashboard/issues/35) for this work - does that make my testing a defect? :grin: 
+
+</details>
+
 ## Product Goals
 - Start small, invest nothing until a user critical mass is achieved.
 - To make complicated-to-set-up analysis charts something "Your elderly parents could use" with as few clicks as possible.
