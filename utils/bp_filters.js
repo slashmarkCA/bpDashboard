@@ -97,9 +97,6 @@ function updateAllCharts(filteredData) {
         console.log(`[FILTER] Rendered ${currentFilter}: ${filteredData.length} readings`);
     } catch (error) {
         console.error('[FILTER] Error updating charts:', error);
-        if (typeof showGlobalErrorBanner === 'function') {
-            showGlobalErrorBanner('Failed to update charts. Please refresh the page.');
-        }
     }
 }
 

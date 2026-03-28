@@ -53,17 +53,13 @@ export async function loadBPData() {
             throw new Error('No readings found: The data file appears to be empty.');
         }
         
-        // Set global variables for backwards compatibility / console debugging
-        window.BP_DATA = data;
-        window.ALL_BP_DATA = data; 
-        
-        console.log(`[DATA LOADER] ✅ Successfully loaded ${data.length} readings`);
+        console.log(`[DATA LOADER] Successfully loaded ${data.length} readings`);
         
         // Return data for the next step in the sequence (Normalization)
         return data;
         
     } catch (error) {
-        console.error('[DATA LOADER] ❌ Failed to load data:', error);
+        console.error('[DATA LOADER] Failed to load data:', error);
         
         // Use the centralized DRY pattern for UI feedback
         showGlobalErrorBanner(`Failed to load data: ${error.message}`);
@@ -71,10 +67,3 @@ export async function loadBPData() {
         throw error; // Re-throw so the orchestrator knows to halt the sequence
     }
 }
-
-/**
- * Utility for modules that need to check if data is loaded
- */
-window.isBPDataLoaded = () => {
-    return window.BP_DATA && Array.isArray(window.BP_DATA) && window.BP_DATA.length > 0;
-};
