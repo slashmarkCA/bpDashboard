@@ -4268,5 +4268,19 @@
     "FormComments": "Woohoo - another Normal.  I feel fine.",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 306,
+    "Date": "2026-04-01 05:04:09 PM",
+    "Sys": 151,
+    "Dia": 100,
+    "BPM": 75,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 2",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 51,
+    "FormComments": "",
+    "PulsePressureCategory": "Normal",
+    "": ""
   }
 ]
