@@ -4380,5 +4380,19 @@
     "FormComments": "",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 314,
+    "Date": "2026-04-11 11:13:57 PM",
+    "Sys": 99,
+    "Dia": 73,
+    "BPM": 82,
+    "Workday": "No",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 26,
+    "FormComments": "Whoa - light headed when standing up.",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
