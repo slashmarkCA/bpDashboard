@@ -4394,5 +4394,19 @@
     "FormComments": "Whoa - light headed when standing up.",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 315,
+    "Date": "2026-04-12 05:17:35 PM",
+    "Sys": 113,
+    "Dia": 88,
+    "BPM": 73,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 25,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
