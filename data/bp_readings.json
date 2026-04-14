@@ -4408,5 +4408,33 @@
     "FormComments": "",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 316,
+    "Date": "2026-04-13 06:00:54 PM",
+    "Sys": 128,
+    "Dia": 88,
+    "BPM": 77,
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 40,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
+  },
+  {
+    "ReadingID": 317,
+    "Date": "2026-04-13 10:01:25 PM",
+    "Sys": 100,
+    "Dia": 60,
+    "BPM": 83,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 40,
+    "FormComments": "why did I drop so fast; PP stayed same.",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
