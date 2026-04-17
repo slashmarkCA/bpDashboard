@@ -4464,5 +4464,19 @@
     "FormComments": "",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 320,
+    "Date": "2026-04-16 05:12:28 PM",
+    "Sys": 120,
+    "Dia": 88,
+    "BPM": 86,
+    "Workday": "Yes ",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 32,
+    "FormComments": "left arm has been in severe pain when waking up for 2 weeks, and pressure cuff instantly causes pain on that arm.",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
