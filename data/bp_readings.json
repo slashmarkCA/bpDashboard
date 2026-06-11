@@ -4828,5 +4828,19 @@
     "FormComments": "Whoa ?",
     "PulsePressureCategory": "Normal",
     "": ""
+  },
+  {
+    "ReadingID": 346,
+    "Date": "2026-06-10 07:07:34 PM",
+    "Sys": 107,
+    "Dia": 81,
+    "BPM": 78,
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 26,
+    "FormComments": "why is everything so low but I'm in hypertensive?",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
