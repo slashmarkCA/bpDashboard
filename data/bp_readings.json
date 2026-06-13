@@ -4842,5 +4842,19 @@
     "FormComments": "why is everything so low but I'm in hypertensive?",
     "PulsePressureCategory": "Narrowed",
     "": ""
+  },
+  {
+    "ReadingID": 347,
+    "Date": "2026-06-13 12:16:33 AM",
+    "Sys": 87,
+    "Dia": 65,
+    "BPM": 72,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 22,
+    "FormComments": "No, this is not test data - extremely lightheaded",
+    "PulsePressureCategory": "Narrowed",
+    "": ""
   }
 ]
