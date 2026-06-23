@@ -4912,5 +4912,19 @@
     "FormComments": "That's better - took a few hours but back to normal - watching Better Call Saul",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 352,
+    "Date": "2026-06-22 08:31:40 PM",
+    "Sys": 136,
+    "Dia": 88,
+    "BPM": 76,
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 48,
+    "FormComments": "",
+    "PulsePressureCategory": "Normal",
+    "Column 1": ""
   }
 ]
