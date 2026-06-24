@@ -4926,5 +4926,19 @@
     "FormComments": "",
     "PulsePressureCategory": "Normal",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 353,
+    "Date": "2026-06-23 06:42:07 PM",
+    "Sys": 107,
+    "Dia": 71,
+    "BPM": 85,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 36,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
