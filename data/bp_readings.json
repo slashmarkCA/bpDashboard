@@ -4982,5 +4982,19 @@
     "FormComments": "Why so low??",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 357,
+    "Date": "2026-07-11 05:57:20 AM",
+    "Sys": 129,
+    "Dia": 88,
+    "BPM": 70,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 41,
+    "FormComments": "Ears are ringing and palpitations.",
+    "PulsePressureCategory": "Normal",
+    "Column 1": ""
   }
 ]
