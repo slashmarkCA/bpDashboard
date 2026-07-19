@@ -4996,5 +4996,19 @@
     "FormComments": "Ears are ringing and palpitations.",
     "PulsePressureCategory": "Normal",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 358,
+    "Date": "2026-07-18 07:19:11 PM",
+    "Sys": 107,
+    "Dia": 85,
+    "BPM": 72,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 22,
+    "FormComments": "Ears are ringing again.",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
