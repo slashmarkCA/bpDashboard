@@ -5024,5 +5024,19 @@
     "FormComments": "wow, unexpectedly low and light headed.",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 360,
+    "Date": "2026-07-25 12:40:04 AM",
+    "Sys": 100,
+    "Dia": 68,
+    "BPM": 82,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 32,
+    "FormComments": "same as last night but BPM is up",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
