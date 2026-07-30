@@ -5038,5 +5038,19 @@
     "FormComments": "same as last night but BPM is up",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 361,
+    "Date": "2026-07-29 10:57:02 PM",
+    "Sys": 90,
+    "Dia": 70,
+    "BPM": 68,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 20,
+    "FormComments": "Whoa, low.",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
