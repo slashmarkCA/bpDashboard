@@ -5052,5 +5052,19 @@
     "FormComments": "Whoa, low.",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 362,
+    "Date": "2026-07-30 10:44:41 PM",
+    "Sys": 126,
+    "Dia": 87,
+    "BPM": 74,
+    "Workday": "Yes",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 39,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
