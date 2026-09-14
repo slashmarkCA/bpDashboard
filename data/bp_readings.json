@@ -5150,5 +5150,19 @@
     "FormComments": "",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 369,
+    "Date": "2026-09-13 09:53:44 PM",
+    "Sys": 111,
+    "Dia": 84,
+    "BPM": 76,
+    "Workday": "No",
+    "ReadingCategory": "Hypertension Stage 1",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 27,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
