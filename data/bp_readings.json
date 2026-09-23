@@ -5164,5 +5164,19 @@
     "FormComments": "",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 370,
+    "Date": "2026-09-22 09:59:16 PM",
+    "Sys": 107,
+    "Dia": 75,
+    "BPM": 79,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 32,
+    "FormComments": "",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
