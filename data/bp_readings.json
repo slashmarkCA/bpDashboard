@@ -5206,5 +5206,19 @@
     "FormComments": "",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 373,
+    "Date": "2026-10-31 10:32:11 PM",
+    "Sys": 94,
+    "Dia": 68,
+    "BPM": 80,
+    "Workday": "No",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 26,
+    "FormComments": "whew, greyed out when I stood up. Ears are ringing.",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
