@@ -5220,5 +5220,19 @@
     "FormComments": "whew, greyed out when I stood up. Ears are ringing.",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 374,
+    "Date": "2026-11-01 12:09:44 PM",
+    "Sys": 109,
+    "Dia": 73,
+    "BPM": 78,
+    "Workday": "No",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 36,
+    "FormComments": "why are my ears ringing?",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
