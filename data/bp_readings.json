@@ -5248,5 +5248,19 @@
     "FormComments": "very sick of the ears ringing.",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 376,
+    "Date": "2026-11-04 11:12:59 PM",
+    "Sys": 94,
+    "Dia": 75,
+    "BPM": 81,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 19,
+    "FormComments": "ears ringing and this my lowest pulse pressure ever.",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
