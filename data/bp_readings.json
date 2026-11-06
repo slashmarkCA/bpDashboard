@@ -5262,5 +5262,19 @@
     "FormComments": "ears ringing and this my lowest pulse pressure ever.",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 377,
+    "Date": "2026-11-05 11:52:26 PM",
+    "Sys": 105,
+    "Dia": 77,
+    "BPM": 68,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 28,
+    "FormComments": "Hmm, ears ringing - why is BPM so low?",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
