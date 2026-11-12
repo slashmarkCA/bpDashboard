@@ -5290,5 +5290,33 @@
     "FormComments": "Room was spinning.",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 379,
+    "Date": "2026-11-11 09:31:57 AM",
+    "Sys": 107,
+    "Dia": 77,
+    "BPM": 71,
+    "Workday": "No",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 30,
+    "FormComments": "Ears are ringing in the morning which isn't usual.",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
+  },
+  {
+    "ReadingID": 380,
+    "Date": "2026-11-11 05:00:22 PM",
+    "Sys": 103,
+    "Dia": 75,
+    "BPM": 81,
+    "Workday": "No",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 28,
+    "FormComments": "So sick of ringing ears all day.",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
