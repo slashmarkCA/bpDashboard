@@ -5318,5 +5318,19 @@
     "FormComments": "So sick of ringing ears all day.",
     "PulsePressureCategory": "Narrowed",
     "Column 1": ""
+  },
+  {
+    "ReadingID": 381,
+    "Date": "2026-11-16 09:53:52 PM",
+    "Sys": 111,
+    "Dia": 73,
+    "BPM": 79,
+    "Workday": "Yes",
+    "ReadingCategory": "Normal",
+    "PulseCategory": "Normal Pulse",
+    "gPulsePressure": 38,
+    "FormComments": "Chest feels fluttery.  Ears ringing ",
+    "PulsePressureCategory": "Narrowed",
+    "Column 1": ""
   }
 ]
